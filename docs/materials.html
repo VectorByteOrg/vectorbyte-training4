@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>About the VectorByte Training Materials 2023</title>
+<title>VectorByte Training Materials 2023</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -84,7 +84,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page">
+    <a class="nav-link" href="./about.html">
  <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
@@ -92,7 +92,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Schedule</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./materials.html">
+    <a class="nav-link active" href="./materials.html" aria-current="page">
  <span class="menu-text">Materials</span></a>
   </li>  
 </ul>
@@ -118,14 +118,35 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#pre-work-and-set-up" id="toc-pre-work-and-set-up" class="nav-link" data-scroll-target="#pre-work-and-set-up">Pre-work and set-up</a>
+  <ul class="collapse">
+  <li><a href="#hardware-and-software" id="toc-hardware-and-software" class="nav-link" data-scroll-target="#hardware-and-software">Hardware and Software</a></li>
+  <li><a href="#pre-requisites" id="toc-pre-requisites" class="nav-link" data-scroll-target="#pre-requisites">Pre-requisites</a></li>
+  </ul></li>
+  <li><a href="#introduction-to-the-vectorbyte-databases1" id="toc-introduction-to-the-vectorbyte-databases1" class="nav-link" data-scroll-target="#introduction-to-the-vectorbyte-databases1">Introduction to the VectorByte databases</a></li>
+  <li><a href="#beginner-materials" id="toc-beginner-materials" class="nav-link" data-scroll-target="#beginner-materials">Beginner materials</a>
+  <ul class="collapse">
+  <li><a href="#data-wrangling-in-r" id="toc-data-wrangling-in-r" class="nav-link" data-scroll-target="#data-wrangling-in-r">Data Wrangling in R</a></li>
+  <li><a href="#introduction-to-linear-models" id="toc-introduction-to-linear-models" class="nav-link" data-scroll-target="#introduction-to-linear-models">Introduction to Linear Models</a></li>
+  </ul></li>
+  <li><a href="#intermediate-materials" id="toc-intermediate-materials" class="nav-link" data-scroll-target="#intermediate-materials">Intermediate materials</a>
+  <ul class="collapse">
+  <li><a href="#nonlinear-modeling-including-thermal-performance-curves-tpcs" id="toc-nonlinear-modeling-including-thermal-performance-curves-tpcs" class="nav-link" data-scroll-target="#nonlinear-modeling-including-thermal-performance-curves-tpcs">Nonlinear Modeling (including Thermal Performance Curves – TPCs)</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About the VectorByte Training Materials 2023</h1>
+<h1 class="title">VectorByte Training Materials 2023</h1>
 </div>
 
 
@@ -140,26 +161,89 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>As the VectorByte team has developed <a href="materials.html">these materials</a>, we’ve aimed to provide resources for both guided (during the workshop) and self-led learning. We assume basic familiarity with:</p>
+<section id="overview" class="level1">
+<h1>Overview</h1>
+</section>
+<section id="pre-work-and-set-up" class="level1">
+<h1>Pre-work and set-up</h1>
+<section id="hardware-and-software" class="level3">
+<h3 class="anchored" data-anchor-id="hardware-and-software">Hardware and Software</h3>
+<p>We will be using <a href="https://cran.r-project.org/">R</a> for all data manipulation and analyses/model fitting. Any operating system (Windows, Mac, Linux) will do, as long as you have R (version 3.6 or higher) installed.</p>
+<p>You may use any IDE/ GUI for R (VScode, RStudio, Emacs, etc). For most people, <a href="https://www.rstudio.com/">RStudio</a> is a good option. Whichever one you decide to use, please make sure it is installed and test it before the workshop. We will have a channel on slack dedicated to software/hardware issues and troubleshooting.</p>
+<p>We will also be using Zoom and Slack to facilitate the synchronous portions of the training. Please have these installed in advance.</p>
+</section>
+<section id="pre-requisites" class="level3">
+<h3 class="anchored" data-anchor-id="pre-requisites">Pre-requisites</h3>
+<p>We are assuming familiarity with R basics. In addition, we recommend that you do the following:</p>
+<ol type="1">
+<li><p>Go to <a href="https://mhasoba.github.io/TheMulQuaBio/intro.html">The Multilingual Quantitative Biologist</a>, and read+work through the <a href="https://mhasoba.github.io/TheMulQuaBio/notebooks/07-R.html">Biological Computing in R Chapter</a> up to the section on Writing R code. Of course, keep going if you want (although we will cover some similar materials here).</p></li>
+<li><p>In addition / alternatively to pre-work element (1), here are some resources for brushing up on R <a href="https://mhasoba.github.io/TheMulQuaBio/notebooks/07-R.html#readings-and-resources">at the end of the Intro R Chapter you can try</a>. But there are many more resources online (e.g., <a href="https://www.codecademy.com/learn/learn-r">this</a> and <a href="https://www.dataquest.io/blog/learn-r-for-data-science/">this</a> ) – pick something that suits your learning style.</p></li>
+<li><p>Review background on <a href="activities/Stats_review.qmd">introductory probability and statistics</a> (<a href="activities/Stats_review_soln.qmd">solutions to exercises</a>)</p></li>
+<li><p>Inculcate the coding Jedi inside of you - or the Sith - whatever works.</p></li>
+</ol>
+</section>
+</section>
+<section id="introduction-to-the-vectorbyte-databases1" class="level1">
+<h1>Introduction to the VectorByte databases<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></h1>
 <ul>
-<li><a href="https://cran.r-project.org/">The R Programming Language</a></li>
-<li>Basic calculus (especially the mathematical idea of functions)</li>
-<li>Basic probability and statistics (e.g., what is a probability distribution, normal and binomial distributions, means, variances)</li>
+<li>This component will be delivered live &amp; synchronously (with a recording to be uploaded later)</li>
 </ul>
-<p>We’ve divided the materials into subject matter modules, and categorized these loosely from beginner to advanced methods. Each module is designed to build on the previous one, and expects at least knowledge of all of the preceding modules in the sequence. Based on your experience, we encourage students to “choose your own adventure” and start from where you feel comfortable.</p>
-<p>Each module consists of four kinds of materials:</p>
+</section>
+<section id="beginner-materials" class="level1">
+<h1>Beginner materials</h1>
+<section id="data-wrangling-in-r" class="level3">
+<h3 class="anchored" data-anchor-id="data-wrangling-in-r">Data Wrangling in R</h3>
 <ul>
-<li>slides with presentation of materials</li>
-<li>videos with recorded lectures based on slides</li>
-<li>labs/hands-on materials to allow you to practice material in a practical way</li>
-<li>solutions to exercises, when necessary</li>
+<li><a href="activities/data-wrangling.qmd">Self-Guided Activity</a></li>
+<li>Datasets:
+<ul>
+<li><a href="data/PoundHillData.csv">Poundhill Data</a></li>
+<li><a href="data/PoundHillMetaData.csv">Poundhill Meta Data</a></li>
+<li><a href="data/traitdata_Huxleyetal_2021.csv">Huxley et al Trait Data</a></li>
+<li><a href="data/GenomeSize.csv">Genome Size</a></li>
+<li><a href="data/wranglingdataset.csv">Wrangling Practical Data</a></li>
+</ul></li>
 </ul>
-<p>We also include links to additional resources/materials/references.</p>
-<p>For more information about the goals and approach of the VectorByte RCN are available at <a href="http://www.vectorbyte.org">vectorbyte.org</a>.</p>
+</section>
+<section id="introduction-to-linear-models" class="level3">
+<h3 class="anchored" data-anchor-id="introduction-to-linear-models">Introduction to Linear Models</h3>
+<ul>
+<li><a href="lectures/VB_LinMods.pdf">Lecture Slides</a>, <a href="https://www.youtube.com/watch?v=oqjzfXDgZY0&amp;list=PLrMhLVyZEsORr81gXrfgiq2vX30_brtpF&amp;index=2">Lecture Video 1</a>, <a href="https://www.youtube.com/watch?v=-VelMqc9z6M&amp;list=PLrMhLVyZEsORr81gXrfgiq2vX30_brtpF&amp;index=1">Lecture Video 2</a>, <a href="activities/VB_Linear_models_activity.qmd">Practical</a></li>
+<li>Datasets:
+<ul>
+<li><a href="data/GenomeSize.csv">Genome Size</a></li>
+<li><a href="data/traitdata_Huxleyetal_2021.csv">Huxley et al Trait Data</a></li>
+<li><a href="data/lmdataset.csv">Linear Models Practical Data</a></li>
+</ul></li>
+</ul>
+<p><br> <br></p>
+</section>
+</section>
+<section id="intermediate-materials" class="level1">
+<h1>Intermediate materials</h1>
+<section id="nonlinear-modeling-including-thermal-performance-curves-tpcs" class="level3">
+<h3 class="anchored" data-anchor-id="nonlinear-modeling-including-thermal-performance-curves-tpcs">Nonlinear Modeling (including Thermal Performance Curves – TPCs)</h3>
+<ul>
+<li><a href="lectures/VB_NLLS.pdf">Lecture Slides</a>, <a href="https://www.youtube.com/watch?v=dnZlU2_iQ1k&amp;list=PLrMhLVyZEsORr81gXrfgiq2vX30_brtpF&amp;index=3">Lecture Video</a>, <a href="activities/VB_NLLS_activity.html">Practical</a></li>
+<li>Datasets:
+<ul>
+<li><a href="data/csm7I.csv">csm7I Data</a></li>
+<li><a href="data/juvenilemortalityrateae.csv">Aedes Juvenile Mortality Data</a></li>
+<li><a href="data/nllsdataset.csv">NLLS Practical Data</a></li>
+</ul></li>
+</ul>
 
 
+</section>
+</section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>What is the difference between VectorBiTE and VectorByte? We are glad you asked! <a href="http://vectorbite.org/">VectorBiTE</a> was an RCN or a research coordination network funded by a 5 year grant from the BBSRC. <a href="https://www.vectorbyte.org/">VectorByte</a> is hosting this training which is a newly funded NSF grant to establish a global open access data platform to study disease vectors. All the databases have transitioned to VectorByte but the legacy options will still be available on the VectorBiTE website.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

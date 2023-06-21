@@ -1,6 +1,6 @@
-output-dir: docs
 project:
   type: website
+  output-dir: docs
 website:
   navbar:
     background:	"#630031"
