@@ -66,4 +66,3 @@ We are assuming familiarity with R basics. In addition, we recommend that you do
     -   [csm7I Data](data/csm7I.csv)
     -   [Aedes Juvenile Mortality Data](data/juvenilemortalityrateae.csv)
     -   [NLLS Practical Data](data/nllsdataset.csv)
-

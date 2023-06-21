@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="The VectorByte Team (Leah R. Johnson, Virginia Tech)">
+
+<title>VectorByte Methods Training 2023</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="https://www.vectorbyte.org" class="navbar-brand navbar-brand-logo">
+    <img src="./activities/graphics/vblogoedit.pdf" alt="" class="navbar-logo">
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./schedule2023.html">
+ <span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./materials.html">
+ <span class="menu-text">Materials</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/VectorByteOrg/VBTraining4"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/vectorbite_rcn"><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#assumed-background" id="toc-assumed-background" class="nav-link active" data-scroll-target="#assumed-background">Assumed Background</a></li>
+  <li><a href="#probability-basics" id="toc-probability-basics" class="nav-link" data-scroll-target="#probability-basics">Probability Basics</a>
+  <ul class="collapse">
+  <li><a href="#some-probability-notation" id="toc-some-probability-notation" class="nav-link" data-scroll-target="#some-probability-notation">Some probability notation</a></li>
+  <li><a href="#axioms-of-probability" id="toc-axioms-of-probability" class="nav-link" data-scroll-target="#axioms-of-probability">Axioms of Probability</a></li>
+  <li><a href="#bayes-theorem" id="toc-bayes-theorem" class="nav-link" data-scroll-target="#bayes-theorem">Bayes Theorem</a></li>
+  </ul></li>
+  <li><a href="#random-variables-rvs" id="toc-random-variables-rvs" class="nav-link" data-scroll-target="#random-variables-rvs">Random Variables (RVs)</a></li>
+  <li><a href="#probability-distributions" id="toc-probability-distributions" class="nav-link" data-scroll-target="#probability-distributions">Probability Distributions</a>
+  <ul class="collapse">
+  <li><a href="#discrete-rvs-and-their-probability-distributions" id="toc-discrete-rvs-and-their-probability-distributions" class="nav-link" data-scroll-target="#discrete-rvs-and-their-probability-distributions">Discrete RVs and their Probability Distributions</a>
+  <ul class="collapse">
+  <li><a href="#visualizing-distributions-of-discrete-rvs-in-r" id="toc-visualizing-distributions-of-discrete-rvs-in-r" class="nav-link" data-scroll-target="#visualizing-distributions-of-discrete-rvs-in-r">Visualizing distributions of discrete RVs in R</a></li>
+  </ul></li>
+  <li><a href="#continuous-rvs-and-their-probability-distributions" id="toc-continuous-rvs-and-their-probability-distributions" class="nav-link" data-scroll-target="#continuous-rvs-and-their-probability-distributions">Continuous RVs and their Probability Distributions</a>
+  <ul class="collapse">
+  <li><a href="#visualizing-distributions-of-continuous-rvs-in-r" id="toc-visualizing-distributions-of-continuous-rvs-in-r" class="nav-link" data-scroll-target="#visualizing-distributions-of-continuous-rvs-in-r">Visualizing distributions of continuous RVs in R</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#ways-to-describe-properties-of-distributions-and-rvs-moments" id="toc-ways-to-describe-properties-of-distributions-and-rvs-moments" class="nav-link" data-scroll-target="#ways-to-describe-properties-of-distributions-and-rvs-moments">Ways to describe properties of distributions and RVs: Moments</a></li>
+  <li><a href="#the-normal-distribution" id="toc-the-normal-distribution" class="nav-link" data-scroll-target="#the-normal-distribution">The Normal Distribution</a></li>
+  <li><a href="#probability-distributions-in-r" id="toc-probability-distributions-in-r" class="nav-link" data-scroll-target="#probability-distributions-in-r">Probability Distributions in <em>R</em></a></li>
+  <li><a href="#the-sampling-distribution" id="toc-the-sampling-distribution" class="nav-link" data-scroll-target="#the-sampling-distribution">The Sampling Distribution</a></li>
+  <li><a href="#the-central-limit-theorem" id="toc-the-central-limit-theorem" class="nav-link" data-scroll-target="#the-central-limit-theorem">The Central Limit Theorem</a></li>
+  <li><a href="#the-relationship-between-the-normal-and-student-t-distributions" id="toc-the-relationship-between-the-normal-and-student-t-distributions" class="nav-link" data-scroll-target="#the-relationship-between-the-normal-and-student-t-distributions">The relationship between the Normal and Student-<span class="math inline">\(t\)</span> Distributions</a>
+  <ul class="collapse">
+  <li><a href="#confidence-intervals" id="toc-confidence-intervals" class="nav-link" data-scroll-target="#confidence-intervals">Confidence Intervals</a></li>
+  <li><a href="#p-values" id="toc-p-values" class="nav-link" data-scroll-target="#p-values">p-Values</a></li>
+  </ul></li>
+  <li><a href="#further-exercises" id="toc-further-exercises" class="nav-link" data-scroll-target="#further-exercises">Further Exercises</a>
+  <ul class="collapse">
+  <li><a href="#the-sampling-distribution-1" id="toc-the-sampling-distribution-1" class="nav-link" data-scroll-target="#the-sampling-distribution-1">The Sampling Distribution</a></li>
+  <li><a href="#hypothesis-testing-and-confidence-intervals" id="toc-hypothesis-testing-and-confidence-intervals" class="nav-link" data-scroll-target="#hypothesis-testing-and-confidence-intervals">Hypothesis Testing and Confidence Intervals</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">VectorByte Methods Training 2023</h1>
+<p class="subtitle lead">Probability and Statistics Fundamentals</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>The VectorByte Team (Leah R. Johnson, Virginia Tech) </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="assumed-background" class="level1">
+<h1>Assumed Background</h1>
+<p>There are certain core concepts that are necessary to make good progress in this course. In particular, I expect that you’ve been exposed to</p>
+<ul>
+<li>the axioms of probability and their consequences.</li>
+<li>conditional probability and Bayes theorem</li>
+<li>the definition of a random variable (discrete and continuous)</li>
+<li>basics of probability distribution</li>
+<li>definitions of expectations</li>
+<li>sampling distribution</li>
+<li>Central Limit Theorem (CLT)</li>
+<li>Student-t distribution</li>
+<li>confidence intervals and p-values</li>
+</ul>
+<p>Below I do a very fast overview of the first two (mostly just their definitions). This is followed by a more in depth review of RVs and probability distributions along with an introduction to some related concepts (like expectations). This is important background that we’ll need for later on in the course.</p>
+<p>I provide practice problems within the text. These are noted as . I will provide solutions in another file at a later date.</p>
+</section>
+<section id="probability-basics" class="level1">
+<h1>Probability Basics</h1>
+<section id="some-probability-notation" class="level2">
+<h2 class="anchored" data-anchor-id="some-probability-notation">Some probability notation</h2>
+<p>We have a <strong><em>set</em></strong>, <span class="math inline">\(S\)</span> of all possible events. Let <span class="math inline">\(\text{Pr}(A)\)</span> (or alternatively <span class="math inline">\(\text{Prob}(A)\)</span>) be the probability of event <span class="math inline">\(A\)</span>. Then:</p>
+<ul>
+<li><span class="math inline">\(A^c\)</span> is the complement to <span class="math inline">\(A\)</span> (all events that are not A).</li>
+<li><span class="math inline">\(A \cup B\)</span> is the union of events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> (``A or B’’).</li>
+<li><span class="math inline">\(A \cap B\)</span> is the intersection of events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> (``A and B’’).</li>
+<li><span class="math inline">\(\text{Pr}(A|B)\)</span> is the conditional probability of <span class="math inline">\(A\)</span> given that <span class="math inline">\(B\)</span> occurs.</li>
+</ul>
+<p><br> </p>
+</section>
+<section id="axioms-of-probability" class="level2">
+<h2 class="anchored" data-anchor-id="axioms-of-probability">Axioms of Probability</h2>
+<p>These are the basic definitions that we use when we talk about probabilities. You’ve probably seen these before, but maybe not in mathematical notation. If the notation is new to you, I suggest that you use the notation above to translate these statements into words and confirm that you understand what they mean. I give you an example for the first statement.</p>
+<ul>
+<li><span class="math inline">\(\sum_{i \in S} \text{Pr}(A_i)=1\)</span>, where <span class="math inline">\(0 \leq \text{Pr}(A_i) \leq 1\)</span> (the probabilities of all the events that can happen must sum to one, and all of the individual probabilities must be less than one)</li>
+<li><span class="math inline">\(\text{Pr}(A)=1-\text{Pr}(A^c)\)</span></li>
+<li><span class="math inline">\(\text{Pr}(A \cup B) = \text{Pr}(A) + \text{Pr}(B) -\text{Pr}(A \cap B)\)</span></li>
+<li><span class="math inline">\(\text{Pr}(A \cap B) = \text{Pr}(A|B)\text{Pr}(B)\)</span></li>
+<li>If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <strong><em>independent</em></strong>, then <span class="math inline">\(\text{Pr}(A|B) = \text{Pr}(A)\)</span></li>
+</ul>
+<p><br> </p>
+</section>
+<section id="bayes-theorem" class="level2">
+<h2 class="anchored" data-anchor-id="bayes-theorem">Bayes Theorem</h2>
+<p>Bayes Theorem allows us to related the conditional probabilities of two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>:</p>
+<span class="math display">\[\begin{align*}
+\text{Pr}(A|B) &amp; = \frac{\text{Pr}(B|A)\text{Pr}(A)}{\text{Pr}(B)}\\
+&amp;\\
+&amp; =  \frac{\text{Pr}(B|A)\text{Pr}(A)}{\text{Pr}(B|A)\text{Pr}(A) + \text{Pr}(B|A^c)\text{Pr}(A^c)}
+\end{align*}\]</span>
+<p><br> <br></p>
+</section>
+</section>
+<section id="random-variables-rvs" class="level1">
+<h1>Random Variables (RVs)</h1>
+<div class="cell">
+
+</div>
+<p>A random variable is a object whose value is subject to randomness. Its possible values and their probabilities are described by a probability distribution. They come in two varieties</p>
+<ul>
+<li>discrete (numbers of items or successes)</li>
+<li>continuous (heights, times, weights)</li>
+</ul>
+<p>We usually use capital letters – e.g.&nbsp;<span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span>, sometimes with bold or with subscripts – to denote the RVs. In contrast we use lower case letters, e.g.&nbsp;<span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>, <span class="math inline">\(k\)</span>, to denote the values that the RV takes. For instance, lets say that the heights of the woman at Virginia Tech are the RV, <span class="math inline">\(X\)</span>, and <span class="math inline">\(X\)</span> has a normal distribution with mean 62 inches and variance 6<span class="math inline">\(^2\)</span>, i.e., <span class="math inline">\(X \sim \mathrm{N}(62,6^2)\)</span> distribution. Say we then observe the heights of 3 individuals drawn from this distribution – we would write this as: <span class="math inline">\(x=(\)</span> 64.8, 60.3, 72.3 <span class="math inline">\()\)</span>.</p>
+<p><br> <br> </p>
+</section>
+<section id="probability-distributions" class="level1">
+<h1>Probability Distributions</h1>
+<p>A <em>Probability Distribution</em> is a “is a mathematical description of a random phenomenon in terms of the probabilities of events.” (Wikipedia). That is, it’s a mathematical function (e.g.&nbsp;<span class="math inline">\(f(x)\)</span> or <span class="math inline">\(f_k\)</span>) that gives the probabilities of an RV taking on various alternative values.</p>
+<p>You’re probably familiar with the Normal Distribution and the Binomial Distribution. We’ll primarily be working with Normal distributions in this class, but it’s good to be familiar with the general idea of a distribution, as well as a few other distributions.</p>
+<p><br> </p>
+<section id="discrete-rvs-and-their-probability-distributions" class="level2">
+<h2 class="anchored" data-anchor-id="discrete-rvs-and-their-probability-distributions">Discrete RVs and their Probability Distributions</h2>
+<p>Many things that we observe are naturally discrete. For instance, whole numbers of chairs or win/loss outcomes for games. Discrete probability distributions are used to describe these kinds of events.</p>
+<p>For discrete RVs, the distribution of probabilities is described by the <em>probability mass function</em> (pmf), <span class="math inline">\(f_k\)</span> such that:</p>
+<span class="math display">\[\begin{align*}
+f_k  \equiv \text{Pr}(X &amp; = k) \\
+\text{where } 0\leq f_k \leq 1 &amp; \text{ and } \sum_k f_k = 1
+\end{align*}\]</span>
+<p>For example, for a fair 6-sided die:</p>
+<p><span class="math inline">\(f_k = 1/6\)</span> for <span class="math inline">\(k= \{1,2,3,4,5,6\}\)</span>.</p>
+<p><br> </p>
+<p> For the six-sided fair die, what is <span class="math inline">\(f_k\)</span> if <span class="math inline">\(k=7\)</span>? <span class="math inline">\(k=1.5\)</span>?</p>
+<p><br> </p>
+<p>Related to the pmf is the <em>cumulative distribution function</em> (cdf), <span class="math inline">\(F(x)\)</span>. [ F(x) (X x) ]</p>
+<p>For the 6-sided die [ F(x)= _{k=1}^x f_k ] where <span class="math inline">\(x \in 1\dots 6\)</span>.</p>
+<p><br> </p>
+<p> For the fair 6-sided die, what is <span class="math inline">\(F(3)\)</span>? <span class="math inline">\(F(7)\)</span>? <span class="math inline">\(F(1.5)\)</span>?</p>
+<p><br> </p>
+<section id="visualizing-distributions-of-discrete-rvs-in-r" class="level3">
+<h3 class="anchored" data-anchor-id="visualizing-distributions-of-discrete-rvs-in-r">Visualizing distributions of discrete RVs in R</h3>
+<p>Example: Imagine a RV can take values 1 through 10, each with probability 0.1:</p>
+<p><br> </p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>vals<span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">10</span>, <span class="at">by=</span><span class="dv">1</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pmf<span class="ot">&lt;-</span><span class="fu">rep</span>(<span class="fl">0.1</span>, <span class="dv">10</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>cdf<span class="ot">&lt;-</span>pmf[<span class="dv">1</span>]</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>) cdf<span class="ot">&lt;-</span><span class="fu">c</span>(cdf, cdf[i<span class="dv">-1</span>]<span class="sc">+</span>pmf[i])</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">bty=</span><span class="st">"n"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="at">height=</span>pmf, <span class="at">names.arg=</span>vals, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">main=</span><span class="st">"pmf"</span>, <span class="at">col=</span><span class="st">"blue"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="at">height=</span>cdf, <span class="at">names.arg=</span>vals, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">main=</span><span class="st">"cdf"</span>, <span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Stats_review_files/figure-html/RV1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br> </p>
+</section>
+</section>
+<section id="continuous-rvs-and-their-probability-distributions" class="level2">
+<h2 class="anchored" data-anchor-id="continuous-rvs-and-their-probability-distributions">Continuous RVs and their Probability Distributions</h2>
+<p>Things are just a little different for continuous RVs. Instead we use the <em>probability density function</em> (pdf) of the RV, and denote it by <span class="math inline">\(f(x)\)</span>. It still describes how relatively likely are alternative values of an RV – that is, if the pdf his higher around one value than around another, then the first is more likely to happen. However, the pdf does not return a probability, it is a function that describes the probability <strong>density</strong>.</p>
+<p>An analogy:</p>
+<p>Probabilities are like <strong>weights</strong> of objects. The PMF tells you how much weight each possible value or outcome contributes to a whole. The PDF tells you how dense it is around a value. To calculate the weight of a real object, you need to also know the size of the area that you’re interested in and the density there The probability that your RV takes <strong>exactly</strong> any value is zero, just like the probability that any atom in a very thin wire is lined up at exactly that position is zero (and to the amount of mass at that location is zero). However, you can take a very thin slice around that location to see how much material is there.</p>
+<p>Related to the pdf is the <strong><em>cumulative distribution function</em></strong> (cdf), <span class="math inline">\(F(x)\)</span>. <span class="math display">\[
+F(x) \equiv \text{Pr}(X \leq x)
+\]</span> For a continuous distribution: <span class="math display">\[
+F(x)= \int_{-\infty}^x f(x')dx'
+\]</span></p>
+<p><br> </p>
+<p> For a normal distribution with mean 0, what is <span class="math inline">\(F(0)\)</span>?</p>
+<p><br> </p>
+<section id="visualizing-distributions-of-continuous-rvs-in-r" class="level3">
+<h3 class="anchored" data-anchor-id="visualizing-distributions-of-continuous-rvs-in-r">Visualizing distributions of continuous RVs in R</h3>
+<p>Example: exponential RV, where <span class="math inline">\(f(x) = re^{-rx}\)</span>:</p>
+<p><br></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>vals<span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>, <span class="at">length=</span><span class="dv">1000</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>r<span class="ot">&lt;-</span><span class="fl">0.5</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">bty=</span><span class="st">"n"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(vals, <span class="fu">dexp</span>(vals, <span class="at">rate=</span>r), <span class="at">main=</span><span class="st">"pdf"</span>, <span class="at">col=</span><span class="st">"blue"</span>, <span class="at">type=</span><span class="st">"l"</span>, <span class="at">lwd=</span><span class="dv">3</span>, <span class="at">ylab=</span><span class="st">""</span>, <span class="at">xlab=</span><span class="st">""</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(vals, <span class="fu">pexp</span>(vals, <span class="at">rate=</span>r), <span class="at">main=</span><span class="st">"cdf"</span>, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">col=</span><span class="st">"red"</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">type=</span><span class="st">"l"</span>, <span class="at">lwd=</span><span class="dv">3</span>, <span class="at">ylab=</span><span class="st">""</span>, <span class="at">xlab=</span><span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Stats_review_files/figure-html/RVs2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br> <br> </p>
+</section>
+</section>
+</section>
+<section id="ways-to-describe-properties-of-distributions-and-rvs-moments" class="level1">
+<h1>Ways to describe properties of distributions and RVs: Moments</h1>
+<p>When we work with data we often calculate summaries of those data as a way to more easily communicate information about the data. For instance, we often calculate the mean or the median of data as a measure of the <em>central tendancy</em> of the data – that is to give a clue as to what value the middle of the data are near to. Similarly, we calculate the variance, standard deviation, or coefficient of variation as measures of how much <em>spread</em> we see in our data. We want to have similar ways to summarize important characteristics of RVs/probability distributions, as well. The general name for these summaries are “moments”, and we’re usually interested in just a couple of them.</p>
+<p>Before we can define some of the moments of a probability distribution, first we’ll define a special mathematical construction called an “expectation” or “expected value”. The expected value is a way to take a very special kind of average related to a probability distribution. Imagine that you take samples from the distribution of heights that we looked at above. If you square them, what will the central tendency of that be? What if you cube them, or take a square root? If you actually have lots of samples, you can just do the calculation! But if you just have the distribution, how do you figure out what the central tendency WOULD be? That’s where the calculation for an expected value comes in.</p>
+<p>The expected value of a function <span class="math inline">\(g(x)\)</span> given the underlying continuous probability density function, <span class="math inline">\(f(x)\)</span>, is described mathematically by: <span class="math display">\[
+\text{E}[g(x)] \equiv \int_{-\infty}^{\infty} g(x) f(x) dx
+\]</span> or for a function <span class="math inline">\(g(k)\)</span> and a discrete probability mass function, <span class="math inline">\(f_k\)</span>, by <span class="math display">\[
+\text{E}[g(k)] \equiv \sum_k g(k) f_k.
+\]</span> Here <span class="math inline">\(\text{E}[\cdot]\)</span> is read as ``the expected value of <span class="math inline">\(\cdot ~\)</span>’’.</p>
+<p>We use the expected value with some special functions of <span class="math inline">\(x\)</span> to describe properties of probability distributions, and we call these ``moments’’ of a distribution. These are usually defined as: <span class="math display">\[
+\mu'_n = \text{E}[(X-c)^n] = \int_{-\infty}^{\infty} (x-c)^n f(x) dx
+\]</span> Here <span class="math inline">\(c\)</span> is some value. These moments give you lots of information about the distribution of an RV.</p>
+<p>The first moment of an RV is also called the <strong>mean</strong> or <strong>expected value</strong> of the RV and we usually denote it as <span class="math inline">\(\mu\)</span> or <span class="math inline">\(\text{E}[X]\)</span>:</p>
+<span class="math display">\[\begin{align*}
+\mu = \text{E}[X] = \int x f(x) dx ~~~~~~ \text{(continuous RVs)}\\
+&amp; \\
+\mu = \text{E}[X] = \sum_x x f_x ~~~~~~~~~~~~~~~~~~\text{(discrete RVs)}
+\end{align*}\]</span>
+<p>This moment is the main descriptor of the central tendency or location of the RV. Let’s look at how the location of the normal distribution changes as we change its expected value (corresponding to the value of the parameter <span class="math inline">\(\mu\)</span> for the normal distribution). Along with the normal pdf I’ve indicated the mean with a vertical line. Notice that the mean line shows where the middle of the distribution is.</p>
+<p><br> </p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Stats_review_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Another way to think about the mean/expected value/first moment of an RV is that it is like calculating the arithmetic mean of data that is perfectly in proportion to the probability distribution of interest. Here’s an example. Recall, for a fair 6-sided die:</p>
+<p><span class="math inline">\(f_k = 1/6\)</span> for <span class="math inline">\(k= \{1,2,3,4,5,6\}\)</span></p>
+<p>What is <span class="math inline">\(\text{E}[k]\)</span> for this distribution? Imagine that you had 600 rolls of a die – 100 each of 1 through 6. If you were to take the arithmetic mean of those data you would have:</p>
+<span class="math display">\[\begin{align*}
+\text{mean} &amp; =  \frac{1}{600} \sum_{i=1}^{600} k_i  = \frac{1}{600} \sum_{k=1}^6 100 \times k  = \frac{100}{600} \sum_{k=1}^6 k \\
+&amp; = \frac{1}{6}  \sum_{k=1}^{6} k = \frac{1}{6} (1+2+3+4+5+6) = 3.5
+\end{align*}\]</span>
+<p>Or we can use the formula for the expected value of the RV directly:</p>
+<span class="math display">\[\begin{align*}
+\text{E}[k] &amp; = \sum_k k f_k  = \sum_{k=1}^{6} k \frac{1}{6}\\
+&amp; = \frac{1}{6}  \sum_{k=1}^{6} k = \frac{1}{6} (1+2+3+4+5+6) = 3.5
+\end{align*}\]</span>
+<p>So we get the same result – the expected value tells you what the mean of data SHOULD be if it exactly reflects the probability distribution of interest – i.e., if the data are perfectly proportioned according to the relative probabilities of outcomes.</p>
+<p>The second <em>central</em> moment (i.e., around the mean, <span class="math inline">\(\mu=\text{E}[X]\)</span>) is the <strong>variance</strong> of the RV, denoted <span class="math inline">\(\sigma^2\)</span> or <span class="math inline">\(\text{Var}(X)\)</span></p>
+<span class="math display">\[\begin{align*}
+\text{Var}(X) &amp; = \text{E}[(X-\mu)^2] = \int (x-\mu)^2 f(x) dx ~~~~~ \text{(continuous RVs)}\\
+&amp;\\
+\text{Var}(X) &amp; = \text{E}[(X-\mu)^2] = \sum_x (x-\mu)^2 f_x ~~~~~~~~~~~~~~~~\text{(discrete RVs)}
+\end{align*}\]</span>
+<p>This moment is a descriptor of variability that is independent of translation (i.e., if you move the mean), just like if we calculated the variance of some data (in this case, like for the expected value, if we had some perfect data). Let’s look at how the spread of the normal distribution changes as we change its variance (corresponding to the value of the parameter <span class="math inline">\(\sigma^2\)</span> for the normal distribution). Here the vertical lines indicate areas that are two standard deviations from the mean.</p>
+<p><br> </p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Stats_review_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Probability distributions and their moments are descriptors of what we <em>think</em> a <strong>population</strong> is like. If you know the parameters of the distribution you know everything about the population – moments, how likely are you to see some values than others, etc. You can calculate a lot of quantities yourself, or you can look things up, or use <strong>R</strong>.</p>
+<p><br> </p>
+<p> Summation Notation Practice</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(i\)</span></th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(Z_i\)</span></td>
+<td>2.0</td>
+<td>-2.0</td>
+<td>3.0</td>
+<td>-3.0</td>
+</tr>
+</tbody>
+</table>
+<ol type="i">
+<li><p><strong>Compute</strong> <span class="math inline">\(\sum_{i=1}^{4}{z_i}\)</span></p></li>
+<li><p><strong>Compute</strong> <span class="math inline">\(\sum_{i=1}^4{(z_i - \bar{z})^2}\)</span></p></li>
+<li><p><strong>What is the sample variance? Assume that the</strong> <span class="math inline">\(z_i\)</span> are i.i.d.. <em>Note that i.i.d.~stands for “independent and identically distributed”.</em></p></li>
+<li><p><strong>For a general set of</strong> <span class="math inline">\(N\)</span> numbers, <span class="math inline">\(\{X_1, X_2, \dots, X_N \}\)</span> and <span class="math inline">\(\{Y_1, Y_2, \dots, Y_N \}\)</span> show that <span class="math display">\[
+\sum_{i=1}^N{(X_i - \bar{X})(Y_i - \bar{Y})} = \sum_{i=1}^N{(X_i-\bar{X})Y_i}
+\]</span></p></li>
+</ol>
+<p><br> </p>
+<p> Properites of Expected Values</p>
+<p><strong>Using the definition of an expected value above and with X and Y having the same probability distribution, show that:</strong></p>
+<span class="math display">\[\begin{align*}
+\text{E}[X+Y]  &amp; = \text{E}[X] + \text{E}[Y]\\  
+&amp; \text{and} \\
+\text{E}[cX]  &amp; = c\text{E}[X]. \\
+\end{align*}\]</span>
+<p><strong>Given these, and the fact that</strong> <span class="math inline">\(\mu=\text{E}[X]\)</span>, show that:</p>
+<span class="math display">\[\begin{align*}
+\text{E}[(X-\mu)^2]  = \text{E}[X^2] - (\text{E}[X])^2
+\end{align*}\]</span>
+<p><strong>This gives a formula for calculating variances (since</strong> <span class="math inline">\(\text{Var}(X)= \text{E}[(X-\mu)^2]\)</span>).</p>
+<p><br> <br> </p>
+<p><strong><em>Properties of Variances</em></strong></p>
+<p>Many of the properties of variances can be calculated fairly straightforwardly based on properties of expectations that you found earlier together with the definition of the variance (second moment). However, for this class you can treat the properties as axioms/definitions. Here are the most important properties of variances for this class (where <span class="math inline">\(c\)</span> and <span class="math inline">\(a\)</span> are constants):</p>
+<ul>
+<li><span class="math inline">\(\text{Var}(X)&gt;0\)</span></li>
+<li><span class="math inline">\(\text{Var}(X+c)=\text{Var}(X)\)</span></li>
+<li><span class="math inline">\(\text{Var}(cX)=c^2\text{ Var}(X)\)</span></li>
+<li><span class="math inline">\(\text{Var}(cX+aY)=c^2\text{ Var}(X)+a^2\text{ Var}(Y)+2ac\text{ Cov}(XY)\)</span> (we’ll come back to this later in the course)</li>
+</ul>
+<p><br> <br> </p>
+<p> Functions of Random Variables</p>
+<p><strong>Suppose that</strong> <span class="math inline">\(\mathrm{E}[X]=\mathrm{E}[Y]=0\)</span>, <span class="math inline">\(\mathrm{var}(X)=\mathrm{var}(Y)=1\)</span>, and <span class="math inline">\(\mathrm{corr}(X,Y)=0.5\)</span>.</p>
+<ol type="i">
+<li>Compute <span class="math inline">\(\mathrm{E}[3X-2Y]\)</span>; and</li>
+<li><span class="math inline">\(\mathrm{var}(3X-2Y)\)</span>.</li>
+<li>Compute <span class="math inline">\(\mathrm{E}[X^2]\)</span>.</li>
+</ol>
+<p><br> <br> </p>
+</section>
+<section id="the-normal-distribution" class="level1">
+<h1>The Normal Distribution</h1>
+<p>For the purposes of this course, the <strong>Normal</strong> (or Gaussian) distribution is the most important. Its pdf is:</p>
+<span class="math display">\[\begin{align*}
+f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp{\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)}
+\end{align*}\]</span>
+<p>with <span class="math inline">\(\text{E}[X]=\mu\)</span> and <span class="math inline">\(\text{Var}(X)=\sigma^2\)</span>. Thus the mean and variance are independent.</p>
+<p>Consider two independent, normally distributed RVs, <span class="math inline">\(X \sim \mathcal{N}( \mu_x ,\sigma_x^2)\)</span> and <span class="math inline">\(Y \sim \mathcal{N}( \mu_y ,\sigma_y^2)\)</span>. Then some important properties follow:</p>
+<ul>
+<li><span class="math inline">\(X+b \sim \mathcal{N}( \mu_x + b , \sigma_x^2)\)</span>: Adding a constant to a normal RV just shifts the distribution over by that much without impacting the variance.</li>
+<li><span class="math inline">\(cX \sim \mathcal{N}( c \mu_x , c^2 \sigma_x^2)\)</span>: Multiplying a normal RV by a constant results in a new RV that is still normally distributed but the mean shifts and the variance changes.</li>
+<li><span class="math inline">\(X + Y \sim \mathcal{N}( \mu_x + \mu_y ,\sigma_x^2 + \sigma_y^2)\)</span>: The sum of RVs that are normally distributed are also normally distributed.</li>
+</ul>
+</section>
+<section id="probability-distributions-in-r" class="level1">
+<h1>Probability Distributions in <em>R</em></h1>
+<p>For standard probability distributions <em>R</em> can take random draws, calculate the cumulative distribution, probability density, and quantiles. For the normal distribution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">3</span>, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>) <span class="do">## random draws</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.3378637  0.3544268 -0.4481787</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="at">p=</span><span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>), <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>) <span class="do">## quantiles, used for CIs etc</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -1.959964  1.959964</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q=</span><span class="dv">0</span>, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>) <span class="do">## cdf, Pr(x&lt;0.5)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5</code></pre>
+</div>
+</div>
+<p><br></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">## take a bunch of draws</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>) </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="do">## make a histogram of the draws</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(X, <span class="at">freq=</span>F, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>), <span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">main=</span><span class="st">""</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="do">## make a sequency of x values so I can set up a line </span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>x<span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="at">length=</span><span class="dv">1000</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="do">## draw a line showing the normal pdf on the histogram</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, <span class="fu">dnorm</span>(x, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>), <span class="at">col=</span><span class="st">"red"</span>, <span class="at">lwd=</span><span class="dv">2</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Stats_review_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br> <br> </p>
+</section>
+<section id="the-sampling-distribution" class="level1">
+<h1>The Sampling Distribution</h1>
+<p>Imagine that you have some data – an <span class="math inline">\(iid\)</span> sample of <span class="math inline">\(n\)</span> observations of a random variable, <span class="math inline">\(\{X_1,\ldots,X_n\}\)</span>. Suppose that these data come from a population with expected value <span class="math inline">\(\text{E}[X_i]=\mu\)</span> and and <span class="math inline">\(\text{Var}(X_i) = \sigma^2\)</span>. What can we say about the mean, <span class="math inline">\(\bar{X}\)</span>, of this sample? More specifically, what should the expected value and the variance of the mean of our data be?</p>
+<ol type="1">
+<li><span class="math inline">\(\text{E}[\bar{X}] = \text{E}\left[\frac{1}{n}\sum X_i\right] = \frac{1}{n} \sum\text{E}[X_i] = \mu\)</span> (from the properties of expectations)</li>
+<li><span class="math inline">\(\text{Var}(\bar{X}) = \text{Var}\left( \frac{1}{n} \sum X_i \right) = \frac{1}{n^2} \sum \text{Var}\left( X_i \right) = \displaystyle \frac{\sigma^2}{n}\)</span> (from the properties of variances)</li>
+<li>If <span class="math inline">\(X\)</span> is normal, then <span class="math inline">\(\bar{X} \sim \mathcal{N}\left( \mu , \frac{\sigma^2}{n} \right)\)</span> (because sums of normal random variables are also normal)</li>
+</ol>
+<p>We call this distribution the “distribution of the sample mean” or usually more succinctly the <strong>sampling distribution</strong>. It is this distribution that we use whenever we want to build confidence intervals or do hypothesis tests based on the mean of our data (more below).</p>
+<p><br> <br> </p>
+</section>
+<section id="the-central-limit-theorem" class="level1">
+<h1>The Central Limit Theorem</h1>
+<p>The assumption in the previous section about the data coming from a normal distribution perhaps seems a bit restrictive – after all not all data are well described by normal distributions! So what if <span class="math inline">\(X\)</span> is not normal. In that case we call on the central limit theorem (CLT).</p>
+<p>The CLT states that for <span class="math inline">\(iid\)</span> random variables, <span class="math inline">\(X\)</span>, with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>, the distribution of the sample mean becomes normal as the number of observations, <span class="math inline">\(n\)</span>, gets large. That is, <span class="math inline">\(\displaystyle \bar{X} \rightarrow_{n} \mathcal{N}\left(\mu, \frac{\sigma^2}{n}\right)\)</span>, and sample averages tend to be normally distributed in large samples.</p>
+<p>For example, let’s look at the pdf of an exponentially distributed RV. This doesn’t look very normal, and a sample from this distribution (even a large one) doesn’t either: <br></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="at">length=</span><span class="dv">1000</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">bty=</span><span class="st">"n"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, <span class="fu">dexp</span>(x), <span class="at">type=</span><span class="st">"l"</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">"blue"</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">rexp</span>(<span class="dv">1000</span>), <span class="at">xlab=</span><span class="st">"x"</span>, <span class="at">main=</span><span class="st">""</span>, <span class="at">freq=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Stats_review_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>However, if we take lots of samples from the exponential, the distributions of the <strong>mean</strong> do:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>), <span class="at">bty=</span><span class="st">"n"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ns <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">100</span>,<span class="dv">100</span>,<span class="dv">1000</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(n <span class="cf">in</span> ns) {</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hist</span>(<span class="fu">apply</span>(<span class="fu">matrix</span>(<span class="fu">rexp</span>(n<span class="sc">*</span><span class="dv">1000</span>), <span class="at">ncol=</span><span class="dv">1000</span>), <span class="dv">2</span>, mean),</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">main=</span><span class="fu">paste</span>(<span class="st">"1000 means from n="</span>, n, <span class="st">" samples"</span>, <span class="at">sep=</span><span class="st">""</span>), <span class="at">xlab=</span><span class="st">""</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Stats_review_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br> <br> </p>
+</section>
+<section id="the-relationship-between-the-normal-and-student-t-distributions" class="level1">
+<h1>The relationship between the Normal and Student-<span class="math inline">\(t\)</span> Distributions</h1>
+<p>In the formulas for the sampling distribution, above, we saw that the distribution of the sample mean depends on the underlying variance of the population (i.e., it depends on <span class="math inline">\(\sigma^2\)</span>). However, we typically don’t know the true, underlying population variance. However, recall what <em>Student</em> (William Sealy Gosset) discovered:</p>
+<p><strong>If you have a quantity,</strong> <span class="math inline">\(\theta \sim \mathcal{N}(\mu,\sigma^2)\)</span>, but you estimate <span class="math inline">\(\sigma^2 \approx s^2\)</span> where <span class="math inline">\(s^2\)</span> is the sample variance <span class="math inline">\(\left(s^2 = \frac{1}{n-p}\sum_{i=1}^n(\theta_i-\bar{\theta})^2\right)\)</span> based on <span class="math inline">\(n-p\)</span> degrees of freedom, then the quantity <span class="math inline">\(\theta \sim t_{n-p}(\mu, s^2)\)</span>.</p>
+<p>The <span class="math inline">\(t\)</span> distribution is just a <strong><em>fat-tailed</em></strong> version of the normal distribution. As <span class="math inline">\(n-p \longrightarrow \infty\)</span>, our tails get skinny and the <span class="math inline">\(t\)</span> becomes normal (note that <em>R</em> provides the standard <span class="math inline">\(t\)</span>-distribution).</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">## make a sequency of x values so I can set up a line </span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>x<span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">length=</span><span class="dv">1000</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="do">## draw a line showing the normal pdf on the histogram</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, <span class="fu">dnorm</span>(x, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>), <span class="at">col=</span><span class="st">"red"</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">type=</span><span class="st">"l"</span>, <span class="at">xlab=</span><span class="st">"x"</span>, <span class="at">ylab=</span><span class="st">""</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, <span class="fu">dt</span>(x, <span class="at">df=</span><span class="dv">2</span>), <span class="at">col=</span><span class="dv">1</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, <span class="fu">dt</span>(x, <span class="at">df=</span><span class="dv">5</span>), <span class="at">col=</span><span class="dv">1</span>, <span class="at">lty=</span><span class="dv">3</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, <span class="fu">dt</span>(x, <span class="at">df=</span><span class="dv">50</span>), <span class="at">col=</span><span class="dv">1</span>, <span class="at">lty=</span><span class="dv">4</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">"N(0,1)"</span>, <span class="st">"t, df=2"</span>, <span class="st">"t, df=5"</span>, <span class="st">"t, df=50"</span>), </span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">col=</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Stats_review_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Instead of working with the underlying Normal or t distribution, we often instead work with standardized quantities. That is, we transform to the standard distributions, e.g.&nbsp;the standard normal with mean 0 and variance 1:</p>
+<p>[ N(0,1) ;;; ]</p>
+<p>We will typically use <span class="math inline">\(Z \sim N(0,1)\)</span> (also called the Z-score) and <span class="math inline">\(Z_{n-p} \sim t_{n-p}(0,1)\)</span> to represent standardized random variables from normal and Student-<span class="math inline">\(t\)</span> distributions, respectively.</p>
+<p>Notice that both the <span class="math inline">\(t\)</span> and normal distributions and the standardized statistics above, depend upon assumed values for <span class="math inline">\(\mu\)</span> this forms the basis for confidence intervals, hypothesis testing, and <span class="math inline">\(p\)</span>-values.</p>
+<p><br> <br> </p>
+<section id="confidence-intervals" class="level2">
+<h2 class="anchored" data-anchor-id="confidence-intervals">Confidence Intervals</h2>
+<p>Suppose <span class="math inline">\(Z_{n-p} \sim t_{n-p}(0,1)\)</span>. A centered interval is on this <span class="math inline">\(t\)</span> distribution can be written as: [ (-t_{n-p,/2} &lt; Z_{n-p} &lt; t_{n-p,/2}) = 1-. ] That is, between these values of the <span class="math inline">\(t\)</span> distribution <span class="math inline">\((1-\alpha)\times 100\)</span> percent of the probability is contained in that symmetric interval. We can visually indicate these location on a plot of the <span class="math inline">\(t\)</span> distribution (here with df<span class="math inline">\(=5\)</span> and <span class="math inline">\(\alpha=0.05\)</span>):</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>x<span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="sc">-</span><span class="fl">4.5</span>, <span class="fl">4.5</span>, <span class="at">length=</span><span class="dv">1000</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>alpha<span class="ot">=</span><span class="fl">0.05</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="do">## draw a line showing the normal pdf on the histogram</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, <span class="fu">dt</span>(x, <span class="at">df=</span><span class="dv">5</span>), <span class="at">col=</span><span class="st">"black"</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">type=</span><span class="st">"l"</span>, <span class="at">xlab=</span><span class="st">"x"</span>, <span class="at">ylab=</span><span class="st">""</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">qt</span>(alpha<span class="sc">/</span><span class="dv">2</span>, <span class="at">df=</span><span class="dv">5</span>), <span class="at">col=</span><span class="dv">3</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">qt</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>, <span class="at">df=</span><span class="dv">5</span>), <span class="at">col=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, </span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend=</span><span class="fu">c</span>(<span class="st">"t, df=5"</span>, <span class="st">"lower a/2"</span>, <span class="st">"upper a/2"</span>),</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">col=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>), <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Stats_review_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In the <em>R</em> code here, <span class="math inline">\({\tt qt}\)</span> is the Student-<span class="math inline">\(t\)</span> “quantile function”. The function <span class="math inline">\({\tt qt(alpha, df)}\)</span> returns a value <span class="math inline">\(z\)</span> such that <span class="math inline">\(\alpha = P(Z_{\mathrm{df}} &lt; z)\)</span>, i.e., <span class="math inline">\(t_{\mathrm{df},\alpha}\)</span>.</p>
+<p>How can we use this to determine the confidence interval for <span class="math inline">\(\theta\)</span>? Since <span class="math inline">\(\theta \sim t_{n-p}(\mu, s^2)\)</span>, we can replace the <span class="math inline">\(Z_{n-p}\)</span> in the interval above with the definition in terms of <span class="math inline">\(\theta\)</span>, <span class="math inline">\(\mu\)</span> and <span class="math inline">\(s\)</span> and rearrange: <span class="math display">\[\begin{align*}
+1-\alpha&amp; = \text{Pr}\left(-t_{n-p,\alpha/2} &lt; \frac{\mu - \bar{\theta}}{s} &lt;
+t_{n-p,\alpha/2}\right) \\
+&amp;=
+\text{Pr}(\bar{\theta}-t_{n-p,\alpha/2}s &lt; \mu &lt;
+\bar{\theta} + t_{n-p,\alpha/2}s)
+\end{align*}\]</span></p>
+<p>Thus <span class="math inline">\((1-\alpha)\)</span>*100% of the time, <span class="math inline">\(\mu\)</span> is within the confidence interval (written in two equivalent ways):</p>
+<p>[ {} t_{n-p,/2} s ;;;;; ;;;;; [{}- t_{n-p,/2} s, {} + t_{n-p,/2} s] ]</p>
+<p>Why should we care about confidence intervals?</p>
+<ul>
+<li>The confidence interval captures the amount of information in the data about the parameter.</li>
+<li>The center of the interval tells you what your estimate is.</li>
+<li>The length of the interval tells you how sure you are about your estimate.</li>
+</ul>
+<p><br> <br> </p>
+</section>
+<section id="p-values" class="level2">
+<h2 class="anchored" data-anchor-id="p-values">p-Values</h2>
+<p>What is a p-value? The American Statistical Association issued a statement where they defined it in the following way:</p>
+<p><strong><em>“Informally, a p-value is the probability under a specified statistical model that a statistical summary of the data (e.g., the sample mean difference between two compared groups) would be equal to or more extreme than its observed value.”</em></strong> (ASA Statement on Statistical Significance and P-Values.)</p>
+<p>More formally, we formulate a p-value in terms of a null hypothesis/model and test whether or not our observed data are more extreme than we would expect under that specific null model. In your previous courses you’ve probably seen very specific null models, corresponding to, for instance the null hypothesis that the mean of your data is normally distributed with mean <span class="math inline">\(m\)</span> (often <span class="math inline">\(m=0\)</span>). We often denote the null model as <span class="math inline">\(H_0\)</span> and the alternative as <span class="math inline">\(H_a\)</span> or <span class="math inline">\(H_1\)</span>. For instance, for our example above with <span class="math inline">\(\theta\)</span> we might want to test the following:</p>
+<p>[ H_0: {}=0 ;;;;; ;;;;; H_a: {} ]</p>
+<p>To perform the hypothesis test we would FIRST choose our rejection level, <span class="math inline">\(\alpha\)</span>. Although convention is to use <span class="math inline">\(\alpha =0.05\)</span> corresponding to a 95% confidence region, one could choose based on how sure one needs to be for a particular application. Next we build our test statistic. There are two cases, first if we know <span class="math inline">\(\sigma\)</span> and second if we don’t.</p>
+<p>If we knew the variance <span class="math inline">\(\sigma^2\)</span>, our test statistic would be <span class="math inline">\(Z=\frac{\bar{\theta}-0}{\sigma}\)</span>, and we expect that this should have a standard normal distribution, i.e., <span class="math inline">\(Z\sim\mathcal{N}(0,1)\)</span>. If we don’t know <span class="math inline">\(\sigma\)</span> and instead estimate is as <span class="math inline">\(s\)</span> (which is most of the time), our test statistic would be <span class="math inline">\(Z_{df}=\frac{\bar{\theta}-0}{s}\)</span> (i.e., it would have a t-distribution).</p>
+<p>We calculate the value of the appropriate statistic (either <span class="math inline">\(Z\)</span> or <span class="math inline">\(Z_{df}\)</span>) for our data, and then we compare it to the values of the standard distribution (normal or <span class="math inline">\(t\)</span>, respectively) corresponding to the <span class="math inline">\(\alpha\)</span> level that we chose, i.e., we see if the number that we got for our statistic is inside the horizontal lines that we drew on the standard distribution above. If it is, then the data are consistent with the null hypothesis and we cannot reject the null. If the statistic is outside the region the data are NOT consistent with the null, and instead we reject the null and use the alternative as our new working hypothesis.</p>
+<p>Notice that this process is focused on the null hypothesis. We cannot tell if the alternative hypothesis is true, or, really, if it’s actually better than the null. We can only say that the null is not consistent with our data (i.e., we can falsify the null) at a given level of certainty.</p>
+<p>Also, the hypothesis testing process is the same as building a confidence interval, as above, and then seeing if the null hypothesis is within your confidence interval. If the null is outside of your confidence interval then you can reject your null at the level of certainty corresponding to the <span class="math inline">\(\alpha\)</span> that you used to build your CI. If the value for the null is within your CI, you cannot reject at that level.</p>
+<p><br> <br> </p>
+</section>
+</section>
+<section id="further-exercises" class="level1">
+<h1>Further Exercises</h1>
+<section id="the-sampling-distribution-1" class="level2">
+<h2 class="anchored" data-anchor-id="the-sampling-distribution-1">The Sampling Distribution</h2>
+<div class="cell">
+
+</div>
+<p>Suppose we have a random sample <span class="math inline">\(\{Y_i, i=1,\dots,N \}\)</span>, where <span class="math inline">\(Y_i \stackrel{\mathrm{i.i.d.}}{\sim}N(\mu,9)\)</span> for <span class="math inline">\(i=1,\ldots,N\)</span>.</p>
+<ol type="i">
+<li>What is the variance of the <em>sample mean</em>?</li>
+<li>What is the expectation of the <em>sample mean</em>?</li>
+<li>What is the variance for another i.i.d. realization <span class="math inline">\(Y_{ N+1}\)</span>?</li>
+<li>What is the standard error of <span class="math inline">\(\bar{Y}\)</span>?</li>
+</ol>
+</section>
+<section id="hypothesis-testing-and-confidence-intervals" class="level2">
+<h2 class="anchored" data-anchor-id="hypothesis-testing-and-confidence-intervals">Hypothesis Testing and Confidence Intervals</h2>
+<div class="cell">
+
+</div>
+<p>Suppose we sample some data <span class="math inline">\(\{Y_i, i=1,\dots,n \}\)</span>, where <span class="math inline">\(Y_i \stackrel{\mathrm{i.i.d.}}{\sim}N(\mu,\sigma^2)\)</span> for <span class="math inline">\(i=1,\ldots,n\)</span>, and that you want to test the null hypothesis <span class="math inline">\(H_0: ~\mu=12\)</span> <em>vs.</em> the alternative <span class="math inline">\(H_a: \mu \neq 12\)</span>, at the <span class="math inline">\(0.05\)</span> significance level.</p>
+<ol type="i">
+<li>What test statistic would you use? How do you estimate <span class="math inline">\(\sigma\)</span>?</li>
+<li>What is the distribution for this test statistic <em>if</em> the null is true?</li>
+<li>What is the distribution for the test statistic if the null is true and <span class="math inline">\(n \rightarrow \infty\)</span>?</li>
+<li>Define the test rejection region. (I.e., for what values of the test statistic would you reject the null?)</li>
+<li>How would compute the <span class="math inline">\(p\)</span>-value associated with a particular sample?</li>
+<li>What is the 95% confidence interval for <span class="math inline">\(\mu\)</span>? How should one interpret this interval?</li>
+<li>If <span class="math inline">\(\bar{Y} = 11\)</span>, <span class="math inline">\(s_y = 1\)</span>, and <span class="math inline">\(n=9\)</span>, what is the test result? What is the 95% CI for <span class="math inline">\(\mu\)</span>?</li>
+</ol>
+<p><br> <br></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
