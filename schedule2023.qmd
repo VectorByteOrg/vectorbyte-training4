@@ -18,7 +18,7 @@ We will also be using Slack to facilitate the synchronous portions of the traini
 
 1.  Go to [The Multilingual Quantitative Biologist](https://mhasoba.github.io/TheMulQuaBio/intro.html), and read+work through the [Biological Computing in R Chapter](https://mhasoba.github.io/TheMulQuaBio/notebooks/07-R.html) up to the section on Writing R code. Of course, keep going if you want (although we will cover some similar materials here).
 
-2.  Review background on [introductory probability and statistics](activities/Stats_review.html) ([solutions to exercises](activities/Stats_review_soln.html))
+2.  Review background on [introductory probability and statistics](Stats_review.qmd) ([solutions to exercises](Stats_review_soln.qmd))
 
 Once you have completed the pre-work and set-up tasks, you should get yourself familiar with the [VectorByte Training materials](materials.html). You will choose a starting point based on your previous experience. This will be in the form of slack channels labeled based on interest. From there you will group yourself (based on whatever you like, but keep in mind time zones and language preferences) and a demonstrator will be matched with your group.
 
@@ -37,15 +37,15 @@ Much of the synchronous time is planned to be dedicated to helping you work thro
 # 18th July 2023 (08:30 - 17:00)
 
 | Time  | Activity                                      | Materials                                                     |
-|-------|-----------------------------------------------|---------------------------------------------------------------|
+|--------------|------------------------|----------------------------------|
 | 08:30 | Course overview                               |                                                               |
 | 09:00 | Intro to traits                               | [Example](example.html)                                       |
 | 10:30 | Break                                         |                                                               |
 | 11:00 | VecTraits database                            | [VecTraits](https://vectorbyte.crc.nd.edu/vectraits-explorer) |
 | 12:00 | Lunch                                         |                                                               |
-| 13:00 | Tutorial: Data wrangling and visualizing data | [Data wrangling](activities/data-wrangling.qmd)               |
+| 13:00 | Tutorial: Data wrangling and visualizing data | [Data wrangling](data_wrangling.qmd)                          |
 | 15:00 | Break                                         |                                                               |
-| 15:30 | Statistical Analyses I: Linear models         | [Linear models](activities/linear_mod_activity.qmd)           |
+| 15:30 | Statistical Analyses I: Linear models         | [Linear models](linear_mod_activity.qmd)                      |
 
 <br> <br> <br>
 
@@ -54,9 +54,9 @@ Much of the synchronous time is planned to be dedicated to helping you work thro
 | Time  | Activity                                     | Materials                                           |
 |-------|----------------------------------------------|-----------------------------------------------------|
 | 08:30 | Q & A                                        |                                                     |
-| 09:00 | Allometric analysis using LMs                | [Linear models](activities/linear_mod_activity.qmd) |
+| 09:00 | Allometric analysis using LMs                | [Linear models](linear_mod_activity.qmd)            |
 | 10:30 | Break                                        |                                                     |
-| 11:00 | Linear vs. Nonlinear models                  | [Practical](activities/VB_NLLS_activity.qmd)        |
+| 11:00 | Linear vs. Nonlinear models                  | [Practical](VB_NLLS_activity.qmd)                   |
 | 12:00 | Lunch                                        |                                                     |
 | 13:00 | Intro to Bayes                               |                                                     |
 | 14:30 | Break                                        |                                                     |

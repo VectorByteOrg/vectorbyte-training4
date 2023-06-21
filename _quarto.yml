@@ -5,7 +5,7 @@ website:
   navbar:
     background:	"#630031"
     foreground: "light"
-    logo: "activities/graphics/vblogoedit.pdf"
+    logo: "graphics/vblogoedit.pdf"
     logo-href: https://www.vectorbyte.org
     left:
       - href: index.qmd
@@ -18,7 +18,7 @@ website:
         text: Materials
     right:
       - icon: github
-        href: https://github.com/VectorByteOrg/VBTraining4
+        href: https://github.com/VectorByteOrg/vectorbyte-training4
       - icon: twitter
         href: https://twitter.com/vectorbite_rcn
         

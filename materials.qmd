@@ -25,7 +25,7 @@ We are assuming familiarity with R basics. In addition, we recommend that you do
 
 2.  In addition / alternatively to pre-work element (1), here are some resources for brushing up on R [at the end of the Intro R Chapter you can try](https://mhasoba.github.io/TheMulQuaBio/notebooks/07-R.html#readings-and-resources). But there are many more resources online (e.g., [this](https://www.codecademy.com/learn/learn-r) and [this](https://www.dataquest.io/blog/learn-r-for-data-science/) ) -- pick something that suits your learning style.
 
-3.  Review background on [introductory probability and statistics](activities/Stats_review.qmd) ([solutions to exercises](activities/Stats_review_soln.qmd))
+3.  Review background on [introductory probability and statistics](Stats_review.qmd) ([solutions to exercises](Stats_review_soln.qmd))
 
 4.  Inculcate the coding Jedi inside of you - or the Sith - whatever works.
 
@@ -39,21 +39,21 @@ We are assuming familiarity with R basics. In addition, we recommend that you do
 
 ### Data Wrangling in R
 
--   [Self-Guided Activity](activities/data-wrangling.qmd)
+-   [Self-Guided Activity](data_wrangling.qmd)
 -   Datasets:
-    -   [Poundhill Data](data/PoundHillData.csv)
-    -   [Poundhill Meta Data](data/PoundHillMetaData.csv)
-    -   [Huxley et al Trait Data](data/traitdata_Huxleyetal_2021.csv)
-    -   [Genome Size](data/GenomeSize.csv)
-    -   [Wrangling Practical Data](data/wranglingdataset.csv)
+    -   [Poundhill Data](activities/data/PoundHillData.csv)
+    -   [Poundhill Meta Data](activities/data/PoundHillMetaData.csv)
+    -   [Huxley et al Trait Data](activities/data/traitdata_Huxleyetal_2021.csv)
+    -   [Genome Size](activities/data/GenomeSize.csv)
+    -   [Wrangling Practical Data](activities/data/wranglingdataset.csv)
 
 ### Introduction to Linear Models
 
--   [Lecture Slides](lectures/VB_LinMods.pdf), [Lecture Video 1](https://www.youtube.com/watch?v=oqjzfXDgZY0&list=PLrMhLVyZEsORr81gXrfgiq2vX30_brtpF&index=2), [Lecture Video 2](https://www.youtube.com/watch?v=-VelMqc9z6M&list=PLrMhLVyZEsORr81gXrfgiq2vX30_brtpF&index=1), [Practical](activities/VB_Linear_models_activity.qmd)
+-   [Lecture Slides](lectures/VB_LinMods.pdf), [Lecture Video 1](https://www.youtube.com/watch?v=oqjzfXDgZY0&list=PLrMhLVyZEsORr81gXrfgiq2vX30_brtpF&index=2), [Lecture Video 2](https://www.youtube.com/watch?v=-VelMqc9z6M&list=PLrMhLVyZEsORr81gXrfgiq2vX30_brtpF&index=1), [Practical](linear_mod_activity.qmd)
 -   Datasets:
-    -   [Genome Size](data/GenomeSize.csv)
-    -   [Huxley et al Trait Data](data/traitdata_Huxleyetal_2021.csv)
-    -   [Linear Models Practical Data](data/lmdataset.csv)
+    -   [Genome Size](activities/data/GenomeSize.csv)
+    -   [Huxley et al Trait Data](activities/data/traitdata_Huxleyetal_2021.csv)
+    -   [Linear Models Practical Data](activities/data/lmdataset.csv)
 
 <br> <br>
 
@@ -61,8 +61,8 @@ We are assuming familiarity with R basics. In addition, we recommend that you do
 
 ### Nonlinear Modeling (including Thermal Performance Curves -- TPCs)
 
--   [Lecture Slides](lectures/VB_NLLS.pdf), [Lecture Video](https://www.youtube.com/watch?v=dnZlU2_iQ1k&list=PLrMhLVyZEsORr81gXrfgiq2vX30_brtpF&index=3), [Practical](activities/VB_NLLS_activity.html)
+-   [Lecture Slides](lectures/VB_NLLS.pdf), [Lecture Video](https://www.youtube.com/watch?v=dnZlU2_iQ1k&list=PLrMhLVyZEsORr81gXrfgiq2vX30_brtpF&index=3), [Practical](VB_NLLS_activity.qmd)
 -   Datasets:
-    -   [csm7I Data](data/csm7I.csv)
-    -   [Aedes Juvenile Mortality Data](data/juvenilemortalityrateae.csv)
-    -   [NLLS Practical Data](data/nllsdataset.csv)
+    -   [csm7I Data](activities/data/csm7I.csv)
+    -   [Aedes Juvenile Mortality Data](activities/data/juvenilemortalityrateae.csv)
+    -   [NLLS Practical Data](activities/data/nllsdataset.csv)

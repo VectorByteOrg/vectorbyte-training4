@@ -5,7 +5,7 @@ output:
   toc: true  
 ---
 
-[Main Materials](../materials.qmd)
+[Main Materials](materials.qmd)
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -47,7 +47,7 @@ $\star$ Create a new blank script called `Regression.R` and add some introductor
 $\star$ Add code to your script to load the genome size data into R and check it (again, using the relative path prefix \``, assuming that you working directory is`code\`):
 
 ```{r}
-genome <- read.csv('data/GenomeSize.csv',stringsAsFactors = T) 
+genome <- read.csv('activities/data/GenomeSize.csv',stringsAsFactors = T) 
 head(genome)
 ```
 
@@ -540,7 +540,7 @@ graphics.off()
 ```
 
 ```{r}
-mozwing      <- read.csv('data/traitdata_Huxleyetal_2021.csv', stringsAsFactors = T)
+mozwing      <- read.csv('activities/data/traitdata_Huxleyetal_2021.csv', stringsAsFactors = T)
 mozwing$temp <- as_factor(mozwing$temp) # define temperature and food level as categorical
 mozwing$food_level <- as_factor(mozwing$food_level) 
 ```
@@ -846,7 +846,7 @@ The first thing to do is look at the data again.
 $\star$ Create a new blank script called `MulExpl.R` in your `Code` directory and add some introductory comments.
 
 ```{r}
-wings <- read.csv("data/traitdata_Huxleyetal_2021.csv")
+wings <- read.csv("activities/data/traitdata_Huxleyetal_2021.csv")
 ```
 
 Look back at the end of the previous section to see how you saved the RData file. If `loglength` is missing, just add it to the imported data frame again (go back to the ANOVA section and have a look if you have forgotten how). Also, check to see if `temp` and `food_level` are defined as factors.
@@ -1056,7 +1056,7 @@ Because the difference is large and the standard error is small, the $t$ value s
 The table below shows how these four coefficients combine to give the predicted values for each of the group means.
 
 |               | 22°C                 | 26°C                       | 32°C                        |
-|:---------------|:------------------|:------------------|:------------------|
+|:-----------------|:-----------------|:-----------------|:-----------------|
 | **low food**  | *0.98* = 0.98        | *0.98 - 0.07* = 0.91       | *0.98 - 0.18* = 0.70        |
 | **high food** | *0.98 + 0.17* = 1.15 | *0.98 - 0.07 + 0.17* =1.08 | *0.98 - 0.18 + 0.17* = 0.97 |
 
@@ -1149,11 +1149,11 @@ The first four lines, as in the model from the ANOVA section, which would allow 
 
 The table below show how these combine to give the predictions for each group combination, with those two new lines show in red:
 
-|          | **low food**       | **high food**                                         |
+|          | **low food**       | **high food**                                        |
 |:-----------------------|:-----------------------|:-----------------------|
-| **22°C** | 0.97 = 0.97        | 0.97 + 0.17 = 1.14                                    |
-| **26°C** | 0.97 - 0.08 = 0.89 | 0.97 - 0.08 + 0.17[ + 0.01]{style="color:red"} = 1.07 |
-| **32°C** | 0.97 - 0.15 = 0.82 | 0.97 - 0.15 + 0.17[ - 0.04]{style="color:red"} = 0.95 |
+| **22°C** | 0.97 = 0.97        | 0.97 + 0.17 = 1.14                                   |
+| **26°C** | 0.97 - 0.08 = 0.89 | 0.97 - 0.08 + 0.17[+ 0.01]{style="color:red"} = 1.07 |
+| **32°C** | 0.97 - 0.15 = 0.82 | 0.97 - 0.15 + 0.17[- 0.04]{style="color:red"} = 0.95 |
 
 So why are there two new coefficients? For interactions between two factors, there are always $(n-1)\times(m-1)$ new coefficients, where $n$ and $m$ are the number of levels in the two factors (low- or high-food: 2 levels and temperature: 3 levels, in our current example). So in this model, $(3-1) \times (2-1) =2$. It might be easier to understand why graphically:
 
@@ -1217,7 +1217,7 @@ We will use the odonates data.
 $\star$ First load the data:
 
 ```{r}
-odonata <- read.csv("data/GenomeSize.csv")
+odonata <- read.csv("activities/data/GenomeSize.csv")
 ```
 
 $\star$ Now create two new variables in the `odonata` data set called `logGS` and `logBW` containing log genome size and log body weight:
@@ -1380,7 +1380,7 @@ $\star$ Create a new blank script called `MyModelSimp.R`.
 $\star$ Load the wing length data into a data frame called `wings`:
 
 ```{r}
-wings <- read.csv('data/traitdata_Huxleyetal_2021.csv',stringsAsFactors = TRUE)
+wings <- read.csv('activities/data/traitdata_Huxleyetal_2021.csv',stringsAsFactors = TRUE)
 ```
 
 In previous sections, we looked at how the categorical variables `temp` and `food_level` predicted wing length in in *Aedes aegypti*. In this section, we will add in another continuous variable: adult lifespan. The first thing we will do is to log both variables and reduce the dataset to the rows for which all of these data are available:
@@ -1552,4 +1552,4 @@ When you have got your final model, save the model as an R data file: `save(mode
 
 # Group project
 
-### Explore the dataset `lmdataset.csv` that contains values on trait-temperature relationships in three important vector/pest species. Develop a hypothesis and explore it using linear models. Assess your model's fit and assumptions.
+Explore the dataset `lmdataset.csv` that contains values on trait-temperature relationships in three important vector/pest species. Develop a hypothesis and explore it using linear models. Assess your model's fit and assumptions.

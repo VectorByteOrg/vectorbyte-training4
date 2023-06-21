@@ -1,16 +1,13 @@
 ---
 title: "Non-Linear Least Squares (NLLS) and Thermal Performance Curve Fitting with Bootstrapping"
 author: "VectorByte Team"
-date: "Summer 2023"
 output:
   html_document: default
 subtitle: 'Fitting nonlinear models; TPCs'
 graphics: yes
 ---
 
-<!--NAVIGATION-->
-
-\< \| [Main Materials](materials.html) \| \>
+[Main Materials](materials.html)
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -760,7 +757,7 @@ This is from the larger dataset reduced to a single trait. This data comes from 
 
 ```{r}
 require(tidyverse)
-df <- read.csv("data/csm7I.csv")
+df <- read_csv("activities/data/csm7I.csv")
 df1 <- df %>%
   dplyr::select('originalid', 'originaltraitname', 'originaltraitunit', 'originaltraitvalue', 'interactor1', 'ambienttemp', 'citation')
 df2 <- as_tibble(df1)
@@ -775,7 +772,7 @@ ggplot(df2, aes(ambienttemp, originaltraitvalue))+
   theme_bw(base_size = 12) +
   labs(x = 'Temperature (ºC)',
        y = 'Development Rate',
-       title = 'Development Rate across temperatures for Aedes albopictus')
+       title = 'Development rate across temperatures for Aedes albopictus')
 ```
 
 We will need to write which model we are using (sharpschoolhigh_1981). From here we can actually build our fit. We will use ''nls_multstart'' to automatically find our starting values. This lets us skip the [starting value problem](https://mhasoba.github.io/TheMulQuaBio/notebooks/20-ModelFitting-NLLS.html#the-starting-values-problem). From here we build our predicted line.
@@ -919,7 +916,7 @@ Lets start by loading the dataset and getting set up.
 ```{r}
 rm(list=ls())
 graphics.off()
-ae.ae <- read.csv('data/juvenilemortalityrateae.csv')
+ae.ae <- read_csv('activities/data/juvenilemortalityrateae.csv')
 ```
 
 We will need to manipulate this one a bit to get at the data we want.

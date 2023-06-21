@@ -4,7 +4,7 @@ output:
   toc: true
 ---
 
-[Main materials](../materials.qmd)
+[Main materials](materials.qmd)
 
 ## Welcome to the VectorByte 2023 section on Data Wrangling and Visualiszation
 
@@ -75,7 +75,7 @@ As of R version 4.0.0 of R released in April 2020, the default for `stringsAsFac
 ★ Now load the Metadata:
 
 ```{r}
-MyMetaData <- read.csv("data/PoundHillMetaData.csv", header = TRUE,  sep=";")
+MyMetaData <- read.csv("activities/data/PoundHillMetaData.csv", header = TRUE,  sep=";")
 class(MyMetaData)
 ```
 
@@ -237,11 +237,9 @@ That's a lot of packages!
 
 The first time you load tidyverse, you will get some feedback from R, including something like the following:
 
-```         
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-```
+    ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+    ✖ dplyr::filter() masks stats::filter()
+    ✖ dplyr::lag()    masks stats::lag()
 
 Depending on which package you are loading, you might get such a warning message, that "so and so" function is being "masked" from another one. Basically, any additional packages you load may have one or more functions with the same names(s) as existing function(s) (which will typically do something completely different) in base R's packages. This creates name conflicts. Therefore, R will prevent you from using the new function(s) that you have enabled by using the same name of an pre-existing function. It gives priority to the pre-existing one. So, for example, if you call just `filter()`, the command that will be used is the one from `stats`, and not the one from `dplyr`. In this scenario, you can use the new function by using the double colon notation `::` like so: `dplyr::filter()`.
 
@@ -359,7 +357,7 @@ Now let's try some simple plotting for data exploration. We will use a dataset f
 $\star$ In [VecTraits](https://vectorbyte.crc.nd.edu/vectraits-explorer), locate and download dataset #558 into your own data directory. Then, launch R and read in these data to a dataframe (note the relative path):
 
 ```{r}
-MyDF <- read.csv('data/VByte_558_longevity.csv',stringsAsFactors = TRUE)
+MyDF <- read.csv('activities/data/VByte_558_longevity.csv',stringsAsFactors = TRUE)
 dim(MyDF) #check the size of the data frame you loaded
 ```
 
@@ -1082,7 +1080,7 @@ $\star$ Open the script `ExpDesign.R` in RStudio (or some other text editor).
 Use the shift and arrow keys to select the code in block (2), including the comments.
 
 ```{r}
-genome <- read.csv('data/GenomeSize.csv')
+genome <- read.csv('activities/data/GenomeSize.csv')
 ```
 
 Note the relative path `../`, which will work assuming that you are working from your `code` directory (that is, you have set your working directory (using `setwd()`) to `code`).
