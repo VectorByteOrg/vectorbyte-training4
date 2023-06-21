@@ -1,0 +1,31 @@
+output-dir: docs
+project:
+  type: website
+website:
+  navbar:
+    background:	"#630031"
+    foreground: "light"
+    logo: "activities/graphics/vblogoedit.pdf"
+    logo-href: https://www.vectorbyte.org
+    left:
+      - href: index.qmd
+        text: Home
+      - href: about.qmd
+        text: About
+      - href: schedule2023.qmd
+        text: Schedule
+      - href: materials.qmd
+        text: Materials
+    right:
+      - icon: github
+        href: https://github.com/VectorByteOrg/VBTraining4
+      - icon: twitter
+        href: https://twitter.com/vectorbite_rcn
+        
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+editor: visual

@@ -1,0 +1,13 @@
+---
+output: 
+  distill::distill_article:
+  toc: true
+---
+
+# Welcome to the VectorByte 2023 training workshop!
+
+#### Check out our [about](about.html) and [schedule](schedule2023.html) pages to continue.
+
+<br> <br> <br>
+
+<center>![](activities/graphics/VectorByte-logo_lg.png){width="3in"}</center>

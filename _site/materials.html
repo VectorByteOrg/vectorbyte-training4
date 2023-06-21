@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>VectorByte Training Materials 2023</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="https://www.vectorbyte.org" class="navbar-brand navbar-brand-logo">
+    <img src="./activities/graphics/vblogoedit.pdf" alt="" class="navbar-logo">
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./schedule2023.html">
+ <span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./materials.html" aria-current="page">
+ <span class="menu-text">Materials</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/VectorByteOrg/VBTraining4"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/vectorbite_rcn"><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#pre-work-and-set-up" id="toc-pre-work-and-set-up" class="nav-link" data-scroll-target="#pre-work-and-set-up">Pre-work and set-up</a>
+  <ul class="collapse">
+  <li><a href="#hardware-and-software" id="toc-hardware-and-software" class="nav-link" data-scroll-target="#hardware-and-software">Hardware and Software</a></li>
+  <li><a href="#pre-requisites" id="toc-pre-requisites" class="nav-link" data-scroll-target="#pre-requisites">Pre-requisites</a></li>
+  </ul></li>
+  <li><a href="#introduction-to-the-vectorbyte-databases1" id="toc-introduction-to-the-vectorbyte-databases1" class="nav-link" data-scroll-target="#introduction-to-the-vectorbyte-databases1">Introduction to the VectorByte databases</a></li>
+  <li><a href="#beginner-materials" id="toc-beginner-materials" class="nav-link" data-scroll-target="#beginner-materials">Beginner materials</a>
+  <ul class="collapse">
+  <li><a href="#data-wrangling-in-r" id="toc-data-wrangling-in-r" class="nav-link" data-scroll-target="#data-wrangling-in-r">Data Wrangling in R</a></li>
+  <li><a href="#introduction-to-linear-models" id="toc-introduction-to-linear-models" class="nav-link" data-scroll-target="#introduction-to-linear-models">Introduction to Linear Models</a></li>
+  </ul></li>
+  <li><a href="#intermediate-materials" id="toc-intermediate-materials" class="nav-link" data-scroll-target="#intermediate-materials">Intermediate materials</a>
+  <ul class="collapse">
+  <li><a href="#nonlinear-modeling-including-thermal-performance-curves-tpcs" id="toc-nonlinear-modeling-including-thermal-performance-curves-tpcs" class="nav-link" data-scroll-target="#nonlinear-modeling-including-thermal-performance-curves-tpcs">Nonlinear Modeling (including Thermal Performance Curves – TPCs)</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">VectorByte Training Materials 2023</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="overview" class="level1">
+<h1>Overview</h1>
+</section>
+<section id="pre-work-and-set-up" class="level1">
+<h1>Pre-work and set-up</h1>
+<section id="hardware-and-software" class="level3">
+<h3 class="anchored" data-anchor-id="hardware-and-software">Hardware and Software</h3>
+<p>We will be using <a href="https://cran.r-project.org/">R</a> for all data manipulation and analyses/model fitting. Any operating system (Windows, Mac, Linux) will do, as long as you have R (version 3.6 or higher) installed.</p>
+<p>You may use any IDE/ GUI for R (VScode, RStudio, Emacs, etc). For most people, <a href="https://www.rstudio.com/">RStudio</a> is a good option. Whichever one you decide to use, please make sure it is installed and test it before the workshop. We will have a channel on slack dedicated to software/hardware issues and troubleshooting.</p>
+<p>We will also be using Zoom and Slack to facilitate the synchronous portions of the training. Please have these installed in advance.</p>
+</section>
+<section id="pre-requisites" class="level3">
+<h3 class="anchored" data-anchor-id="pre-requisites">Pre-requisites</h3>
+<p>We are assuming familiarity with R basics. In addition, we recommend that you do the following:</p>
+<ol type="1">
+<li><p>Go to <a href="https://mhasoba.github.io/TheMulQuaBio/intro.html">The Multilingual Quantitative Biologist</a>, and read+work through the <a href="https://mhasoba.github.io/TheMulQuaBio/notebooks/07-R.html">Biological Computing in R Chapter</a> up to the section on Writing R code. Of course, keep going if you want (although we will cover some similar materials here).</p></li>
+<li><p>In addition / alternatively to pre-work element (1), here are some resources for brushing up on R <a href="https://mhasoba.github.io/TheMulQuaBio/notebooks/07-R.html#readings-and-resources">at the end of the Intro R Chapter you can try</a>. But there are many more resources online (e.g., <a href="https://www.codecademy.com/learn/learn-r">this</a> and <a href="https://www.dataquest.io/blog/learn-r-for-data-science/">this</a> ) – pick something that suits your learning style.</p></li>
+<li><p>Review background on <a href="activities/Stats_review.qmd">introductory probability and statistics</a> (<a href="activities/Stats_review_soln.qmd">solutions to exercises</a>)</p></li>
+<li><p>Inculcate the coding Jedi inside of you - or the Sith - whatever works.</p></li>
+</ol>
+</section>
+</section>
+<section id="introduction-to-the-vectorbyte-databases1" class="level1">
+<h1>Introduction to the VectorByte databases<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></h1>
+<ul>
+<li>This component will be delivered live &amp; synchronously (with a recording to be uploaded later)</li>
+</ul>
+</section>
+<section id="beginner-materials" class="level1">
+<h1>Beginner materials</h1>
+<section id="data-wrangling-in-r" class="level3">
+<h3 class="anchored" data-anchor-id="data-wrangling-in-r">Data Wrangling in R</h3>
+<ul>
+<li><a href="activities/data-wrangling.qmd">Self-Guided Activity</a></li>
+<li>Datasets:
+<ul>
+<li><a href="data/PoundHillData.csv">Poundhill Data</a></li>
+<li><a href="data/PoundHillMetaData.csv">Poundhill Meta Data</a></li>
+<li><a href="data/traitdata_Huxleyetal_2021.csv">Huxley et al Trait Data</a></li>
+<li><a href="data/GenomeSize.csv">Genome Size</a></li>
+<li><a href="data/wranglingdataset.csv">Wrangling Practical Data</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="introduction-to-linear-models" class="level3">
+<h3 class="anchored" data-anchor-id="introduction-to-linear-models">Introduction to Linear Models</h3>
+<ul>
+<li><a href="lectures/VB_LinMods.pdf">Lecture Slides</a>, <a href="https://www.youtube.com/watch?v=oqjzfXDgZY0&amp;list=PLrMhLVyZEsORr81gXrfgiq2vX30_brtpF&amp;index=2">Lecture Video 1</a>, <a href="https://www.youtube.com/watch?v=-VelMqc9z6M&amp;list=PLrMhLVyZEsORr81gXrfgiq2vX30_brtpF&amp;index=1">Lecture Video 2</a>, <a href="activities/VB_Linear_models_activity.qmd">Practical</a></li>
+<li>Datasets:
+<ul>
+<li><a href="data/GenomeSize.csv">Genome Size</a></li>
+<li><a href="data/traitdata_Huxleyetal_2021.csv">Huxley et al Trait Data</a></li>
+<li><a href="data/lmdataset.csv">Linear Models Practical Data</a></li>
+</ul></li>
+</ul>
+<p><br> <br></p>
+</section>
+</section>
+<section id="intermediate-materials" class="level1">
+<h1>Intermediate materials</h1>
+<section id="nonlinear-modeling-including-thermal-performance-curves-tpcs" class="level3">
+<h3 class="anchored" data-anchor-id="nonlinear-modeling-including-thermal-performance-curves-tpcs">Nonlinear Modeling (including Thermal Performance Curves – TPCs)</h3>
+<ul>
+<li><a href="lectures/VB_NLLS.pdf">Lecture Slides</a>, <a href="https://www.youtube.com/watch?v=dnZlU2_iQ1k&amp;list=PLrMhLVyZEsORr81gXrfgiq2vX30_brtpF&amp;index=3">Lecture Video</a>, <a href="activities/VB_NLLS_activity.html">Practical</a></li>
+<li>Datasets:
+<ul>
+<li><a href="data/csm7I.csv">csm7I Data</a></li>
+<li><a href="data/juvenilemortalityrateae.csv">Aedes Juvenile Mortality Data</a></li>
+<li><a href="data/nllsdataset.csv">NLLS Practical Data</a></li>
+</ul></li>
+</ul>
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>What is the difference between VectorBiTE and VectorByte? We are glad you asked! <a href="http://vectorbite.org/">VectorBiTE</a> was an RCN or a research coordination network funded by a 5 year grant from the BBSRC. <a href="https://www.vectorbyte.org/">VectorByte</a> is hosting this training which is a newly funded NSF grant to establish a global open access data platform to study disease vectors. All the databases have transitioned to VectorByte but the legacy options will still be available on the VectorBiTE website.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
