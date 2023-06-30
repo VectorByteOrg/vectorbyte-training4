@@ -1,7 +1,10 @@
 ---
-output: 
-  distill::distill_article:
-  toc: true
+format:
+  html:
+    toc: true
+    toc-location: left
+    html-math-method: katex
+    css: styles.css
 ---
 
 [Main materials](materials.qmd)

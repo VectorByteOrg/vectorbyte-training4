@@ -40,11 +40,11 @@ Much of the synchronous time is planned to be dedicated to helping you work thro
 # 18th July 2023 (08:30 - 17:00)
 
 | Time  | Activity                                      | Materials                                                     |
-|--------------|------------------------|----------------------------------|
+|-----------------|-----------------------|--------------------------------|
 | 08:30 | Course overview                               |                                                               |
 | 09:00 | Intro to traits                               | [Example](example.html)                                       |
 | 10:30 | Break                                         |                                                               |
-| 11:00 | VecTraits database                            | [VecTraits](https://vectorbyte.crc.nd.edu/vectraits-explorer) |
+| 11:00 | Intro to the VecTraits database                            | [VecTraits](https://vectorbyte.crc.nd.edu/vectraits-explorer) |
 | 12:00 | Lunch                                         |                                                               |
 | 13:00 | Tutorial: Data wrangling and visualizing data | [Data wrangling](data_wrangling.qmd)                          |
 | 15:00 | Break                                         |                                                               |
@@ -54,18 +54,18 @@ Much of the synchronous time is planned to be dedicated to helping you work thro
 
 # 19th July 2023 (08:30 - 17:00)
 
-| Time  | Activity                                     | Materials                                           |
-|-------|----------------------------------------------|-----------------------------------------------------|
-| 08:30 | Q & A                                        |                                                     |
-| 09:00 | Allometric analysis using LMs                | [Linear models](linear_mod_activity.qmd)            |
-| 10:30 | Break                                        |                                                     |
-| 11:00 | Linear vs. Nonlinear models                  | [Practical](VB_NLLS_activity.qmd)                   |
-| 12:00 | Lunch                                        |                                                     |
-| 13:00 | Intro to Bayes                               | [Lecture](VB_Bayes1.qmd); [Practical](VB_Bayes_activity1.qmd)                 |
-| 14:00 | Break                                        |                                                     |
-| 14:15 | Bayes comp. (lecture and practical)          |                                                     |
-| 15:15 | Break                                        |                                                     |
-| 15:30 | TPCs practical                               |                                                     |
+| Time  | Activity                            | Materials                                                     |
+|--------------|---------------------------|-------------------------------|
+| 08:30 | Q & A                               |                                                               |
+| 09:00 | Allometric analysis using LMs       | [Linear models](linear_mod_activity.qmd)                      |
+| 10:30 | Break                               |                                                               |
+| 11:00 | Linear vs. Nonlinear models         | [Practical](VB_NLLS_activity.qmd)                             |
+| 12:00 | Lunch                               |                                                               |
+| 13:00 | Intro to Bayes                      | [Lecture](VB_Bayes1.qmd); [Practical](VB_Bayes_activity1.qmd) |
+| 14:00 | Break                               |                                                               |
+| 14:15 | Bayes comp. (lecture and practical) |                                                               |
+| 15:15 | Break                               |                                                               |
+| 15:30 | TPCs practical                      |                                                               |
 
 <br> <br> <br>
 
