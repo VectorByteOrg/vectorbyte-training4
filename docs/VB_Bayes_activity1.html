@@ -6,7 +6,6 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="VectorByte Team">
 
 <title>Introduction to Bayesian Methods</title>
 <style>
@@ -123,12 +122,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -181,15 +195,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#example-midge-wing-length" id="toc-example-midge-wing-length" class="nav-link" data-scroll-target="#example-midge-wing-length">Example: Midge Wing Length</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
   <ul class="collapse">
+  <li><a href="#example-midge-wing-length" id="toc-example-midge-wing-length" class="nav-link" data-scroll-target="#example-midge-wing-length">Example: Midge Wing Length</a></li>
   <li><a href="#non-bayesian-analysis" id="toc-non-bayesian-analysis" class="nav-link" data-scroll-target="#non-bayesian-analysis">Non-Bayesian analysis</a></li>
   <li><a href="#setting-up-the-bayesian-model" id="toc-setting-up-the-bayesian-model" class="nav-link" data-scroll-target="#setting-up-the-bayesian-model">Setting up the Bayesian Model</a></li>
   <li><a href="#prior-information" id="toc-prior-information" class="nav-link" data-scroll-target="#prior-information">Prior Information</a></li>
@@ -198,6 +211,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </ul></li>
   </ul>
 </nav>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -212,12 +228,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>VectorByte Team </p>
-          </div>
-  </div>
     
   
     
@@ -230,12 +240,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <p>This section is focused on practicing the basics of Bayesian analysis (focusing on analytic practice) for simple unimodal data. This section assumes that you have seen the <a href="./VB_Bayes1.html">Bayesian Basics Lecture</a>.</p>
-</section>
-<section id="example-midge-wing-length" class="level1">
-<h1>Example: Midge Wing Length</h1>
+<section id="example-midge-wing-length" class="level2">
+<h2 class="anchored" data-anchor-id="example-midge-wing-length">Example: Midge Wing Length</h2>
 <p>We will use this simple example to go through the steps of assessing a Bayesian model and we’ll see that MCMC can allow us to approximate the posterior distribution.</p>
 <p>Grogan and Wirth (1981) provide data on the wing length (in millimeters) of nine members of a species of midge (small, two-winged flies).</p>
-<p>From these measurements we wish to make inference about the population mean <span class="math inline">\(\mu\)</span>.</p>
+<p>From these measurements we wish to make inference about the population mean <span class="math inline">\mu</span>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>WL.data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"MidgeWingLength.csv"</span>)</span>
@@ -251,9 +260,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
+</section>
 <section id="non-bayesian-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="non-bayesian-analysis">Non-Bayesian analysis</h2>
-<p>We might expect that these midge data could be draws from a <em>Normal</em> distribution <span class="math inline">\(\mathcal{N}(\mu, \sigma^2)\)</span>. Recall that the MLEs for <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span> here are simply the <em>sample mean</em> and <em>sample variance</em> respectively:</p>
+<p>We might expect that these midge data could be draws from a <em>Normal</em> distribution <span class="math inline">\mathcal{N}(\mu, \sigma^2)</span>. Recall that the MLEs for <span class="math inline">\mu</span> and <span class="math inline">\sigma^2</span> here are simply the <em>sample mean</em> and <em>sample variance</em> respectively:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>m<span class="ot">&lt;-</span><span class="fu">sum</span>(Y)<span class="sc">/</span>n</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>s2<span class="ot">&lt;-</span><span class="fu">sum</span>((Y<span class="sc">-</span>m)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(n<span class="dv">-1</span>)</span>
@@ -285,58 +295,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="setting-up-the-bayesian-model" class="level2">
 <h2 class="anchored" data-anchor-id="setting-up-the-bayesian-model">Setting up the Bayesian Model</h2>
-<p>We need to define the likelihood and the priors for our Bayesian analysis. Given the analysis that we’ve just done, let’s assume that our data come from a normal distribution with unknown mean, <span class="math inline">\(\mu\)</span> but that we know the variance is <span class="math inline">\(\sigma^2 = 0.025\)</span>. That is: <span class="math display">\[
+<p>We need to define the likelihood and the priors for our Bayesian analysis. Given the analysis that we’ve just done, let’s assume that our data come from a normal distribution with unknown mean, <span class="math inline">\mu</span> but that we know the variance is <span class="math inline">\sigma^2 = 0.025</span>. That is: <span class="math display">
 \mathbf{Y} \stackrel{\mathrm{iid}}{\sim} \mathcal{N}(\mu, 0.025^2)
-\]</span></p>
+</span></p>
 </section>
 <section id="prior-information" class="level2">
 <h2 class="anchored" data-anchor-id="prior-information">Prior Information</h2>
-<p>Studies from other populations suggest that wing lengths are usually around 1.9 mm, so we set <span class="math inline">\(\mu_0 = 1.9\)</span></p>
-<p>We also know that lengths must be positive (<span class="math inline">\(\mu &gt;0\)</span>)</p>
-<p>We can approximate this restriction with a normal prior distribution for <span class="math inline">\(\mu\)</span> as follows:</p>
-<p>Since most of the normal density is within two standard deviations of the mean we choose <span class="math inline">\(\tau^2_0\)</span> so that</p>
-<p><span class="math display">\[ \mu_0 - 2\sigma_0 &gt;0 \Rightarrow \sigma_0 &lt;1.9/2 = 0.95 \]</span> I will choose <span class="math inline">\(\sigma_0=0.8\)</span> here. Thus our prior for mu will be: <span class="math display">\[
+<p>Studies from other populations suggest that wing lengths are usually around 1.9 mm, so we set <span class="math inline">\mu_0 = 1.9</span></p>
+<p>We also know that lengths must be positive (<span class="math inline">\mu &gt;0</span>)</p>
+<p>We can approximate this restriction with a normal prior distribution for <span class="math inline">\mu</span> as follows:</p>
+<p>Since most of the normal density is within two standard deviations of the mean we choose <span class="math inline">\tau^2_0</span> so that</p>
+<p><span class="math display"> \mu_0 - 2\sigma_0 &gt;0 \Rightarrow \sigma_0 &lt;1.9/2 = 0.95 </span> I will choose <span class="math inline">\sigma_0=0.8</span> here. Thus our prior for mu will be: <span class="math display">
 \mu \sim \mathcal{N}(1.9, 0.8^2)
-\]</span></p>
+</span></p>
 <hr>
-<p>Together, then, our full model is: <span class="math display">\[
+<p>Together, then, our full model is: <span class="math display">
 \begin{align*}
 \mathbf{Y} &amp; \stackrel{\mathrm{iid}}{\sim} \mathcal{N}(\mu, 0.025^2)\\
 \mu &amp;\sim \mathcal{N}(1.9, 0.8^2)
 \end{align*}
-\]</span></p>
+</span></p>
 </section>
 <section id="analytic-posterior" class="level2">
 <h2 class="anchored" data-anchor-id="analytic-posterior">Analytic Posterior</h2>
 <p>For this very simple case it is easy to write down the posterior distribution (up to some constant). First, note that the likelihood for the data can be written as</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \begin{align*}
 \mathcal{L} &amp;\propto \prod_{i=1}^n \frac{1}{\sigma} \exp\left(-\frac{1}{2\sigma^2}(Y_i-\mu)^2 \right) \\
 &amp; =  \frac{1}{\sigma^n} \exp\left(-\frac{1}{2\sigma^2}\sum_{i=1}^n (Y_i-\mu)^2 \right)\\
 &amp; \propto \exp\left(-\frac{n}{2\sigma^2} (\bar{Y}-\mu)^2 \right)
 \end{align*}
-\]</span></p>
+</span></p>
 <p>Multiplying the prior through we get the following for the posterior:</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \mathrm{P}(\mu|\mathbf{Y}) \propto \exp \left(-\frac{n}{2\sigma^2} (\bar{Y}-\mu)^2 \right) \exp\left(-\frac{1}{2\sigma_0^2}(\mu-\mu_0)^2 \right)
-\]</span></p>
+</span></p>
 <p>You can re-arrange, complete the square, etc, to get a new expression that is like</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \mathrm{P}(\mu|\mathbf{Y}) \propto \exp \left(-\frac{1}{2\sigma_p^2} (\mu_p-\mu)^2 \right)
-\]</span></p>
+</span></p>
 <p>where</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \begin{align*}
 \mu_p &amp; = \frac{n\sigma_0^2}{\sigma^2 + n\sigma_0^2} \bar{Y} +  \frac{\sigma^2}{\frac{\sigma^2}{n} + \sigma_0^2} \mu_0\\
 &amp; \\
 \sigma_p^2 &amp; = \left( \frac{n}{\sigma^2} + \frac{1}{\sigma_0^2} \right)^{-1}
 \end{align*}
-\]</span></p>
-<p>Instead of writing this last in terms of the variances, we could instead use precision (the inverse variance) which gives a simpler expression: <span class="math display">\[
+</span></p>
+<p>Instead of writing this last in terms of the variances, we could instead use precision (the inverse variance) which gives a simpler expression: <span class="math display">
 \tau_p = n\tau + \tau_0
-\]</span></p>
+</span></p>
 <p>Just like in our earlier example, our estimate of the mean is a weighted average of the data and the prior, with the variance being determined by the data and prior variances.</p>
-<p>So lets write a little function to calculate <span class="math inline">\(\mu_p\)</span> and <span class="math inline">\(\tau_p\)</span> and the plug in our numbers</p>
+<p>So lets write a little function to calculate <span class="math inline">\mu_p</span> and <span class="math inline">\tau_p</span> and the plug in our numbers</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>tau.post<span class="ot">&lt;-</span><span class="cf">function</span>(tau, tau0, n){n<span class="sc">*</span>tau <span class="sc">+</span> tau0}</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mu.post<span class="ot">&lt;-</span><span class="cf">function</span>(Ybar, mu0, sig20, sig2, n){</span>
@@ -372,7 +382,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="practice-prior-sensitivity" class="level2">
 <h2 class="anchored" data-anchor-id="practice-prior-sensitivity">Practice: Prior sensitivity</h2>
-<p>Change the values of the mean and the variance that you choose for the prior (“hyperparameters”). What does this do to the posterior distribution. E.g., what happens if the variance you choose is small, and <span class="math inline">\(\mu_0 =2.5\)</span> or so. Is this what you expect?</p>
+<p>Change the values of the mean and the variance that you choose for the prior (“hyperparameters”). What does this do to the posterior distribution. E.g., what happens if the variance you choose is small, and <span class="math inline">\mu_0 =2.5</span> or so. Is this what you expect?</p>
 <p><br> <br> <br></p>
 
 

@@ -55,19 +55,17 @@ Much of the synchronous time is planned to be dedicated to helping you work thro
 # 19th July 2023 (08:30 - 17:00)
 
 | Time  | Activity                            | Materials                                                     |
-|--------------|---------------------------|-------------------------------|
+|-------|-------------------------------------|---------------------------------------------------------------|
 | 08:30 | Q & A                               |                                                               |
 | 09:00 | Allometric analysis using LMs       | [Linear models](linear_mod_activity.qmd)                      |
 | 10:30 | Break                               |                                                               |
 | 11:00 | Linear vs. Nonlinear models         | [Practical](VB_NLLS_activity.qmd)                             |
 | 12:00 | Lunch                               |                                                               |
-| 13:00 | Intro to Bayes                      | [Lecture](VB_Bayes1.qmd); [Practical](VB_Bayes_activity1.qmd) |
+| 13:00 | Intro to Bayes                      | [Lecture](VB_Bayes1.qmd); [Practical 1](VB_Bayes_activity1.qmd) |
 | 14:00 | Break                               |                                                               |
-| 14:15 | Bayes comp. (lecture and practical) |                                                               |
+| 14:15 | Bayesian computation and MCMC       | [Lecture](VB_Bayes2.qmd); [Practical 2A](VB_Bayes_activity2.Qmd)|
 | 15:15 | Break                               |                                                               |
-| 15:30 | TPCs practical                      |                                                               |
-
-<br> <br> <br>
+| 15:30 | bayesTPC                            |                                                               |
 
 # 20th July 2023 (10:00 - 1:00)
 
@@ -83,15 +81,12 @@ Much of the synchronous time is planned to be dedicated to helping you work thro
 | 15:30 | Presentations                     |           |
 | 16:30 | Data uploads                      |           |
 
-<br> <br> <br>
-
 # 21st July 2023
 
 | Time | Activity | Materials |
 |------|----------|-----------|
 |      | Travel   |           |
 
-<br> <br> <br>
 
 # Post-workshop
 

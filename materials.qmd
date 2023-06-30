@@ -32,11 +32,15 @@ We are assuming familiarity with R basics. In addition, we recommend that you do
 
 4.  Inculcate the coding Jedi inside of you - or the Sith - whatever works.
 
+<br>    <br>
+
 ## Introduction to the VecTraits database[^1]
 
 [^1]: What is the difference between VectorBiTE and VectorByte? We are glad you asked! [VectorBiTE](http://vectorbite.org/) was an RCN or a research coordination network funded by a 5 year grant from the BBSRC. [VectorByte](https://www.vectorbyte.org/) is hosting this training which is a newly funded NSF grant to establish a global open access data platform to study disease vectors. All the databases have transitioned to VectorByte but the legacy options will still be available on the VectorBiTE website.
 
 -   This component will be delivered live & synchronously. The VecTraits website can be found [here](https://vectorbyte.crc.nd.edu/vectraits-explorer). It might be an idea to explore this prior to the workshop.
+
+<br>    <br>
 
 ## Data Wrangling in R
 
@@ -47,6 +51,8 @@ We are assuming familiarity with R basics. In addition, we recommend that you do
     -   [Huxley et al Trait Data](activities/data/traitdata_Huxleyetal_2021.csv)
     -   [Genome Size](activities/data/GenomeSize.csv)
     -   [Wrangling Practical Data](activities/data/wranglingdataset.csv)
+    
+<br>    <br>
 
 ## Introduction to Linear Models
 
@@ -56,13 +62,7 @@ We are assuming familiarity with R basics. In addition, we recommend that you do
     -   [Huxley et al Trait Data](activities/data/traitdata_Huxleyetal_2021.csv)
     -   [Linear Models Practical Data](activities/data/lmdataset.csv)
 
-## Nonlinear Modeling (including Thermal Performance Curves -- TPCs)
-
--   [Lecture Slides](lectures/VB_NLLS.pdf), [Lecture Video](https://www.youtube.com/watch?v=dnZlU2_iQ1k&list=PLrMhLVyZEsORr81gXrfgiq2vX30_brtpF&index=3), [Practical](VB_NLLS_activity.qmd)
--   Datasets:
-    -   [csm7I Data](activities/data/csm7I.csv)
-    -   [Aedes Juvenile Mortality Data](activities/data/juvenilemortalityrateae.csv)
-    -   [NLLS Practical Data](activities/data/nllsdataset.csv)
+<br>    <br>
 
 ## Nonlinear Modeling (including Thermal Performance Curves -- TPCs)
 
@@ -71,3 +71,19 @@ We are assuming familiarity with R basics. In addition, we recommend that you do
     -   [csm7I Data](activities/data/csm7I.csv)
     -   [Aedes Juvenile Mortality Data](activities/data/juvenilemortalityrateae.csv)
     -   [NLLS Practical Data](activities/data/nllsdataset.csv)
+
+<br>    <br>
+    
+## Intro to Bayes 
+-   [Lecture Slides](VB_Bayes1.qmd), [Practical 1](VB_Bayes_activity1.qmd)
+-   Datasets:
+    -   [Midge data](MidgeWingLength.csv) 
+    
+<br>    <br>
+                                                                               
+## Bayesian computation and MCMC
+-   [Lecture Slides](VB_Bayes2.qmd), [Practical 2A](VB_Bayes_activity2.Qmd)
+
+<br>    <br>
+
+## `bayesTPC`                            

@@ -1,13 +1,12 @@
 ---
 title: "Introduction to Bayesian Methods"
-author: "VectorByte Team"
-html:
+subtitle: 'Activity: Exact Bayesian analysis'
+format:
+  html:
     toc: true
     toc-location: left
     html-math-method: katex
     css: styles.css
-subtitle: 'Activity: Exact Bayesian analysis'
-graphics: yes
 ---
 
 [Main Materials](materials.qmd)
@@ -16,7 +15,7 @@ graphics: yes
 
 This section is focused on practicing the basics of Bayesian analysis (focusing on analytic practice) for simple unimodal data. This section assumes that you have seen the [Bayesian Basics Lecture](VB_Bayes1.qmd).
 
-# Example: Midge Wing Length
+## Example: Midge Wing Length
 
 We will use this simple example to go through the steps of assessing a Bayesian model and we'll see that MCMC can allow us to approximate the posterior distribution.
 

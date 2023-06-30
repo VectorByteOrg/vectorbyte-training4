@@ -1,7 +1,10 @@
 ---
-output: 
-  distill::distill_article:
-  toc: false
+format:
+  html:
+    toc: false
+    toc-location: left
+    html-math-method: katex
+    css: styles.css
 ---
 
 # Welcome to the VectorByte 2023 training workshop!
@@ -10,4 +13,4 @@ output:
 
 <br> <br> <br>
 
-<center>![](activities/graphics/VectorByte-logo_lg.png){width="3in"}</center>
+<center>![](graphics/VectorByte-logo_lg.png){width="3in"}</center>
