@@ -5,7 +5,6 @@ title: |
 author: | 
     | The VectorByte Team
     | (Leah R. Johnson, Virginia Tech)
-date: "2023"
 title-slide-attributes:
   data-background-image: VectorByte-logo_lg.png
   data-background-size: contain

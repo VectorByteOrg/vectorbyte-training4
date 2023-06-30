@@ -248,7 +248,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><a href="./materials.html">Main materials</a></p>
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
-<p>This section is focused on practicing the basics of Bayesian analysis (both analytic practice and computation using nimble) for simple uni-modal data. This section assumes that you have seen both of the <a href="VB_Bayes1.qmd;VB_Bayes2.qmd">Bayes lectures</a>. We’ll review some of the analytic results so that you can compare the results from the previous activity to numerical results while also learning about how to check your computation. We suggest some more advanced things to try for those interested in implementing your own models.</p>
+<p>This section is focused on practicing the basics of Bayesian analysis (both analytic practice and computation using nimble) for simple uni-modal data. This section assumes that you have seen both of the Bayes lectures (<a href="./VB_Bayes1.html">here</a>, and <a href="./VB_Bayes2.html">here</a>). We’ll review some of the analytic results so that you can compare the results from the previous activity to numerical results while also learning about how to check your computation. We suggest some more advanced things to try for those interested in implementing your own models.</p>
 <section id="packages-and-tools" class="level2">
 <h2 class="anchored" data-anchor-id="packages-and-tools">Packages and tools</h2>
 <p>For this practical you will need to first install <a href="">nimble</a>, then be sure to install the following packages:</p>
@@ -266,7 +266,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="fitting-models-the-bayesian-way" class="level1">
 <h1>Fitting Models the Bayesian way</h1>
-<p>Recall from the <a href="https://github.com/vectorbite/VBiTraining2/tree/master/lectures">lectures</a> that in order to make inference statements (for example, credible intervals) that we need to either 1) known the full form of the posterior distribution or 2) have numerical samples from the target distribution. For the second option, we need the samples to be <strong>good</strong> – that is they need to be samples from the posterior and we need the samples in the Markov Chain to be not too highly correlated with each other. Thus our numerical steps in our analysis would be as follows:</p>
+<p>Recall from the lectures (see above for links!) that in order to make inference statements (for example, credible intervals) that we need to either 1) known the full form of the posterior distribution or 2) have numerical samples from the target distribution. For the second option, we need the samples to be <strong>good</strong> – that is they need to be samples from the posterior and we need the samples in the Markov Chain to be not too highly correlated with each other. Thus our numerical steps in our analysis would be as follows:</p>
 <ol type="1">
 <li><p><strong>Implement and fit the model</strong> using your tools of choice</p></li>
 <li><p><strong>Assess MCMC convergence</strong>: MCMC is family of algorithms for sampling from probability distributions (e.g., a posterior distribution in a Bayesian analysis). The MCMC procedure reaches <em>convergence</em> once the algorithm is taking draws from the posterior and not still trying to figure it out. To assess convergence our primary tool is to we look at trace plots (i.e., parameter samples taken in order, like a time series). The goal is to get traces that look like “fuzzy caterpillars”.</p></li>
@@ -452,12 +452,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mcmc.out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           mu
-[1,] 1.975886
-[2,] 1.734000
-[3,] 1.846119
-[4,] 1.718442
-[5,] 1.805925
-[6,] 1.829134</code></pre>
+[1,] 1.812609
+[2,] 1.807134
+[3,] 1.830929
+[4,] 1.811790
+[5,] 1.835318
+[6,] 1.843659</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
@@ -528,12 +528,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mcmc.out<span class="sc">$</span>chain1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           mu
-[1,] 1.794195
-[2,] 1.790404
-[3,] 1.800795
-[4,] 1.918086
-[5,] 1.867981
-[6,] 1.810531</code></pre>
+[1,] 1.770508
+[2,] 1.909082
+[3,] 1.858757
+[4,] 1.747491
+[5,] 1.855502
+[6,] 1.717498</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
@@ -570,12 +570,12 @@ Sample size per chain = 10000
    plus standard error of the mean:
 
           Mean             SD       Naive SE Time-series SE 
-     1.8049127      0.0526625      0.0005266      0.0005343 
+     1.8048118      0.0529351      0.0005294      0.0005145 
 
 2. Quantiles for each variable:
 
  2.5%   25%   50%   75% 97.5% 
-1.702 1.770 1.804 1.840 1.909 </code></pre>
+1.700 1.769 1.805 1.840 1.909 </code></pre>
 </div>
 </div>
 <p>Let’s compare these draws to what we got with our analytic solution:</p>
@@ -730,13 +730,13 @@ Sample size per chain = 10000
 </div>
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mcmc.out2<span class="sc">$</span>chain1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           mu         s2     tau
-[1,] 1.831457 0.09592514 10.4248
-[2,] 1.762845 0.09592514 10.4248
-[3,] 1.762845 0.09592514 10.4248
-[4,] 1.803737 0.09592514 10.4248
-[5,] 1.803737 0.09592514 10.4248
-[6,] 1.727068 0.09592514 10.4248</code></pre>
+<pre><code>           mu         s2      tau
+[1,] 1.844791 0.02688448 37.19618
+[2,] 1.788833 0.02016163 49.59916
+[3,] 1.788833 0.01967088 50.83656
+[4,] 1.788833 0.03140178 31.84533
+[5,] 1.764673 0.03140178 31.84533
+[6,] 1.729235 0.03970888 25.18328</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>samp2<span class="ot">&lt;-</span><span class="fu">as.mcmc</span>(mcmc.out2<span class="sc">$</span>chain1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -763,16 +763,16 @@ Sample size per chain = 10000
    plus standard error of the mean:
 
         Mean       SD  Naive SE Time-series SE
-mu   1.80714  0.05530 0.0005530      0.0012574
-s2   0.02616  0.01954 0.0001954      0.0004825
-tau 51.46974 25.58528 0.2558528      0.6390008
+mu   1.80468  0.05310 0.0005310      0.0012011
+s2   0.02562  0.01773 0.0001773      0.0004411
+tau 52.13850 26.38675 0.2638675      0.6549424
 
 2. Quantiles for each variable:
 
-         2.5%      25%      50%     75%     97.5%
-mu   1.697261  1.77141  1.80683  1.8397   1.91720
-s2   0.009013  0.01509  0.02103  0.0304   0.07123
-tau 14.039959 32.89486 47.56038 66.2883 110.95181</code></pre>
+         2.5%      25%     50%      75%     97.5%
+mu   1.698733  1.77250  1.8054  1.83761   1.91079
+s2   0.008643  0.01502  0.0209  0.03035   0.06918
+tau 14.455095 32.94498 47.8423 66.57943 115.69429</code></pre>
 </div>
 </div>
 <p>Now we plot each with their priors:</p>

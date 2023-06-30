@@ -13,7 +13,7 @@ format:
 
 # Introduction
 
-This section is focused on practicing the basics of Bayesian analysis (both analytic practice and computation using nimble) for simple uni-modal data. This section assumes that you have seen both of the [Bayes lectures](VB_Bayes1.qmd;VB_Bayes2.qmd). We'll review some of the analytic results so that you can compare the results from the previous activity to numerical results while also learning about how to check your computation. We suggest some more advanced things to try for those interested in implementing your own models.
+This section is focused on practicing the basics of Bayesian analysis (both analytic practice and computation using nimble) for simple uni-modal data. This section assumes that you have seen both of the Bayes lectures ([here](VB_Bayes1.qmd), and [here](VB_Bayes2.qmd)). We'll review some of the analytic results so that you can compare the results from the previous activity to numerical results while also learning about how to check your computation. We suggest some more advanced things to try for those interested in implementing your own models.
 
 ## Packages and tools
 
@@ -31,7 +31,7 @@ require(IDPmisc) # makes nice colored pairs plots to look at joint posteriors
 ```
 # Fitting Models the Bayesian way
 
-Recall from the [lectures](https://github.com/vectorbite/VBiTraining2/tree/master/lectures) that in order to make inference statements (for example, credible intervals) that we need to either 1) known the full form of the posterior distribution or 2) have numerical samples from the target distribution. For the second option, we need the samples to be **good** -- that is they need to be samples from the posterior and we need the samples in the Markov Chain to be not too highly correlated with each other. Thus our numerical steps in our analysis would be as follows:
+Recall from the lectures (see above for links!) that in order to make inference statements (for example, credible intervals) that we need to either 1) known the full form of the posterior distribution or 2) have numerical samples from the target distribution. For the second option, we need the samples to be **good** -- that is they need to be samples from the posterior and we need the samples in the Markov Chain to be not too highly correlated with each other. Thus our numerical steps in our analysis would be as follows:
 
 1.  **Implement and fit the model** using your tools of choice
 
