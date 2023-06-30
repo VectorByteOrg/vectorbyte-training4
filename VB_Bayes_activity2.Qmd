@@ -13,7 +13,7 @@ format:
 
 # Introduction
 
-This section is focused on practicing the basics of Bayesian analysis (both analytic practice and computation using nimble) for simple uni-modal data. This section assumes that you have seen both of the [Bayes lectures](https://vectorbite.github.io/VBTraining3/materials.html#bayesian-basics). We'll review some of the analytic results so that you can compare the results from the previous activity to numerical results while also learning about how to check your computation. We suggest some more advanced things to try for those interested in implementing your own models.
+This section is focused on practicing the basics of Bayesian analysis (both analytic practice and computation using nimble) for simple uni-modal data. This section assumes that you have seen both of the [Bayes lectures](VB_Bayes1.qmd;VB_Bayes2.qmd). We'll review some of the analytic results so that you can compare the results from the previous activity to numerical results while also learning about how to check your computation. We suggest some more advanced things to try for those interested in implementing your own models.
 
 ## Packages and tools
 
