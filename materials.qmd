@@ -1,13 +1,16 @@
 ---
 title: "VectorByte Training Materials 2023"
-output: 
-  distill::distill_article:
-    toc: true 
+format:
+  html:
+    toc: true
+    toc-location: left
+    html-math-method: katex
+    css: styles.css
 ---
 
 # Overview
 
-# Pre-work and set-up
+## Pre-work and set-up
 
 ### Hardware and Software
 
@@ -15,7 +18,7 @@ We will be using [R](https://cran.r-project.org/) for all data manipulation and 
 
 You may use any IDE/ GUI for R (VScode, RStudio, Emacs, etc). For most people, [RStudio](https://www.rstudio.com/) is a good option. Whichever one you decide to use, please make sure it is installed and test it before the workshop. We will have a channel on slack dedicated to software/hardware issues and troubleshooting.
 
-We will also be using Zoom and Slack to facilitate the synchronous portions of the training. Please have these installed in advance.
+We will also be using Slack for additional support during the training. Please have these installed in advance.
 
 ### Pre-requisites
 
@@ -29,15 +32,13 @@ We are assuming familiarity with R basics. In addition, we recommend that you do
 
 4.  Inculcate the coding Jedi inside of you - or the Sith - whatever works.
 
-# Introduction to the VectorByte databases[^1]
+## Introduction to the VecTraits database[^1]
 
 [^1]: What is the difference between VectorBiTE and VectorByte? We are glad you asked! [VectorBiTE](http://vectorbite.org/) was an RCN or a research coordination network funded by a 5 year grant from the BBSRC. [VectorByte](https://www.vectorbyte.org/) is hosting this training which is a newly funded NSF grant to establish a global open access data platform to study disease vectors. All the databases have transitioned to VectorByte but the legacy options will still be available on the VectorBiTE website.
 
--   This component will be delivered live & synchronously (with a recording to be uploaded later)
+-   This component will be delivered live & synchronously. The VecTraits website can be found [here](https://vectorbyte.crc.nd.edu/vectraits-explorer). It might be an idea to explore this prior to the workshop.
 
-# Beginner materials
-
-### Data Wrangling in R
+## Data Wrangling in R
 
 -   [Self-Guided Activity](data_wrangling.qmd)
 -   Datasets:
@@ -47,7 +48,7 @@ We are assuming familiarity with R basics. In addition, we recommend that you do
     -   [Genome Size](activities/data/GenomeSize.csv)
     -   [Wrangling Practical Data](activities/data/wranglingdataset.csv)
 
-### Introduction to Linear Models
+## Introduction to Linear Models
 
 -   [Lecture Slides](lectures/VB_LinMods.pdf), [Lecture Video 1](https://www.youtube.com/watch?v=oqjzfXDgZY0&list=PLrMhLVyZEsORr81gXrfgiq2vX30_brtpF&index=2), [Lecture Video 2](https://www.youtube.com/watch?v=-VelMqc9z6M&list=PLrMhLVyZEsORr81gXrfgiq2vX30_brtpF&index=1), [Practical](linear_mod_activity.qmd)
 -   Datasets:
@@ -55,11 +56,15 @@ We are assuming familiarity with R basics. In addition, we recommend that you do
     -   [Huxley et al Trait Data](activities/data/traitdata_Huxleyetal_2021.csv)
     -   [Linear Models Practical Data](activities/data/lmdataset.csv)
 
-<br> <br>
+## Nonlinear Modeling (including Thermal Performance Curves -- TPCs)
 
-# Intermediate materials
+-   [Lecture Slides](lectures/VB_NLLS.pdf), [Lecture Video](https://www.youtube.com/watch?v=dnZlU2_iQ1k&list=PLrMhLVyZEsORr81gXrfgiq2vX30_brtpF&index=3), [Practical](VB_NLLS_activity.qmd)
+-   Datasets:
+    -   [csm7I Data](activities/data/csm7I.csv)
+    -   [Aedes Juvenile Mortality Data](activities/data/juvenilemortalityrateae.csv)
+    -   [NLLS Practical Data](activities/data/nllsdataset.csv)
 
-### Nonlinear Modeling (including Thermal Performance Curves -- TPCs)
+## Nonlinear Modeling (including Thermal Performance Curves -- TPCs)
 
 -   [Lecture Slides](lectures/VB_NLLS.pdf), [Lecture Video](https://www.youtube.com/watch?v=dnZlU2_iQ1k&list=PLrMhLVyZEsORr81gXrfgiq2vX30_brtpF&index=3), [Practical](VB_NLLS_activity.qmd)
 -   Datasets:

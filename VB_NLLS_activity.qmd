@@ -1,8 +1,12 @@
 ---
 title: "Non-Linear Least Squares (NLLS) and Thermal Performance Curve Fitting with Bootstrapping"
 author: "VectorByte Team"
-output:
-  html_document: default
+format:
+  html:
+    toc: true
+    toc-location: left
+    html-math-method: katex
+    css: styles.css
 subtitle: 'Fitting nonlinear models; TPCs'
 graphics: yes
 ---
@@ -1102,6 +1106,6 @@ Please see Daniel Padfields [git](https://padpadpadpad.github.io/rTPC/articles/r
 
     -   The original paper: <http://dx.doi.org/10.18637/jss.v066.i05>
 
-# Practice Problem for NLLS
+## Practice Problem for NLLS
 
-### The `nllsdataset.csv` dataset contains values on trait-temperature relationships in three important vector/pest species. Fit thermal performance curves to trait(s) of interest. Use bootstrapping to generate confidence bounds for each curve.
+#### The `nllsdataset.csv` dataset contains values on trait-temperature relationships in three important vector/pest species. Fit thermal performance curves to trait(s) of interest. Use bootstrapping to generate confidence bounds for each curve.

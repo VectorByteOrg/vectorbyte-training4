@@ -122,12 +122,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -135,7 +150,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a href="https://www.vectorbyte.org" class="navbar-brand navbar-brand-logo">
-    <img src="./activities/graphics/vblogoedit.pdf" alt="" class="navbar-logo">
+    <img src="./graphics/vblogoedit.pdf" alt="" class="navbar-logo">
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -162,7 +177,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/VectorByteOrg/VBTraining4"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/VectorByteOrg/vectorbyte-training4"><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -180,9 +195,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -209,7 +223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul class="collapse">
   <li><a href="#degrees-of-freedom" id="toc-degrees-of-freedom" class="nav-link" data-scroll-target="#degrees-of-freedom">Degrees of freedom</a></li>
   <li><a href="#the-f-value-or-ratio" id="toc-the-f-value-or-ratio" class="nav-link" data-scroll-target="#the-f-value-or-ratio">The F-Value (or Ratio)</a></li>
-  <li><a href="#the-r2" id="toc-the-r2" class="nav-link" data-scroll-target="#the-r2">The <span class="math inline">\(R^{2}\)</span></a></li>
+  <li><a href="#the-r2" id="toc-the-r2" class="nav-link" data-scroll-target="#the-r2">The <span class="math inline">R^{2}</span></a></li>
   </ul></li>
   <li><a href="#an-example-anova" id="toc-an-example-anova" class="nav-link" data-scroll-target="#an-example-anova">An example ANOVA</a>
   <ul class="collapse">
@@ -267,6 +281,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#group-project" id="toc-group-project" class="nav-link" data-scroll-target="#group-project">Group project</a></li>
   </ul>
 </nav>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -315,9 +332,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>It is expected that you have already been introduced to, or are familiar with the concepts (and/or theory) underlying Linear Models. If not, you may want to watch the <a href="https://drive.google.com/drive/folders/12Sj56wHX6vcAnp9GE9qQ1gIXbn7QRHU2?usp=sharing">video</a>.</p>
 <p>We will use the genome size data.</p>
 <p>So,</p>
-<p><span class="math inline">\(\star\)</span> Open R and <code>setwd</code> to your <code>code</code> directory.</p>
-<p><span class="math inline">\(\star\)</span> Create a new blank script called <code>Regression.R</code> and add some introductory comments.</p>
-<p><span class="math inline">\(\star\)</span> Add code to your script to load the genome size data into R and check it (again, using the relative path prefix `<code>, assuming that you working directory is</code>code`):</p>
+<p><span class="math inline">\star</span> Open R and <code>setwd</code> to your <code>code</code> directory.</p>
+<p><span class="math inline">\star</span> Create a new blank script called <code>Regression.R</code> and add some introductory comments.</p>
+<p><span class="math inline">\star</span> Add code to your script to load the genome size data into R and check it (again, using the relative path prefix `<code>, assuming that you working directory is</code>code`):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>genome <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'activities/data/GenomeSize.csv'</span>,<span class="at">stringsAsFactors =</span> T) </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(genome)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -367,7 +384,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>The result is still too messy! There are far too many variables in <code>genome</code> for this to be useful. Before we proceed further,</p>
-<p><span class="math inline">\(\star\)</span> Add <code>pairs(genome, col=genome$Suborder)</code> into your script and run the code:</p>
+<p><span class="math inline">\star</span> Add <code>pairs(genome, col=genome$Suborder)</code> into your script and run the code:</p>
 <p>So, we need to cut down the data to fewer variables. Previously (Experimental design section) we used indices to select colours; here, we can use indices to select columns from the data frame. This again uses square brackets (<code>x[]</code>), but a data frame has two dimensions, rows and columns, so you need to provide an index for each dimension, separated by commas. If an index is left blank, then all of that dimension (i.e.&nbsp;all rows or columns) are selected. Try the following to re-acquaint yourself to access data frame content using indices:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(repr); <span class="fu">options</span>(<span class="at">repr.plot.res =</span> <span class="dv">100</span>, <span class="at">repr.plot.width =</span> <span class="dv">8</span>, <span class="at">repr.plot.height =</span> <span class="dv">8</span>) <span class="co"># change plot size</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -401,13 +418,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="linear_mod_activity_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><span class="math inline">\(\star\)</span> Add the code above to your script and run it.</p>
-<p>In the figure above, each scatterplot is shown twice, with the variables swapping between the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> axes. You can see immediately that the relationships between the four morphological measurements and genome size are fairly scattered but that the plots comparing morphology show much clearer relationships.</p>
+<p><span class="math inline">\star</span> Add the code above to your script and run it.</p>
+<p>In the figure above, each scatterplot is shown twice, with the variables swapping between the <span class="math inline">x</span> and <span class="math inline">y</span> axes. You can see immediately that the relationships between the four morphological measurements and genome size are fairly scattered but that the plots comparing morphology show much clearer relationships.</p>
 </section>
 <section id="correlations" class="level2">
 <h2 class="anchored" data-anchor-id="correlations">Correlations</h2>
 <p>One way of summarising how strong the pair-wise relationships between these variables is to calculate a correlation coefficient. Pearson correlations look at the difference of each point from the mean of each variable (and since it uses means, it is a parametric statistic).</p>
-<p>It is calculated using the differences from the mean on each axis. The key calculation is — for each point – to get the product of the differences on each axis and add them up. If the points are mostly top left (<span class="math inline">\(-x\)</span>, <span class="math inline">\(y\)</span>) or bottom right (<span class="math inline">\(x\)</span>, <span class="math inline">\(-y\)</span>) then these products are mostly negative (<span class="math inline">\(-xy\)</span>); if the points are mostly top right (<span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>) or bottom left (<span class="math inline">\(-x\)</span>, <span class="math inline">\(-y\)</span>) then the products are mostly positive (<span class="math inline">\(xy\)</span>).</p>
+<p>It is calculated using the differences from the mean on each axis. The key calculation is — for each point – to get the product of the differences on each axis and add them up. If the points are mostly top left (<span class="math inline">-x</span>, <span class="math inline">y</span>) or bottom right (<span class="math inline">x</span>, <span class="math inline">-y</span>) then these products are mostly negative (<span class="math inline">-xy</span>); if the points are mostly top right (<span class="math inline">x</span>, <span class="math inline">y</span>) or bottom left (<span class="math inline">-x</span>, <span class="math inline">-y</span>) then the products are mostly positive (<span class="math inline">xy</span>).</p>
 <hr>
 <p><img src="graphics/corr.png" alt="Pearson's Correlation Coefficient" width="800px"></p>
 <p><small></small></p><small>
@@ -416,19 +433,19 @@ Illustration of what the Pearson correlation coefficient means.
 </center>
 </small><p><small></small></p>
 <hr>
-<p>The plots above show three clear cases where all the values of <span class="math inline">\(xy\)</span> are negative or positive or where both are present and sum to zero. The Pearson correlation coefficient simply scales these sums of <span class="math inline">\(xy\)</span> to be between -1 (perfectly negatively correlated) and 1 (perfectly positively correlated) via zero (no correlation). Specifically, this correlation coefficient (<span class="math inline">\(r\)</span>) is equal to the average product of the standardized values of the two variables (let’s call them <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>):</p>
-<p><span class="math display">\[r_{xy}={\frac{\sum _{i=1}^{n}\left({\frac {x_{i}-{\bar {x}}}{s_{x}}}\right)\left({\frac {y_{i}-{\bar {y}}}{s_{y}}}\right)}{n-1}}\]</span></p>
+<p>The plots above show three clear cases where all the values of <span class="math inline">xy</span> are negative or positive or where both are present and sum to zero. The Pearson correlation coefficient simply scales these sums of <span class="math inline">xy</span> to be between -1 (perfectly negatively correlated) and 1 (perfectly positively correlated) via zero (no correlation). Specifically, this correlation coefficient (<span class="math inline">r</span>) is equal to the average product of the standardized values of the two variables (let’s call them <span class="math inline">x</span> and <span class="math inline">y</span>):</p>
+<p><span class="math display">r_{xy}={\frac{\sum _{i=1}^{n}\left({\frac {x_{i}-{\bar {x}}}{s_{x}}}\right)\left({\frac {y_{i}-{\bar {y}}}{s_{y}}}\right)}{n-1}}</span></p>
 <p>where,</p>
 <ul>
-<li><p><span class="math inline">\(n\)</span> is sample size</p></li>
-<li><p><span class="math inline">\(x_i, y_i\)</span> are the individual sample points indexed with <span class="math inline">\(i\)</span> (<span class="math inline">\(i = 1,2,\ldots, n\)</span>)</p></li>
+<li><p><span class="math inline">n</span> is sample size</p></li>
+<li><p><span class="math inline">x_i, y_i</span> are the individual sample points indexed with <span class="math inline">i</span> (<span class="math inline">i = 1,2,\ldots, n</span>)</p></li>
 <li><p>$ {x} = $ is the the sample mean.</p></li>
 <li><p>$ s_x = $ (sample standard deviation)</p></li>
-<li><p>The quantities <span class="math inline">\(\left({\frac {x_{i}-{\bar {x}}}{s_{x}}}\right)\)</span> and <span class="math inline">\(\left(\frac{y_i-\bar{y}}{s_y} \right)\)</span> are the Z-scores (aka <em>standard scores</em>) of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. This conversion of the raw scores (<span class="math inline">\(x_i\)</span>’s and <span class="math inline">\(y_i\)</span>’s) to Z-scores is called standardizing (or sometimes, normalizing).</p></li>
+<li><p>The quantities <span class="math inline">\left({\frac {x_{i}-{\bar {x}}}{s_{x}}}\right)</span> and <span class="math inline">\left(\frac{y_i-\bar{y}}{s_y} \right)</span> are the Z-scores (aka <em>standard scores</em>) of <span class="math inline">x</span> and <span class="math inline">y</span>. This conversion of the raw scores (<span class="math inline">x_i</span>’s and <span class="math inline">y_i</span>’s) to Z-scores is called standardizing (or sometimes, normalizing).</p></li>
 </ul>
-<p>Thus the coefficient (<span class="math inline">\(r_{xy}\)</span>) will be positive (negative) if the <span class="math inline">\(x_i\)</span> and <span class="math inline">\(y_i\)</span>’s tend to move in the same (opposite) direction relative to their respective means (as illustrated in the figure above).</p>
-<p>In R, we will use two functions to look at correlations. The first is <code>cor</code>, which can calculate correlations between pairs of variables, so is a good partner for <code>pairs</code> plots. The second is <code>cor.test</code>, which can only compare a single pair of variables, but uses a <span class="math inline">\(t\)</span> test to assess whether the correlation is significant.</p>
-<p><span class="math inline">\(\star\)</span> Try the following (and include it in your R script file):</p>
+<p>Thus the coefficient (<span class="math inline">r_{xy}</span>) will be positive (negative) if the <span class="math inline">x_i</span> and <span class="math inline">y_i</span>’s tend to move in the same (opposite) direction relative to their respective means (as illustrated in the figure above).</p>
+<p>In R, we will use two functions to look at correlations. The first is <code>cor</code>, which can calculate correlations between pairs of variables, so is a good partner for <code>pairs</code> plots. The second is <code>cor.test</code>, which can only compare a single pair of variables, but uses a <span class="math inline">t</span> test to assess whether the correlation is significant.</p>
+<p><span class="math inline">\star</span> Try the following (and include it in your R script file):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(genome[, morpho_vars], <span class="at">use =</span> <span class="st">"pairwise"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -457,7 +474,7 @@ sample estimates:
 0.3407077 </code></pre>
 </div>
 </div>
-<p>The <code>use='pairwise'</code> tells R to omit observations with missing data and use complete pairs of observations. The first function confirms our impressions from the graphs: the correlations between genome size and morphology are positive but comparatively weak and the correlations between morphological measurements are positive and very strong (i.e.&nbsp;close to 1). The correlation test tells us that genome size and body length are positively correlated (r=0.34, <span class="math inline">\(t\)</span> = 3.5507, df = 96, <span class="math inline">\(p\)</span> = 0.0006).</p>
+<p>The <code>use='pairwise'</code> tells R to omit observations with missing data and use complete pairs of observations. The first function confirms our impressions from the graphs: the correlations between genome size and morphology are positive but comparatively weak and the correlations between morphological measurements are positive and very strong (i.e.&nbsp;close to 1). The correlation test tells us that genome size and body length are positively correlated (r=0.34, <span class="math inline">t</span> = 3.5507, df = 96, <span class="math inline">p</span> = 0.0006).</p>
 <p>Also, in case you are wondering about what the t-value in the <code>cor.test</code>&nbsp;signifies: &nbsp; &nbsp;</p>
 <p>The t-test is used within <code>cor.test</code> to establish if the correlation coefficient is significantly different from zero, that is,&nbsp;to&nbsp;test if&nbsp;there is a significant&nbsp;association between the two variables. The t-test, in general, can be used to test if the mean of a sample&nbsp;is significantly&nbsp;different from some reference value (1-sample t-test). Here, the “mean of the sample” is the observed correlation coefficient, and the reference value is 0 (the null hypothesis, that there is no association).</p>
 </section>
@@ -465,12 +482,12 @@ sample estimates:
 <h2 class="anchored" data-anchor-id="transformations-and-allometric-scaling">Transformations and allometric scaling</h2>
 <p>There is one problem with the correlations above: <em>the correlation coefficient calculation assumes a straight line relationship</em>. Some of the scatterplots above are fairly straight but there are some strongly curved relationships. This is due to <a href="https://en.wikipedia.org/wiki/Allometry">allometric scaling</a>, where one body measure changes (or grows) disproportionately with respect to another. Here, two of the variables are in linear units (total and forewing length), one is in squared units (forewing area) and one in cubic units (body weight, which is approximately volume). That these measures are in different units itself guarantees that they will scale allometrically with respect to each other.</p>
 <p>The relationships between these variables can be described using a power law:</p>
-<p><span class="math display">\[y = ax^b\]</span></p>
-<p>Fortunately, if we log transform this equation, we get <span class="math inline">\(\log(y) = \log(a) + b \log(x)\)</span>. This is the equation of a straight line (<span class="math inline">\(y=a+bx\)</span>), so we should be able to make these plots straighter by logging both axes. We can create a new logged variable in the data frame like this:</p>
+<p><span class="math display">y = ax^b</span></p>
+<p>Fortunately, if we log transform this equation, we get <span class="math inline">\log(y) = \log(a) + b \log(x)</span>. This is the equation of a straight line (<span class="math inline">y=a+bx</span>), so we should be able to make these plots straighter by logging both axes. We can create a new logged variable in the data frame like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>genome<span class="sc">$</span>logGS <span class="ot">&lt;-</span> <span class="fu">log</span>(genome<span class="sc">$</span>GenomeSize)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><span class="math inline">\(\star\)</span> Using this command as a template, create a new logged version of the five variables listed above:</p>
+<p><span class="math inline">\star</span> Using this command as a template, create a new logged version of the five variables listed above:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>genome<span class="sc">$</span>logGS <span class="ot">&lt;-</span> <span class="fu">log</span>(genome<span class="sc">$</span>GenomeSize)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>genome<span class="sc">$</span>logBW <span class="ot">&lt;-</span> <span class="fu">log</span>(genome<span class="sc">$</span>BodyWeight)</span>
@@ -478,7 +495,7 @@ sample estimates:
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>genome<span class="sc">$</span>logFL <span class="ot">&lt;-</span> <span class="fu">log</span>(genome<span class="sc">$</span>ForewingLength)</span>
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>genome<span class="sc">$</span>logFA <span class="ot">&lt;-</span> <span class="fu">log</span>(genome<span class="sc">$</span>ForewingArea)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><span class="math inline">\(\star\)</span> Then, using <code>str</code>, work out which column numbers the logged variables are and create a new variable called <code>logmorpho</code> containing these numbers:</p>
+<p><span class="math inline">\star</span> Then, using <code>str</code>, work out which column numbers the logged variables are and create a new variable called <code>logmorpho</code> containing these numbers:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(genome)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -561,8 +578,8 @@ logFA 0.06808306 0.94995683 0.8620710 0.9791647 1.00000000</code></pre>
 </div>
 <p>It is clear that the two suborders have very different relationships: to begin with we will look at dragonflies (Anisoptera). We will calculate two linear models:</p>
 <ul>
-<li><p><strong>The Null Model</strong>: This is the simplest linear model: nothing is going on and the response variable just has variation around the mean: <span class="math inline">\(y = \beta_1\)</span>. This is written as an R formula as <code>y ~ 1</code>.</p></li>
-<li><p><strong>The Linear (Regression) Model</strong>: This models a straight line relationship between the response variable and a continuous explanatory variable: <span class="math inline">\(y= \beta_1 + \beta_{2}x\)</span>.</p></li>
+<li><p><strong>The Null Model</strong>: This is the simplest linear model: nothing is going on and the response variable just has variation around the mean: <span class="math inline">y = \beta_1</span>. This is written as an R formula as <code>y ~ 1</code>.</p></li>
+<li><p><strong>The Linear (Regression) Model</strong>: This models a straight line relationship between the response variable and a continuous explanatory variable: <span class="math inline">y= \beta_1 + \beta_{2}x</span>.</p></li>
 </ul>
 <p>The code below fits these two models.</p>
 <div class="cell">
@@ -572,8 +589,8 @@ logFA 0.06808306 0.94995683 0.8620710 0.9791647 1.00000000</code></pre>
 <ul>
 <li>Note the long names for the models. Short names are easier to type but calling R objects names like <code>mod1</code>, <code>mod2</code>, <code>xxx</code> swiftly get confusing!*</li>
 </ul>
-<p><span class="math inline">\(\star\)</span> Add these model fitting commands into your script and run them.</p>
-<p>Now we want to look at the output of the model. Remember from the lecture that a model has <em>coefficients</em> (the <span class="math inline">\(\beta\)</span> values in the equation of the model) and <em>terms</em> which are the explanatory variables in the model. We’ll look at the <em>coefficients</em> first:</p>
+<p><span class="math inline">\star</span> Add these model fitting commands into your script and run them.</p>
+<p>Now we want to look at the output of the model. Remember from the lecture that a model has <em>coefficients</em> (the <span class="math inline">\beta</span> values in the equation of the model) and <em>terms</em> which are the explanatory variables in the model. We’ll look at the <em>coefficients</em> first:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(genomeSizeModelDragon) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -599,17 +616,17 @@ Multiple R-squared:  0.2326,    Adjusted R-squared:  0.2194
 F-statistic: 17.58 on 1 and 58 DF,  p-value: 9.539e-05</code></pre>
 </div>
 </div>
-<p>There is a lot of information there: the model description (‘<code>Call</code>’), a summary of the residuals, a table of coefficients and then information on residual standard error, r squared and an <span class="math inline">\(F\)</span> test.</p>
+<p>There is a lot of information there: the model description (‘<code>Call</code>’), a summary of the residuals, a table of coefficients and then information on residual standard error, r squared and an <span class="math inline">F</span> test.</p>
 <p>All of these will become clearer during this course (in particular, the meaning of Adjusted R-square will be explained in the ANOVA section — for the moment, concentrate on the coefficients table.</p>
-<p>There are two rows in the coefficient table, one for each coefficient in <span class="math inline">\(y=\beta_1 + \beta_2x\)</span> — these are the intercept and the slope of the line. The rest the details on each row are a <span class="math inline">\(t\)</span> test of whether the slope and intercept are significantly different from zero.</p>
-<p>The (least-squares) estimate of the slope coefficient (<code>logGS</code>) is equal to the correlation coefficient between the dependent variable (<span class="math inline">\(y\)</span>, here <code>logBW</code>) and the independent variable (<span class="math inline">\(x\)</span>, here <code>logGS</code>) times the ratio of the (sample) standard deviations of the two (see <a href="#Correlations">above</a> for the definitions of these):</p>
-<p><span class="math display">\[ \text{Slope} = \beta_2 = r_{xy} \frac{s_y}{s_x}\]</span></p>
+<p>There are two rows in the coefficient table, one for each coefficient in <span class="math inline">y=\beta_1 + \beta_2x</span> — these are the intercept and the slope of the line. The rest the details on each row are a <span class="math inline">t</span> test of whether the slope and intercept are significantly different from zero.</p>
+<p>The (least-squares) estimate of the slope coefficient (<code>logGS</code>) is equal to the correlation coefficient between the dependent variable (<span class="math inline">y</span>, here <code>logBW</code>) and the independent variable (<span class="math inline">x</span>, here <code>logGS</code>) times the ratio of the (sample) standard deviations of the two (see <a href="#Correlations">above</a> for the definitions of these):</p>
+<p><span class="math display"> \text{Slope} = \beta_2 = r_{xy} \frac{s_y}{s_x}</span></p>
 <p>Thus you can see that the regression slope is proportional to the correlation coefficient; the ratio of standard deviations serves to scale the correlation coefficient (which is unit-less) appropriately to the actual units in which the variables are measured.</p>
 <p>The (least-squares) estimate of the intercept is the mean of the dependent variable minus the estimated slope coefficient times the mean of the independent variable:</p>
-<p><span class="math display">\[ \text{Intercept} = \beta_1 = \bar{y} - \beta_2 \bar{x}  \]</span></p>
-<p>The standard error of the model (“Residual standard error” in the output above, also referred to as the standard error of the regression) is equal to the square root of the sum of the squared residuals divided by <span class="math inline">\(n-2\)</span>. The sum of squared residuals is divided by <span class="math inline">\(n-2\)</span> in this calculation rather than <span class="math inline">\(n-1\)</span> because an additional degree of freedom for error has been used up by estimating two parameters (a slope and an intercept) rather than only one (the mean) in fitting the model to the data.</p>
+<p><span class="math display"> \text{Intercept} = \beta_1 = \bar{y} - \beta_2 \bar{x}  </span></p>
+<p>The standard error of the model (“Residual standard error” in the output above, also referred to as the standard error of the regression) is equal to the square root of the sum of the squared residuals divided by <span class="math inline">n-2</span>. The sum of squared residuals is divided by <span class="math inline">n-2</span> in this calculation rather than <span class="math inline">n-1</span> because an additional degree of freedom for error has been used up by estimating two parameters (a slope and an intercept) rather than only one (the mean) in fitting the model to the data.</p>
 <p>As you can see in the output above, each of the two model parameters, the slope and intercept, has its own standard error, and quantifies the uncertainty in these two estimates. These can be used to construct the Confidence Intervals around these estimates, which we will learn about later.</p>
-<p>The main take-away from all this is that the standard errors of the coefficients are directly proportional to the standard error of the regression and inversely proportional to the square root of the sample size (<span class="math inline">\(n\)</span>). Thus, that “noise” in the data (measured by the residual standard error) affects the errors in the coefficient estimates in exactly the same way. Thus, 4 times as much data will tend to reduce the standard errors of the all coefficients by approximately a factor of 2.</p>
+<p>The main take-away from all this is that the standard errors of the coefficients are directly proportional to the standard error of the regression and inversely proportional to the square root of the sample size (<span class="math inline">n</span>). Thus, that “noise” in the data (measured by the residual standard error) affects the errors in the coefficient estimates in exactly the same way. Thus, 4 times as much data will tend to reduce the standard errors of the all coefficients by approximately a factor of 2.</p>
 <p>Now we will look at the <em>terms</em> of the model using the <code>anova</code> function. We will have a proper look at ANOVA (Analysis of Variance) later.</p>
 <p>Meanwhile, recall from your lecture that ANOVA tests how much variation in the response variable is explained by each explanatory variable. We only have one variable and so there is only one row in the output:</p>
 <div class="cell">
@@ -649,14 +666,14 @@ Comparison of the null and the regression models.
 </div>
 <p>So we have five columns in the ANOVA table:</p>
 <ul>
-<li><p><strong><code>Df</code></strong>: This shows the degrees of freedom. Each fitted parameter/coefficient takes up a degree of freedom from the total sample size, and the left over are the residuals degree of freedom. In this case, genome size adds a slope (compare the null model <span class="math inline">\(y=\beta_1\)</span> and this model <span class="math inline">\(y=\beta_1 + \beta_2x\)</span> — there is one more <span class="math inline">\(\beta\)</span>).</p></li>
-<li><p><strong><code>Sum Sq</code></strong>: This shows sums of squares. The bottom line is the residual sum of squares for the model and the one above is the variation explained by genome size. Using the two values from above, the sums of square residuals for the null model are 36.67. In the genome size model, the sum of square residuals are 28.14 and so <span class="math inline">\(36.67-28.14=8.53\)</span> units of variance have been explained by this model.</p></li>
+<li><p><strong><code>Df</code></strong>: This shows the degrees of freedom. Each fitted parameter/coefficient takes up a degree of freedom from the total sample size, and the left over are the residuals degree of freedom. In this case, genome size adds a slope (compare the null model <span class="math inline">y=\beta_1</span> and this model <span class="math inline">y=\beta_1 + \beta_2x</span> — there is one more <span class="math inline">\beta</span>).</p></li>
+<li><p><strong><code>Sum Sq</code></strong>: This shows sums of squares. The bottom line is the residual sum of squares for the model and the one above is the variation explained by genome size. Using the two values from above, the sums of square residuals for the null model are 36.67. In the genome size model, the sum of square residuals are 28.14 and so <span class="math inline">36.67-28.14=8.53</span> units of variance have been explained by this model.</p></li>
 <li><p><strong><code>Mean Sq</code></strong>: These are just the Sum Sq (Sum of Squares) values divided by the degrees of freedom. The idea behind this is simple: if we explain lots of variation with one coefficient, that is good (the null model), and if we explain a small amount of variation with a loss of degree of freedom (by adding and then estimating more parameters), then that is bad.</p></li>
 <li><p><strong><code>F value</code></strong>: This is the ratio of the Mean Sq for the variable and the residual Mean Sq. This is used to test whether the explained variation is large or small.</p></li>
-<li><p><strong><code>Pr(&gt;F)</code></strong>: This is the <span class="math inline">\(p\)</span> value — the probability of the x-variable (the fitted model) explaining this much variance by chance.</p></li>
+<li><p><strong><code>Pr(&gt;F)</code></strong>: This is the <span class="math inline">p</span> value — the probability of the x-variable (the fitted model) explaining this much variance by chance.</p></li>
 </ul>
 <p>In this case, it is clear that genome size explains a significant variation in body weight.</p>
-<p><span class="math inline">\(\star\)</span> Include the <code>summary</code> and <code>anova</code> commands for <code>genomeSizeModelDragon</code> in your script, run them and check you are happy with the output.</p>
+<p><span class="math inline">\star</span> Include the <code>summary</code> and <code>anova</code> commands for <code>genomeSizeModelDragon</code> in your script, run them and check you are happy with the output.</p>
 <section id="exercise" class="level3">
 <h3 class="anchored" data-anchor-id="exercise">Exercise</h3>
 <p>Using the above code as a template, create a new model called <code>genomeSizeModelDamsel</code> that fits log body weight as a function of log genome size for damselflies. Write and run code to get the <code>summary</code> and <code>anova</code> tables for this new model. For example, the first step would be:</p>
@@ -667,7 +684,7 @@ Comparison of the null and the regression models.
 <section id="plotting-the-fitted-regression-model" class="level3">
 <h3 class="anchored" data-anchor-id="plotting-the-fitted-regression-model">Plotting the fitted Regression model</h3>
 <p>Now we can plot the data and add lines to show the models. For simple regression models, we can use the function <code>abline(modelName)</code> to add a line based on the model.</p>
-<p><span class="math inline">\(\star\)</span> Create a scatterplot of log body weight as a function of log genome size, picking your favourite colours for the points.</p>
+<p><span class="math inline">\star</span> Create a scatterplot of log body weight as a function of log genome size, picking your favourite colours for the points.</p>
 <p>Use <code>abline</code> to add a line for each model and use the <code>col</code> option in the function to colour each line to match the points.</p>
 <p>For example: <code>abline(genomeSizeModelDragon, col='red')</code>.</p>
 <div class="cell">
@@ -692,8 +709,8 @@ Linear regression models fitted to the body weight vs.&nbsp;genome size to the D
 <section id="model-diagnostics" class="level2">
 <h2 class="anchored" data-anchor-id="model-diagnostics">Model diagnostics</h2>
 <p>Now that we have our models, we need to check that they are appropriate for the data. For this, we will inspect “diagnostic plots”. Producing diagnostic plots is easy in R — if you <code>plot</code> the model object, then R produces a set of diagnostic plots!</p>
-<p><span class="math inline">\(\star\)</span> Quick note on <a href="https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/par">par</a>: this is used to tell R where you want your plots when you build.</p>
-<p><span class="math inline">\(\star\)</span> Try the following code (and include in the R script file):</p>
+<p><span class="math inline">\star</span> Quick note on <a href="https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/par">par</a>: this is used to tell R where you want your plots when you build.</p>
+<p><span class="math inline">\star</span> Try the following code (and include in the R script file):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">5</span>, <span class="fl">1.5</span>, <span class="fl">1.5</span>))</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(genomeSizeModelDragon)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -732,7 +749,7 @@ Leverage of data points on slope of a regression. The points further away from t
 <p>This is an important diagnostic plot in regression analyses in particular because it tells you whether your estimate of the slope coefficient in particular is strongly affected by certain data points.</p>
 <p>Note that certain points are numbered in all the diagnostic plots — these are points to pay special attention to because they are <em>potential</em> outliers. The numbers correspond to the row number for that dataset in your data frame. You can easily identify these points in your data plot because the order of the points along the fitted values axis (y-axis) in the diagnostic plot matches the order along the x-axis in the data plot. So, for example here, in the dragonfly diagnostic plots the two numbered points (46, 10) near the bottom correspond in the data plot to the two red points near the center-left that lie farthest below the red line (see the plot with regression lines fitted to the data).</p>
 <p>Thus, neither the Drangonfly nor the Damselfly diagnostic plots look perfect, but this level of deviation from assumptions of linear models is acceptable. The main worrying factors are that the Q-Q plot for Damselflies indicates the observed residuals are a bit more extreme than expected, and the Scale–Location plot for Dragonflies suggests some pattern in the standardized residuals wrt location of the fitted values.</p>
-<p><span class="math inline">\(\star\)</span> Copy the code to create the diagnostic plots into your script to keep a record of the code and run it.</p>
+<p><span class="math inline">\star</span> Copy the code to create the diagnostic plots into your script to keep a record of the code and run it.</p>
 </section>
 <section id="reporting-the-model" class="level2">
 <h2 class="anchored" data-anchor-id="reporting-the-model">Reporting the model</h2>
@@ -744,7 +761,7 @@ Leverage of data points on slope of a regression. The points further away from t
 <section id="introduction-1" class="level2">
 <h2 class="anchored" data-anchor-id="introduction-1">Introduction</h2>
 <p>Analysis of Variance, is very often a good choice if your response (dependent) variable is continuous, and your predictor (independent) variables is categorical.</p>
-<p>In this section, you will learn to perform an ANOVA, that is, fit this linear model to the data. Specifically, you will learn to<a href="#fn1"><span class="math inline">\(^{[1]}\)</span></a>:</p>
+<p>In this section, you will learn to perform an ANOVA, that is, fit this linear model to the data. Specifically, you will learn to<a href="#fn1"><span class="math inline">^{[1]}</span></a>:</p>
 <ul>
 <li><p>Visualize the data by plotting boxplots and barplots</p></li>
 <li><p>Fit an ANOVA to test whether certain factors can explain (partition) the variation in your data</p></li>
@@ -758,23 +775,23 @@ Leverage of data points on slope of a regression. The points further away from t
 <p><img src="graphics/ANOVA_is_LM.png" alt="ANOVA example" width="300px"></p>
 <p><small></small></p><small>
 <center>
-A dataset where an ANOVA is appropriate. <br> Performing an ANOVA on this dataset is the same as fitting the linear model <span class="math inline">\(y = \beta_1 + \beta_2 x_s + \beta_3 x_a\)</span>, where <span class="math inline">\(x_s\)</span> and <span class="math inline">\(x_a\)</span> are two levels (“treatments”, representing statistically separate populations) within the factor (games console ownership). Here, the first treatment, the control, is captured by the baseline value <span class="math inline">\(\beta_1\)</span> (the sample with the lowest value, on the far left).
+A dataset where an ANOVA is appropriate. <br> Performing an ANOVA on this dataset is the same as fitting the linear model <span class="math inline">y = \beta_1 + \beta_2 x_s + \beta_3 x_a</span>, where <span class="math inline">x_s</span> and <span class="math inline">x_a</span> are two levels (“treatments”, representing statistically separate populations) within the factor (games console ownership). Here, the first treatment, the control, is captured by the baseline value <span class="math inline">\beta_1</span> (the sample with the lowest value, on the far left).
 </center>
 </small><p><small></small></p>
 <p>(One-way) ANOVA tests the null hypothesis that samples from two or more groups (the treatments or factors) are drawn from populations with the <em>same mean value</em>. That is, the null hypothesis is that all the groups are random samples from the <em>same</em> population (no statistical difference in their means). To do this,&nbsp;ANOVA compares&nbsp;the&nbsp;variance in the data explained by fitting the linear model, to the unexplained variance (the null hypothesis.</p>
-<p>In other words, in effect, ANOVA asks whether a linear model with a predictor (or explanatory variable) with at least two categorical levels (or factors), better accounts for the variance (Explained Sum of Squares, ESS, see below) than a null model of the form <span class="math inline">\(y = \beta_1\)</span>. Thus, ANOVA is just a type of linear model.</p>
-<p>By the end of this section, it will also make more sense to you how/why fitting a linear regression model to the data of the form <span class="math inline">\(y = \beta_1 + \beta_2 x\)</span> (where <span class="math inline">\(x\)</span> is a continuous predictor variable), requires an ANOVA to determine if the model better fits than a null model of the form <span class="math inline">\(y = \beta_1\)</span>.</p>
-<p>Typically, one-way ANOVA is used to test for differences among at least three groups, since the two-group (or levels or factors) case can be covered by a <span class="math inline">\(t\)</span>-test. When there are only two means to compare, the <span class="math inline">\(t\)</span>-test and the F-test are equivalent; the relation between ANOVA and t is given by <span class="math inline">\(F = t^2\)</span>.</p>
+<p>In other words, in effect, ANOVA asks whether a linear model with a predictor (or explanatory variable) with at least two categorical levels (or factors), better accounts for the variance (Explained Sum of Squares, ESS, see below) than a null model of the form <span class="math inline">y = \beta_1</span>. Thus, ANOVA is just a type of linear model.</p>
+<p>By the end of this section, it will also make more sense to you how/why fitting a linear regression model to the data of the form <span class="math inline">y = \beta_1 + \beta_2 x</span> (where <span class="math inline">x</span> is a continuous predictor variable), requires an ANOVA to determine if the model better fits than a null model of the form <span class="math inline">y = \beta_1</span>.</p>
+<p>Typically, one-way ANOVA is used to test for differences among at least three groups, since the two-group (or levels or factors) case can be covered by a <span class="math inline">t</span>-test. When there are only two means to compare, the <span class="math inline">t</span>-test and the F-test are equivalent; the relation between ANOVA and t is given by <span class="math inline">F = t^2</span>.</p>
 <p>An extension of one-way ANOVA is two-way analysis of variance that examines the influence of two different categorical independent variables on one dependent variable. We will explore multiple predictors in later segments.</p>
 </section>
 <section id="calculating-the-anova-test-statistic" class="level2">
 <h2 class="anchored" data-anchor-id="calculating-the-anova-test-statistic">Calculating the ANOVA test statistic</h2>
 <p>ANOVA uses the <a href="https://blog.minitab.com/en/adventures-in-statistics-2/understanding-analysis-of-variance-anova-and-the-f-test#:~:text=The%20F%2Dstatistic%20is%20the,F%2Dstatistic%20of%20approximately%201.&amp;text=In%20order%20to%20reject%20the,need%20a%20high%20F%2Dvalue.">F-Statistic</a>. To this end, an ANOVA “partitions” variability in your data as follows:</p>
-<p><strong>Total sum of squares (TSS)</strong>: This is the sum of the squared difference between the observed dependent variable (<span class="math inline">\(y\)</span>) and the mean of the response variable <span class="math inline">\(y\)</span> (denoted by <span class="math inline">\(\bar{y}\)</span>), i.e.,</p>
-<p><span class="math display">\[\text{TSS} = \sum_{i=1}^{n}(y_i - \bar{y})^2\]</span></p>
+<p><strong>Total sum of squares (TSS)</strong>: This is the sum of the squared difference between the observed dependent variable (<span class="math inline">y</span>) and the mean of the response variable <span class="math inline">y</span> (denoted by <span class="math inline">\bar{y}</span>), i.e.,</p>
+<p><span class="math display">\text{TSS} = \sum_{i=1}^{n}(y_i - \bar{y})^2</span></p>
 <p>TSS tells us how much variation there is in the dependent variable without having any other information (your null model). You might notice that TSS is the numerator of the <em>sample variance</em> (or it’s square-root, the <em>sample standard deviation</em>).</p>
-<p><strong>Explained sum of squares (ESS)</strong>: Sum of the squared differences between the predicted <span class="math inline">\(y\)</span>’s (denoted <span class="math inline">\(\hat{y}\)</span>’s) and <span class="math inline">\(\bar{y}\)</span>, or, <span class="math display">\[\text{ESS} = \sum_{i=1}^{n} (\hat{y}_i - \bar{y})^2\]</span> ESS tells us how much of the variation in the dependent variable our alternative (linear) model was able to explain. That is, it’s the reduction in uncertainty that occurs when the linear model is used to predict the responses.</p>
-<p><strong>Residual sum of squares (RSS)</strong>: Sum of the squared differences between the observed <span class="math inline">\(y\)</span>’s (denoted by <span class="math inline">\(y_i\)</span>) and the predicted <span class="math inline">\(\hat{y}\)</span>, or, <span class="math display">\[\text{RSS} = \sum_{i=1}^{n} (\hat{y}_i - y_i)^2\]</span> RSS tells us how much of the variation in the dependent variable our model could not explain. That is, it’s the uncertainty that remains even after the linear model is used. The linear model is considered to be statistically significant if it can account for a large amount of variability in the response.</p>
+<p><strong>Explained sum of squares (ESS)</strong>: Sum of the squared differences between the predicted <span class="math inline">y</span>’s (denoted <span class="math inline">\hat{y}</span>’s) and <span class="math inline">\bar{y}</span>, or, <span class="math display">\text{ESS} = \sum_{i=1}^{n} (\hat{y}_i - \bar{y})^2</span> ESS tells us how much of the variation in the dependent variable our alternative (linear) model was able to explain. That is, it’s the reduction in uncertainty that occurs when the linear model is used to predict the responses.</p>
+<p><strong>Residual sum of squares (RSS)</strong>: Sum of the squared differences between the observed <span class="math inline">y</span>’s (denoted by <span class="math inline">y_i</span>) and the predicted <span class="math inline">\hat{y}</span>, or, <span class="math display">\text{RSS} = \sum_{i=1}^{n} (\hat{y}_i - y_i)^2</span> RSS tells us how much of the variation in the dependent variable our model could not explain. That is, it’s the uncertainty that remains even after the linear model is used. The linear model is considered to be statistically significant if it can account for a large amount of variability in the response.</p>
 <ul>
 <li>And of course, TSS = ESS + RSS. That is, the OLS method “decomposes” the total variation in the dependent variable into an explained component (ESS; explained by the predictor) and an unexplained or residual component (the RSS).</li>
 </ul>
@@ -797,21 +814,21 @@ A dataset where an ANOVA is appropriate. <br> Performing an ANOVA on this datase
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">TSS</td>
-<td style="text-align: center;"><span class="math inline">\(\sum_{i=1}^{n}(y_i - \bar{y})^2\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(n-1\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\frac{TSS}{n-1}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\sum_{i=1}^{n}(y_i - \bar{y})^2</span></td>
+<td style="text-align: center;"><span class="math inline">n-1</span></td>
+<td style="text-align: center;"><span class="math inline">\frac{TSS}{n-1}</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">ESS</td>
-<td style="text-align: center;"><span class="math inline">\(\sum_{i=1}^{n} (\hat{y}_i - \bar{y})^2\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(n_c-1\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\frac{ESS}{n_c-1}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\sum_{i=1}^{n} (\hat{y}_i - \bar{y})^2</span></td>
+<td style="text-align: center;"><span class="math inline">n_c-1</span></td>
+<td style="text-align: center;"><span class="math inline">\frac{ESS}{n_c-1}</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">RSS</td>
-<td style="text-align: center;"><span class="math inline">\(\sum_{i=1}^{n} (\hat{y}_i - y_i)^2\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(n-n_c\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\frac{RSS}{n-n_c}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\sum_{i=1}^{n} (\hat{y}_i - y_i)^2</span></td>
+<td style="text-align: center;"><span class="math inline">n-n_c</span></td>
+<td style="text-align: center;"><span class="math inline">\frac{RSS}{n-n_c}</span></td>
 </tr>
 </tbody>
 </table>
@@ -820,28 +837,28 @@ A dataset where an ANOVA is appropriate. <br> Performing an ANOVA on this datase
 <h3 class="anchored" data-anchor-id="degrees-of-freedom">Degrees of freedom</h3>
 <p>Each sum of squares has a corresponding degrees of freedom (DF) associated with it that gives the Mean Sum of Squares (MSS) — the Sums of Squares divided by the corresponding degrees of freedom.</p>
 <ul>
-<li><p>The TSS DF is one less than the number of observations <span class="math inline">\(n-1\)</span>. This is because calculating TSS, needs <span class="math inline">\(\bar y\)</span> , which imposes loss of one degree of freedom. Note that MSS is thus nothing but the sample variance.</p></li>
-<li><p>The ESS DF is one less than the number of coefficients (<span class="math inline">\(n_c\)</span>) (estimated parameters) in the model: <span class="math inline">\(n_c-1\)</span>. Note that in the case where the linear model is an ANOVA, the number of coefficients equals the number of “treatments” (the categories or levels in the predictor or factor). So for example, in <a href="#fig:anova1">Figure 1</a>, there are three treatments (predictors) and therefore three coefficients (<span class="math inline">\(\beta_1\)</span>, <span class="math inline">\(\beta_2\)</span>, <span class="math inline">\(\beta_3\)</span>), which means that the ESS degrees of freedom there is <span class="math inline">\(n_c-1 = 2\)</span>.</p></li>
-<li><p>The RSS DF is the sample size <span class="math inline">\(n\)</span> minus the number of coefficients that you need to estimate (<span class="math inline">\(n_c\)</span>), that is, <span class="math inline">\(n - n_c\)</span>, because each estimated coefficient is an unknown parameter.</p></li>
+<li><p>The TSS DF is one less than the number of observations <span class="math inline">n-1</span>. This is because calculating TSS, needs <span class="math inline">\bar y</span> , which imposes loss of one degree of freedom. Note that MSS is thus nothing but the sample variance.</p></li>
+<li><p>The ESS DF is one less than the number of coefficients (<span class="math inline">n_c</span>) (estimated parameters) in the model: <span class="math inline">n_c-1</span>. Note that in the case where the linear model is an ANOVA, the number of coefficients equals the number of “treatments” (the categories or levels in the predictor or factor). So for example, in <a href="#fig:anova1">Figure 1</a>, there are three treatments (predictors) and therefore three coefficients (<span class="math inline">\beta_1</span>, <span class="math inline">\beta_2</span>, <span class="math inline">\beta_3</span>), which means that the ESS degrees of freedom there is <span class="math inline">n_c-1 = 2</span>.</p></li>
+<li><p>The RSS DF is the sample size <span class="math inline">n</span> minus the number of coefficients that you need to estimate (<span class="math inline">n_c</span>), that is, <span class="math inline">n - n_c</span>, because each estimated coefficient is an unknown parameter.</p></li>
 </ul>
 </section>
 <section id="the-f-value-or-ratio" class="level3">
 <h3 class="anchored" data-anchor-id="the-f-value-or-ratio">The F-Value (or Ratio)</h3>
 <p>The F-Value or F-Ratio, the test statistic used to decide whether the linear model fit is statistically significant, is the ratio of the Mean ESS to the Mean RSS:</p>
-<p><span class="math display">\[
+<p><span class="math display">
 F = \frac{\left(\frac{ESS}{n_c-1}\right)}{\left(\frac{RSS}{n-n_c}\right)}
-\]</span></p>
+</span></p>
 <p>If the null hypothesis that the group means are drawn from sub-populations with the <em>same</em> mean were indeed true, the between-group variance (numerator in this F-ratio) should be lower than the within-group variance (denominator). The null hypothesis is rejected if this F-Ratio is large — the model explains a significant amount of variance, and we can conclude that the samples were drawn from populations with different mean values.</p>
 <p>The p-value is calculated for the overall model fit using the F-distribution.</p>
 <p>Also note that the Root Mean Square Error (RMSE), also known as the standard error of the estimate, is the square root of the Mean RSS. It is the standard deviation of the data about the Linear model, rather than about the sample mean.</p>
 </section>
 <section id="the-r2" class="level3">
-<h3 class="anchored" data-anchor-id="the-r2">The <span class="math inline">\(R^{2}\)</span></h3>
-<p>The <span class="math inline">\(R^{2}\)</span>, also called the Coefficient of Determination, is the proportion of total error (TSS) explained by the model (ESS), so the ratio ESS/TSS. That is it is the proportion of the variability in the response that is explained by the fitted model. Since TSS = ESS + RSS, <span class="math inline">\(R^{2}\)</span> can be rewritten as (TSS-RSS)/TSS = 1 - RSS/TSS. If a model perfectly fits the data, <span class="math inline">\(R^{2}=1\)</span>, and if it has no predictive capability <span class="math inline">\(R^{2}=0\)</span>. In reality, <span class="math inline">\(R^{2}\)</span> will never be exactly 0 because even a null model will explain some variance just by chance due to sampling error. Note that <span class="math inline">\(R\)</span>, the square root of <span class="math inline">\(R^2\)</span>, is the multiple correlation coefficient: the correlation between the observed values (<span class="math inline">\(y\)</span>), and the predicted values (<span class="math inline">\(\hat{y}\)</span>).</p>
+<h3 class="anchored" data-anchor-id="the-r2">The <span class="math inline">R^{2}</span></h3>
+<p>The <span class="math inline">R^{2}</span>, also called the Coefficient of Determination, is the proportion of total error (TSS) explained by the model (ESS), so the ratio ESS/TSS. That is it is the proportion of the variability in the response that is explained by the fitted model. Since TSS = ESS + RSS, <span class="math inline">R^{2}</span> can be rewritten as (TSS-RSS)/TSS = 1 - RSS/TSS. If a model perfectly fits the data, <span class="math inline">R^{2}=1</span>, and if it has no predictive capability <span class="math inline">R^{2}=0</span>. In reality, <span class="math inline">R^{2}</span> will never be exactly 0 because even a null model will explain some variance just by chance due to sampling error. Note that <span class="math inline">R</span>, the square root of <span class="math inline">R^2</span>, is the multiple correlation coefficient: the correlation between the observed values (<span class="math inline">y</span>), and the predicted values (<span class="math inline">\hat{y}</span>).</p>
 <section id="adjusted-r2" class="level4">
-<h4 class="anchored" data-anchor-id="adjusted-r2">Adjusted <span class="math inline">\(R^{2}\)</span></h4>
-<p>As additional predictors (and therefore linear model coefficients) are added to a linear model, <span class="math inline">\(R^2\)</span> increases even when the new predictors add no real predictive capability. The adjusted-<span class="math inline">\(R^2\)</span> tries to address this problem of over-specification or over-fitting by including the degrees of freedom: Adjusted <span class="math inline">\(R^2\)</span> = 1 - (RSS/<span class="math inline">\(n-n_c-2\)</span>)/(TSS/<span class="math inline">\(n-1\)</span>) <a href="#fn2"><span class="math inline">\(^{[2]}\)</span></a>.</p>
-<p>Thus, additional predictors with little explanatory capability will increase the ESS (and reduce the RSS), but they will also have lower RSS degrees of freedom (because of the additional number of fitted coefficients, <span class="math inline">\(n_c\)</span>’s)<a href="#fn3"><span class="math inline">\(^{[3]}\)</span></a>. Thus if the additional predictors have poor predictive capability, these two reductions will cancel each other out. In other words, the Adjusted <span class="math inline">\(R^2\)</span> penalizes the addition of new predictors to the linear model, so you should always have a look at the Adjusted <span class="math inline">\(R^2\)</span> as a corrected measure of <span class="math inline">\(R^2\)</span>.</p>
+<h4 class="anchored" data-anchor-id="adjusted-r2">Adjusted <span class="math inline">R^{2}</span></h4>
+<p>As additional predictors (and therefore linear model coefficients) are added to a linear model, <span class="math inline">R^2</span> increases even when the new predictors add no real predictive capability. The adjusted-<span class="math inline">R^2</span> tries to address this problem of over-specification or over-fitting by including the degrees of freedom: Adjusted <span class="math inline">R^2</span> = 1 - (RSS/<span class="math inline">n-n_c-2</span>)/(TSS/<span class="math inline">n-1</span>) <a href="#fn2"><span class="math inline">^{[2]}</span></a>.</p>
+<p>Thus, additional predictors with little explanatory capability will increase the ESS (and reduce the RSS), but they will also have lower RSS degrees of freedom (because of the additional number of fitted coefficients, <span class="math inline">n_c</span>’s)<a href="#fn3"><span class="math inline">^{[3]}</span></a>. Thus if the additional predictors have poor predictive capability, these two reductions will cancel each other out. In other words, the Adjusted <span class="math inline">R^2</span> penalizes the addition of new predictors to the linear model, so you should always have a look at the Adjusted <span class="math inline">R^2</span> as a corrected measure of <span class="math inline">R^2</span>.</p>
 </section>
 </section>
 </section>
@@ -850,9 +867,9 @@ F = \frac{\left(\frac{ESS}{n_c-1}\right)}{\left(\frac{RSS}{n-n_c}\right)}
 <p>In this section, we will use a dataset from a recent paper on the effects of temperature and larval resource supply on <em>Aedes aegypti</em> life history traits and the vector’s maximal population growth rate (<a href="https://royalsocietypublishing.org/doi/10.1098/rspb.2020.3217"><strong>Huxley <em>et al</em>. 2021</strong></a>).</p>
 <section id="the-data" class="level3">
 <h3 class="anchored" data-anchor-id="the-data">The data</h3>
-<p><span class="math inline">\(\star\)</span> Download the file <code>traitdata_Huxleyetal_2021.csv</code> and save to your <code>Data</code> directory.</p>
-<p><span class="math inline">\(\star\)</span> Create a new blank script called <code>ANOVA_Prac.R</code> and add some introductory comments.</p>
-<p><span class="math inline">\(\star\)</span> Use <code>read.csv</code> to load the data in the data frame <code>mozwing</code> and then <code>str</code> and <code>summary</code> to examine the data:</p>
+<p><span class="math inline">\star</span> Download the file <code>traitdata_Huxleyetal_2021.csv</code> and save to your <code>Data</code> directory.</p>
+<p><span class="math inline">\star</span> Create a new blank script called <code>ANOVA_Prac.R</code> and add some introductory comments.</p>
+<p><span class="math inline">\star</span> Use <code>read.csv</code> to load the data in the data frame <code>mozwing</code> and then <code>str</code> and <code>summary</code> to examine the data:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">'tidyverse'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -1013,7 +1030,7 @@ Attaching package: 'gplots'</code></pre>
 <ul>
 <li>Before we fit any models, we want to plot the data to see if the means within these groupings look different. We also want to check whether the variance looks similar for each group: <em>constant normal variance</em>! A simple way is to look at box and whisker plots, showing the median and range of the data:</li>
 </ul>
-<p><span class="math inline">\(\star\)</span> Generate a boxplot of the differences in wing length between temperatures:</p>
+<p><span class="math inline">\star</span> Generate a boxplot of the differences in wing length between temperatures:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(length_mm <span class="sc">~</span> temp, mozwing)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -1021,14 +1038,14 @@ Attaching package: 'gplots'</code></pre>
 </div>
 </div>
 <p>Looking at the plots, it is clear that there is more spread in the data below the median than above. Create a new variable <code>logwinglength</code> in the <code>mozwing</code> data frame containing logged millimeter values.</p>
-<p><span class="math inline">\(\star\)</span> Now create a boxplot of log wing length values within temperatures:</p>
+<p><span class="math inline">\star</span> Now create a boxplot of log wing length values within temperatures:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>mozwing<span class="sc">$</span>loglength <span class="ot">&lt;-</span> <span class="fu">log</span>(mozwing<span class="sc">$</span>length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="differences-in-means-with-barplots" class="level3">
 <h3 class="anchored" data-anchor-id="differences-in-means-with-barplots">Differences in means with barplots</h3>
-<p>Box and whisker plots show the median and spread in the data very clearly, but we want to test whether the means are different. This is <span class="math inline">\(t\)</span> test territory — how different are the means given the standard error — so it is common to use barplots and standard error bars to show these differences.</p>
+<p>Box and whisker plots show the median and spread in the data very clearly, but we want to test whether the means are different. This is <span class="math inline">t</span> test territory — how different are the means given the standard error — so it is common to use barplots and standard error bars to show these differences.</p>
 <p>We’re going to use some R code to construct a barplot by hand. We need to calculate the means and standard errors within temperature groups, but before we can do that, we need a new functions to calculate the standard error of a mean:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>seMean <span class="ot">&lt;-</span> <span class="cf">function</span>(x){ <span class="co"># get standard error of the mean from a set of values (x)</span></span>
@@ -1081,8 +1098,8 @@ Attaching package: 'gplots'</code></pre>
 </div>
 </div>
 <p>Now we need to draw all these pieces together into a script and get used to using them.</p>
-<p><span class="math inline">\(\star\)</span> Add all the lines of code from this section into your script. Run it and check you get the graph above.</p>
-<p><span class="math inline">\(\star\)</span> Use the second two chunks as a model to plot a similar graph for food level</p>
+<p><span class="math inline">\star</span> Add all the lines of code from this section into your script. Run it and check you get the graph above.</p>
+<p><span class="math inline">\star</span> Use the second two chunks as a model to plot a similar graph for food level</p>
 <hr>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>seMeanfood <span class="ot">&lt;-</span> <span class="cf">function</span>(x){ <span class="co"># get standard error of the mean from a set of values (x)</span></span>
@@ -1135,8 +1152,8 @@ Attaching package: 'gplots'</code></pre>
 <section id="an-alternative-to-barplots" class="level3">
 <h3 class="anchored" data-anchor-id="an-alternative-to-barplots">An alternative to barplots</h3>
 <p>That is a lot of work to go through for a plot. Doing it the hard way uses some useful tricks, but one strength of R is that there is a huge list of add-on packages that you can use to get new functions that other people have written.</p>
-<p>We will use the <code>gplots</code> package to create plots of group means and confidence intervals. Rather than plotting the means <span class="math inline">\(\pm\)</span> 1 standard error, the option <code>p=0.95</code> uses the standard error and the number of data points to get 95% confidence intervals. The default <code>connect=TRUE</code> option adds a line connecting the means, which isn’t useful here.</p>
-<p><span class="math inline">\(\star\)</span> Replicate the code below into your script and run it to get the plots below.</p>
+<p>We will use the <code>gplots</code> package to create plots of group means and confidence intervals. Rather than plotting the means <span class="math inline">\pm</span> 1 standard error, the option <code>p=0.95</code> uses the standard error and the number of data points to get 95% confidence intervals. The default <code>connect=TRUE</code> option adds a line connecting the means, which isn’t useful here.</p>
+<p><span class="math inline">\star</span> Replicate the code below into your script and run it to get the plots below.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Load the gplots package</span></span>
 <span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gplots)</span>
@@ -1154,9 +1171,9 @@ Attaching package: 'gplots'</code></pre>
 <section id="analysis-of-variance" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-of-variance">Analysis of variance</h2>
 <p>Hopefully, those plots should convince you that there are differences in wing length across temperatures and food levels. We’ll now use a linear model to test whether those differences are significant.</p>
-<p><span class="math inline">\(\star\)</span> Using your code from the regression section as a guide, create a linear model called <code>lengthLM</code> which models wing length as a function of temperature.</p>
+<p><span class="math inline">\star</span> Using your code from the regression section as a guide, create a linear model called <code>lengthLM</code> which models wing length as a function of temperature.</p>
 <p>Use <code>anova</code> and <code>summary</code> to look at the analysis of variance table and then the coefficients of the model.</p>
-<p>The ANOVA table for the model should look like the one below: temperature explains highly significant variation in wing length(<span class="math inline">\(F= 30.5, \textrm{df}=2 \textrm{ and } 146, p =8.45e-12\)</span>)</p>
+<p>The ANOVA table for the model should look like the one below: temperature explains highly significant variation in wing length(<span class="math inline">F= 30.5, \textrm{df}=2 \textrm{ and } 146, p =8.45e-12</span>)</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>lengthLM <span class="ot">&lt;-</span> <span class="fu">lm</span>(loglength <span class="sc">~</span> temp, <span class="at">data=</span>mozwing)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1173,8 +1190,8 @@ Residuals 146 1.40873 0.009649
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<p><em>Note the style of reporting the result</em> - the statistic (<span class="math inline">\(F\)</span>), degrees of freedom and <span class="math inline">\(p\)</span> value are all provided in support.</p>
-<p>Pay close attention to the sum of squares column. This model is good, but some will not be. The important ratio is called <span class="math inline">\(r^2\)</span>, a measure of explanatory power, and shows that, although a model can be very significant, it might not be very explanatory. We care about explanatory power or effect size, <code>*not*</code> <span class="math inline">\(p\)</span> values.</p>
+<p><em>Note the style of reporting the result</em> - the statistic (<span class="math inline">F</span>), degrees of freedom and <span class="math inline">p</span> value are all provided in support.</p>
+<p>Pay close attention to the sum of squares column. This model is good, but some will not be. The important ratio is called <span class="math inline">r^2</span>, a measure of explanatory power, and shows that, although a model can be very significant, it might not be very explanatory. We care about explanatory power or effect size, <code>*not*</code> <span class="math inline">p</span> values.</p>
 <p>The coefficients table for the model looks like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lengthLM)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1203,7 +1220,7 @@ F-statistic: 30.52 on 2 and 146 DF,  p-value: 8.446e-12</code></pre>
 </div>
 <p>It shows the following:</p>
 <ul>
-<li>The reference level (or intercept) is for 22<span class="math inline">\(^\circ\)</span>C. The summary output indicates that wing length at this temperature is significantly different from zero - this is <em>not</em> an exciting finding!</li>
+<li>The reference level (or intercept) is for 22<span class="math inline">^\circ</span>C. The summary output indicates that wing length at this temperature is significantly different from zero - this is <em>not</em> an exciting finding!</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>TukeyLength <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(<span class="fu">aov</span>(lengthLM))</span>
@@ -1223,10 +1240,10 @@ $temp
 </div>
 <p>The table shows the following:</p>
 <ul>
-<li><p>The differences between the three possible pairs and then the lower and upper bounds of the 95% confidence interval for the difference and a <span class="math inline">\(p\)</span> value.</p></li>
+<li><p>The differences between the three possible pairs and then the lower and upper bounds of the 95% confidence interval for the difference and a <span class="math inline">p</span> value.</p></li>
 <li><p>In each case, we want to know if the difference could be zero: does the 95% confidence interval for each pair include zero?</p></li>
-<li><p>For all pairs, the confidence intervals do not include zero, so they are significantly different. For example, comparison between 32 and 22<span class="math inline">\(^\circ\)</span>C, the interval does include zero (difference = -0.16, 95% CI’s limits are -0.21 &amp; -0.11), so these groups are significantly different.</p></li>
-<li><p>The <span class="math inline">\(p\)</span> values for the top pairs are broadly consistent with the summary table. However, it may be harder to find significant results with a Tukey test in other cases.</p></li>
+<li><p>For all pairs, the confidence intervals do not include zero, so they are significantly different. For example, comparison between 32 and 22<span class="math inline">^\circ</span>C, the interval does include zero (difference = -0.16, 95% CI’s limits are -0.21 &amp; -0.11), so these groups are significantly different.</p></li>
+<li><p>The <span class="math inline">p</span> values for the top pairs are broadly consistent with the summary table. However, it may be harder to find significant results with a Tukey test in other cases.</p></li>
 </ul>
 <p>You can visualise these confidence intervals by plotting the Tukey test. You have to tweak the graphics parameters to get a clean plot though.</p>
 <div class="cell">
@@ -1242,17 +1259,17 @@ $temp
 <p><img src="linear_mod_activity_files/figure-html/unnamed-chunk-52-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><span class="math inline">\(\star\)</span> Include the Tukey test in your script for both the temperature and food models.</p>
+<p><span class="math inline">\star</span> Include the Tukey test in your script for both the temperature and food models.</p>
 <section id="are-the-factors-independent" class="level3">
 <h3 class="anchored" data-anchor-id="are-the-factors-independent">Are the factors independent?</h3>
 <p>We’ve looked at two models, using temperature and food level. It is worth asking whether these are independent factors? This is important to know because otherwise, a two-way ANOVA would not be appropriate. We will look at interactions later.</p>
-<p>OK, so we want to know whether the two factors are independent. This is a job for the <span class="math inline">\(\chi^2\)</span> test!</p>
+<p>OK, so we want to know whether the two factors are independent. This is a job for the <span class="math inline">\chi^2</span> test!</p>
 </section>
 </section>
 <section id="the-chi-square-test-and-count-data" class="level2">
 <h2 class="anchored" data-anchor-id="the-chi-square-test-and-count-data">The Chi-square test and count data</h2>
-<p>The Chi-square test, also known as <span class="math inline">\(\chi^{2}\)</span> test or chi-square test, is designed for scenarios where you want to statistically test how likely it is that an observed distribution of values is due to chance. It is also called a “goodness of fit” statistic, because it measures how well the observed distribution of data fits with the distribution that is expected if the variables of which measurements are made are independent. In our wing length example below, the two variables are temperature and food level.</p>
-<p>Note that a <span class="math inline">\(\chi^{2}\)</span> test is designed to analyze categorical data. That is the data have been counted (count data) and divided into categories. It is not meant for continuous data (such as body weight, genome size, or height). For example, if you want to test whether attending class influences how students perform on an exam, using test scores (from 0-100) as data would not be appropriate for a Chi-square test. However, arranging students into the categories “Pass” and “Fail” and counting up how many fall in each categories would be appropriate. Additionally, the data in a Chi-square table (see below) should not be in the form of percentages – only count data are allowed!</p>
+<p>The Chi-square test, also known as <span class="math inline">\chi^{2}</span> test or chi-square test, is designed for scenarios where you want to statistically test how likely it is that an observed distribution of values is due to chance. It is also called a “goodness of fit” statistic, because it measures how well the observed distribution of data fits with the distribution that is expected if the variables of which measurements are made are independent. In our wing length example below, the two variables are temperature and food level.</p>
+<p>Note that a <span class="math inline">\chi^{2}</span> test is designed to analyze categorical data. That is the data have been counted (count data) and divided into categories. It is not meant for continuous data (such as body weight, genome size, or height). For example, if you want to test whether attending class influences how students perform on an exam, using test scores (from 0-100) as data would not be appropriate for a Chi-square test. However, arranging students into the categories “Pass” and “Fail” and counting up how many fall in each categories would be appropriate. Additionally, the data in a Chi-square table (see below) should not be in the form of percentages – only count data are allowed!</p>
 <section id="the-chi-square-test-with-the-wing-length-data" class="level3">
 <h3 class="anchored" data-anchor-id="the-chi-square-test-with-the-wing-length-data">The Chi-square test with the wing length data</h3>
 <p>We can easily build a table for a Chi-square test on the wing length data as follows:</p>
@@ -1279,23 +1296,23 @@ data:  factorTable
 X-squared = 4.1883, df = 2, p-value = 0.1232</code></pre>
 </div>
 </div>
-<p>The “X-squared” value is the <span class="math inline">\(\chi^{2}\)</span> <em>test statistic</em>, akin to the t-value of the t-test or W value in the Wilcox test.</p>
-<p>The <span class="math inline">\(\chi^{2}\)</span> statistic is calculated as the sum of the quantity</p>
-<p><span class="math display">\[\frac{(\mathrm{Observed} - \mathrm{Expected})^2}{\mathrm{Expected}}\]</span></p>
+<p>The “X-squared” value is the <span class="math inline">\chi^{2}</span> <em>test statistic</em>, akin to the t-value of the t-test or W value in the Wilcox test.</p>
+<p>The <span class="math inline">\chi^{2}</span> statistic is calculated as the sum of the quantity</p>
+<p><span class="math display">\frac{(\mathrm{Observed} - \mathrm{Expected})^2}{\mathrm{Expected}}</span></p>
 <p>across all the cells/categories in the table (so the sum would be over 6 categories in our current wing length example).</p>
 <p>“Observed” is the observed proportion of data that fall in a certain category. For example, at 22°C there are 23 individuals observed in the <code>food level</code>, <code>0.1</code> category, and 35 in the <code>food level</code>, <code>1</code> category.</p>
 <p>“Expected” is what count would be expected if the values in each category were truly independent. Each cell has its own expected value, which is simply calculated as the count one would expect in each category if the value were generated in proportion to the total number seen in that category. So in our example, the expected value for the <code>food level</code>, <code>0.1</code> category would be</p>
-<p><span class="math inline">\(23+35 \mathrm{~(Total~number~of~low~food~individuals)} \times \frac{23+29+10 \mathrm{~(Total~number~in~the~"0.1"~category)}}{23+35+29+28+10+24 \mathrm{~(Total~number~of~individuals)}} = 58 \times \frac{62}{87} = 17.19\)</span></p>
-<p>The sum of all six (one for each cell in the table above) such calculations would be the <span class="math inline">\(\chi^{2}\)</span> value that R gave you through the <code>chisq.test()</code> above — try it!</p>
-<p>Now back to the R output from the <code>chisq.test()</code> above. Why df = 2? This is calculated as <span class="math inline">\(DF = (r - 1) * (c - 1)\)</span> where <span class="math inline">\(r\)</span> and <span class="math inline">\(c\)</span> are the number of rows and columns in the <span class="math inline">\(\chi^{2}\)</span> table, respectively. The same principle you learned before applies here; you lose one degree of freedom for each new level of information you need to estimate: there is uncertainity about the information (number of categories) in both rows and columns, so you need to lose one degree of freedom for each.</p>
+<p><span class="math inline">23+35 \mathrm{~(Total~number~of~low~food~individuals)} \times \frac{23+29+10 \mathrm{~(Total~number~in~the~"0.1"~category)}}{23+35+29+28+10+24 \mathrm{~(Total~number~of~individuals)}} = 58 \times \frac{62}{87} = 17.19</span></p>
+<p>The sum of all six (one for each cell in the table above) such calculations would be the <span class="math inline">\chi^{2}</span> value that R gave you through the <code>chisq.test()</code> above — try it!</p>
+<p>Now back to the R output from the <code>chisq.test()</code> above. Why df = 2? This is calculated as <span class="math inline">DF = (r - 1) * (c - 1)</span> where <span class="math inline">r</span> and <span class="math inline">c</span> are the number of rows and columns in the <span class="math inline">\chi^{2}</span> table, respectively. The same principle you learned before applies here; you lose one degree of freedom for each new level of information you need to estimate: there is uncertainity about the information (number of categories) in both rows and columns, so you need to lose one degree of freedom for each.</p>
 <p>Finally, note that the p-value is non-significant — we can conclude that the factors are independent. This is expected because individuals could only be exposed to one of the six temperature-food treatments in the study’s experimental design. This dataset only contains females, however, the <code>chisq.test()</code> would be even more useful if the dataset contained values on both sexes. Later, we analyse these data using “interactions” later in multiple explanatory variables.</p>
-<p><span class="math inline">\(\star\)</span> Include and run the <span class="math inline">\(\chi^2\)</span> test in your script.</p>
+<p><span class="math inline">\star</span> Include and run the <span class="math inline">\chi^2</span> test in your script.</p>
 </section>
 </section>
 <section id="saving-data" class="level2">
 <h2 class="anchored" data-anchor-id="saving-data">Saving data</h2>
 <p>The last thing to do is to save a copy of the wing length data, including our new column of log data.</p>
-<p><span class="math inline">\(\star\)</span> Use this code in your script to create the saved data in your <code>Data</code> directory :</p>
+<p><span class="math inline">\star</span> Use this code in your script to create the saved data in your <code>Data</code> directory :</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(mozwing, <span class="at">file=</span><span class="st">'mozwing.Rdata'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1306,7 +1323,7 @@ X-squared = 4.1883, df = 2, p-value = 0.1232</code></pre>
 <section id="introduction-2" class="level2">
 <h2 class="anchored" data-anchor-id="introduction-2">Introduction</h2>
 <p>In this section we will explore fitting a linear model to data when you have multiple explanatory (predictor) variables.</p>
-<p>The aims of this section are<a href="#fn1"><span class="math inline">\(^{[1]}\)</span></a>:</p>
+<p>The aims of this section are<a href="#fn1"><span class="math inline">^{[1]}</span></a>:</p>
 <ul>
 <li><p>Learning to build and fit a linear model that includes several explanatory variables</p></li>
 <li><p>Learning to interpret the summary tables and diagnostics after fitting a linear model with multiple explanatory variables</p></li>
@@ -1318,7 +1335,7 @@ X-squared = 4.1883, df = 2, p-value = 0.1232</code></pre>
 <p>The first thing to do is look at the data again.</p>
 <section id="exploring-the-data-1" class="level3">
 <h3 class="anchored" data-anchor-id="exploring-the-data-1">Exploring the data</h3>
-<p><span class="math inline">\(\star\)</span> Create a new blank script called <code>MulExpl.R</code> in your <code>Code</code> directory and add some introductory comments.</p>
+<p><span class="math inline">\star</span> Create a new blank script called <code>MulExpl.R</code> in your <code>Code</code> directory and add some introductory comments.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>wings <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"activities/data/traitdata_Huxleyetal_2021.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1390,9 +1407,9 @@ X-squared = 4.1883, df = 2, p-value = 0.1232</code></pre>
 <section id="boxplots-within-groups" class="level3">
 <h3 class="anchored" data-anchor-id="boxplots-within-groups">Boxplots within groups</h3>
 <p>In the regression section, we used the <code>subset</code> option to fit a model just to dragonflies. You can use <code>subset</code> with plots too.</p>
-<p><span class="math inline">\(\star\)</span> Add <code>par(mfrow=c(1,2))</code> to your script to split the graphics into two panels.</p>
-<p><span class="math inline">\(\star\)</span> Copy over and modify the code from the ANOVA section to create a boxplot of genome size by trophic level into your script.</p>
-<p><span class="math inline">\(\star\)</span> Now further modify the code to generate the plots shown in the figure below (you will have to <code>subset</code> your data for this, and also use the subset option of the <code>plot</code> command).</p>
+<p><span class="math inline">\star</span> Add <code>par(mfrow=c(1,2))</code> to your script to split the graphics into two panels.</p>
+<p><span class="math inline">\star</span> Copy over and modify the code from the ANOVA section to create a boxplot of genome size by trophic level into your script.</p>
+<p><span class="math inline">\star</span> Now further modify the code to generate the plots shown in the figure below (you will have to <code>subset</code> your data for this, and also use the subset option of the <code>plot</code> command).</p>
 <div class="cell">
 <pre class="tip cell-code"><code>You can use the `plot` function's option `main = ` to add titles to a plot.</code></pre>
 </div>
@@ -1408,7 +1425,7 @@ X-squared = 4.1883, df = 2, p-value = 0.1232</code></pre>
 </div>
 </div>
 <p>The code <code>loglength ~ temp | food_level</code> means plot the relationship between wing length and temperature, but group within levels of food supply. We are using the function <code>bwplot</code>, which is provided by <code>lattice</code> to create box and whisker plots.</p>
-<p><span class="math inline">\(\star\)</span> Create the lattice plots above from within your script.</p>
+<p><span class="math inline">\star</span> Create the lattice plots above from within your script.</p>
 <p>Rearrange this code to have three plots, showing the box and whisker plots for <code>food_level</code>, grouped within the levels of <code>temp</code>.</p>
 <p>Try reshaping the R plot window and running the command again. Lattice tries to make good use of the available space when creating lattice plots.</p>
 </section>
@@ -1426,7 +1443,7 @@ X-squared = 4.1883, df = 2, p-value = 0.1232</code></pre>
 32 0.8216252 0.9513008</code></pre>
 </div>
 </div>
-<p><span class="math inline">\(\star\)</span> Copy this code into your script and run it.</p>
+<p><span class="math inline">\star</span> Copy this code into your script and run it.</p>
 <p>Use this code and the script from the ANOVA section to get the set of standard errors for the groups <code>groupSE</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>seMean <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
@@ -1471,7 +1488,7 @@ X-squared = 4.1883, df = 2, p-value = 0.1232</code></pre>
 <p><img src="linear_mod_activity_files/figure-html/unnamed-chunk-66-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><span class="math inline">\(\star\)</span> Generate the barplot above and then edit your script to change the colours and error bar lengths to your taste.</p>
+<p><span class="math inline">\star</span> Generate the barplot above and then edit your script to change the colours and error bar lengths to your taste.</p>
 </section>
 <section id="plotting-means-and-confidence-intervals" class="level3">
 <h3 class="anchored" data-anchor-id="plotting-means-and-confidence-intervals">Plotting means and confidence intervals</h3>
@@ -1484,9 +1501,9 @@ Means and 95% confidence intervals for logged wing length (mm) in <em>Aedes aegy
 </center>
 </small><p><small></small></p>
 <hr>
-<p><span class="math inline">\(\star\)</span> Use <code>plotmeans</code> from the ANOVA section and the <code>subset</code> option to generate the two plots below. You will need to set the <code>ylim</code> option for the two plots to make them use the same <span class="math inline">\(y\)</span> axis.</p>
-<p><span class="math inline">\(\star\)</span> Use <code>text</code> to add labels — the command <code>par('usr')</code> will show you the limits of the plot (<span class="math inline">\(x_{min}, x_{max}, y_{min}, y_{max}\)</span>) and help pick a location for the labels.</p>
-<p><span class="math inline">\(\star\)</span> Change the <code>par</code> settings in your code and redraw the plots to try and make better use of the space. In the example below, the box shows the edges of the R graphics window.</p>
+<p><span class="math inline">\star</span> Use <code>plotmeans</code> from the ANOVA section and the <code>subset</code> option to generate the two plots below. You will need to set the <code>ylim</code> option for the two plots to make them use the same <span class="math inline">y</span> axis.</p>
+<p><span class="math inline">\star</span> Use <code>text</code> to add labels — the command <code>par('usr')</code> will show you the limits of the plot (<span class="math inline">x_{min}, x_{max}, y_{min}, y_{max}</span>) and help pick a location for the labels.</p>
+<p><span class="math inline">\star</span> Change the <code>par</code> settings in your code and redraw the plots to try and make better use of the space. In the example below, the box shows the edges of the R graphics window.</p>
 <p>Note the following about the the figure above (generated using plotmeans)):</p>
 <ul>
 <li><p><strong>White space</strong>: The default options in R use wide margins and spaced out axes and take up a lot of space that could be used for plotting data. You’ve already seen the <code>par</code> function and the options <code>mfrow</code> for multiple plots and <code>mar</code> to adjust margin size. The option <code>mgp</code> adjusts the placement of the axis label, tick labels and tick locations. See <code>?par</code> for help on the these options.</p></li>
@@ -1504,8 +1521,8 @@ Means and 95% confidence intervals for logged wing length (mm) in <em>Aedes aegy
 <li><p>Body size in <em>Aedes aegytpi</em> increases with larval food supply</p></li>
 </ul>
 <p>We suspected these things from the ANOVA section analyses, but now we can see that they might have separate effects. We’ll fit a linear model to explore this and add the two explanatory variables together.</p>
-<p><span class="math inline">\(\star\)</span> This is an important section — read it through carefully and ask questions if you are unsure. Copy the code into your script and add comments. <em>Do not just jump to the next action item</em>!</p>
-<p><span class="math inline">\(\star\)</span> First, fit the model:</p>
+<p><span class="math inline">\star</span> This is an important section — read it through carefully and ask questions if you are unsure. Copy the code into your script and add comments. <em>Do not just jump to the next action item</em>!</p>
+<p><span class="math inline">\star</span> First, fit the model:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(loglength <span class="sc">~</span> temp <span class="sc">+</span> food_level, <span class="at">data =</span> mozwing)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1538,11 +1555,11 @@ Residuals  145 0.44288 0.00305
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<p><em>Ignore the</em> <span class="math inline">\(p\)</span> values! Yes, they’re highly significant but we want to understand the model, not rubber stamp it with ‘significant’.</p>
-<p>The sums of squares for the variables are both large compared to the residual sums of squares — there is lots of explained variation! We can calculate the <span class="math inline">\(r^2\)</span> as explained sums of squares over total sums of squares:</p>
-<p><span class="math display">\[\frac{0.59 + 0.97}{0.59 + 0.97 + 0.44} = \frac{3.56}{16.77} = 0.78\]</span></p>
+<p><em>Ignore the</em> <span class="math inline">p</span> values! Yes, they’re highly significant but we want to understand the model, not rubber stamp it with ‘significant’.</p>
+<p>The sums of squares for the variables are both large compared to the residual sums of squares — there is lots of explained variation! We can calculate the <span class="math inline">r^2</span> as explained sums of squares over total sums of squares:</p>
+<p><span class="math display">\frac{0.59 + 0.97}{0.59 + 0.97 + 0.44} = \frac{3.56}{16.77} = 0.78</span></p>
 <p>Food level explain more variation than temperature — this makes intuitive sense from the plots since there are big differences between in the figure we generated above (using plotmeans) (a vs b), but smaller differences within.</p>
-<p>We could also calculate a significance for the whole model by merging the terms. The total explained sums of squares of <span class="math inline">\(0.59 + 0.97 = 1.56\)</span> uses <span class="math inline">\(2+1 =3\)</span> degrees of freedom, so the mean sums of squares for all the terms together is <span class="math inline">\(1.56/3=0.52\)</span>. Dividing this by the residual mean square of 0.003 gives an F of <span class="math inline">\(0.52 / 0.003 = 173.33\)</span>.</p>
+<p>We could also calculate a significance for the whole model by merging the terms. The total explained sums of squares of <span class="math inline">0.59 + 0.97 = 1.56</span> uses <span class="math inline">2+1 =3</span> degrees of freedom, so the mean sums of squares for all the terms together is <span class="math inline">1.56/3=0.52</span>. Dividing this by the residual mean square of 0.003 gives an F of <span class="math inline">0.52 / 0.003 = 173.33</span>.</p>
 <p>Now we can look at the summary table to see the coefficients:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1569,9 +1586,9 @@ Multiple R-squared:  0.7783,    Adjusted R-squared:  0.7737
 F-statistic: 169.7 on 3 and 145 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
-<p>Starting at the bottom of this output, <code>summary</code> has again calculated <span class="math inline">\(r^2\)</span> for us and also an <span class="math inline">\(F\)</span> statistic for the whole model, which matches the calculation above.</p>
+<p>Starting at the bottom of this output, <code>summary</code> has again calculated <span class="math inline">r^2</span> for us and also an <span class="math inline">F</span> statistic for the whole model, which matches the calculation above.</p>
 <p>The other important bits are the four coefficients. The intercept is now the reference level for two variables: it is the mean for individuals that were reared at 22°C with low food supply (0.1 mg day^-1). We then have differences from this value for individuals reared at the other temperatures. There is a big change in wing length associated with increased temperature and food level and both of these have large effects sizes. Increasing temperature from 22°C to 32°C introduced about a 20% difference in wing length. Increased food at 22°C increased wing by ~20%.</p>
-<p>Because the difference is large and the standard error is small, the <span class="math inline">\(t\)</span> value suggests that this difference did not arise just by chance. Put another way, it is significant.</p>
+<p>Because the difference is large and the standard error is small, the <span class="math inline">t</span> value suggests that this difference did not arise just by chance. Put another way, it is significant.</p>
 <p>The table below shows how these four coefficients combine to give the predicted values for each of the group means.</p>
 <table class="table">
 <colgroup>
@@ -1618,7 +1635,7 @@ F-statistic: 169.7 on 3 and 145 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>So far, we have only looked at the independent effects of variables. For example, in the temperature and food level model from the first multiple explanatory variables section, we only looked for specific differences for being exposed to low larval food supply <em>or</em> high larval food supply, not for being specifically reared at a specific <em>temperature-food level treatment</em>. These independent effects of a variable are known as <em>main effects</em> and the effects of combinations of variables acting together are known as <em>interactions</em> — they describe how the variables <em>interact</em>.</p>
 <section id="section-aims" class="level3">
 <h3 class="anchored" data-anchor-id="section-aims">Section aims</h3>
-<p>The aims of this section are<a href="#fn1"><span class="math inline">\(^{[1]}\)</span></a>:</p>
+<p>The aims of this section are<a href="#fn1"><span class="math inline">^{[1]}</span></a>:</p>
 <ul>
 <li><p>Creating more complex Linear Models with multiple explanatory variables</p></li>
 <li><p>Including the effects of interactions between multiple variables in a linear model</p></li>
@@ -1638,9 +1655,9 @@ F-statistic: 169.7 on 3 and 145 DF,  p-value: &lt; 2.2e-16</code></pre>
 </section>
 <section id="model-1-aedes-aegypti-wing-length" class="level2">
 <h2 class="anchored" data-anchor-id="model-1-aedes-aegypti-wing-length">Model 1: <em>Aedes aegypti</em> wing length</h2>
-<p><span class="math inline">\(\star\)</span> Make sure you have changed the working directory to <code>Code</code> in your stats coursework directory.</p>
-<p><span class="math inline">\(\star\)</span> Create a new blank script called ‘Interactions.R’ and add some introductory comments.</p>
-<p><span class="math inline">\(\star\)</span> Read in the data:</p>
+<p><span class="math inline">\star</span> Make sure you have changed the working directory to <code>Code</code> in your stats coursework directory.</p>
+<p><span class="math inline">\star</span> Create a new blank script called ‘Interactions.R’ and add some introductory comments.</p>
+<p><span class="math inline">\star</span> Read in the data:</p>
 <p>For practice, subset the dataset, define any categorical variables, and add any columns that might missing. Revist the previous sections, if you have forgotten what is needed!</p>
 <p>Let’s refit the model from the earlier multiple explanatory variable section, but including the interaction between temperature and food level. We’ll immediately check the model is appropriate:</p>
 <div class="cell">
@@ -1668,9 +1685,9 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 <p>Compared to the model from the first multiple explanatory variables section, there is an extra line at the bottom. The top two are the same and show that temperature and food level both have independent main effects. The extra line shows that there is also an interaction between the two. It doesn’t explain very much variation, and it is non-significant.</p>
-<p>Again, we can calculate the <span class="math inline">\(r^2\)</span> for the model:</p>
-<p><span class="math inline">\(\frac{0.59 + 0.97 + 0.01}{0.59 + 0.97 + 0.01 + 0.43} = 0.78\)</span></p>
-<p>The model from the first multiple explanatory variables section without the interaction had an <span class="math inline">\(r^2 = 0.78\)</span> — our new model explains 0% more of the variation in the data.</p>
+<p>Again, we can calculate the <span class="math inline">r^2</span> for the model:</p>
+<p><span class="math inline">\frac{0.59 + 0.97 + 0.01}{0.59 + 0.97 + 0.01 + 0.43} = 0.78</span></p>
+<p>The model from the first multiple explanatory variables section without the interaction had an <span class="math inline">r^2 = 0.78</span> — our new model explains 0% more of the variation in the data.</p>
 <p>The summary table is as follows:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1739,24 +1756,24 @@ F-statistic: 104.1 on 5 and 143 DF,  p-value: &lt; 2.2e-16</code></pre>
 </tr>
 </tbody>
 </table>
-<p>So why are there two new coefficients? For interactions between two factors, there are always <span class="math inline">\((n-1)\times(m-1)\)</span> new coefficients, where <span class="math inline">\(n\)</span> and <span class="math inline">\(m\)</span> are the number of levels in the two factors (low- or high-food: 2 levels and temperature: 3 levels, in our current example). So in this model, <span class="math inline">\((3-1) \times (2-1) =2\)</span>. It might be easier to understand why graphically:</p>
+<p>So why are there two new coefficients? For interactions between two factors, there are always <span class="math inline">(n-1)\times(m-1)</span> new coefficients, where <span class="math inline">n</span> and <span class="math inline">m</span> are the number of levels in the two factors (low- or high-food: 2 levels and temperature: 3 levels, in our current example). So in this model, <span class="math inline">(3-1) \times (2-1) =2</span>. It might be easier to understand why graphically:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="graphics/interactionsdiag.png" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">image</figcaption><p></p>
 </figure>
 </div>
-<p>The prediction for the white boxes above can be found by adding the main effects together but for the grey boxes, we need to find specific differences. So there are <span class="math inline">\((n-1)\times(m-1)\)</span> interaction coefficients (count the number of grey boxes) to add.</p>
+<p>The prediction for the white boxes above can be found by adding the main effects together but for the grey boxes, we need to find specific differences. So there are <span class="math inline">(n-1)\times(m-1)</span> interaction coefficients (count the number of grey boxes) to add.</p>
 <p>If we put this together, what is the model telling us?</p>
 <ul>
 <li>The interaction model does’t tell us anything more than the model without interactions – body size in <em>Ae. aegypti</em> decreases with temperature and increases with food level.</li>
 </ul>
 <p>This finding suggests that food limitation can exacerbate the negative effect that increased temperature has on body size. However, the interaction term in the <code>anova</code> output suggests that variation between food levels in degree to which body size decreases with temperature is non-significant.</p>
-<p><span class="math inline">\(\star\)</span> Copy the code above into your script and run the model.</p>
+<p><span class="math inline">\star</span> Copy the code above into your script and run the model.</p>
 <p>Make sure you understand the output!</p>
 <p>Just to make sure the sums above are correct, we’ll use the same code as in earlier multiple explanatory variables section to get R to calculate predictions for us, similar to the way we did before:</p>
 <p>Again, remember that the <code>each = 2</code> option repeats each value twice in succession; the <code>times = 3</code> options repeats the whole set of values (the whole vector) three times.</p>
-<p><span class="math inline">\(\star\)</span> Include and run the code for gererating these predictions in your script.</p>
+<p><span class="math inline">\star</span> Include and run the code for gererating these predictions in your script.</p>
 <p>If we plot these data points onto the barplot from the first multiple explanatory variables section, they now lie exactly on the mean values, because we’ve allowed for interactions. How much overlap would you expect, if you were to plot the predictions from the model without the interaction term?</p>
 </section>
 <section id="model-2-ancova-body-weight-in-odonata" class="level2">
@@ -1764,11 +1781,11 @@ F-statistic: 104.1 on 5 and 143 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>We’ll go all the way back to the regression analyses from the Regression section. Remember that we fitted two separate regression lines to the data for damselflies and dragonflies. We’ll now use an interaction to fit these in a single model. This kind of linear model — with a mixture of continuous variables and factors — is often called an <em>analysis of covariance</em>, or ANCOVA. That is, ANCOVA is a type of linear model that blends ANOVA and regression. ANCOVA evaluates whether population means of a dependent variable are equal across levels of a categorical independent variable, while statistically controlling for the effects of other continuous variables that are not of primary interest, known as covariates.</p>
 <p><em>Thus, ANCOVA is a linear model with one categorical and one or more continuous predictors</em>.</p>
 <p>We will use the odonates data.</p>
-<p><span class="math inline">\(\star\)</span> First load the data:</p>
+<p><span class="math inline">\star</span> First load the data:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a>odonata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"activities/data/GenomeSize.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><span class="math inline">\(\star\)</span> Now create two new variables in the <code>odonata</code> data set called <code>logGS</code> and <code>logBW</code> containing log genome size and log body weight:</p>
+<p><span class="math inline">\star</span> Now create two new variables in the <code>odonata</code> data set called <code>logGS</code> and <code>logBW</code> containing log genome size and log body weight:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb119"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>odonata<span class="sc">$</span>logGS <span class="ot">&lt;-</span> <span class="fu">log</span>(odonata<span class="sc">$</span>GenomeSize)</span>
 <span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a>odonata<span class="sc">$</span>logBW <span class="ot">&lt;-</span> <span class="fu">log</span>(odonata<span class="sc">$</span>BodyWeight)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1860,7 +1877,7 @@ F-statistic:  96.5 on 3 and 94 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <ul>
-<li><p>The first thing to note is that the <span class="math inline">\(r^2\)</span> value is really high. The model explains three quarters (0.752) of the variation in the data.</p></li>
+<li><p>The first thing to note is that the <span class="math inline">r^2</span> value is really high. The model explains three quarters (0.752) of the variation in the data.</p></li>
 <li><p>Next, there are four coefficients:</p>
 <ul>
 <li>The intercept is for the first level of <code>Suborder</code>, which is Anisoptera (dragonflies).</li>
@@ -1870,12 +1887,12 @@ F-statistic:  96.5 on 3 and 94 DF,  p-value: &lt; 2.2e-16</code></pre>
 </ul></li>
 </ul>
 <p>How do these hang together to give the two lines shown in the model? We can calculate these by hand:</p>
-<span class="math display">\[\begin{align*}
+<span class="math display">\begin{align*}
 \textrm{Body Weight} &amp;= -2.40 + 1.01 \times \textrm{logGS} &amp; \textrm{[Anisoptera]}\\
 \textrm{Body Weight} &amp;= (-2.40 -2.25) + (1.01 - 2.15) \times \textrm{logGS} &amp; \textrm{[Zygoptera]}\\
         &amp;= -4.65 - 1.14 \times \textrm{logGS}
-\end{align*}\]</span>
-<p><span class="math inline">\(\star\)</span> Add the above code into your script and check that you understand the outputs.</p>
+\end{align*}</span>
+<p><span class="math inline">\star</span> Add the above code into your script and check that you understand the outputs.</p>
 <p>We’ll use the <code>predict</code> function again to get the predicted values from the model and add lines to the plot above.</p>
 <p>First, we’ll create a set of numbers spanning the range of genome size:</p>
 <div class="cell">
@@ -1938,7 +1955,7 @@ F-statistic:  96.5 on 3 and 94 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p><img src="linear_mod_activity_files/figure-html/unnamed-chunk-91-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><span class="math inline">\(\star\)</span> Copy the prediction code into your script and run the plot above.</p>
+<p><span class="math inline">\star</span> Copy the prediction code into your script and run the plot above.</p>
 <p>Copy and modify the last three lines to add the lines for the Zygoptera. Your final plot should look like this:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1972,7 +1989,7 @@ F-statistic:  96.5 on 3 and 94 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <section id="section-aims-1" class="level3">
 <h3 class="anchored" data-anchor-id="section-aims-1">Section aims</h3>
-<p>The main aim of this section<a href="#fn1"><span class="math inline">\(^{[1]}\)</span></a> is to learn how to build and then simplify complex models by removing non-explanatory terms, to arrive at the <em>Minimum Adequate Model</em>.</p>
+<p>The main aim of this section<a href="#fn1"><span class="math inline">^{[1]}</span></a> is to learn how to build and then simplify complex models by removing non-explanatory terms, to arrive at the <em>Minimum Adequate Model</em>.</p>
 </section>
 <section id="the-process-of-model-simplification" class="level3">
 <h3 class="anchored" data-anchor-id="the-process-of-model-simplification">The process of model simplification</h3>
@@ -1983,15 +2000,15 @@ F-statistic:  96.5 on 3 and 94 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p></p><figcaption class="figure-caption">image</figcaption><p></p>
 </figure>
 </div>
-<p>As always, we can use an <span class="math inline">\(F\)</span>-test to compare two models and see if they have significantly different explanatory power (there are also other ways to do this, such as using the Akaike Information Criterion, but we will not cover this here). In this context, the main thing to remember is that significance of the <span class="math inline">\(F\)</span>-test used to compare a model and its simplified counterpart is a <em>bad</em> thing — it means that we’ve removed a term from the fitted model that makes it <em>significantly</em> worse.</p>
+<p>As always, we can use an <span class="math inline">F</span>-test to compare two models and see if they have significantly different explanatory power (there are also other ways to do this, such as using the Akaike Information Criterion, but we will not cover this here). In this context, the main thing to remember is that significance of the <span class="math inline">F</span>-test used to compare a model and its simplified counterpart is a <em>bad</em> thing — it means that we’ve removed a term from the fitted model that makes it <em>significantly</em> worse.</p>
 </section>
 </section>
 <section id="an-example-1" class="level2">
 <h2 class="anchored" data-anchor-id="an-example-1">An example</h2>
 <p>We’ll be using the wing length dataset for this practical, so once again:</p>
-<p><span class="math inline">\(\star\)</span> Make sure you have changed the working directory to your stats module <code>code</code> folder.</p>
-<p><span class="math inline">\(\star\)</span> Create a new blank script called <code>MyModelSimp.R</code>.</p>
-<p><span class="math inline">\(\star\)</span> Load the wing length data into a data frame called <code>wings</code>:</p>
+<p><span class="math inline">\star</span> Make sure you have changed the working directory to your stats module <code>code</code> folder.</p>
+<p><span class="math inline">\star</span> Create a new blank script called <code>MyModelSimp.R</code>.</p>
+<p><span class="math inline">\star</span> Load the wing length data into a data frame called <code>wings</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb133"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a>wings <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'activities/data/traitdata_Huxleyetal_2021.csv'</span>,<span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -2009,7 +2026,7 @@ F-statistic:  96.5 on 3 and 94 DF,  p-value: &lt; 2.2e-16</code></pre>
 <span id="cb134-10"><a href="#cb134-10" aria-hidden="true" tabindex="-1"></a><span class="co"># remove the row with missing data</span></span>
 <span id="cb134-11"><a href="#cb134-11" aria-hidden="true" tabindex="-1"></a>wings <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(wings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><span class="math inline">\(\star\)</span> Copy the code above into your script and run it</p>
+<p><span class="math inline">\star</span> Copy the code above into your script and run it</p>
 <p>Check that the data you end up with has this structure:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb135"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(wings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2030,8 +2047,8 @@ F-statistic:  96.5 on 3 and 94 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb137"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> loglifespan <span class="sc">~</span> loglength <span class="sc">*</span> temp <span class="sc">*</span> food_level, <span class="at">data =</span> wings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><span class="math inline">\(\star\)</span> Add this model-fitting step in your script.</p>
-<p><span class="math inline">\(\star\)</span> Look at the output of <code>anova(model)</code> and <code>summary(model)</code>.</p>
+<p><span class="math inline">\star</span> Add this model-fitting step in your script.</p>
+<p><span class="math inline">\star</span> Look at the output of <code>anova(model)</code> and <code>summary(model)</code>.</p>
 <p>Scared? Don’t be! There are a number of points to this exercise:</p>
 <ol type="1">
 <li><p>These tables show exactly the kind of output you’ve seen before. Sure, there are lots of rows but each row is just asking whether a model term (<code>anova</code>) or a model coefficient (<code>summary</code>) is significant.</p></li>
@@ -2072,14 +2089,14 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 <p>The first lines are the <em>main effects</em>: two are significant and one isn’t. Then there are the three interactions. One of these is very significant: <code>loglength:temp</code>, which suggests that the slope of log lifespan value with wing length differs between temperatures. The other interactions are non-significant although some are close.</p>
-<p><span class="math inline">\(\star\)</span> Run this model in your script.</p>
-<p><span class="math inline">\(\star\)</span> Look at the output of <code>anova(model)</code> and <code>summary(model)</code>.</p>
-<p><span class="math inline">\(\star\)</span> Generate and inspect the model diagnostic plots.</p>
+<p><span class="math inline">\star</span> Run this model in your script.</p>
+<p><span class="math inline">\star</span> Look at the output of <code>anova(model)</code> and <code>summary(model)</code>.</p>
+<p><span class="math inline">\star</span> Generate and inspect the model diagnostic plots.</p>
 </section>
 <section id="model-simplification-1" class="level2">
 <h2 class="anchored" data-anchor-id="model-simplification-1">Model simplification</h2>
 <p>Now let’s simplify the model we fitted above. Model simplification is not as straightforward as just dropping terms. Each time you remove a term from a model, the model will change: the model will get worse, since some of the sums of squares are no longer explained, but the remaining variables may partly compensate for this loss of explanatory power. The main point is that if it gets only a little worse, its OK, as the tiny amount of additional variation explained by the term you removed is not really worth it.</p>
-<p>But how much is “tiny amount”? This is what we will learn now by using the <span class="math inline">\(F\)</span>-test. Again, remember: significance of the <span class="math inline">\(F\)</span>-test used to compare a model and its simplified counterpart is a <em>bad</em> thing — it means that we’ve removed a term from the fitted model that makes the it <em>significantly</em> worse.</p>
+<p>But how much is “tiny amount”? This is what we will learn now by using the <span class="math inline">F</span>-test. Again, remember: significance of the <span class="math inline">F</span>-test used to compare a model and its simplified counterpart is a <em>bad</em> thing — it means that we’ve removed a term from the fitted model that makes the it <em>significantly</em> worse.</p>
 <p>The first question is: <em>what terms can you remove from a model</em>? Obviously, you only want to remove non-significant terms, but there is another rule – you cannot remove a main effect or an interaction while those main effects or interactions are present in a more complex interaction. For example, in the model <code>y ~ a + b + c + a:b + a:c + b:c</code>, you cannot drop <code>c</code> without dropping both <code>a:c</code> and <code>b:c</code>.</p>
 <p>The R function <code>drop.scope</code> tells you what you can drop from a model. Some examples:</p>
 <div class="cell">
@@ -2164,14 +2181,14 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <pre><code>[1] "loglength:temp"       "loglength:food_level" "temp:food_level"     </code></pre>
 </div>
 </div>
-<p><span class="math inline">\(\star\)</span> Add this first simplification to your script and re-run it.</p>
-<p><span class="math inline">\(\star\)</span> Look at the output above and decide what is the next possible term to delete</p>
-<p><span class="math inline">\(\star\)</span> Using the code above as a model, create <code>model3</code> as the next simplification. (remember to use <code>model2</code> in your <code>update</code> call and not <code>model</code>).</p>
+<p><span class="math inline">\star</span> Add this first simplification to your script and re-run it.</p>
+<p><span class="math inline">\star</span> Look at the output above and decide what is the next possible term to delete</p>
+<p><span class="math inline">\star</span> Using the code above as a model, create <code>model3</code> as the next simplification. (remember to use <code>model2</code> in your <code>update</code> call and not <code>model</code>).</p>
 </section>
 <section id="exercise-1" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-1">Exercise</h2>
 <p>Now for a more difficult exercise:</p>
-<p><span class="math inline">\(\star\)</span> Using the code above to guide you, try and find a minimal adequate model that you are happy with. In each step, the output of <code>anova(model, modelN)</code> should be non-significant (where <span class="math inline">\(N\)</span> is the current step).</p>
+<p><span class="math inline">\star</span> Using the code above to guide you, try and find a minimal adequate model that you are happy with. In each step, the output of <code>anova(model, modelN)</code> should be non-significant (where <span class="math inline">N</span> is the current step).</p>
 <p>It can be important to consider both <code>anova</code> and <code>summary</code> tables. It can be worth trying to remove things that look significant in one table but not the other — some terms can explain significant variation on the <code>anova</code> table but the coefficients are not significant.</p>
 <p>Remember to remove <em>terms</em>: with categorical variables, several coefficients in the <code>summary</code> table may come from one term in the model and have to be removed together.</p>
 <p>When you have got your final model, save the model as an R data file: <code>save(modelN, file='myFinalModel.Rda')</code>.</p>

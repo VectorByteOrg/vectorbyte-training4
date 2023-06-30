@@ -123,12 +123,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -136,7 +151,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a href="https://www.vectorbyte.org" class="navbar-brand navbar-brand-logo">
-    <img src="./activities/graphics/vblogoedit.pdf" alt="" class="navbar-logo">
+    <img src="./graphics/vblogoedit.pdf" alt="" class="navbar-logo">
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -163,7 +178,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/VectorByteOrg/VBTraining4"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/VectorByteOrg/vectorbyte-training4"><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -181,9 +196,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -221,13 +235,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#example-aedes-aegypti-juvenile-mortality-rate" id="toc-example-aedes-aegypti-juvenile-mortality-rate" class="nav-link" data-scroll-target="#example-aedes-aegypti-juvenile-mortality-rate">Example: Aedes aegypti Juvenile Mortality Rate</a>
   <ul class="collapse">
   <li><a href="#readings-and-resources" id="toc-readings-and-resources" class="nav-link" data-scroll-target="#readings-and-resources">Readings and Resources</a></li>
-  </ul></li>
-  <li><a href="#practice-problem-for-nlls" id="toc-practice-problem-for-nlls" class="nav-link" data-scroll-target="#practice-problem-for-nlls">Practice Problem for NLLS</a>
-  <ul class="collapse">
-  <li><a href="#the-nllsdataset.csv-dataset-contains-values-on-trait-temperature-relationships-in-three-important-vectorpest-species.-fit-thermal-performance-curves-to-traits-of-interest.-use-bootstrapping-to-generate-confidence-bounds-for-each-curve." id="toc-the-nllsdataset.csv-dataset-contains-values-on-trait-temperature-relationships-in-three-important-vectorpest-species.-fit-thermal-performance-curves-to-traits-of-interest.-use-bootstrapping-to-generate-confidence-bounds-for-each-curve." class="nav-link" data-scroll-target="#the-nllsdataset.csv-dataset-contains-values-on-trait-temperature-relationships-in-three-important-vectorpest-species.-fit-thermal-performance-curves-to-traits-of-interest.-use-bootstrapping-to-generate-confidence-bounds-for-each-curve.">The <code>nllsdataset.csv</code> dataset contains values on trait-temperature relationships in three important vector/pest species. Fit thermal performance curves to trait(s) of interest. Use bootstrapping to generate confidence bounds for each curve.</a></li>
+  <li><a href="#practice-problem-for-nlls" id="toc-practice-problem-for-nlls" class="nav-link" data-scroll-target="#practice-problem-for-nlls">Practice Problem for NLLS</a></li>
   </ul></li>
   </ul>
 </nav>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -308,14 +322,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="biochemical-kinetics" class="level2">
 <h2 class="anchored" data-anchor-id="biochemical-kinetics">Biochemical Kinetics</h2>
 <p>The properties of an organism’s metabolic pathways, and the underlying (enzyme-mediated) biochemical reactions (kinetics) are arguably its most fundamental “traits”, because these drive all “performance” traits, from photosynthesis and respiration, to movement and growth rate.</p>
-<p>The <a href="https://en.wikipedia.org/wiki/Michaelis%E2%80%93Menten_kinetics">Michaelis-Menten</a> model is widely used to quantify reaction kinetics data and estimate key biochemical parameters. This model relates biochemical reaction rate (<span class="math inline">\(V\)</span>) (rate of formation of the product of the reaction), to concentration of the substrate (<span class="math inline">\(S\)</span>):</p>
-<p><span class="math display">\[
+<p>The <a href="https://en.wikipedia.org/wiki/Michaelis%E2%80%93Menten_kinetics">Michaelis-Menten</a> model is widely used to quantify reaction kinetics data and estimate key biochemical parameters. This model relates biochemical reaction rate (<span class="math inline">V</span>) (rate of formation of the product of the reaction), to concentration of the substrate (<span class="math inline">S</span>):</p>
+<p><span class="math display">
 V = \frac{V_{\max} S}{K_M + S}
-\]</span></p>
+</span></p>
 <p>Here,</p>
 <ul>
-<li><span class="math inline">\(V_{\max}\)</span> is the maximum rate that can be achieved in the reaction system, which happens at saturating substrate concentration, and</li>
-<li><span class="math inline">\(K_M\)</span> is the Michaelis or half-saturation constant, defined as the substrate concentration at which the reaction rate is half of <span class="math inline">\(V_{\max }\)</span>.</li>
+<li><span class="math inline">V_{\max}</span> is the maximum rate that can be achieved in the reaction system, which happens at saturating substrate concentration, and</li>
+<li><span class="math inline">K_M</span> is the Michaelis or half-saturation constant, defined as the substrate concentration at which the reaction rate is half of <span class="math inline">V_{\max }</span>.</li>
 </ul>
 <p>Biochemical reactions involving a single substrate are often well fitted by the Michaelis-Menten kinetics, suggesting that its assumptions are often valid.</p>
 <p><img src="../graphics/MM.png" alt="Michaelis-Menten model" width="400px"></p>
@@ -344,7 +358,7 @@ The Michaelis-Menten model.
 <p><img src="VB_NLLS_activity_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Note that our choice of <span class="math inline">\(V_{\max} = 12.5\)</span> and <span class="math inline">\(K_M = 7.1\)</span> is completely arbitrary. As long as we make sure that <span class="math inline">\(V_{\max} &gt; 0\)</span>, <span class="math inline">\(K_H &gt; 0\)</span>, and <span class="math inline">\(K_M\)</span> lies well within the lower half of the the range of substrate concentrations (0-50), these “data” will be physically biologically sensible.</p>
+<p>Note that our choice of <span class="math inline">V_{\max} = 12.5</span> and <span class="math inline">K_M = 7.1</span> is completely arbitrary. As long as we make sure that <span class="math inline">V_{\max} &gt; 0</span>, <span class="math inline">K_H &gt; 0</span>, and <span class="math inline">K_M</span> lies well within the lower half of the the range of substrate concentrations (0-50), these “data” will be physically biologically sensible.</p>
 <p>Now let’s add some random (normally-distributed) fluctuations to the data to emulate experimental / measurement error:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1456</span>) <span class="co"># To get the same random fluctuations in the "data" every time</span></span>
@@ -407,7 +421,7 @@ Achieved convergence tolerance: 1.938e-06</code></pre>
 <p>This looks a lot like the output of a linear model, and to be specific, of a Linear Regression. For starters, compare the above output with the output of <code>summary(genomeSizeModelDragon)</code> the linear regression section.</p>
 <p>So here are the main things to note about the output of <code>summary()</code> of an <code>nls()</code> model object:</p>
 <ul>
-<li><code>Estimate</code>s are, as in the output of the <code>lm()</code> function for fitting linear models, the estimated values of the coefficients of the model that you fitted (<span class="math inline">\(V_(\max)\)</span> and <span class="math inline">\(K_M\)</span>). Note that although we generated our data using <span class="math inline">\(V_{\max} = 12.5\)</span> and <span class="math inline">\(K_M = 7.1\)</span>, the actual coefficients are quite different from what we are getting with the NLLS fitting ( <span class="math inline">\(\hat{V_{\max} = 13.5\)</span> and <span class="math inline">\(\hat{K}_M = 9.4\)</span>). This is because we introduced random (normally-distributed) errors. This tell you something about how experimental and/or measurement errors can distort your image of the underlying mechanism or process.<br>
+<li><code>Estimate</code>s are, as in the output of the <code>lm()</code> function for fitting linear models, the estimated values of the coefficients of the model that you fitted (<span class="math inline">V_(\max)</span> and <span class="math inline">K_M</span>). Note that although we generated our data using <span class="math inline">V_{\max} = 12.5</span> and <span class="math inline">K_M = 7.1</span>, the actual coefficients are quite different from what we are getting with the NLLS fitting ( <span class="math inline">\hat{V_{\max} = 13.5</span> and <span class="math inline">\hat{K}_M = 9.4</span>). This is because we introduced random (normally-distributed) errors. This tell you something about how experimental and/or measurement errors can distort your image of the underlying mechanism or process.<br>
 </li>
 <li><code>Std. Error</code>, <code>t value</code>, and <code>Pr(&gt;|t|)</code> and <code>Residual standard error</code> have the same interpretation as in the output of <code>lm()</code> (please look back at the Linear Regression section)</li>
 <li><code>Number of iterations to convergence</code> tells you how many times the NLLS algorithm had to adjust the parameter values till it managed to find a solution that minimizes the Residual Sum of Squares (RSS)</li>
@@ -440,12 +454,12 @@ V_max 12.538677 14.66093
 K_M    7.124685 12.36158</code></pre>
 </div>
 </div>
-<p>The <code>Waiting for profiling to be done...</code> message reflects the fact that calculating the standard errors from which the CI’s are calculated requires a particular computational procedure (which we will not go into here) when it comes to NLLS fits. Calculating confidence intervals can be useful because you can use a coefficient/parameter estimate’s confidence intervals to test whether it is significantly different from some reference value. Note that the intervals for <code>K_M</code> do not include the original value of <span class="math inline">\(K_M = 7.1\)</span> that we used to generate the data!.</p>
+<p>The <code>Waiting for profiling to be done...</code> message reflects the fact that calculating the standard errors from which the CI’s are calculated requires a particular computational procedure (which we will not go into here) when it comes to NLLS fits. Calculating confidence intervals can be useful because you can use a coefficient/parameter estimate’s confidence intervals to test whether it is significantly different from some reference value. Note that the intervals for <code>K_M</code> do not include the original value of <span class="math inline">K_M = 7.1</span> that we used to generate the data!.</p>
 <p>Also, the intervals should not include zero for the coefficient to be statistically significant in itself, that is, different from zero.</p>
 </section>
 <section id="r-squared-values" class="level2">
 <h2 class="anchored" data-anchor-id="r-squared-values">R-squared values</h2>
-<p>To put it simply, unlike an R<span class="math inline">\(^2\)</span> value obtained by fitting a linear model, that obtained from NLLS fitting is not reliable, and should not be used. The reason for this is somewhat technical (e.g., see this <a href="https://dx.doi.org/10.1186%2F1471-2210-10-6">paper</a>) and we won’t go into it here. But basically, NLLS R<span class="math inline">\(^2\)</span> values do not always accurately reflect the quality of fit, and definitely cannot be used to select between competing models. Indeed R<span class="math inline">\(^2\)</span> values obtained from NLLS fitting even be negative when the model fits very poorly! We will learn more about model selection with non-linear models later below.</p>
+<p>To put it simply, unlike an R<span class="math inline">^2</span> value obtained by fitting a linear model, that obtained from NLLS fitting is not reliable, and should not be used. The reason for this is somewhat technical (e.g., see this <a href="https://dx.doi.org/10.1186%2F1471-2210-10-6">paper</a>) and we won’t go into it here. But basically, NLLS R<span class="math inline">^2</span> values do not always accurately reflect the quality of fit, and definitely cannot be used to select between competing models. Indeed R<span class="math inline">^2</span> values obtained from NLLS fitting even be negative when the model fits very poorly! We will learn more about model selection with non-linear models later below.</p>
 </section>
 <section id="the-starting-values-problem" class="level2">
 <h2 class="anchored" data-anchor-id="the-starting-values-problem">The starting values problem</h2>
@@ -515,7 +529,7 @@ K_M    7.124685 12.36158</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nls</span>(V_data <span class="sc">~</span> V_max <span class="sc">*</span> S_data <span class="sc">/</span> (K_M <span class="sc">+</span> S_data), <span class="at">start =</span> <span class="fu">list</span>(<span class="at">V_max =</span> <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">K_M =</span> <span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>In both the above cases, the model fitting was able to start, but eventually failed because the starting values were too far from the (approximately) optimal values (<span class="math inline">\(V_{\max} \approx 13.5, K_M \approx 9.4\)</span>).</p>
+<p>In both the above cases, the model fitting was able to start, but eventually failed because the starting values were too far from the (approximately) optimal values (<span class="math inline">V_{\max} \approx 13.5, K_M \approx 9.4</span>).</p>
 <p>And what happens if we start really close to the optimal values? Let’s try:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>MM_model4 <span class="ot">&lt;-</span> <span class="fu">nls</span>(V_data <span class="sc">~</span> V_max <span class="sc">*</span> S_data <span class="sc">/</span> (K_M <span class="sc">+</span> S_data), <span class="at">start =</span> <span class="fu">list</span>(<span class="at">V_max =</span> <span class="fl">13.5</span>, <span class="at">K_M =</span> <span class="fl">9.4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -610,7 +624,7 @@ K_M    7.124685 12.36158</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nlsLM</span>(V_data <span class="sc">~</span> V_max <span class="sc">*</span> S_data <span class="sc">/</span> (K_M <span class="sc">+</span> S_data), <span class="at">start =</span> <span class="fu">list</span>(<span class="at">V_max =</span> <span class="sc">-</span><span class="dv">10</span>, <span class="at">K_M =</span> <span class="sc">-</span><span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Thus, using starting values that are in a sensible range is always a good idea. Here, we know that neither <span class="math inline">\(V_{\max}\)</span> nor <span class="math inline">\(K_M\)</span> can be negative, so we can use that bit of information to assign reasonable starting values.</p>
+<p>Thus, using starting values that are in a sensible range is always a good idea. Here, we know that neither <span class="math inline">V_{\max}</span> nor <span class="math inline">K_M</span> can be negative, so we can use that bit of information to assign reasonable starting values.</p>
 <div class="cell">
 <pre class="note cell-code"><code>*How do you find "sensible" starting values for NLLS fitting?* This very much depends on your understanding of the mathematical model that is being fitted to the data, and the mechanistic interpretation of its parameters. </code></pre>
 </div>
@@ -668,8 +682,8 @@ Achieved convergence tolerance: 1.49e-08</code></pre>
 <h2 class="anchored" data-anchor-id="diagnostics-of-an-nlls-fit">Diagnostics of an NLLS fit</h2>
 <p>NLLS regression carries the same three key assumptions as Linear models:</p>
 <ul>
-<li><p>No (in practice, minimal) measurement error in explanatory/independent/predictor variable (<span class="math inline">\(x\)</span>-axis variable)</p></li>
-<li><p>Data have constant normal variance — errors in the <span class="math inline">\(y\)</span>-axis are homogeneously distributed over the <span class="math inline">\(x\)</span>-axis range</p></li>
+<li><p>No (in practice, minimal) measurement error in explanatory/independent/predictor variable (<span class="math inline">x</span>-axis variable)</p></li>
+<li><p>Data have constant normal variance — errors in the <span class="math inline">y</span>-axis are homogeneously distributed over the <span class="math inline">x</span>-axis range</p></li>
 <li><p>The measurement/observation errors are Normally distributed (Gaussian)</p></li>
 </ul>
 <p>At the very least, it is a good idea to plot the residuals of a fitted NLLS model. Let’s do that for our Michaelis-Menten Model fit:</p>
@@ -688,7 +702,7 @@ Achieved convergence tolerance: 1.49e-08</code></pre>
 <section id="population-growth-rates" class="level2">
 <h2 class="anchored" data-anchor-id="population-growth-rates">Population growth rates</h2>
 <p>A population grows exponentially while its abundance is low and resources are not limiting (the Malthusian principle). This growth then slows and eventually stops as resources become limiting. There may also be a time lag before the population growth really takes off at the start. We will focus on microbial (specifically, bacterial) growth rates. Bacterial growth in batch culture follows a distinct set of phases; lag phase, exponential phase and stationary phase. During the lag phase a suite of transcriptional machinery is activated, including genes involved in nutrient uptake and metabolic changes, as bacteria prepare for growth. During the exponential growth phase, bacteria divide at a constant rate, the population doubling with each generation. When the carrying capacity of the media is reached, growth slows and the number of cells in the culture stabilizes, beginning the stationary phase.</p>
-<p>Traditionally, microbial growth rates were measured by plotting cell numbers or culture density against time on a semi-log graph and fitting a straight line through the exponential growth phase – the slope of the line gives the maximum growth rate (<span class="math inline">\(r_{max}\)</span>). Models have since been developed which we can use to describe the whole sigmoidal bacterial growth curve (e.g., using NLLS). Here we will take a look at these different approaches, from applying linear models to the exponential phase, through to fitting non-linear models to the full growth curve.</p>
+<p>Traditionally, microbial growth rates were measured by plotting cell numbers or culture density against time on a semi-log graph and fitting a straight line through the exponential growth phase – the slope of the line gives the maximum growth rate (<span class="math inline">r_{max}</span>). Models have since been developed which we can use to describe the whole sigmoidal bacterial growth curve (e.g., using NLLS). Here we will take a look at these different approaches, from applying linear models to the exponential phase, through to fitting non-linear models to the full growth curve.</p>
 <p>Let’s first generate some “data” on the number of bacterial cells as a function of time that we can play with:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">22</span>, <span class="dv">2</span>)</span>
@@ -712,7 +726,7 @@ Achieved convergence tolerance: 1.49e-08</code></pre>
 </div>
 </div>
 <p>Note how we added some random “sampling” error using <code>N * (1 + rnorm(length(t), sd = .1))</code>.</p>
-<p>This means that we are adding an error at each time point <span class="math inline">\(t\)</span> (let’s call this fluctuation <span class="math inline">\(\epsilon_t\)</span>) as a * percentage * of the population (<span class="math inline">\(N_t\)</span>) at that time point in a vectorized way. That is, we are performing the operation <span class="math inline">\(N_t \times (1 + \epsilon_t)\)</span> at all time points at one go. This is important to note because this is often the way that errors appear – proportional to the value being measured.</p>
+<p>This means that we are adding an error at each time point <span class="math inline">t</span> (let’s call this fluctuation <span class="math inline">\epsilon_t</span>) as a * percentage * of the population (<span class="math inline">N_t</span>) at that time point in a vectorized way. That is, we are performing the operation <span class="math inline">N_t \times (1 + \epsilon_t)</span> at all time points at one go. This is important to note because this is often the way that errors appear – proportional to the value being measured.</p>
 <p>Now let’s plot these data:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> N)) <span class="sc">+</span> </span>
@@ -724,10 +738,10 @@ Achieved convergence tolerance: 1.49e-08</code></pre>
 </div>
 <section id="basic-approach" class="level4">
 <h4 class="anchored" data-anchor-id="basic-approach">Basic approach</h4>
-<p>The size of an exponentially growing population (<span class="math inline">\(N\)</span>) at any given time (<span class="math inline">\(t\)</span>) is given by:</p>
+<p>The size of an exponentially growing population (<span class="math inline">N</span>) at any given time (<span class="math inline">t</span>) is given by:</p>
 <p>$ N(t) = N_0 e^{rt}$</p>
-<p>where <span class="math inline">\(N_0\)</span> is the initial population size and <span class="math inline">\(r\)</span> is the growth rate. We can re-arrange this to give:</p>
-<p><span class="math inline">\(r = \frac{\log(N(t)) - \log(N_0)}{t}\)</span></p>
+<p>where <span class="math inline">N_0</span> is the initial population size and <span class="math inline">r</span> is the growth rate. We can re-arrange this to give:</p>
+<p><span class="math inline">r = \frac{\log(N(t)) - \log(N_0)}{t}</span></p>
 <p>That is, in exponential growth at a constant rate, the growth rate can be simply calculated as the difference in the log of two population sizes, over time. We will log-transform the data and estimate by eye where growth looks exponential.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>LogN <span class="ot">&lt;-</span> <span class="fu">log</span>(data<span class="sc">$</span>N)</span>
@@ -747,7 +761,7 @@ Achieved convergence tolerance: 1.49e-08</code></pre>
 <pre><code>[1] 0.7320383</code></pre>
 </div>
 </div>
-<p>This is our first, most basic estimate of <span class="math inline">\(r\)</span>.</p>
+<p>This is our first, most basic estimate of <span class="math inline">r</span>.</p>
 <p>Or, we can decide not to eyeball the data, but just pick the maximum observed gradient of the curve. For this, we can use the the <code>diff()</code> function:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span>(data<span class="sc">$</span>LogN)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -793,17 +807,17 @@ Multiple R-squared:  0.9735,    Adjusted R-squared:  0.9602
 F-statistic: 73.42 on 1 and 2 DF,  p-value: 0.01335</code></pre>
 </div>
 </div>
-<p>Npw we get <span class="math inline">\(r \approx 0.62\)</span>, which is probably closer to the “truth”.</p>
-<p>But this is still not ideal because we only guessed the exponential phase by eye. We could do it better by iterating through different windows of points, comparing the slopes and finding which the highest is to give the maximum growth rate, <span class="math inline">\(r_{max}\)</span>. This is called a “rolling regression”.</p>
+<p>Npw we get <span class="math inline">r \approx 0.62</span>, which is probably closer to the “truth”.</p>
+<p>But this is still not ideal because we only guessed the exponential phase by eye. We could do it better by iterating through different windows of points, comparing the slopes and finding which the highest is to give the maximum growth rate, <span class="math inline">r_{max}</span>. This is called a “rolling regression”.</p>
 <p>Or better still, we can fit a more appropriate mathematical model using NLLS!</p>
 </section>
 <section id="using-nlls" class="level3">
 <h3 class="anchored" data-anchor-id="using-nlls">Using NLLS</h3>
 <p>For starters, a classical, (somewhat) mechanistic model is the logistic equation:</p>
-<p><span class="math display">\[
+<p><span class="math display">
 N_t = \frac{N_0 K e^{r t}}{K + N_0 (e^{r t} - 1)}
-\]</span></p>
-<p>Here <span class="math inline">\(N_t\)</span> is population size at time <span class="math inline">\(t\)</span>, <span class="math inline">\(N_0\)</span> is initial population size, <span class="math inline">\(r\)</span> is maximum growth rate (AKA <span class="math inline">\(r_\text{max}\)</span>), and <span class="math inline">\(K\)</span> is carrying capacity (maximum possible abundance of the population). Note that this model is actually the solution to the differential equation that defines the classic logistic population growth model.</p>
+</span></p>
+<p>Here <span class="math inline">N_t</span> is population size at time <span class="math inline">t</span>, <span class="math inline">N_0</span> is initial population size, <span class="math inline">r</span> is maximum growth rate (AKA <span class="math inline">r_\text{max}</span>), and <span class="math inline">K</span> is carrying capacity (maximum possible abundance of the population). Note that this model is actually the solution to the differential equation that defines the classic logistic population growth model.</p>
 <p>Let’s fit it to the data. First, we need to define it as a function object:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>logistic_model <span class="ot">&lt;-</span> <span class="cf">function</span>(t, r_max, K, N_0){ <span class="co"># The classic logistic equation</span></span>
@@ -861,7 +875,7 @@ Achieved convergence tolerance: 1.49e-08</code></pre>
 <p><img src="VB_NLLS_activity_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>That looks nice, and the <span class="math inline">\(r_{max}\)</span> estimate we get (0.64) is fairly close to what we got above with OLS fitting.</p>
+<p>That looks nice, and the <span class="math inline">r_{max}</span> estimate we get (0.64) is fairly close to what we got above with OLS fitting.</p>
 <p>Note that we’ve done this fitting to the original non transformed data, whilst the linear regressions earlier were on log transformed data. What would this function look like on a log-transformed axis?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> LogN)) <span class="sc">+</span></span>
@@ -890,10 +904,10 @@ Achieved convergence tolerance: 1.49e-08</code></pre>
 <p>The above seen deviation of the Logistic model from the data is because this model assumes that the population is growing right from the start (Time = 0), while in “reality” (in our synthetic “data”), this is not what’s happening; the population takes a while to grow truly exponentially (i.e., there is a time lag in the population growth). This time lag is seen frequently in the lab, and is also expected in nature, because when bacteria encounter fresh growth media (in the lab) or a new resource/environment (in the field), they take some time to acclimate, activating genes involved in nutrient uptake and metabolic processes, before beginning exponential growth. This is called the lag phase and can be seen in our example data where exponential growth doesn’t properly begin until around the 4th hour.</p>
 <p>To capture the lag phase, more complicated bacterial growth models have been designed.</p>
 <p>One of these is the modified Gompertz model (Zwietering et. al., 1990), which has been used frequently in the literature to model bacterial growth:</p>
-<p><span class="math display">\[
+<p><span class="math display">
   \log(N_t) = N_0 + (N_{max} - N_0) e^{-e^{r_{max} \exp(1) \frac{t_{lag} - t}{(N_{max} - N_0) \log(10)} + 1}}
-\]</span></p>
-<p>Here maximum growth rate (<span class="math inline">\(r_{max}\)</span>) is the tangent to the inflection point, <span class="math inline">\(t_{lag}\)</span> is the x-axis intercept to this tangent (duration of the delay before the population starts growing exponentially) and <span class="math inline">\(\log\left(\frac{N_{max}}{N_0}\right)\)</span> is the asymptote of the log-transformed population growth trajectory, i.e., the log ratio of maximum population density <span class="math inline">\(N_{max}\)</span> (aka “carrying capacity”) and initial cell (Population) <span class="math inline">\(N_0\)</span> density.</p>
+</span></p>
+<p>Here maximum growth rate (<span class="math inline">r_{max}</span>) is the tangent to the inflection point, <span class="math inline">t_{lag}</span> is the x-axis intercept to this tangent (duration of the delay before the population starts growing exponentially) and <span class="math inline">\log\left(\frac{N_{max}}{N_0}\right)</span> is the asymptote of the log-transformed population growth trajectory, i.e., the log ratio of maximum population density <span class="math inline">N_{max}</span> (aka “carrying capacity”) and initial cell (Population) <span class="math inline">N_0</span> density.</p>
 <div class="cell">
 <pre class="note cell-code"><code>Note that unlike the Logistic growth model above, the Gompertz model is in the log scale. This is because the model is not derived from a differential equation, but was designed * specifically * to be fitted to log-transformed data.</code></pre>
 </div>
@@ -1008,7 +1022,7 @@ Achieved convergence tolerance: 1.49e-08</code></pre>
 <p><img src="VB_NLLS_activity_files/figure-html/unnamed-chunk-60-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Clearly, the Gompertz model fits way better than the logistic growth equation in this case! Note also that there is a big difference in the fitted value of <span class="math inline">\(r_{max}\)</span> from the two models; the value is much lower from the Logistic model because it ignores the lag phase, including it into the exponential growth phase.</p>
+<p>Clearly, the Gompertz model fits way better than the logistic growth equation in this case! Note also that there is a big difference in the fitted value of <span class="math inline">r_{max}</span> from the two models; the value is much lower from the Logistic model because it ignores the lag phase, including it into the exponential growth phase.</p>
 <p>You can now perform model selection like you did above in the allometric scaling example.</p>
 </section>
 </section>
@@ -1023,7 +1037,7 @@ Achieved convergence tolerance: 1.49e-08</code></pre>
 <p>The one universal rule though, is that finding starting values requires you to understand the meaning of each of the parameters in your model.</p>
 <p>Furthermore, you will typically need to determine starting values <em>specific</em> to each model <em>and</em> each dataset that that you are wanting to fit that model to. To do so, understanding how each parameter in the model corresponds to features of the actual data is really necessary.</p>
 <p>For example, in the Gompertz population growth rate model (eqn. {eq}<code>eq:Gompertz</code>), your starting values generator function would, for each dataset,<br>
-* Calculate a starting value for <span class="math inline">\(r_{max}\)</span> by searching for the steepest slope of the growth curve (e.g., with a rolling OLS regression) * Calculate a starting value of <span class="math inline">\(t_{lag}\)</span> by intersecting the fitted line with the x (time)-axis * Calculate a starting value for the asymptote <span class="math inline">\(K\)</span> as the highest data (abundance) value in the dataset.</p>
+* Calculate a starting value for <span class="math inline">r_{max}</span> by searching for the steepest slope of the growth curve (e.g., with a rolling OLS regression) * Calculate a starting value of <span class="math inline">t_{lag}</span> by intersecting the fitted line with the x (time)-axis * Calculate a starting value for the asymptote <span class="math inline">K</span> as the highest data (abundance) value in the dataset.</p>
 <div class="cell">
 <pre class="tip cell-code"><code>Ideally, you should write a separate a function that calculates starting values for the model parameters.</code></pre>
 </div>
@@ -1040,7 +1054,7 @@ Achieved convergence tolerance: 1.49e-08</code></pre>
 <section id="bounding-parameters-revisited" class="level3">
 <h3 class="anchored" data-anchor-id="bounding-parameters-revisited">Bounding parameters revisited</h3>
 <p>At the start, we looked at an exampleof NLLS fitting where we bounded the parameters. It can be a good idea to restrict the range of values that the each of the model’s parameters can take <em>during any one fitting/optimization run</em>. To&nbsp;“bound” a parameter in this way means to&nbsp;give it upper and lower limits.&nbsp;By doing so,&nbsp;during&nbsp;one optimization/fitting (e.g., one call to&nbsp;<code>nlsLM</code>, to fit one model, to one dataset), the fitting algorithm does not allow a parameter to go outside some&nbsp;limits. This reduces the chances of&nbsp;the&nbsp;optimization&nbsp;getting stuck too far from the solution, or failing completely due to some mathematical singularity (e.g., log(0)).</p>
-<p>The bounds are typically fixed for each parameter of a model <em>at the level of the model</em> (e.g., they do not change based on each dataset). For example, in the Gompertz model for growth rates (eqn. {eq}<code>eq:Gompertz</code>), you can limit the growth rate parameter to never be negative (the bounds would be <span class="math inline">\([0,\infty]\)</span>), or restrict it further to be some value between zero and an upper limit (say, 10) that you know organismal growth rates cannot exceed (the bounds would in this case would be <span class="math inline">\([0,10]\)</span>).</p>
+<p>The bounds are typically fixed for each parameter of a model <em>at the level of the model</em> (e.g., they do not change based on each dataset). For example, in the Gompertz model for growth rates (eqn. {eq}<code>eq:Gompertz</code>), you can limit the growth rate parameter to never be negative (the bounds would be <span class="math inline">[0,\infty]</span>), or restrict it further to be some value between zero and an upper limit (say, 10) that you know organismal growth rates cannot exceed (the bounds would in this case would be <span class="math inline">[0,10]</span>).</p>
 <p>However, as we saw in the Michaelis-Menten model fitting example, bounding the parameters too much (excessively narrow ranges) can result in poor solutions because the algorithm cannot explore sufficient parameter space.</p>
 <div class="cell">
 <pre class="tip cell-code"><code>The values of the parameter bounds you choose, of course, may depend on the *units of measurement* of the data. For example, in [SI](https://en.wikipedia.org/wiki/International_System_of_Units), growth rates in the Logistic or Gompertz models would be in units of 1/X).</code></pre>
@@ -1253,7 +1267,7 @@ Warning in norm.inter(t, adj.alpha): extreme order statistics used as endpoints<
 </section>
 <section id="example-aedes-aegypti-juvenile-mortality-rate" class="level1">
 <h1>Example: Aedes aegypti Juvenile Mortality Rate</h1>
-<p>Juvenile mortality and development are important traits for population growth (<span class="math inline">\(r_{max}\)</span>), particularly in organisms with complex life histories, such as arthropods(<a href="https://www.frontiersin.org/articles/10.3389/fevo.2020.00189/full">Cator et al (2020)</a>; <a href="https://royalsocietypublishing.org/doi/full/10.1098/rspb.2020.3217?casa_token=eG00HSjUNDAAAAAA%3Ah2_CuvKoI8WFiBCT3J9bZ6PnkgN-jLnwZnmIbsNY_hSozTS54_4UhFzuSMKeO_xDySM57S3CuJZJwQ">Huxley et al.&nbsp;2021</a>). The thermal optima of these functional traits can provide important insights into the suitability of environmental conditions for a species’ establishment and persistence. This information is particularly important when predicting environmental suitability for the establishment of disease vectors, such as <span class="math inline">\(Aedes\)</span> <span class="math inline">\(aegypti\)</span>.</p>
+<p>Juvenile mortality and development are important traits for population growth (<span class="math inline">r_{max}</span>), particularly in organisms with complex life histories, such as arthropods(<a href="https://www.frontiersin.org/articles/10.3389/fevo.2020.00189/full">Cator et al (2020)</a>; <a href="https://royalsocietypublishing.org/doi/full/10.1098/rspb.2020.3217?casa_token=eG00HSjUNDAAAAAA%3Ah2_CuvKoI8WFiBCT3J9bZ6PnkgN-jLnwZnmIbsNY_hSozTS54_4UhFzuSMKeO_xDySM57S3CuJZJwQ">Huxley et al.&nbsp;2021</a>). The thermal optima of these functional traits can provide important insights into the suitability of environmental conditions for a species’ establishment and persistence. This information is particularly important when predicting environmental suitability for the establishment of disease vectors, such as <span class="math inline">Aedes</span> <span class="math inline">aegypti</span>.</p>
 <p>For this example, we will use a dataset from VectorBiTE <code>juvenilemortalityrateae.csv</code>.</p>
 <p>Lets start by loading the dataset and getting set up.</p>
 <div class="cell">
@@ -1435,7 +1449,7 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 <p><img src="VB_NLLS_activity_files/figure-html/unnamed-chunk-97-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>This looks good, we have now have the estimated thermal optimum for juvenile mortality rate with 95% confidence bounds! In other words, our model predicts that juvenile survival in <span class="math inline">\(Ae.\)</span> <span class="math inline">\(aegypti\)</span> is highest when environmental temperatures range between 12°C and 16°C.</p>
+<p>This looks good, we have now have the estimated thermal optimum for juvenile mortality rate with 95% confidence bounds! In other words, our model predicts that juvenile survival in <span class="math inline">Ae.</span> <span class="math inline">aegypti</span> is highest when environmental temperatures range between 12°C and 16°C.</p>
 <p>Please see Daniel Padfields <a href="https://padpadpadpad.github.io/rTPC/articles/rTPC.html">git</a> for more information on using the rTPC package.</p>
 <section id="readings-and-resources" class="level2">
 <h2 class="anchored" data-anchor-id="readings-and-resources">Readings and Resources</h2>
@@ -1450,13 +1464,13 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 </ul></li>
 </ul>
 </section>
+<section id="practice-problem-for-nlls" class="level2">
+<h2 class="anchored" data-anchor-id="practice-problem-for-nlls">Practice Problem for NLLS</h2>
+<section id="the-nllsdataset.csv-dataset-contains-values-on-trait-temperature-relationships-in-three-important-vectorpest-species.-fit-thermal-performance-curves-to-traits-of-interest.-use-bootstrapping-to-generate-confidence-bounds-for-each-curve." class="level4">
+<h4 class="anchored" data-anchor-id="the-nllsdataset.csv-dataset-contains-values-on-trait-temperature-relationships-in-three-important-vectorpest-species.-fit-thermal-performance-curves-to-traits-of-interest.-use-bootstrapping-to-generate-confidence-bounds-for-each-curve.">The <code>nllsdataset.csv</code> dataset contains values on trait-temperature relationships in three important vector/pest species. Fit thermal performance curves to trait(s) of interest. Use bootstrapping to generate confidence bounds for each curve.</h4>
+
+
 </section>
-<section id="practice-problem-for-nlls" class="level1">
-<h1>Practice Problem for NLLS</h1>
-<section id="the-nllsdataset.csv-dataset-contains-values-on-trait-temperature-relationships-in-three-important-vectorpest-species.-fit-thermal-performance-curves-to-traits-of-interest.-use-bootstrapping-to-generate-confidence-bounds-for-each-curve." class="level3">
-<h3 class="anchored" data-anchor-id="the-nllsdataset.csv-dataset-contains-values-on-trait-temperature-relationships-in-three-important-vectorpest-species.-fit-thermal-performance-curves-to-traits-of-interest.-use-bootstrapping-to-generate-confidence-bounds-for-each-curve.">The <code>nllsdataset.csv</code> dataset contains values on trait-temperature relationships in three important vector/pest species. Fit thermal performance curves to trait(s) of interest. Use bootstrapping to generate confidence bounds for each curve.</h3>
-
-
 </section>
 </section>
 

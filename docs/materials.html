@@ -63,7 +63,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -71,7 +71,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a href="https://www.vectorbyte.org" class="navbar-brand navbar-brand-logo">
-    <img src="./activities/graphics/vblogoedit.pdf" alt="" class="navbar-logo">
+    <img src="./graphics/vblogoedit.pdf" alt="" class="navbar-logo">
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -98,7 +98,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/VectorByteOrg/VBTraining4"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/VectorByteOrg/vectorbyte-training4"><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -116,30 +116,29 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
+  <ul class="collapse">
   <li><a href="#pre-work-and-set-up" id="toc-pre-work-and-set-up" class="nav-link" data-scroll-target="#pre-work-and-set-up">Pre-work and set-up</a>
   <ul class="collapse">
   <li><a href="#hardware-and-software" id="toc-hardware-and-software" class="nav-link" data-scroll-target="#hardware-and-software">Hardware and Software</a></li>
   <li><a href="#pre-requisites" id="toc-pre-requisites" class="nav-link" data-scroll-target="#pre-requisites">Pre-requisites</a></li>
   </ul></li>
-  <li><a href="#introduction-to-the-vectorbyte-databases1" id="toc-introduction-to-the-vectorbyte-databases1" class="nav-link" data-scroll-target="#introduction-to-the-vectorbyte-databases1">Introduction to the VectorByte databases</a></li>
-  <li><a href="#beginner-materials" id="toc-beginner-materials" class="nav-link" data-scroll-target="#beginner-materials">Beginner materials</a>
-  <ul class="collapse">
+  <li><a href="#introduction-to-the-vectraits-database1" id="toc-introduction-to-the-vectraits-database1" class="nav-link" data-scroll-target="#introduction-to-the-vectraits-database1">Introduction to the VecTraits database</a></li>
   <li><a href="#data-wrangling-in-r" id="toc-data-wrangling-in-r" class="nav-link" data-scroll-target="#data-wrangling-in-r">Data Wrangling in R</a></li>
   <li><a href="#introduction-to-linear-models" id="toc-introduction-to-linear-models" class="nav-link" data-scroll-target="#introduction-to-linear-models">Introduction to Linear Models</a></li>
-  </ul></li>
-  <li><a href="#intermediate-materials" id="toc-intermediate-materials" class="nav-link" data-scroll-target="#intermediate-materials">Intermediate materials</a>
-  <ul class="collapse">
   <li><a href="#nonlinear-modeling-including-thermal-performance-curves-tpcs" id="toc-nonlinear-modeling-including-thermal-performance-curves-tpcs" class="nav-link" data-scroll-target="#nonlinear-modeling-including-thermal-performance-curves-tpcs">Nonlinear Modeling (including Thermal Performance Curves – TPCs)</a></li>
+  <li><a href="#nonlinear-modeling-including-thermal-performance-curves-tpcs-1" id="toc-nonlinear-modeling-including-thermal-performance-curves-tpcs-1" class="nav-link" data-scroll-target="#nonlinear-modeling-including-thermal-performance-curves-tpcs-1">Nonlinear Modeling (including Thermal Performance Curves – TPCs)</a></li>
   </ul></li>
   </ul>
 </nav>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -163,14 +162,13 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="overview" class="level1">
 <h1>Overview</h1>
-</section>
-<section id="pre-work-and-set-up" class="level1">
-<h1>Pre-work and set-up</h1>
+<section id="pre-work-and-set-up" class="level2">
+<h2 class="anchored" data-anchor-id="pre-work-and-set-up">Pre-work and set-up</h2>
 <section id="hardware-and-software" class="level3">
 <h3 class="anchored" data-anchor-id="hardware-and-software">Hardware and Software</h3>
 <p>We will be using <a href="https://cran.r-project.org/">R</a> for all data manipulation and analyses/model fitting. Any operating system (Windows, Mac, Linux) will do, as long as you have R (version 3.6 or higher) installed.</p>
 <p>You may use any IDE/ GUI for R (VScode, RStudio, Emacs, etc). For most people, <a href="https://www.rstudio.com/">RStudio</a> is a good option. Whichever one you decide to use, please make sure it is installed and test it before the workshop. We will have a channel on slack dedicated to software/hardware issues and troubleshooting.</p>
-<p>We will also be using Zoom and Slack to facilitate the synchronous portions of the training. Please have these installed in advance.</p>
+<p>We will also be using Slack for additional support during the training. Please have these installed in advance.</p>
 </section>
 <section id="pre-requisites" class="level3">
 <h3 class="anchored" data-anchor-id="pre-requisites">Pre-requisites</h3>
@@ -183,16 +181,14 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 </section>
 </section>
-<section id="introduction-to-the-vectorbyte-databases1" class="level1">
-<h1>Introduction to the VectorByte databases<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></h1>
+<section id="introduction-to-the-vectraits-database1" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-to-the-vectraits-database1">Introduction to the VecTraits database<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></h2>
 <ul>
-<li>This component will be delivered live &amp; synchronously (with a recording to be uploaded later)</li>
+<li>This component will be delivered live &amp; synchronously. The VecTraits website can be found <a href="https://vectorbyte.crc.nd.edu/vectraits-explorer">here</a>. It might be an idea to explore this prior to the workshop.</li>
 </ul>
 </section>
-<section id="beginner-materials" class="level1">
-<h1>Beginner materials</h1>
-<section id="data-wrangling-in-r" class="level3">
-<h3 class="anchored" data-anchor-id="data-wrangling-in-r">Data Wrangling in R</h3>
+<section id="data-wrangling-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="data-wrangling-in-r">Data Wrangling in R</h2>
 <ul>
 <li><a href="./data_wrangling.html">Self-Guided Activity</a></li>
 <li>Datasets:
@@ -205,8 +201,8 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="introduction-to-linear-models" class="level3">
-<h3 class="anchored" data-anchor-id="introduction-to-linear-models">Introduction to Linear Models</h3>
+<section id="introduction-to-linear-models" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-to-linear-models">Introduction to Linear Models</h2>
 <ul>
 <li><a href="lectures/VB_LinMods.pdf">Lecture Slides</a>, <a href="https://www.youtube.com/watch?v=oqjzfXDgZY0&amp;list=PLrMhLVyZEsORr81gXrfgiq2vX30_brtpF&amp;index=2">Lecture Video 1</a>, <a href="https://www.youtube.com/watch?v=-VelMqc9z6M&amp;list=PLrMhLVyZEsORr81gXrfgiq2vX30_brtpF&amp;index=1">Lecture Video 2</a>, <a href="./linear_mod_activity.html">Practical</a></li>
 <li>Datasets:
@@ -216,13 +212,21 @@ ul.task-list li input[type="checkbox"] {
 <li><a href="activities/data/lmdataset.csv">Linear Models Practical Data</a></li>
 </ul></li>
 </ul>
-<p><br> <br></p>
 </section>
+<section id="nonlinear-modeling-including-thermal-performance-curves-tpcs" class="level2">
+<h2 class="anchored" data-anchor-id="nonlinear-modeling-including-thermal-performance-curves-tpcs">Nonlinear Modeling (including Thermal Performance Curves – TPCs)</h2>
+<ul>
+<li><a href="lectures/VB_NLLS.pdf">Lecture Slides</a>, <a href="https://www.youtube.com/watch?v=dnZlU2_iQ1k&amp;list=PLrMhLVyZEsORr81gXrfgiq2vX30_brtpF&amp;index=3">Lecture Video</a>, <a href="./VB_NLLS_activity.html">Practical</a></li>
+<li>Datasets:
+<ul>
+<li><a href="activities/data/csm7I.csv">csm7I Data</a></li>
+<li><a href="activities/data/juvenilemortalityrateae.csv">Aedes Juvenile Mortality Data</a></li>
+<li><a href="activities/data/nllsdataset.csv">NLLS Practical Data</a></li>
+</ul></li>
+</ul>
 </section>
-<section id="intermediate-materials" class="level1">
-<h1>Intermediate materials</h1>
-<section id="nonlinear-modeling-including-thermal-performance-curves-tpcs" class="level3">
-<h3 class="anchored" data-anchor-id="nonlinear-modeling-including-thermal-performance-curves-tpcs">Nonlinear Modeling (including Thermal Performance Curves – TPCs)</h3>
+<section id="nonlinear-modeling-including-thermal-performance-curves-tpcs-1" class="level2">
+<h2 class="anchored" data-anchor-id="nonlinear-modeling-including-thermal-performance-curves-tpcs-1">Nonlinear Modeling (including Thermal Performance Curves – TPCs)</h2>
 <ul>
 <li><a href="lectures/VB_NLLS.pdf">Lecture Slides</a>, <a href="https://www.youtube.com/watch?v=dnZlU2_iQ1k&amp;list=PLrMhLVyZEsORr81gXrfgiq2vX30_brtpF&amp;index=3">Lecture Video</a>, <a href="./VB_NLLS_activity.html">Practical</a></li>
 <li>Datasets:

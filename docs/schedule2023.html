@@ -64,7 +64,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -72,7 +72,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a href="https://www.vectorbyte.org" class="navbar-brand navbar-brand-logo">
-    <img src="./activities/graphics/vblogoedit.pdf" alt="" class="navbar-logo">
+    <img src="./graphics/vblogoedit.pdf" alt="" class="navbar-logo">
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -99,7 +99,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/VectorByteOrg/VBTraining4"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/VectorByteOrg/vectorbyte-training4"><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -117,9 +117,8 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -132,6 +131,9 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#post-workshop" id="toc-post-workshop" class="nav-link" data-scroll-target="#post-workshop">Post-workshop</a></li>
   </ul>
 </nav>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -163,7 +165,7 @@ ul.task-list li input[type="checkbox"] {
 <h1>Pre-workshop</h1>
 <p>We will be using <a href="https://cran.r-project.org/">R</a> for all data manipulation and analyses/model fitting. Any operating system (Windows, Mac, Linux) will do, as long as you have R (version 3.6 or higher) installed.</p>
 <p>You may use any IDE/ GUI for R (VScode, RStudio, Emacs, etc). For most people, <a href="https://www.rstudio.com/">RStudio</a> is a good option. Whichever one you decide to use, please make sure it is installed and test it before the workshop. We will have a channel on Slack dedicated to software/hardware issues and troubleshooting.</p>
-<p>We will also be using Slack to facilitate the synchronous portions of the training. Please have these installed in advance. We are assuming familiarity with R basics. In addition, we recommend that you do the following:</p>
+<p>We will also be using Slack for additional support during the training. Please have these installed in advance. We are assuming familiarity with R basics. In addition, we recommend that you do the following:</p>
 <ol type="1">
 <li><p>Go to <a href="https://mhasoba.github.io/TheMulQuaBio/intro.html">The Multilingual Quantitative Biologist</a>, and read+work through the <a href="https://mhasoba.github.io/TheMulQuaBio/notebooks/07-R.html">Biological Computing in R Chapter</a> up to the section on Writing R code. Of course, keep going if you want (although we will cover some similar materials here).</p></li>
 <li><p>Review background on <a href="./Stats_review.html">introductory probability and statistics</a> (<a href="./Stats_review_soln.html">solutions to exercises</a>)</p></li>
@@ -286,21 +288,26 @@ ul.task-list li input[type="checkbox"] {
 <tr class="even">
 <td>13:00</td>
 <td>Intro to Bayes</td>
-<td></td>
+<td><a href="./VB_Bayes1.html">Lecture</a>; <a href="./VB_Bayes_activity1.html">Practical</a></td>
 </tr>
 <tr class="odd">
-<td>14:30</td>
+<td>14:00</td>
 <td>Break</td>
 <td></td>
 </tr>
 <tr class="even">
-<td>15:00</td>
-<td>Thermal traits with BayesTPC</td>
+<td>14:15</td>
+<td>Bayes comp. (lecture and practical)</td>
 <td></td>
 </tr>
 <tr class="odd">
-<td>16:30</td>
-<td>Choose projects for your own trait/VBD story</td>
+<td>15:15</td>
+<td>Break</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>15:30</td>
+<td>TPCs practical</td>
 <td></td>
 </tr>
 </tbody>
