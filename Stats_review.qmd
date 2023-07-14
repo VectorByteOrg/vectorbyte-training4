@@ -2,12 +2,17 @@
 title: VectorByte Methods Training 2023
 subtitle: Probability and Statistics Fundamentals
 author: The VectorByte Team (Leah R. Johnson, Virginia Tech)
-output:
-  html_document: 
-    number_sections: true
-  pdf_document: 
-    number_sections: true
+format:
+  html:
+    toc: true
+    toc-location: left
+    html-math-method: katex
+    css: styles.css
 ---
+
+[Main materials](materials.qmd)
+
+[Solutions to exercises](Stats_review_soln.qmd)
 
 # Assumed Background
 
@@ -34,8 +39,8 @@ I provide practice problems within the text. These are noted as \textcolor{red}{
 We have a ***set***, $S$ of all possible events. Let $\text{Pr}(A)$ (or alternatively $\text{Prob}(A)$) be the probability of event $A$. Then:
 
 -   $A^c$ is the complement to $A$ (all events that are not A).
--   $A \cup B$ is the union of events $A$ and $B$ (\`\`A or B'').
--   $A \cap B$ is the intersection of events $A$ and $B$ (\`\`A and B'').
+-   $A \cup B$ is the union of events $A$ and $B$ ("A or B").
+-   $A \cap B$ is the intersection of events $A$ and $B$ ("A and B").
 -   $\text{Pr}(A|B)$ is the conditional probability of $A$ given that $B$ occurs.
 
 <br> \hfill\break
@@ -108,23 +113,17 @@ For example, for a fair 6-sided die:
 
 $f_k = 1/6$ for $k= \{1,2,3,4,5,6\}$.
 
-<br> \hfill\break
+$\star$ Question 1: For the six-sided fair die, what is $f_k$ if $k=7$? $k=1.5$?
 
-\textcolor{red}{$\star$ Question 1:} For the six-sided fair die, what is $f_k$ if $k=7$? $k=1.5$?
+Related to the pmf is the *cumulative distribution function* (cdf), $F(x)$. $F(x) \equiv \text{Pr}(X \leq x)$
 
-<br> \hfill\break
+**For the 6-sided die** $F(x)= \displaystyle\sum_{k=1}^{x} f_k$
 
-Related to the pmf is the *cumulative distribution function* (cdf), $F(x)$. \[ F(x) \equiv \text{Pr}(X \leq x) \]
+where $x \in 1\dots 6$.
 
-For the 6-sided die \[ F(x)= \sum\_{k=1}\^x f_k \] where $x \in 1\dots 6$.
+$\star$ Question 2: For the fair 6-sided die, what is $F(3)$? $F(7)$? $F(1.5)$?
 
-<br> \hfill\break
-
-\textcolor{red}{$\star$ Question 2:} For the fair 6-sided die, what is $F(3)$? $F(7)$? $F(1.5)$?
-
-<br> \hfill\break
-
-### Visualizing distributions of discrete RVs in R
+### Visualizing distributions of discrete RVs in `R`
 
 Example: Imagine a RV can take values 1 through 10, each with probability 0.1:
 
@@ -190,7 +189,7 @@ The expected value of a function $g(x)$ given the underlying continuous probabil
 \text{E}[g(x)] \equiv \int_{-\infty}^{\infty} g(x) f(x) dx
 $$ or for a function $g(k)$ and a discrete probability mass function, $f_k$, by $$
 \text{E}[g(k)] \equiv \sum_k g(k) f_k.
-$$ Here $\text{E}[\cdot]$ is read as \`\`the expected value of $\cdot ~$''.
+$$ Here $\text{E}[\cdot]$ is read as "the expected value of $\cdot ~$".
 
 We use the expected value with some special functions of $x$ to describe properties of probability distributions, and we call these \`\`moments'' of a distribution. These are usually defined as: $$
 \mu'_n = \text{E}[(X-c)^n] = \int_{-\infty}^{\infty} (x-c)^n f(x) dx
@@ -297,7 +296,7 @@ Probability distributions and their moments are descriptors of what we *think* a
 
 <br> \hfill\break
 
-\textcolor{red}{$\star$ Question 5:} Properites of Expected Values
+$\star$ Question 5:} Properties of Expected Values
 
 **Using the definition of an expected value above and with X and Y having the same probability distribution, show that:**
 
@@ -330,7 +329,7 @@ Many of the properties of variances can be calculated fairly straightforwardly b
 
 <br> <br> \hfill\break
 
-\textcolor{red}{$\star$ Question 6:} Functions of Random Variables
+$\star$ Question 6: Functions of Random Variables
 
 **Suppose that** $\mathrm{E}[X]=\mathrm{E}[Y]=0$, $\mathrm{var}(X)=\mathrm{var}(Y)=1$, and $\mathrm{corr}(X,Y)=0.5$.
 
@@ -359,9 +358,9 @@ Consider two independent, normally distributed RVs, $X \sim \mathcal{N}( \mu_x ,
 
 \hfill\break
 
-# Probability Distributions in *R*
+# Probability Distributions in `R`
 
-For standard probability distributions *R* can take random draws, calculate the cumulative distribution, probability density, and quantiles. For the normal distribution:
+For standard probability distributions `R` can take random draws, calculate the cumulative distribution, probability density, and quantiles. For the normal distribution:
 
 ```{r}
 rnorm(3, mean=0, sd=1) ## random draws
@@ -458,8 +457,7 @@ legend("topright", legend=c("N(0,1)", "t, df=2", "t, df=5", "t, df=50"),
 
 Instead of working with the underlying Normal or t distribution, we often instead work with standardized quantities. That is, we transform to the standard distributions, e.g. the standard normal with mean 0 and variance 1:
 
-\[ \frac{\mu - \bar{\theta}}{\sigma} \sim N(0,1) ;;; \mathbf{\Longrightarrow \;\;\;
- \frac{\mu - \bar{\theta}}{s} \sim t_{n-p}(0,1)} \]
+$\frac{\mu - \bar{\theta}}{\sigma} \sim N(0,1) \;\;\; \mathbf{\Longrightarrow \;\;\;  \frac{\mu - \bar{\theta}}{s} \sim t_{n-p}(0,1)}$
 
 We will typically use $Z \sim N(0,1)$ (also called the Z-score) and $Z_{n-p} \sim t_{n-p}(0,1)$ to represent standardized random variables from normal and Student-$t$ distributions, respectively.
 
@@ -469,7 +467,7 @@ Notice that both the $t$ and normal distributions and the standardized statistic
 
 ## Confidence Intervals
 
-Suppose $Z_{n-p} \sim t_{n-p}(0,1)$. A centered interval is on this $t$ distribution can be written as: \[ \text{Pr}(-t\_{n-p,\alpha/2} \< Z\_{n-p} \< t\_{n-p,\alpha/2}) = 1-\alpha. \] That is, between these values of the $t$ distribution $(1-\alpha)\times 100$ percent of the probability is contained in that symmetric interval. We can visually indicate these location on a plot of the $t$ distribution (here with df$=5$ and $\alpha=0.05$):
+Suppose $Z_{n-p} \sim t_{n-p}(0,1)$. A centered interval is on this $t$ distribution can be written as: $\text{Pr}(-t_{n-p,\alpha/2} \< Z\_{n-p} \< t_{n-p,\alpha/2}) = 1-\alpha.$ That is, between these values of the $t$ distribution $(1-\alpha)\times 100$ percent of the probability is contained in that symmetric interval. We can visually indicate these location on a plot of the $t$ distribution (here with df$=5$ and $\alpha=0.05$):
 
 ```{r, fig.height=4, fig.width=5, fig.align='center'}
 x<-seq(-4.5, 4.5, length=1000)
@@ -486,7 +484,7 @@ legend("topright",
 
 ```
 
-In the *R* code here, ${\tt qt}$ is the Student-$t$ "quantile function". The function ${\tt qt(alpha, df)}$ returns a value $z$ such that $\alpha = P(Z_{\mathrm{df}} < z)$, i.e., $t_{\mathrm{df},\alpha}$.
+In the `R` code here, ${\tt qt}$ is the Student-$t$ "quantile function". The function ${\tt qt(alpha, df)}$ returns a value $z$ such that $\alpha = P(Z_{\mathrm{df}} < z)$, i.e., $t_{\mathrm{df},\alpha}$.
 
 How can we use this to determine the confidence interval for $\theta$? Since $\theta \sim t_{n-p}(\mu, s^2)$, we can replace the $Z_{n-p}$ in the interval above with the definition in terms of $\theta$, $\mu$ and $s$ and rearrange: \begin{align*}
 1-\alpha& = \text{Pr}\left(-t_{n-p,\alpha/2} < \frac{\mu - \bar{\theta}}{s} <
@@ -498,7 +496,7 @@ t_{n-p,\alpha/2}\right) \\
 
 Thus $(1-\alpha)$\*100% of the time, $\mu$ is within the confidence interval (written in two equivalent ways):
 
-\[ \bar{\theta} \pm t\_{n-p,\alpha/2} \times s ;;;;; \Leftrightarrow ;;;;; \[\bar{\theta}- t\_{n-p,\alpha/2} \times s, \bar{\theta} + t\_{n-p,\alpha/2} \times s\] \]
+$\bar{\theta} \pm t_{n-p,\alpha/2} \times s \;\;\; \Leftrightarrow \;\;\;$ $\bar{\theta}-t_{n-p,\alpha/2} \times s, \bar{\theta} + t_{n-p,\alpha/2}\times s$
 
 Why should we care about confidence intervals?
 
@@ -516,7 +514,7 @@ What is a p-value? The American Statistical Association issued a statement where
 
 More formally, we formulate a p-value in terms of a null hypothesis/model and test whether or not our observed data are more extreme than we would expect under that specific null model. In your previous courses you've probably seen very specific null models, corresponding to, for instance the null hypothesis that the mean of your data is normally distributed with mean $m$ (often $m=0$). We often denote the null model as $H_0$ and the alternative as $H_a$ or $H_1$. For instance, for our example above with $\theta$ we might want to test the following:
 
-\[ H_0: \bar{\theta}=0 ;;;;; \text{vs.} ;;;;; H_a: \bar{\theta}\neq 0 \]
+$H_0: \bar{\theta}=0 \;\;\; \text{vs.} \;\;\; H_a: \bar{\theta}\neq 0$
 
 To perform the hypothesis test we would FIRST choose our rejection level, $\alpha$. Although convention is to use $\alpha =0.05$ corresponding to a 95% confidence region, one could choose based on how sure one needs to be for a particular application. Next we build our test statistic. There are two cases, first if we know $\sigma$ and second if we don't.
 

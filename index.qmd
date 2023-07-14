@@ -5,6 +5,9 @@ format:
     toc-location: left
     html-math-method: katex
     css: styles.css
+    grid:
+      margin-width: 1000px
+    
 ---
 
 # Welcome to the VectorByte 2023 training workshop!
@@ -13,4 +16,4 @@ format:
 
 <br> <br> <br>
 
-<center>![](graphics/VectorByte-logo_lg.png){width="3in"}</center>
+<center>![](graphics/VectorByte-logo_lg.png){width="4in"}</center>

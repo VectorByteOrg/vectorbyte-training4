@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2021-01-01">
+<meta name="author" content="The VectorByte Team (Leah R. Johnson, Virginia Tech)">
 
-<title>| VectorBiTE Methods Training | Probability and Statistics Fundamentals | Solutions to Exercises</title>
+<title>VectorByte Methods Training 2023</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -60,12 +60,27 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -118,15 +133,14 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#question-1-for-the-six-sided-fair-die-what-is-f_k-if-k7-k1.5" id="toc-question-1-for-the-six-sided-fair-die-what-is-f_k-if-k7-k1.5" class="nav-link active" data-scroll-target="#question-1-for-the-six-sided-fair-die-what-is-f_k-if-k7-k1.5">Question 1: For the six-sided fair die, what is <span class="math inline">\(f_k\)</span> if <span class="math inline">\(k=7\)</span>? <span class="math inline">\(k=1.5\)</span>?</a></li>
-  <li><a href="#question-2-for-the-fair-6-sided-die-what-is-f3-f7-f1.5" id="toc-question-2-for-the-fair-6-sided-die-what-is-f3-f7-f1.5" class="nav-link" data-scroll-target="#question-2-for-the-fair-6-sided-die-what-is-f3-f7-f1.5">Question 2: For the fair 6-sided die, what is <span class="math inline">\(F(3)\)</span>? <span class="math inline">\(F(7)\)</span>? <span class="math inline">\(F(1.5)\)</span>?</a></li>
-  <li><a href="#question-3-for-a-normal-distribution-with-mean-0-what-is-f0" id="toc-question-3-for-a-normal-distribution-with-mean-0-what-is-f0" class="nav-link" data-scroll-target="#question-3-for-a-normal-distribution-with-mean-0-what-is-f0">Question 3: For a normal distribution with mean 0, what is <span class="math inline">\(F(0)\)</span>?</a></li>
+  <li><a href="#question-1-for-the-six-sided-fair-die-what-is-f_k-if-k7-k1.5" id="toc-question-1-for-the-six-sided-fair-die-what-is-f_k-if-k7-k1.5" class="nav-link active" data-scroll-target="#question-1-for-the-six-sided-fair-die-what-is-f_k-if-k7-k1.5">Question 1: For the six-sided fair die, what is <span class="math inline">f_k</span> if <span class="math inline">k=7</span>? <span class="math inline">k=1.5</span>?</a></li>
+  <li><a href="#question-2-for-the-fair-6-sided-die-what-is-f3-f7-f1.5" id="toc-question-2-for-the-fair-6-sided-die-what-is-f3-f7-f1.5" class="nav-link" data-scroll-target="#question-2-for-the-fair-6-sided-die-what-is-f3-f7-f1.5">Question 2: For the fair 6-sided die, what is <span class="math inline">F(3)</span>? <span class="math inline">F(7)</span>? <span class="math inline">F(1.5)</span>?</a></li>
+  <li><a href="#question-3-for-a-normal-distribution-with-mean-0-what-is-f0" id="toc-question-3-for-a-normal-distribution-with-mean-0-what-is-f0" class="nav-link" data-scroll-target="#question-3-for-a-normal-distribution-with-mean-0-what-is-f0">Question 3: For a normal distribution with mean 0, what is <span class="math inline">F(0)</span>?</a></li>
   <li><a href="#question-4-summation-notation-practice" id="toc-question-4-summation-notation-practice" class="nav-link" data-scroll-target="#question-4-summation-notation-practice">Question 4: Summation Notation Practice</a></li>
   <li><a href="#question-5-properites-of-expected-values" id="toc-question-5-properites-of-expected-values" class="nav-link" data-scroll-target="#question-5-properites-of-expected-values">Question 5: Properites of Expected Values</a></li>
   <li><a href="#question-6-functions-of-random-variables" id="toc-question-6-functions-of-random-variables" class="nav-link" data-scroll-target="#question-6-functions-of-random-variables">Question 6: Functions of Random Variables</a></li>
@@ -134,15 +148,17 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#hypothesis-testing-and-confidence-intervals" id="toc-hypothesis-testing-and-confidence-intervals" class="nav-link" data-scroll-target="#hypothesis-testing-and-confidence-intervals">Hypothesis Testing and Confidence Intervals</a></li>
   </ul>
 </nav>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><p>VectorBiTE Methods Training<br>
-Probability and Statistics Fundamentals<br>
-Solutions to Exercises</p></h1>
+<h1 class="title">VectorByte Methods Training 2023</h1>
+<p class="subtitle lead">Probability and Statistics Fundamentals: Solutions to Exercises</p>
 </div>
 
 
@@ -152,16 +168,10 @@ Solutions to Exercises</p></h1>
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p> </p>
+             <p>The VectorByte Team (Leah R. Johnson, Virginia Tech) </p>
           </div>
   </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">January 1, 2021</p>
-    </div>
-  </div>
   
     
   </div>
@@ -169,21 +179,23 @@ Solutions to Exercises</p></h1>
 
 </header>
 
+<p><a href="./materials.html">Main materials</a></p>
+<p><a href="./Stats_review.html">Back to stats review</a></p>
 <section id="question-1-for-the-six-sided-fair-die-what-is-f_k-if-k7-k1.5" class="level3">
-<h3 class="anchored" data-anchor-id="question-1-for-the-six-sided-fair-die-what-is-f_k-if-k7-k1.5">Question 1: For the six-sided fair die, what is <span class="math inline">\(f_k\)</span> if <span class="math inline">\(k=7\)</span>? <span class="math inline">\(k=1.5\)</span>?</h3>
+<h3 class="anchored" data-anchor-id="question-1-for-the-six-sided-fair-die-what-is-f_k-if-k7-k1.5">Question 1: For the six-sided fair die, what is <span class="math inline">f_k</span> if <span class="math inline">k=7</span>? <span class="math inline">k=1.5</span>?</h3>
 <p><br></p>
 <p>Answer: both of these are zero, because the die cannot take these values.</p>
 <p><br> <br> <br> <br> </p>
 </section>
 <section id="question-2-for-the-fair-6-sided-die-what-is-f3-f7-f1.5" class="level3">
-<h3 class="anchored" data-anchor-id="question-2-for-the-fair-6-sided-die-what-is-f3-f7-f1.5">Question 2: For the fair 6-sided die, what is <span class="math inline">\(F(3)\)</span>? <span class="math inline">\(F(7)\)</span>? <span class="math inline">\(F(1.5)\)</span>?</h3>
-<p>Answer: The CDF total probability of having a value less than or equal to its argument. Thus <span class="math inline">\(F(3)= 1/2\)</span>, <span class="math inline">\(F(7)=1\)</span>, and <span class="math inline">\(F(1.5)=1/6\)</span></p>
+<h3 class="anchored" data-anchor-id="question-2-for-the-fair-6-sided-die-what-is-f3-f7-f1.5">Question 2: For the fair 6-sided die, what is <span class="math inline">F(3)</span>? <span class="math inline">F(7)</span>? <span class="math inline">F(1.5)</span>?</h3>
+<p>Answer: The CDF total probability of having a value less than or equal to its argument. Thus <span class="math inline">F(3)= 1/2</span>, <span class="math inline">F(7)=1</span>, and <span class="math inline">F(1.5)=1/6</span></p>
 <p><br> <br> <br> <br> </p>
 </section>
 <section id="question-3-for-a-normal-distribution-with-mean-0-what-is-f0" class="level3">
-<h3 class="anchored" data-anchor-id="question-3-for-a-normal-distribution-with-mean-0-what-is-f0">Question 3: For a normal distribution with mean 0, what is <span class="math inline">\(F(0)\)</span>?</h3>
+<h3 class="anchored" data-anchor-id="question-3-for-a-normal-distribution-with-mean-0-what-is-f0">Question 3: For a normal distribution with mean 0, what is <span class="math inline">F(0)</span>?</h3>
 <p><br></p>
-<p>Answer: The normal distribution is symmetric around its mean, with half of its probability on each side. Thus, <span class="math inline">\(F(0)=1/2\)</span></p>
+<p>Answer: The normal distribution is symmetric around its mean, with half of its probability on each side. Thus, <span class="math inline">F(0)=1/2</span></p>
 <p><br> <br> <br> <br> </p>
 </section>
 <section id="question-4-summation-notation-practice" class="level3">
@@ -191,7 +203,7 @@ Solutions to Exercises</p></h1>
 <table class="table">
 <thead>
 <tr class="header">
-<th><span class="math inline">\(i\)</span></th>
+<th><span class="math inline">i</span></th>
 <th>1</th>
 <th>2</th>
 <th>3</th>
@@ -200,7 +212,7 @@ Solutions to Exercises</p></h1>
 </thead>
 <tbody>
 <tr class="odd">
-<td><span class="math inline">\(Z_i\)</span></td>
+<td><span class="math inline">Z_i</span></td>
 <td>2.0</td>
 <td>-2.0</td>
 <td>3.0</td>
@@ -209,162 +221,162 @@ Solutions to Exercises</p></h1>
 </tbody>
 </table>
 <ol type="i">
-<li><strong>Compute <span class="math inline">\(\sum_{i=1}^{4}{z_i}\)</span></strong> = 0 <br></li>
-<li><strong>Compute <span class="math inline">\(\sum_{i=1}^4{(z_i - \bar{z})^2}\)</span></strong> = 26 <br></li>
-<li><strong>What is the sample variance? Assume that the <span class="math inline">\(z_i\)</span> are i.i.d..</strong> <em>Note that i.i.d.~stands for “independent and identically distributed”.</em> <br></li>
+<li><strong>Compute</strong> <span class="math inline">\sum_{i=1}^{4}{z_i}</span> = 0 <br></li>
+<li><strong>Compute</strong> <span class="math inline">\sum_{i=1}^4{(z_i - \bar{z})^2}</span> = 26 <br></li>
+<li><strong>What is the sample variance? Assume that the</strong> <span class="math inline">z_i</span> are i.i.d.. <em>Note that i.i.d.~stands for “independent and identically distributed”.</em> <br></li>
 </ol>
-<p>Solution: <span class="math display">\[
+<p>Solution: <span class="math display">
 s^2= \frac{\sum_{i=1}^N(Y_i - \bar{Y})^2}{N-1} = \frac{26}{3}
 = 8\times \frac{2}{3}
-\]</span> <br></p>
+</span> <br></p>
 <ol start="4" type="i">
-<li><strong>For a general set of <span class="math inline">\(N\)</span> numbers, <span class="math inline">\(\{X_1, X_2, \dots, X_N \}\)</span> and <span class="math inline">\(\{Y_1, Y_2, \dots, Y_N \}\)</span> show that</strong> <span class="math display">\[
+<li><strong>For a general set of</strong> <span class="math inline">N</span> numbers, <span class="math inline">\{X_1, X_2, \dots, X_N \}</span> and <span class="math inline">\{Y_1, Y_2, \dots, Y_N \}</span> show that <span class="math display">
 \sum_{i=1}^N{(X_i - \bar{X})(Y_i - \bar{Y})} = \sum_{i=1}^N{(X_i-\bar{X})Y_i}
-\]</span></li>
+</span></li>
 </ol>
-<p><br> Solution: First, we multiply through and distribute: <span class="math display">\[
+<p><br> Solution: First, we multiply through and distribute: <span class="math display">
 \sum_{i=1}^N(X_i-\bar{X})(Y_i-\bar{Y}) = \sum_{i=1}^N(X_i-\bar{X})Y_i
 - \sum_{i=1}^N(X_i-\bar{X})\bar{Y}
-\]</span> Next note that <span class="math inline">\(\bar{Y}\)</span> (the mean of the <span class="math inline">\(Y_i\)</span>s) doesn’t depend on <span class="math inline">\(i\)</span> so we can pull it out of the summation: <span class="math display">\[
+</span> Next note that <span class="math inline">\bar{Y}</span> (the mean of the <span class="math inline">Y_i</span>s) doesn’t depend on <span class="math inline">i</span> so we can pull it out of the summation: <span class="math display">
 \sum_{i=1}^N(X_i-\bar{X})(Y_i-\bar{Y}) = \sum_{i=1}^N(X_i-\bar{X})Y_i
 - \bar{Y} \sum_{i=1}^N(X_i-\bar{X}).
-\]</span> Finally, the last sum must be zero because <span class="math display">\[
+</span> Finally, the last sum must be zero because <span class="math display">
 \sum_{i=1}^N(X_i-\bar{X}) = \sum_{i=1}^N X_i- \sum_{i=1}^N \bar{X} = N\bar{X} - N\bar{X}=0.
-\]</span> Thus <span class="math display">\[\begin{align*}
+</span> Thus <span class="math display">\begin{align*}
 \sum_{i=1}^N(X_i-\bar{X})(Y_i-\bar{Y}) &amp;= \sum_{i=1}^N(X_i-\bar{X})Y_i - \bar{Y}\times 0\\
 &amp; = \sum_{i=1}^N(X_i-\bar{X})Y_i.
-\end{align*}\]</span></p>
+\end{align*}</span></p>
 <p><br> <br> <br> <br> </p>
 </section>
 <section id="question-5-properites-of-expected-values" class="level3">
 <h3 class="anchored" data-anchor-id="question-5-properites-of-expected-values">Question 5: Properites of Expected Values</h3>
 <p><strong>Using the definition of an expected value above and with X and Y having the same probability distribution, show that:</strong></p>
-<p><span class="math display">\[\begin{align*}
+<span class="math display">\begin{align*}
 \text{E}[X+Y]  &amp; = \text{E}[X] + \text{E}[Y]\\  
 &amp; \text{and} \\
 \text{E}[cX]  &amp; = c\text{E}[X]. \\
-\end{align*}\]</span></p>
-<p><strong>Given these, and the fact that <span class="math inline">\(\mu=\text{E}[X]\)</span>, show that:</strong></p>
-<p><span class="math display">\[\begin{align*}
+\end{align*}</span>
+<p><strong>Given these, and the fact that</strong> <span class="math inline">\mu=\text{E}[X]</span>, show that:</p>
+<span class="math display">\begin{align*}
 \text{E}[(X-\mu)^2]  = \text{E}[X^2] - (\text{E}[X])^2
-\end{align*}\]</span></p>
-<p><strong>This gives a formula for calculating variances (since <span class="math inline">\(\text{Var}(X)= \text{E}[(X-\mu)^2]\)</span>).</strong></p>
-<p>Solution: Assuming <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are both i.i.d. with distribution <span class="math inline">\(f(x)\)</span>. The expectation of <span class="math inline">\(X+Y\)</span> is defined as <span class="math display">\[\begin{align*}
+\end{align*}</span>
+<p><strong>This gives a formula for calculating variances (since</strong> <span class="math inline">\text{Var}(X)= \text{E}[(X-\mu)^2]</span>).</p>
+<p>Solution: Assuming <span class="math inline">X</span> and <span class="math inline">Y</span> are both i.i.d. with distribution <span class="math inline">f(x)</span>. The expectation of <span class="math inline">X+Y</span> is defined as <span class="math display">\begin{align*}
 \text{E}[X+Y]  &amp; =  \int (X+Y) f(x)dx \\
               &amp; =  \int (X f(x) +Y f(x))dx  \\
               &amp; =  \int X f(x)dx  +\int Y f(x)dx  \\
                &amp; = \text{E}[X] + \text{E}[Y]  
-\end{align*}\]</span> Similarly <span class="math display">\[\begin{align*}
+\end{align*}</span> Similarly <span class="math display">\begin{align*}
 \text{E}[cX]   &amp; =  \int cXf(x)dx \\
               &amp; =  c \int Xf(x) dx  \\
               &amp; = c\text{E}[X]. \\
-\end{align*}\]</span> Thus we can re-write: <span class="math display">\[\begin{align*}
+\end{align*}</span> Thus we can re-write: <span class="math display">\begin{align*}
 \text{E}[(X-\mu)^2]  &amp; = \text{E}[ X^2 - 2X\mu + \mu^2] \\
                         &amp; = \text{E}[X^2] - 2\mu\text{E}[X] + \mu^2 \\
                         &amp; = \text{E}[X^2] -2\mu^2 + \mu^2 \\
                         &amp; = \text{E}[X^2] - \mu^2 \\
 &amp; = \text{E}[X^2] - (\text{E}[X])^2.
-\end{align*}\]</span></p>
+\end{align*}</span></p>
 <p><br> <br> <br> <br></p>
 </section>
 <section id="question-6-functions-of-random-variables" class="level3">
 <h3 class="anchored" data-anchor-id="question-6-functions-of-random-variables">Question 6: Functions of Random Variables</h3>
-<p><strong>Suppose that <span class="math inline">\(\mathrm{E}[X]=\mathrm{E}[Y]=0\)</span>, <span class="math inline">\(\mathrm{var}(X)=\mathrm{var}(Y)=1\)</span>, and <span class="math inline">\(\mathrm{corr}(X,Y)=0.5\)</span>.</strong></p>
+<p><strong>Suppose that</strong> <span class="math inline">\mathrm{E}[X]=\mathrm{E}[Y]=0</span>, <span class="math inline">\mathrm{var}(X)=\mathrm{var}(Y)=1</span>, and <span class="math inline">\mathrm{corr}(X,Y)=0.5</span>.</p>
 <ol type="i">
-<li>Compute <span class="math inline">\(\mathrm{E}[3X-2Y]\)</span>; and</li>
-<li><span class="math inline">\(\mathrm{var}(3X-2Y)\)</span>.</li>
-<li>Compute <span class="math inline">\(\mathrm{E}[X^2]\)</span>.</li>
+<li>Compute <span class="math inline">\mathrm{E}[3X-2Y]</span>; and</li>
+<li><span class="math inline">\mathrm{var}(3X-2Y)</span>.</li>
+<li>Compute <span class="math inline">\mathrm{E}[X^2]</span>.</li>
 </ol>
 <p>Solution:</p>
 <ol type="i">
-<li>Using the properties of expectations, we can re-write this as: <span class="math display">\[\begin{align*}
+<li>Using the properties of expectations, we can re-write this as: <span class="math display">\begin{align*}
 \mathrm{E}[3X-2Y] &amp; = \mathrm{E}[3X] + \mathrm{E}[-2Y]\\
 &amp; = 3 \mathrm{E}[X] -2 \mathrm{E}[Y]\\
 &amp; = 3 \times 0 -2 \times 0\\
 &amp;=0
-\end{align*}\]</span></li>
+\end{align*}</span></li>
 </ol>
 <ol start="2" type="i">
-<li>Using the properties of variances, we can re-write this as: <span class="math display">\[\begin{align*}
+<li>Using the properties of variances, we can re-write this as: <span class="math display">\begin{align*}
 \mathrm{var}(3X-2Y) &amp; = 3^2\text{Var}(X) + (-2)^2\text{Var}(Y) + 2(3)(-2)\text{Cov}(XY)\\
 &amp; =  9 \times 1 + 4 \times 1 -12 \text{Corr}(XY)\sqrt{\text{Var}(X)\text{Var}(Y)}\\
 &amp; = 9+4 -12 \times 0.5\times1\\
 &amp;=7
-\end{align*}\]</span></li>
+\end{align*}</span></li>
 </ol>
 <ol start="3" type="i">
-<li>Recalling from Question 5 that the variance is <span class="math inline">\(\mathrm{var}(X) = \text{E}[X^2] - (\text{E}[X])^2\)</span>, we can re-arrange to obtain: <span class="math display">\[\begin{align*}
+<li>Recalling from Question 5 that the variance is <span class="math inline">\mathrm{var}(X) = \text{E}[X^2] - (\text{E}[X])^2</span>, we can re-arrange to obtain: <span class="math display">\begin{align*}
 \mathrm{E}[X^2] &amp; = \mathrm{var}(X) + (\mathrm{E}[X])^2\\
 &amp; = 1+(0)^2 \\
 &amp; =1
-\end{align*}\]</span></li>
+\end{align*}</span></li>
 </ol>
 </section>
 <section id="the-sampling-distribution" class="level3">
 <h3 class="anchored" data-anchor-id="the-sampling-distribution">The Sampling Distribution</h3>
-<p>Suppose we have a random sample <span class="math inline">\(\{Y_i, i=1,\dots,N \}\)</span>, where <span class="math inline">\(Y_i \stackrel{\mathrm{i.i.d.}}{\sim}N(\mu,4)\)</span> for <span class="math inline">\(i=1,\ldots,N\)</span>.</p>
+<p>Suppose we have a random sample <span class="math inline">\{Y_i, i=1,\dots,N \}</span>, where <span class="math inline">Y_i \stackrel{\mathrm{i.i.d.}}{\sim}N(\mu,4)</span> for <span class="math inline">i=1,\ldots,N</span>.</p>
 <ol type="i">
 <li>What is the variance of the <em>sample mean</em>?</li>
 </ol>
-<p><span class="math display">\[\displaystyle \mathrm{Var}(\bar{Y}) =
+<p><span class="math display">\displaystyle \mathrm{Var}(\bar{Y}) =
 \mathrm{Var}\left(\frac{1}{N}\sum_{i=1}^N Y_i\right) =
-\frac{N}{N^2}\mathrm{Var}(Y) =\frac{4}{N}\]</span>.</p>
+\frac{N}{N^2}\mathrm{Var}(Y) =\frac{4}{N}</span>.</p>
 <p>This is the derivation for the variance of the <em>sampling distribution</em>.</p>
 <p><br> </p>
 <ol start="2" type="i">
 <li>What is the expectation of the <em>sample mean</em>?</li>
 </ol>
-<p><span class="math display">\[\displaystyle\mathrm{E}[\bar{Y}] = \frac{N}{N}\mathrm{E}(Y) = \mu.\]</span> This is the mean of the <em>sampling distribution</em>.</p>
+<p><span class="math display">\displaystyle\mathrm{E}[\bar{Y}] = \frac{N}{N}\mathrm{E}(Y) = \mu.</span> This is the mean of the <em>sampling distribution</em>.</p>
 <p><br></p>
 <ol start="3" type="i">
-<li>What is the variance for another i.i.d. realization <span class="math inline">\(Y_{ N+1}\)</span>?</li>
+<li>What is the variance for another i.i.d. realization <span class="math inline">Y_{ N+1}</span>?</li>
 </ol>
-<p><span class="math inline">\(\displaystyle \mathrm{Var}(Y) = 4\)</span>, because this is a sample directly from the population distribution.</p>
+<p><span class="math inline">\displaystyle \mathrm{Var}(Y) = 4</span>, because this is a sample directly from the population distribution.</p>
 <p><br> </p>
 <ol start="4" type="i">
-<li>What is the standard error of <span class="math inline">\(\bar{Y}\)</span>?</li>
+<li>What is the standard error of <span class="math inline">\bar{Y}</span>?</li>
 </ol>
 <p>Here, again, we are looking at the distribution of the sample mean, so we must consider the sampling distribution, and the standard error (aka the standard distribution) is just the square root of the variance from part i.</p>
-<p><span class="math display">\[\displaystyle \mathrm{se}(\bar{Y}) = \sqrt{\mathrm{Var}(\bar{Y})} =\frac{2}{\sqrt{N}}\]</span>.</p>
+<p><span class="math display">\displaystyle \mathrm{se}(\bar{Y}) = \sqrt{\mathrm{Var}(\bar{Y})} =\frac{2}{\sqrt{N}}</span>.</p>
 </section>
 <section id="hypothesis-testing-and-confidence-intervals" class="level3">
 <h3 class="anchored" data-anchor-id="hypothesis-testing-and-confidence-intervals">Hypothesis Testing and Confidence Intervals</h3>
 <div class="cell">
 
 </div>
-<p>Suppose we sample some data <span class="math inline">\(\{Y_i, i=1,\dots,n \}\)</span>, where <span class="math inline">\(Y_i \stackrel{\mathrm{i.i.d.}}{\sim}N(\mu,\sigma^2)\)</span> for <span class="math inline">\(i=1,\ldots,n\)</span>, and that you want to test the null hypothesis <span class="math inline">\(H_0: ~\mu=12\)</span> <em>vs.</em> the alternative <span class="math inline">\(H_a: \mu \neq ` r m`\)</span>, at the <span class="math inline">\(0.05\)</span> significance level.</p>
+<p>Suppose we sample some data <span class="math inline">\{Y_i, i=1,\dots,n \}</span>, where <span class="math inline">Y_i \stackrel{\mathrm{i.i.d.}}{\sim}N(\mu,\sigma^2)</span> for <span class="math inline">i=1,\ldots,n</span>, and that you want to test the null hypothesis <span class="math inline">H_0: ~\mu=12</span> <em>vs.</em> the alternative <span class="math inline">H_a: \mu \neq ` r m`</span>, at the <span class="math inline">0.05</span> significance level.</p>
 <ol type="i">
-<li>What test statistic would you use? How do you estimate <span class="math inline">\(\sigma\)</span>?</li>
+<li>What test statistic would you use? How do you estimate <span class="math inline">\sigma</span>?</li>
 <li>What is the distribution for this test statistic <em>if</em> the null is true?</li>
-<li>What is the distribution for the test statistic if the null is true and <span class="math inline">\(n \rightarrow \infty\)</span>?</li>
+<li>What is the distribution for the test statistic if the null is true and <span class="math inline">n \rightarrow \infty</span>?</li>
 <li>Define the test rejection region. (I.e., for what values of the test statistic would you reject the null?)</li>
-<li>How would compute the <span class="math inline">\(p\)</span>-value associated with a particular sample?</li>
-<li>What is the 95% confidence interval for <span class="math inline">\(\mu\)</span>? How should one interpret this interval?</li>
-<li>If <span class="math inline">\(\bar{Y} = 11\)</span>, <span class="math inline">\(s_y = 1\)</span>, and <span class="math inline">\(n=9\)</span>, what is the test result? What is the 95% CI for <span class="math inline">\(\mu\)</span>?</li>
+<li>How would compute the <span class="math inline">p</span>-value associated with a particular sample?</li>
+<li>What is the 95% confidence interval for <span class="math inline">\mu</span>? How should one interpret this interval?</li>
+<li>If <span class="math inline">\bar{Y} = 11</span>, <span class="math inline">s_y = 1</span>, and <span class="math inline">n=9</span>, what is the test result? What is the 95% CI for <span class="math inline">\mu</span>?</li>
 </ol>
 <p><br> <br> </p>
-<p>This question is asking you think about the hypothesis that the mean of your distribution is equal to 12. I give you the distribution of the data themselves (i.e., that they’re normal). To test the hypothesis, you work with the sampling distribution (i.e., the distribution of the sample mean) which is: <span class="math inline">\(\bar{Y}\sim N\left(\mu, \frac{\sigma^2}{n}\right)\)</span>.</p>
+<p>This question is asking you think about the hypothesis that the mean of your distribution is equal to 12. I give you the distribution of the data themselves (i.e., that they’re normal). To test the hypothesis, you work with the sampling distribution (i.e., the distribution of the sample mean) which is: <span class="math inline">\bar{Y}\sim N\left(\mu, \frac{\sigma^2}{n}\right)</span>.</p>
 <ol type="i">
-<li>If we knew <span class="math inline">\(\sigma\)</span>, we could use as our test statistic <span class="math inline">\(z=\displaystyle \frac{\bar{y} - 12}{\sigma/\sqrt{n}}\)</span>. However, here we need to estimate <span class="math inline">\(\sigma\)</span> so we use <span class="math inline">\(z=\displaystyle \frac{\bar{y} - 12}{s_y/\sqrt{n}}\)</span> where <span class="math inline">\(\displaystyle s_{y} = \sqrt{\frac{\sum_{i=1}^n(y_i - \bar{y})^2}{n-1}}\)</span>.<br></li>
+<li>If we knew <span class="math inline">\sigma</span>, we could use as our test statistic <span class="math inline">z=\displaystyle \frac{\bar{y} - 12}{\sigma/\sqrt{n}}</span>. However, here we need to estimate <span class="math inline">\sigma</span> so we use <span class="math inline">z=\displaystyle \frac{\bar{y} - 12}{s_y/\sqrt{n}}</span> where <span class="math inline">\displaystyle s_{y} = \sqrt{\frac{\sum_{i=1}^n(y_i - \bar{y})^2}{n-1}}</span>.<br></li>
 </ol>
 <ol start="2" type="i">
-<li>If the null is true, the <span class="math inline">\(z \sim t_{n-1}(0,1)\)</span>. Since we estimate the mean frm the data, the degrees of freedom is <span class="math inline">\(n-1\)</span>.<br></li>
+<li>If the null is true, the <span class="math inline">z \sim t_{n-1}(0,1)</span>. Since we estimate the mean frm the data, the degrees of freedom is <span class="math inline">n-1</span>.<br></li>
 </ol>
 <ol start="3" type="i">
-<li>As <span class="math inline">\(n\)</span> approaches infinity, <span class="math inline">\(t_{n-1}(0,1) \rightarrow N(0,1)\)</span>.<br></li>
+<li>As <span class="math inline">n</span> approaches infinity, <span class="math inline">t_{n-1}(0,1) \rightarrow N(0,1)</span>.<br></li>
 </ol>
 <ol start="4" type="i">
-<li>You reject the null for <span class="math inline">\(\{z: |z| &gt; t_{n-1,\alpha/2}\}\)</span>.<br></li>
+<li>You reject the null for <span class="math inline">\{z: |z| &gt; t_{n-1,\alpha/2}\}</span>.<br></li>
 </ol>
 <ol start="22" type="a">
-<li>The p-value is <span class="math inline">\(2\Pr(Z_{n-1} &gt;|z|)\)</span>. <br></li>
+<li>The p-value is <span class="math inline">2\Pr(Z_{n-1} &gt;|z|)</span>. <br></li>
 </ol>
 <ol start="6" type="i">
-<li>The 95% CI is <span class="math inline">\(\bar{Y} \pm \frac{s_{y}}{\sqrt{n}} t_{n-1,\alpha/2}\)</span>.</li>
+<li>The 95% CI is <span class="math inline">\bar{Y} \pm \frac{s_{y}}{\sqrt{n}} t_{n-1,\alpha/2}</span>.</li>
 </ol>
-<p>For 19 out of 20 different samples, an interval constructed in this way will include the true value of the mean, <span class="math inline">\(\mu\)</span>. <br></p>
+<p>For 19 out of 20 different samples, an interval constructed in this way will include the true value of the mean, <span class="math inline">\mu</span>. <br></p>
 <ol start="7" type="i">
-<li><span class="math inline">\(z = (11-12)/(1/3) = -3\)</span> and <span class="math inline">\(2\Pr(Z_{8} &gt;|z|) = .017\)</span>, so we do reject the null. <br> The 95% CI for <span class="math inline">\(\mu\)</span> is <span class="math inline">\(11 \pm \frac{1}{3}2.3 = (10.23, 11.77)\)</span>.</li>
+<li><span class="math inline">z = (11-12)/(1/3) = -3</span> and <span class="math inline">2\Pr(Z_{8} &gt;|z|) = .017</span>, so we do reject the null. <br> The 95% CI for <span class="math inline">\mu</span> is <span class="math inline">11 \pm \frac{1}{3}2.3 = (10.23, 11.77)</span>.</li>
 </ol>
 <p><br> <br></p>
 

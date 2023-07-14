@@ -14,9 +14,9 @@ format:
 
 ### Hardware and Software
 
-We will be using [`R`](https://cran.r-project.org/) for all data manipulation and analyses/model fitting. Any operating system (Windows, Mac, Linux) will do, as long as you have `R` (version 3.6 or higher) installed.
+We will be using [R](https://cran.r-project.org/) for all data manipulation and analyses/model fitting. Any operating system (Windows, Mac, Linux) will do, as long as you have R (version 3.6 or higher) installed.
 
-You may use any IDE/ GUI for `R` (VScode, RStudio, Emacs, etc). For most people, [`RStudio`](https://www.rstudio.com/) is a good option. Whichever one you decide to use, please make sure it is installed and test it before the workshop. We will have a channel on Slack dedicated to software/hardware issues and troubleshooting.
+You may use any IDE/ GUI for R (VScode, RStudio, Emacs, etc). For most people, [RStudio](https://www.rstudio.com/) is a good option. Whichever one you decide to use, please make sure it is installed and test it before the workshop. We will have a channel on slack dedicated to software/hardware issues and troubleshooting.
 
 We will also be using Slack for additional support during the training. Please have these installed in advance.
 
