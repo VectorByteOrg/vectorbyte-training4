@@ -1,0 +1,539 @@
+---
+title: "VectorByte Dataset Access Script"
+format:
+  html:
+    toc: true
+    toc-location: left
+    html-math-method: katex
+    css: styles.css
+---
+
+## Pulling data into `R` using the VecTraits API (Application Programming Interface)
+
+This section will cover: Retrieving data from the [VecTraits](https://vectorbyte.crc.nd.edu/vectraits-explorer) database with the API
+
+Load some packages and run some functions ...  
+
+```{r results='hide',message=FALSE}
+require(httr)
+require(jsonlite)
+require(tidyverse)
+```
+
+```{r}
+getWebData <- function(dataURL) {
+  if (!"httr" %in% installed.packages()) {
+    cat("Installing necessary httr library...\n")
+    install.packages("httr")
+  }
+  if (!"jsonlite" %in% installed.packages()) {
+    cat("Installing necessary jsonlite library...\n")
+    install.packages("jsonlite")
+  }
+  if (!exists("webDataLibrariesOpen")) {
+    library(httr)
+    library(jsonlite)
+    webDataLibrariesOpen <- TRUE
+  }
+  webData <- GET(url = dataURL)
+  if (status_code(webData) >= 300 || status_code(webData) < 200) {
+    returnValue <- data.frame(
+      message = "Data fetch failed.",
+      HTTPcode = status_code(webData)
+    )
+    return(returnValue)
+  }
+  returnValue <- fromJSON(
+    content(webData, "text", encoding = "UTF-8"),
+    flatten = TRUE
+  )
+  return(returnValue)
+}
+
+
+getDataset <- function(ID = -1) {
+  totalDatasets <<- as.integer(getWebData("https://vectorbyte-qa.crc.nd.edu/portal/api/vectraits-explorer/?format=json")$data$count)
+  if (as.integer(ID) <= totalDatasets && as.integer(ID) > 0) {
+    datasetID <- ID
+  } else {
+    while (TRUE) {
+      Sys.sleep(0.2)
+      datasetID <- readline(prompt = "Enter a dataset ID: ")
+      if (as.integer(datasetID) <= totalDatasets && as.integer(datasetID) > 0) {
+        break
+      } else {
+        cat(paste("The dataset ID", datasetID, "is invalid or is out of range.\n"))
+        cat(paste("Please choose a number between 1 and", totalDatasets, "\b.\n"))
+      }
+    }
+  }
+  dataset <- getWebData(
+    paste(
+      c(
+        "https://vectorbyte-qa.crc.nd.edu/portal/api/vectraits-dataset/",
+        datasetID,
+        "/?format=json"
+      ),
+      collapse = ""
+    )
+  )
+  if (as.character(dataset)[1] == "Data fetch failed.") {
+    cat("Uh Oh!\nAn HTTP Error Occured and dataset", datasetID, "could not be retrieved.\n")
+    cat("HTTP Error Code:", dataset$HTTPcode, "\b\n\n")
+  }
+  return(dataset)
+}
+
+
+getDatasets <- function(IDS, safety = TRUE, l = 50L) {
+  Sys.sleep(0.2)
+  IDs <- IDS
+  if (length(IDs) > l) {
+    cat("You may not retrieve more than", l, "datasets at a time.\n")
+    cat("Would you like to retrieve only the first 50 datasets?\n")
+    answer <- tolower(readline())
+    if (grepl("y", answer) && !grepl("n", answer)) {
+      IDs <- IDs[1:50]
+    } else {
+      return()
+    }
+  }
+  if (safety && length(IDs) > 50) {
+    cat("Are you sure you want to retrieve all", length(IDs), "datasets?\n")
+    cat(paste("This would take about", ceiling(length(IDs) / 50), "min.\n"))
+    answer <- tolower(readline())
+  } else {
+    cat(paste("This will take about", ceiling(60 * length(IDs) / 50), "seconds.\n"))
+    answer <- "y"
+  }
+  if (grepl("y", answer) && !grepl("n", answer)) {
+    total <- length(IDs)
+    setNumber <- 0
+    failedDatasets <<- c()
+    datasets <- list()
+    cat("Retrieving datasets....\n")
+    for (datasetID in IDs) {
+      setNumber <- setNumber + 1
+      flush.console()
+      datasets[[setNumber]] <- getWebData(
+        paste(
+          c(
+            "https://vectorbyte-qa.crc.nd.edu/portal/api/vectraits-dataset/",
+            as.character(datasetID),
+            "/?format=json"
+          ),
+          collapse = ""
+        )
+      )
+      # Remove previously displayed percentage:
+      cat(paste(
+        rep("\b", nchar(
+          as.character(
+            (floor(10000 * (setNumber - 1) / total) / 100)
+          )
+        ) + 3),
+        collapse = ""
+      ))
+      # Extend loading bar:
+      if (as.character(datasets[[setNumber]])[1] == "Data fetch failed.") {
+        cat("X> ")
+        failedDatasets <- c(failedDatasets, datasetID)
+      } else {
+        cat("=> ")
+      }
+      # Display new percentage:
+      cat(as.character(floor(10000 * setNumber / total) / 100), "\b%")
+    }
+    cat("\b\b\b\b\b\b 100%\nData retrieval complete!\n")
+    if (length(failedDatasets) > 0) {
+      cat("The following", length(failedDatasets), "datasets contained HTTP errors and could not be retrieved:\n")
+      print(failedDatasets)
+    }
+    return(datasets)
+  }
+}
+
+
+searchDatasets <- function(KEYWORD = "", safety = TRUE) {
+  keyword <- KEYWORD
+  while (nchar(keyword) < 3) {
+    Sys.sleep(0.2)
+    keyword <- readline(prompt = "Enter a keyword to search for in all datasets: ")
+    if (nchar(keyword) < 3) {
+      cat("Please enter a more descriptive keyword.\n")
+    }
+  }
+  cat("Searching Datasets....\n")
+  flush.console()
+  setSearch <- getWebData(
+    paste(
+      c(
+        "https://vectorbyte.crc.nd.edu/portal/api/vectraits-explorer/?format=json&keywords=",
+        gsub(" ", "%20", keyword)
+      ),
+      collapse = ""
+    )
+  )
+  if (as.character(setSearch)[1] == "Data fetch failed.") {
+    cat("Uh Oh!\nAn HTTP error has occurred:", setSearch$HTTPcode, "\n")
+    cat("This could be because the search term you entered was too general (too many results).\n")
+    cat("Please try again:\n")
+    searchDatasets()
+  } else {
+    cat(length(setSearch$ids), "relevant datasets found.\n")
+    return(getDatasets(setSearch$ids, safety))
+  }
+}
+
+
+searchDatasetsMulti <- function(KEYWORDS = c(), safety = TRUE) {
+  if (length(KEYWORDS) == 0) {
+    Sys.sleep(0.2)
+    cat("Please enter a list of keywords to search for in the datasets:\n")
+    keywords <- c()
+    while (length(keywords) == 0) {
+      keywords <- scan(what = "")
+    }
+  } else {
+    keywords <- KEYWORDS
+  }
+  cat("Searching Datasets....\n")
+  flush.console()
+  setSearch <- getWebData(
+    paste(
+      c(
+        "https://vectorbyte.crc.nd.edu/portal/api/vectraits-explorer/?format=json&keywords=",
+        gsub(" ", "%20", paste(keywords, collapse = "%20"))
+      ),
+      collapse = ""
+    )
+  )
+  if (as.character(setSearch)[1] == "Data fetch failed.") {
+    cat("Uh Oh!\nAn HTTP error has occurred:", setSearch$HTTPcode, "\n")
+    cat("This could be because the search term you entered had too many results.\n")
+    cat("This could also be because the search term you entered had no results.\n")
+    cat("Please try again:\n")
+    searchDatasetsMulti()
+  } else {
+    cat(length(setSearch$ids), "relevant datasets found.\n")
+    return(getDatasets(setSearch$ids, safety))
+  }
+}
+
+
+smartSearch <- function(VARIABLE_NAME, VARIABLE_VALUE, OPERATOR = "contains", safety = TRUE) {
+  operator <- tolower(OPERATOR)
+  if (operator != "contains") {
+    if (operator == "contain" || operator == "has") { operator <- "contains" }
+    if (operator == "!contain" || operator == "!contains" || operator == "!has" || operator == "!have" || operator == "does not contain") { operator <- "ncontains" }
+    if (operator == "=" || operator == "==" || operator == "equal" || operator == "equals") { operator <- "eq" }
+    if (operator == "!=" || operator == "not" || operator == "!equal" || operator == "!equals") { operator <- "neq" }
+    if (operator == "starts with" || operator == "start with" || operator == "starts" || operator == "start") { operator <- "sw" }
+    if (operator == "not start with" || operator == "!start" || operator == "!starts") { operator <- "nsw" }
+  }
+  variable_name <- VARIABLE_NAME
+  if (tolower(variable_name) == "genus") { variable_name <- "Interactor1Genus" }
+  if (tolower(variable_name) == "species") { variable_name <- "Interactor1Species" }
+  if (tolower(variable_name) == "gender") { variable_name <- "Interactor1Sex" }
+  if (tolower(variable_name) == "who") { variable_name <- "SubmittedBy" }
+  if (tolower(variable_name) == "stage") { variable_name <- "Interactor1Stage" }
+  cat("Searching Datasets....\n")
+  flush.console()
+  setSearch <- getWebData(
+    paste(
+      c(
+        "https://vectorbyte.crc.nd.edu/portal/api/vectraits-explorer/?format=json&field=",
+        gsub(" ", "%20", variable_name),
+        "&operator=",
+        operator,
+        "&term=",
+        gsub(" ", "%20", VARIABLE_VALUE)
+      ),
+      collapse = ""
+    )
+  )
+  if (as.character(setSearch)[1] == "Data fetch failed.") {
+    if (setSearch$HTTPcode == 400) {
+      cat("Uh Oh!\nThe server does not wish to fulfill your request.\n")
+      cat("This could be because you included unsupported/reserved URL characters, such as:\n")
+      cat(", ! @ # $ % ^ & : ; \\ \" ' ? / < > emojis etc.\n")
+      cat("This could also be because too many results matched your search.\n")
+      cat("(Don't search for \"Animalia\" in \"Interactor1Kingdom\", for example.)\n")
+      cat("This could also be because you used the incorrect capitalization in the variable name entry.\n")
+      if (OPERATOR != "contains") {
+        cat("This could also very likely be because the operator you entered is not supported.\n")
+        cat("The following operators are supported by the server:\n")
+        cat("contains, ncontains, eq (equals), neq (not equal to), sw (starts with),\nnsw (doesn't start with), in, nin\n")
+      }
+    } else {
+      cat("Uh Oh!\nAn HTTP error has occurred:", setSearch$HTTPcode, "\n")
+      if (setSearch$HTTPcode == 404) {
+        cat("The most likely reason for this is that no results matched your search.")
+      }
+    }
+  } else {
+    cat(length(setSearch$ids), "relevant datasets found.\n")
+    return(getDatasets(setSearch$ids, safety))
+  }
+}
+
+
+sciName <- function(DATASET) {
+  return(paste(
+    DATASET$results$Interactor1Genus[1],
+    DATASET$results$Interactor1Species[1]
+  ))
+}
+
+
+datasetRows <- function(DATASET) {
+  return(length(DATASET$results$DatasetID))
+}
+
+
+datasetColumns <- function(DATASET) {
+  return(length(DATASET$results[1,]))
+}
+
+
+datasetSummary <- function(DATASET) {
+  cat(paste(
+    toupper(DATASET$results$OriginalTraitDef[1]),
+    "in",
+    toupper(DATASET$results$OriginalTraitUnit[1]),
+    "\b:\n"
+  ))
+  print(summary(DATASET$results$OriginalTraitValue))
+  if (!is.na(DATASET$results$Interactor1Common[1])) {
+    cat("Experiments done on", DATASET$results$Interactor1Common[1])
+    if (is.na(DATASET$results$Interactor2Common[1])) {
+      cat("s.\n")
+    } else {
+      cat(paste(
+        c(
+          "s and ",
+          DATASET$results$Interactor2Common[1],
+          "s.\n"
+        ),
+        collapse = ""
+      ))
+    }
+  }
+  cat(datasetRows(DATASET), "samples total.\n")
+}
+
+
+pick <- function(SELECTION = 0) {
+  if (SELECTION == 0) {
+    cat("MENU:\n [1] Retrieve dataset by ID\n [2] Retrieve datasets by IDs\n [3] Search for datasets by keyword\n [4] Search for datasets by list of keywords\n [5] Search for datasets by variable and value\n")
+    Sys.sleep(0.25)
+    answer <- as.integer(readline(prompt = "Enter a number from the menu above to select it. "))
+  } else {
+    answer <- SELECTION
+  }
+  Sys.sleep(0.25)
+  if (answer == 1) {
+    return(getDataset())
+  }
+  if (answer == 2) {
+    cat("Enter a list of dataset IDs below.\n")
+    datasetIDs <- scan(what = integer())
+    return(getDatasets(datasetIDs))
+  }
+  if (answer == 3) {
+    return(searchDatasets())
+  }
+  if (answer == 4) {
+    return(searchDatasetsMulti())
+  }
+  if (answer == 5) {
+    vname <- readline(prompt = "Variable Name: ")
+    Sys.sleep(0.2)
+    vval <- readline(prompt = "Variable Value: ")
+    return(smartSearch(vname, vval))
+  }
+}
+```
+### Examples
+
+```{r}
+dataset50 <- getDataset(50) # Get dataset with ID 50
+head(dataset50)
+```
+<br>
+
+Get a list of datasets by their ID numbers: 
+```{r}
+list_of_dataframes <- getDatasets(c(1:10))
+```
+<br>
+Use `do.call` and `lapply` to create a single dataframe containing all of the datasets you pulled in the previous step:
+
+```{r}
+datasets1to10 <- do.call(rbind,lapply(list_of_dataframes, data.frame, stringsAsFactors=FALSE))
+head(datasets1to10)
+```
+### Remove unneeded prefixes from column names
+
+```{r}
+datasets1to10 <- datasets1to10 %>%
+  `colnames<-`(str_to_lower(colnames(.))) %>%
+  `colnames<-`(str_remove(colnames(.), "(results)")) %>%
+  `colnames<-`(str_remove(colnames(.), "."))
+```
+
+## Search for and list datasets on a specific genus
+
+```{r}
+list_of_AedesDatasets <- searchDatasets("Aedes")
+```
+<br>
+This will prompt you with something like the following:
+
+<br>
+***"Searching Datasets....
+80 relevant datasets found.
+You may not retrieve more than 50 datasets at a time.
+Would you like to retrieve only the first 50 datasets?"***
+<br>
+
+To which you can respond with "Y" and run the following code to ...
+
+### Print a list of datasets on *Aedes* mosquitoes
+
+```{r, results='hide'}
+for (i in 1:length(list_of_AedesDatasets)) {
+  print(list_of_AedesDatasets[[i]]$results$DatasetID[1])
+}
+```
+<br>
+You can then use the code above to pull all of the data that's currently in VecTraits on *Aedes*
+
+### Other options
+
+#### Retrieve Multiple Datasets by Their IDs
+
+Format:
+
+`list_of_dataframes <- getDatasets(<Vector, List, or Range of IDs>)`
+
+Examples:
+```{r}
+list_of_dataframes <- getDatasets(c(10, 20, 35)) # Get datasets 10, 20, and 35
+list_of_dataframes <- getDatasets(seq(200, 240, 10)) # Get datasets 200, 210, 220, 230, and 240
+list_of_dataframes <- getDatasets(list(50, 1, 580, 20)) # Get datasets 1, 20, 50, and 580
+list_of_dataframes <- getDatasets(320:324) # Get datasets 320, 321, 322, 323, and 324
+```
+
+### Retrieve List of Datasets Related To Keyword
+
+Format:
+`list_of_dataframes <- searchDatasets(<Keyword>)`
+
+Examples:
+```{r}
+list_of_dataframes <- searchDatasets("tiger mosquito") # Get datasets related to tiger mosquitos
+```
+
+### Retrieve List of Datasets Related To Multiple Keywords
+
+Format:
+`list_of_dataframes <- searchDatasetsMulti(<Vector or List of Keywords>)`
+
+Examples:
+
+(All the following retrieve datasets related to yellow fever & terrestrial areas in North Carolina)
+```{r}
+list_of_dataframes <- searchDatasetsMulti(c("terrestrial", "north carolina", "yellow fever"))
+list_of_dataframes <- searchDatasetsMulti(list("terrestrial", "north carolina", "yellow fever"))
+list_of_dataframes <- searchDatasetsMulti(c("TERRESTRIAL", "NORTH CAROLINA", "YELLOW FEVER"))
+list_of_dataframes <- searchDatasetsMulti(list("tERRestRiAL", "NoRTh CARoLina", "YELLow feVer"))
+```
+
+### Retrieve List of Datasets By Column Values
+
+Format:
+
+`list_of_dataframes <- smartSearch(<Column Name>, <Column Value>, <Optional Operator>)`
+
+Examples:
+```{r}
+list_of_dataframes <- smartSearch("Interactor1Genus", "culex") # Datasets with genus Culex
+list_of_dataframes <- smartSearch("SubmittedBy", "Lachance") # Datasets submitted by Lachance
+list_of_dataframes <- smartSearch("Interactor2Species", "null", "neq") # Datasets with second interactor
+list_of_dataframes <- smartSearch("OriginalTraitName", "survival", "eq") # Datasets strictly about survival
+```
+
+### The `pick()` Function
+
+If all the information above was too much and there’s no way you’re going to remember it, all you need to know is the `pick()` function.  The `pick()` function displays a small menu and allows you to choose an option in order for you to find and retrieve whatever dataset(s) you may be looking for.
+
+Format:
+
+`x <- pick()`
+
+### Access Dataframes In Lists
+
+When multiple datasets are retrieved and stored in a list of dataframes, you can access individual datasets with the following format:
+
+`first_dataframe <- list_of_dataframes[[1]]`
+
+`second_dataframe <- list_of_dataframes[[2]]`
+
+...and so on for every dataframe in the list.
+
+Example:
+
+To print a list of the names of those who contributed to the datasets related to tiger mosquitos:
+
+```{r}
+list_of_dataframes <- searchDatasets("tiger mosquito")
+for (i in 1:length(list_of_dataframes)) {
+  print(list_of_dataframes[[i]]$results$SubmittedBy[1])
+}
+```
+
+### Access Data In Dataframes
+
+To access variable `x` in row `y` of a dataset stored as a dataframe, use the `$` symbol and square brackets `[]`:
+
+`variable_value <- dataframe$results$x[y]`
+
+For example, if you had a dataset stored as a dataframe and you wanted to know the Genus of Interactor 1 in the fifth row, you could get that with the following code:
+
+`dataframe$results$Interactor1Genus[5]`
+
+The same format also works for dataframes in lists.  For example, you could run the following to get the original trait value in row 3 of the fourth dataset in the list:
+
+`list_of_dataframes[[4]]$results$OriginalTraitValue[3]`
+
+The same format also works on raw functions, although it is recommended that retrieved datasets are immediately stored in an `R` object:
+
+`getDataset(5)$results$SubmittedBy[1] # Name of person who submitted the dataset with ID 5`
+
+### Minor Additional Functions
+
+`datasetSummary(DATASET)`
+
+Summary:	Prints summary of data within dataset
+Parameters:	DATASET = A dataset as a dataframe, such as getDataset(1)
+Returns:	Nothing
+
+`sciName(DATASET)`
+
+Summary:	Finds the scientific name of the main interactor within the dataset
+Parameters:	DATASET = A dataset as a dataframe, such as getDataset(1)
+Returns:	Scientific Name of main interactor within dataset, as string
+
+`datasetRows(DATASET)`
+
+Summary:	Finds the number of rows/samples in a dataset
+Parameters:	DATASET = A dataset as a dataframe, such as getDataset(1)
+Returns:	Number of rows, as integer
+
+`datasetColumns(DATASET)`
+
+Summary:	Finds the number of columns/variables in a dataset
+Parameters:	DATASET = A dataset as a dataframe, such as getDataset(1)
+Returns:	Number of columns, as integer
+
