@@ -470,7 +470,7 @@ ggplot(briere_fit)+
 
 <br>
 
-This suggests that optimal temperature for adult lifespan in *Aedes aegypti* is 25.8 degrees Celsius! Can you now figure out how to get the credible intervals for $T_{pk}$ and the trait value at $T_{pk}$?
+This suggests that the optimal temperature for adult lifespan in *Aedes aegypti* is 25.8 degrees Celsius! Can you now figure out how to get the credible intervals for $T_{pk}$ and the trait value at $T_{pk}$?
 
 # Other *Aedes aegypti* traits (Independent Practice)
 

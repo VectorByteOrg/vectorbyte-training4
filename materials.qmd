@@ -32,7 +32,7 @@ We are assuming familiarity with R basics. In addition, we recommend that you do
 
 4.  Inculcate the coding Jedi inside of you - or the Sith - whatever works.
 
-<br>    <br>
+<br> <br>
 
 ## Introduction to the VecTraits database[^1]
 
@@ -40,16 +40,17 @@ We are assuming familiarity with R basics. In addition, we recommend that you do
 
 -   This component will be delivered live & synchronously. The VecTraits website can be found [here](https://vectorbyte.crc.nd.edu/vectraits-explorer). It might be an idea to explore this prior to the workshop.
 
+[Intro to the VecTraits API](Intro_to_API.qmd)
 
-<br>    <br>
+<br> <br>
 
 ## Introduction to traits
 
 -   [Lecture slides](intro_to_traits.pdf)
 
--   [Cator *et al*. 2020. The Role of Vector Trait Variation in Vector-Borne Disease Dynamics](Cator et al. 2020. The Role of Vector Trait Variation in Vector-Borne Disease Dynamics.pdf)
+-   [Cator *et al*. 2020. The Role of Vector Trait Variation in Vector-Borne Disease Dynamics](Cator%20et%20al.%202020.%20The%20Role%20of%20Vector%20Trait%20Variation%20in%20Vector-Borne%20Disease%20Dynamics.pdf)
 
-<br>    <br>
+<br> <br>
 
 ## Data Wrangling in R
 
@@ -60,8 +61,8 @@ We are assuming familiarity with R basics. In addition, we recommend that you do
     -   [Huxley et al Trait Data](activities/data/traitdata_Huxleyetal_2021.csv)
     -   [Genome Size](activities/data/GenomeSize.csv)
     -   [Wrangling Practical Data](activities/data/wranglingdataset.csv)
-    
-<br>    <br>
+
+<br> <br>
 
 ## Introduction to Linear Models
 
@@ -71,7 +72,7 @@ We are assuming familiarity with R basics. In addition, we recommend that you do
     -   [Huxley *et al.* Trait Data](activities/data/traitdata_Huxleyetal_2021.csv)
     -   [Linear Models Practical Data](activities/data/lmdataset.csv)
 
-<br>    <br>
+<br> <br>
 
 ## Nonlinear Modeling (including Thermal Performance Curves -- TPCs)
 
@@ -81,18 +82,24 @@ We are assuming familiarity with R basics. In addition, we recommend that you do
     -   [*Aedes* juvenile mortality data](activities/data/juvenilemortalityrateae.csv)
     -   [NLLS Practical Data](activities/data/nllsdataset.csv)
 
-<br>    <br>
-    
-## Intro to Bayes 
+<br> <br>
+
+## Intro to Bayes
+
 -   [Lecture Slides](VB_Bayes1.qmd), [Practical 1](VB_Bayes_activity1.qmd)
 -   Datasets:
-    -   [Midge data](MidgeWingLength.csv) 
-    
-<br>    <br>
-                                                                               
+    -   [Midge data](MidgeWingLength.csv)
+
+<br> <br>
+
 ## Bayesian computation and MCMC
+
 -   [Lecture Slides](VB_Bayes2.qmd), [Practical 2A](VB_Bayes_activity2.Qmd)
 
-<br>    <br>
+<br> <br>
 
-## `bayesTPC`                            
+## `bayesTPC`
+
+-   [Practical](VB_Bayes_activity2B.qmd) 
+-   Datasets:
+    -  [*Aedes* data](AeaegyptiTraitData.csv) 
