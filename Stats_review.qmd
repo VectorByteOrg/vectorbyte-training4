@@ -457,7 +457,7 @@ legend("topright", legend=c("N(0,1)", "t, df=2", "t, df=5", "t, df=50"),
 
 Instead of working with the underlying Normal or t distribution, we often instead work with standardized quantities. That is, we transform to the standard distributions, e.g. the standard normal with mean 0 and variance 1:
 
-$\frac{\mu - \bar{\theta}}{\sigma} \sim N(0,1) \;\;\; \mathbf{\Longrightarrow \;\;\;  \frac{\mu - \bar{\theta}}{s} \sim t_{n-p}(0,1)}$
+$\frac{\mu - \bar{\theta}}{\sigma} \sim N(0,1) \;\;\; \mathbf{\Longrightarrow \;\;\; \frac{\mu - \bar{\theta}}{s} \sim t_{n-p}(0,1)}$
 
 We will typically use $Z \sim N(0,1)$ (also called the Z-score) and $Z_{n-p} \sim t_{n-p}(0,1)$ to represent standardized random variables from normal and Student-$t$ distributions, respectively.
 

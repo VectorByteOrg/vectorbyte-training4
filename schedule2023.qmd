@@ -39,34 +39,34 @@ Although there will be input at the start of most sessions, much of the synchron
 
 # 18th July 2023 (08:30 - 17:00)
 
-| Time  | Activity                                      | Materials                                             |
-|---------------|-----------------------------------|----------------------|
-| 08:30 | Course overview                               |                                                       |
-| 09:00 | Intro to traits                               | [Slides](intro_to_traits.pdf); [Paper](Cator2020.pdf) |
-| 10:30 | Break                                         |                                                       |
-| 11:00 | Intro to the VecTraits database               | [VecTraits](https://tinyurl.com/mu8awx57); [API](Intro_to_API.qmd)|
-| 12:00 | Lunch                                         |                                                       |
-| 13:00 | Tutorial: Data wrangling and visualizing data | [Data wrangling](data_wrangling.qmd)                  |
-| 15:00 | Break                                         |                                                       |
-| 15:30 | Statistical Analyses I: Linear models         | [Linear models](linear_mod_activity.qmd)              |
+| Time  | Activity                                      | Materials                                                          |
+|-------|-----------------------------------------------|--------------------------------------------------------------------|
+| 08:30 | Course overview                               |                                                                    |
+| 09:00 | Intro to traits                               | [Slides](intro_to_traits.pdf); [Paper](Cator2020.pdf)              |
+| 10:30 | Break                                         |                                                                    |
+| 11:00 | Intro to the VecTraits database               | [VecTraits](https://tinyurl.com/mu8awx57); [API](Intro_to_API.qmd) |
+| 12:00 | Lunch                                         |                                                                    |
+| 13:00 | Tutorial: Data wrangling and visualizing data | [Data wrangling](data_wrangling.qmd)                               |
+| 15:00 | Break                                         |                                                                    |
+| 15:30 | Statistical Analyses I: Linear models         | [Linear models](linear_mod_activity.qmd)                           |
 
 <br> <br> <br>
 
 # 19th July 2023 (08:30 - 17:00)
 
-| Time  | Activity                      | Materials                                                       |
-|-------|-------------------------------|-----------------------------------------------------------------|
-| 08:30 | Q & A                         |                                                                 |
-| 09:00 | Allometric analysis using LMs | [Linear models](linear_mod_activity.qmd)                        |
-| 10:30 | Break                         |                                                                 |
-| 11:00 | Linear vs. Nonlinear models   | [Practical](VB_NLLS_activity.qmd)                               |
-| 12:00 | Lunch                         |                                                                 |
-| 13:00 | Intro to Bayes                | [Lecture](VB_Bayes1.qmd); [Practical 1](VB_Bayes_activity1.qmd) |
-| 14:00 | Break                         |                                                                 |
-| 14:15 | Bayesian computation and MCMC | [Lecture](VB_Bayes2.qmd); [Practical 2](VB_Bayes_activity2.Qmd) |
-| 15:15 | Break                         |                                                                 |
+| Time  | Activity                      | Materials                                                            |
+|-------|-------------------------------|----------------------------------------------------------------------|
+| 08:30 | Q & A                         |                                                                      |
+| 09:00 | Allometric analysis using LMs | [Linear models](linear_mod_activity.qmd)                             |
+| 10:30 | Break                         |                                                                      |
+| 11:00 | Linear vs. Nonlinear models   | [Practical](VB_NLLS_activity.qmd)                                    |
+| 12:00 | Lunch                         |                                                                      |
+| 13:00 | Intro to Bayes                | [Lecture](VB_Bayes1.qmd); [Practical 1](VB_Bayes_activity1.qmd)      |
+| 14:00 | Break                         |                                                                      |
+| 14:15 | Bayesian computation and MCMC | [Lecture](VB_Bayes2.qmd); [Practical 2](VB_Bayes_activity2.Qmd)      |
+| 15:15 | Break                         |                                                                      |
 | 15:30 | Fitting TPCs with `bayesTPC`  | [Practical](VB_Bayes_activity2B.qmd); [Data](AeaegyptiTraitData.csv) |
-| 16:30 | Choose projects               |                                                                 |
+| 16:30 | Choose projects               |                                                                      |
 
 # 20th July 2023 (10:00 - 1:00)
 

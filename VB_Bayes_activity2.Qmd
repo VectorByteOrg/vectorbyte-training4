@@ -29,6 +29,7 @@ require(IDPmisc) # makes nice colored pairs plots to look at joint posteriors
 
 ##require(mcmcplots) # another option for diagnostic plots, currently unused
 ```
+
 # Fitting Models the Bayesian way
 
 Recall from the lectures (see above for links!) that in order to make inference statements (for example, credible intervals) that we need to either 1) known the full form of the posterior distribution or 2) have numerical samples from the target distribution. For the second option, we need the samples to be **good** -- that is they need to be samples from the posterior and we need the samples in the Markov Chain to be not too highly correlated with each other. Thus our numerical steps in our analysis would be as follows:

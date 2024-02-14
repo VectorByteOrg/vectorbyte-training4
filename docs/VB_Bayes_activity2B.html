@@ -355,10 +355,11 @@ q T (T-T_0) \sqrt{T_m-T} &amp; \text {if } T_0 &lt; T &lt;T_m \\
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_models</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "binomial_glm_lin"  "binomial_glm_quad" "briere"           
- [4] "gaussian"          "kamykowski"        "pawar_shsch"      
- [7] "quadratic"         "ratkowsky"         "stinner"          
-[10] "weibull"          </code></pre>
+<pre><code> [1] "poisson_glm_lin"    "poisson_glm_quad"   "binomial_glm_lin"  
+ [4] "binomial_glm_quad"  "bernoulli_glm_lin"  "bernoulli_glm_quad"
+ [7] "briere"             "gaussian"           "kamykowski"        
+[10] "pawar_shsch"        "quadratic"          "ratkowsky"         
+[13] "stinner"            "weibull"           </code></pre>
 </div>
 </div>
 <p>We can view the form of the implemented TPC using the <code>get_formula</code> function:</p>
@@ -386,103 +387,65 @@ q T (T-T_0) \sqrt{T_m-T} &amp; \text {if } T_0 &lt; T &lt;T_m \\
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>AedTestFit<span class="ot">&lt;-</span> <span class="fu">b_TPC</span>(<span class="at">data =</span> lf.data.bTPC, <span class="at">model =</span> <span class="st">'quadratic'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Creating NIMBLE model:</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Defining model</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Building model</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Setting data and initial values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Running calculate on model
-  [Note] Any error reports that follow may simply reflect missing values in model variables.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Checking model sizes and dimensions</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>  [Note] This model is not fully initialized. This is not an error.
-         To see which variables are not initialized, use model$initializeInfo().
-         For more information on model initialization, see help(modelInitialization).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Compiling
-  [Note] This may take a minute.
-  [Note] Use 'showCompilerOutput = TRUE' to see C++ compilation details.</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>===== Monitors ===== 
-thin = 1: q, sigma.sq, T_max, T_min
-===== Samplers ===== 
-RW sampler (4)
-  - q
-  - T_max
-  - T_min
-  - sigma.sq
+<pre><code>Creating NIMBLE model:
+ - Configuring model.
+ - Compiling model.
 
-Running MCMC:</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Compiling
-  [Note] This may take a minute.
-  [Note] Use 'showCompilerOutput = TRUE' to see C++ compilation details.</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>|-------------|-------------|-------------|-------------|
-|-------------------------------------------------------|</code></pre>
+Creating MCMC:
+ - Configuring MCMC.
+ - Compiling MCMC.
+ - Running MCMC.
+
+Progress:
+|-------------|-------------|-------------|-------------|
+|-------------------------------------------------------|
+
+Configuring Output:
+ - Finding Max. a Post. parameters.</code></pre>
 </div>
 </div>
 <p><br> We can examine the object that is saved. It includes the data, information on the priors, numbers of samples, and the samples themselves.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(AedTestFit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(AedTestFit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "samples"      "mcmc"         "data"         "model_type"   "priors"      
-[6] "constants"    "uncomp_model"</code></pre>
+<pre><code>[1] "samples"        "mcmc"           "data"           "model_spec"    
+[5] "priors"         "constants"      "uncomp_model"   "comp_model"    
+[9] "MAP_parameters"</code></pre>
 </div>
 </div>
 <p><br> We’ll mostly be using the samples:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(AedTestFit<span class="sc">$</span>samples) <span class="co"># number of samples then number of params</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(AedTestFit<span class="sc">$</span>samples) <span class="co"># number of samples then number of params</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 10000     4</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(AedTestFit<span class="sc">$</span>samples) <span class="co"># show first few sets of samples</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(AedTestFit<span class="sc">$</span>samples) <span class="co"># show first few sets of samples</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Markov Chain Monte Carlo (MCMC) output:
 Start = 1 
 End = 7 
 Thinning interval = 1 
-        T_max    T_min         q sigma.sq
-[1,] 44.43478 14.62259 0.1137034 4.819677
-[2,] 44.43478 13.73256 0.1137034 4.819677
-[3,] 44.43478 13.73256 0.1137034 4.819677
-[4,] 43.59761 13.73256 0.1137034 5.195313
-[5,] 43.59761 13.73256 0.1137034 5.770068
-[6,] 43.58247 12.79661 0.1137034 6.872366
-[7,] 42.87303 12.29535 0.1137034 6.872366</code></pre>
+        T_max    T_min         q  sigma.sq
+[1,] 44.43478 14.62259 0.1137034 0.3597339
+[2,] 44.43478 13.73256 0.1137034 0.3597339
+[3,] 43.65853 13.73256 0.1137034 0.3597339
+[4,] 43.65853 12.89538 0.1137034 2.7755691
+[5,] 43.65853 12.89538 0.1137034 3.4995452
+[6,] 43.66992 12.88025 0.1137034 3.4995452
+[7,] 41.46557 12.88025 0.1137034 3.4995452</code></pre>
 </div>
 </div>
 <p><br> Notice that the samples are of type MCMC, which means they’ve been formatted with the coda package (which <code>bayesTPC</code> uses for some of the plotting and diagnostics). Further, by default we take 10000 samples, no burnin, using a random walk sampler.</p>
 <p>But we may also want to check what model we fit and the priors that were set:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>AedTestFit<span class="sc">$</span>model_type</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>AedTestFit<span class="sc">$</span>model_type</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "quadratic"</code></pre>
+<pre><code>NULL</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>AedTestFit<span class="sc">$</span>priors</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>AedTestFit<span class="sc">$</span>priors</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                                       q 
-                           "dunif(0, 1)" 
-                                   T_max 
-                         "dunif(25, 60)" 
-                                   T_min 
-                          "dunif(0, 24)" 
-                                sigma.sq 
-"T(dt(mu = 0, tau = 1/10, df = 1), 0, )" </code></pre>
+<pre><code>              q           T_max           T_min        sigma.sq 
+  "dunif(0, 1)" "dunif(25, 60)"  "dunif(0, 24)"       "dexp(1)" </code></pre>
 </div>
 </div>
 </section>
@@ -490,7 +453,7 @@ Thinning interval = 1
 <h2 class="anchored" data-anchor-id="mcmc-diagnostics">MCMC diagnostics</h2>
 <p>We’ll show you a few different ways to examine the output. View the summary of parameters (only the first 5 lines, or it will also show you all of your derived quantities):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(AedTestFit<span class="sc">$</span>samples)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(AedTestFit<span class="sc">$</span>samples)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Iterations = 1:10000
@@ -501,25 +464,25 @@ Sample size per chain = 10000
 1. Empirical mean and standard deviation for each variable,
    plus standard error of the mean:
 
-            Mean       SD  Naive SE Time-series SE
-T_max    39.0788  1.70623 0.0170623        0.16478
-T_min     6.9664  2.26052 0.0226052        0.23750
-q         0.1152  0.03007 0.0003007        0.00413
-sigma.sq 43.5310 14.51913 0.1451913        0.66528
+            Mean      SD  Naive SE Time-series SE
+T_max    38.8457 0.95978 0.0095978        0.10429
+T_min     7.0070 1.29363 0.0129363        0.11542
+q         0.1143 0.01656 0.0001656        0.00184
+sigma.sq 18.3153 2.69360 0.0269360        0.07896
 
 2. Quantiles for each variable:
 
-             2.5%      25%    50%     75%   97.5%
-T_max    36.25542 37.95629 38.912 39.9542 43.4823
-T_min     1.87988  5.66072  7.134  8.3285 11.5630
-q         0.06522  0.09488  0.112  0.1305  0.1899
-sigma.sq 23.55891 33.88284 40.889 50.0216 78.8200</code></pre>
+             2.5%     25%     50%     75%  97.5%
+T_max    37.16792 38.2081 38.7693 39.4050 40.931
+T_min     4.31775  6.1506  7.1022  7.9302  9.258
+q         0.08321  0.1029  0.1133  0.1254  0.150
+sigma.sq 13.75419 16.5385 18.0920 19.9931 23.988</code></pre>
 </div>
 </div>
 <p><br> We can also assess this visually by plotting the chains of the three main TPC parameters and the standard devation of the normal observation model:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">traceplot</span>(AedTestFit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">traceplot</span>(AedTestFit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -531,12 +494,12 @@ sigma.sq 23.55891 33.88284 40.889 50.0216 78.8200</code></pre>
 <p>These all seem to be mixing alright, although we can see that we need to drop a bit of the burn-in.</p>
 <p>We can examine the ACF of the chains as well (one for each parameter), similarly to a time series, to again check for autocorrelation within the chain (we want the autocorrelation to be fairly low):</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>s1<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(AedTestFit<span class="sc">$</span>samples)</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) {</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">acf</span>(s1[,i], <span class="at">lag.max=</span><span class="dv">50</span>, <span class="at">main=</span><span class="st">""</span>,</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">ylab =</span> <span class="fu">paste</span>(<span class="st">"ACF: "</span>, <span class="fu">names</span>(s1)[i], <span class="at">sep=</span><span class="st">""</span>))</span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>s1<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(AedTestFit<span class="sc">$</span>samples)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) {</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">acf</span>(s1[,i], <span class="at">lag.max=</span><span class="dv">50</span>, <span class="at">main=</span><span class="st">""</span>,</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">ylab =</span> <span class="fu">paste</span>(<span class="st">"ACF: "</span>, <span class="fu">names</span>(s1)[i], <span class="at">sep=</span><span class="st">""</span>))</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -548,7 +511,7 @@ sigma.sq 23.55891 33.88284 40.889 50.0216 78.8200</code></pre>
 <p>There is still a bit of autocorrelation, especially for the 3 quadratic parameters, but it isn’t too bad. The chain for <span class="math inline">\sigma</span> is mixing best (the ACF falls off the most quickly). We could reduce the autocorrelation even further by thinning the chain <strong>(i.e., change the <code>nt</code> parameter to 5 or 10)</strong>.</p>
 <p>The last important diagnostic is to compare the prior and posterior distributions. Various packages in R have bespoke functions to do this. <code>bayesTPC</code> includes a built in function that creates posterior/prior overlap plots for all model parameters (note that the priors are smoothed because the algorithm uses kernel smoothing instead of the exact distribution).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ppo_plot</span>(AedTestFit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ppo_plot</span>(AedTestFit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="VB_Bayes_activity2B_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -568,7 +531,7 @@ sigma.sq 23.55891 33.88284 40.889 50.0216 78.8200</code></pre>
 <h2 class="anchored" data-anchor-id="visualizing-the-joint-posterior-of-parameters">Visualizing the joint posterior of parameters</h2>
 <p>Now that we’ve confirmed that things are working well, it’s often useful to also look at the joint distribution of all of your parameters together. Of course, if you have a high dimensional posterior, rendering a 2-D representation can be difficult. Instead, the standard is to examine the pair-wise posterior distribution, for instance as follows:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bayesTPC_ipairs</span>(AedTestFit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bayesTPC_ipairs</span>(AedTestFit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -583,65 +546,35 @@ sigma.sq 23.55891 33.88284 40.889 50.0216 78.8200</code></pre>
 <h2 class="anchored" data-anchor-id="modifying-the-fitting-routines">Modifying the fitting routines</h2>
 <p>As we noted above, the <code>bTPC</code> function has a set of default specifications for multiple components for every type of implemented TPC. Many of these we can change. For example, above we noted that we can see that we need to drop samples for the burn-in. We might also want to change priors, or use an alternative sampler.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>AedQuadFit <span class="ot">&lt;-</span> <span class="fu">b_TPC</span>(<span class="at">data =</span> lf.data.bTPC, <span class="do">## data</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">model =</span> <span class="st">'quadratic'</span>, <span class="do">## model to fit</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">niter =</span> <span class="dv">11000</span>, <span class="do">## total iterations</span></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">burn =</span> <span class="dv">1000</span>, <span class="do">## number of burn in samples</span></span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">samplerType =</span> <span class="st">'AF_slice'</span>, <span class="do">## slice sampler</span></span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">priors =</span> <span class="fu">list</span>(<span class="at">q =</span> <span class="st">'dunif(0, .5)'</span>, </span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">sigma.sq =</span> <span class="st">'dexp(1)'</span>) <span class="do">## priors</span></span>
-<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>                    ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>AedQuadFit <span class="ot">&lt;-</span> <span class="fu">b_TPC</span>(<span class="at">data =</span> lf.data.bTPC, <span class="do">## data</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">model =</span> <span class="st">'quadratic'</span>, <span class="do">## model to fit</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">niter =</span> <span class="dv">11000</span>, <span class="do">## total iterations</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">burn =</span> <span class="dv">1000</span>, <span class="do">## number of burn in samples</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">samplerType =</span> <span class="st">'AF_slice'</span>, <span class="do">## slice sampler</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">priors =</span> <span class="fu">list</span>(<span class="at">q =</span> <span class="st">'dunif(0, .5)'</span>, </span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">sigma.sq =</span> <span class="st">'dexp(1)'</span>) <span class="do">## priors</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>                    ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Creating NIMBLE model:</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Defining model</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Building model</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Setting data and initial values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Running calculate on model
-  [Note] Any error reports that follow may simply reflect missing values in model variables.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Checking model sizes and dimensions</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>  [Note] This model is not fully initialized. This is not an error.
-         To see which variables are not initialized, use model$initializeInfo().
-         For more information on model initialization, see help(modelInitialization).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Compiling
-  [Note] This may take a minute.
-  [Note] Use 'showCompilerOutput = TRUE' to see C++ compilation details.</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>===== Monitors ===== 
-thin = 1: q, sigma.sq, T_max, T_min
-===== Samplers ===== 
-AF_slice sampler (1)
-  - q, T_max, T_min, sigma.sq 
+<pre><code>Creating NIMBLE model:
+ - Configuring model.
+ - Compiling model.
 
-Running MCMC:</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Compiling
-  [Note] This may take a minute.
-  [Note] Use 'showCompilerOutput = TRUE' to see C++ compilation details.</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>|-------------|-------------|-------------|-------------|
-|-------------------------------------------------------|</code></pre>
+Creating MCMC:
+ - Configuring MCMC.
+ - Compiling MCMC.
+ - Running MCMC.
+
+Progress:
+|-------------|-------------|-------------|-------------|
+|-------------------------------------------------------|
+
+Configuring Output:
+ - Finding Max. a Post. parameters.</code></pre>
 </div>
 </div>
 <p><br> Let’s take a look at the output in this case:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(AedQuadFit<span class="sc">$</span>samples)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(AedQuadFit<span class="sc">$</span>samples)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Iterations = 1:10000
@@ -652,26 +585,26 @@ Sample size per chain = 10000
 1. Empirical mean and standard deviation for each variable,
    plus standard error of the mean:
 
-            Mean      SD  Naive SE Time-series SE
-T_max    38.8628 1.03113 0.0103113      0.0173415
-T_min     6.9304 1.29244 0.0129244      0.0218539
-q         0.1138 0.01714 0.0001714      0.0002824
-sigma.sq 18.3480 2.65298 0.0265298      0.0312130
+            Mean    SD Naive SE Time-series SE
+T_max    38.8846 1.024  0.01024       0.014909
+T_min     6.9090 1.298  0.01298       0.019648
+q         0.1135 0.017  0.00017       0.000238
+sigma.sq 18.2687 2.608  0.02608       0.029505
 
 2. Quantiles for each variable:
 
-            2.5%     25%     50%     75%   97.5%
-T_max    37.1495 38.1422 38.7711 39.4617 41.1361
-T_min     4.0666  6.1638  7.0503  7.8229  9.1220
-q         0.0807  0.1022  0.1136  0.1254  0.1478
-sigma.sq 13.6941 16.5075 18.1267 19.9897 24.0896</code></pre>
+             2.5%    25%     50%    75%   97.5%
+T_max    37.22935 38.158 38.7794 39.493 41.2295
+T_min     3.93922  6.149  7.0496  7.808  9.0745
+q         0.08031  0.102  0.1133  0.125  0.1466
+sigma.sq 13.63881 16.442 18.0844 19.878 23.8721</code></pre>
 </div>
 </div>
 <p><br> We again plot the chains of the three main TPC parameters and the standard deviation of the normal observation model:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="do">## plot(lf.fit.mcmc[,c(1,3,4)]) ## default coda plot</span></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="fu">traceplot</span>(AedQuadFit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="do">## plot(lf.fit.mcmc[,c(1,3,4)]) ## default coda plot</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">traceplot</span>(AedQuadFit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -683,9 +616,9 @@ sigma.sq 13.6941 16.5075 18.1267 19.9897 24.0896</code></pre>
 <p>These all seem to be mixing well, better that the first time, although we can see that we need to drop a bit of the burn-in.</p>
 <p>We again look at ACF of the chains as well (one for each parameter):</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>s1<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(AedQuadFit<span class="sc">$</span>samples)</span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) <span class="fu">acf</span>(s1[,i], <span class="at">lag.max=</span><span class="dv">50</span>, <span class="at">main=</span><span class="st">""</span>, <span class="at">ylab =</span> <span class="fu">paste</span>(<span class="st">"ACF: "</span>, <span class="fu">names</span>(s1)[i], <span class="at">sep=</span><span class="st">""</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>s1<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(AedQuadFit<span class="sc">$</span>samples)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) <span class="fu">acf</span>(s1[,i], <span class="at">lag.max=</span><span class="dv">50</span>, <span class="at">main=</span><span class="st">""</span>, <span class="at">ylab =</span> <span class="fu">paste</span>(<span class="st">"ACF: "</span>, <span class="fu">names</span>(s1)[i], <span class="at">sep=</span><span class="st">""</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -697,7 +630,7 @@ sigma.sq 13.6941 16.5075 18.1267 19.9897 24.0896</code></pre>
 <p>Notice this falls off much more quickly – the samples from the slice filter in this case are less autocorrelated than the default random walk (“RW”) filter.</p>
 <p>And comparing the new priors to the posteriors:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ppo_plot</span>(AedQuadFit, <span class="at">burn =</span> <span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ppo_plot</span>(AedQuadFit, <span class="at">burn =</span> <span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="VB_Bayes_activity2B_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -713,65 +646,35 @@ sigma.sq 13.6941 16.5075 18.1267 19.9897 24.0896</code></pre>
 </div>
 <p>Let’s also fit the Briere function to the data, just to see how it does:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>AedBriFit <span class="ot">&lt;-</span> <span class="fu">b_TPC</span>(<span class="at">data =</span> lf.data.bTPC, <span class="do">## data</span></span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">model =</span> <span class="st">'briere'</span>, <span class="do">## model to fit</span></span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">niter =</span> <span class="dv">11000</span>, <span class="do">## total iterations</span></span>
-<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">burn =</span> <span class="dv">1000</span>, <span class="do">## number of burn in samples</span></span>
-<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">samplerType =</span> <span class="st">'AF_slice'</span>, <span class="do">## slice sampler</span></span>
-<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">priors =</span> <span class="fu">list</span>(<span class="at">T_min =</span> <span class="st">"dunif(5,10)"</span>,</span>
-<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">T_max =</span> <span class="st">"dunif(18,35)"</span>,</span>
-<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">sigma.sq =</span> <span class="st">'dexp(1)'</span>) <span class="do">## priors</span></span>
-<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>                    ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>AedBriFit <span class="ot">&lt;-</span> <span class="fu">b_TPC</span>(<span class="at">data =</span> lf.data.bTPC, <span class="do">## data</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">model =</span> <span class="st">'briere'</span>, <span class="do">## model to fit</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">niter =</span> <span class="dv">11000</span>, <span class="do">## total iterations</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">burn =</span> <span class="dv">1000</span>, <span class="do">## number of burn in samples</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">samplerType =</span> <span class="st">'AF_slice'</span>, <span class="do">## slice sampler</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">priors =</span> <span class="fu">list</span>(<span class="at">T_min =</span> <span class="st">"dunif(5,10)"</span>,</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">T_max =</span> <span class="st">"dunif(18,35)"</span>,</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">sigma.sq =</span> <span class="st">'dexp(1)'</span>) <span class="do">## priors</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>                    ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Creating NIMBLE model:</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Defining model</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Building model</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Setting data and initial values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Running calculate on model
-  [Note] Any error reports that follow may simply reflect missing values in model variables.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Checking model sizes and dimensions</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>  [Note] This model is not fully initialized. This is not an error.
-         To see which variables are not initialized, use model$initializeInfo().
-         For more information on model initialization, see help(modelInitialization).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Compiling
-  [Note] This may take a minute.
-  [Note] Use 'showCompilerOutput = TRUE' to see C++ compilation details.</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>===== Monitors ===== 
-thin = 1: q, sigma.sq, T_max, T_min
-===== Samplers ===== 
-AF_slice sampler (1)
-  - q, T_max, T_min, sigma.sq 
+<pre><code>Creating NIMBLE model:
+ - Configuring model.
+ - Compiling model.
 
-Running MCMC:</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Compiling
-  [Note] This may take a minute.
-  [Note] Use 'showCompilerOutput = TRUE' to see C++ compilation details.</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>|-------------|-------------|-------------|-------------|
-|-------------------------------------------------------|</code></pre>
+Creating MCMC:
+ - Configuring MCMC.
+ - Compiling MCMC.
+ - Running MCMC.
+
+Progress:
+|-------------|-------------|-------------|-------------|
+|-------------------------------------------------------|
+
+Configuring Output:
+ - Finding Max. a Post. parameters.</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(AedBriFit<span class="sc">$</span>samples)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(AedBriFit<span class="sc">$</span>samples)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Iterations = 1:10000
@@ -782,26 +685,26 @@ Sample size per chain = 10000
 1. Empirical mean and standard deviation for each variable,
    plus standard error of the mean:
 
-            Mean      SD  Naive SE Time-series SE
-T_max    34.6785 0.19000 0.0019000      0.0021598
-T_min     5.9884 0.71908 0.0071908      0.0099586
-q         0.4878 0.02878 0.0002878      0.0003643
-sigma.sq 18.0176 2.64058 0.0264058      0.0333677
+             Mean       SD  Naive SE Time-series SE
+T_max    34.29935 0.174718 1.747e-03      0.0020805
+T_min     5.48966 0.473924 4.739e-03      0.0077350
+q         0.01911 0.001002 1.002e-05      0.0000114
+sigma.sq 24.56616 3.166263 3.166e-02      0.0429495
 
 2. Quantiles for each variable:
 
-            2.5%     25%     50%    75%   97.5%
-T_max    34.2885 34.5421 34.6896 34.833 34.9801
-T_min     5.0396  5.4075  5.8581  6.433  7.6763
-q         0.4401  0.4672  0.4849  0.505  0.5528
-sigma.sq 13.4731 16.1402 17.7733 19.649 23.8433</code></pre>
+             2.5%      25%      50%      75%    97.5%
+T_max    34.04737 34.19402 34.28646 34.39588 34.66602
+T_min     5.01161  5.14191  5.34768  5.68347  6.72562
+q         0.01725  0.01843  0.01907  0.01973  0.02124
+sigma.sq 19.10412 22.32116 24.35360 26.53169 31.37898</code></pre>
 </div>
 </div>
 <p>We again plot the chains of the three main TPC parameters and the standard deviation of the normal observation model:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="do">## plot(lf.fit.mcmc[,c(1,3,4)]) ## default coda plot</span></span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="fu">traceplot</span>(AedBriFit, <span class="at">burn=</span><span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="do">## plot(lf.fit.mcmc[,c(1,3,4)]) ## default coda plot</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">traceplot</span>(AedBriFit, <span class="at">burn=</span><span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -813,12 +716,12 @@ sigma.sq 13.4731 16.1402 17.7733 19.649 23.8433</code></pre>
 <p>Overall very good mixing, but we can see our choice of priors wasn’t ideal.</p>
 <p>We again look at ACF of the chains as well (one for each parameter):</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>s2<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(AedBriFit<span class="sc">$</span>samples[<span class="dv">1000</span><span class="sc">:</span><span class="dv">10000</span>,])</span>
-<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) {</span>
-<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">acf</span>(s2[,i], <span class="at">lag.max=</span><span class="dv">50</span>, <span class="at">main=</span><span class="st">""</span>,</span>
-<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">ylab =</span> <span class="fu">paste</span>(<span class="st">"ACF: "</span>, <span class="fu">names</span>(s2)[i], <span class="at">sep=</span><span class="st">""</span>))</span>
-<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>s2<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(AedBriFit<span class="sc">$</span>samples[<span class="dv">1000</span><span class="sc">:</span><span class="dv">10000</span>,])</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) {</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">acf</span>(s2[,i], <span class="at">lag.max=</span><span class="dv">50</span>, <span class="at">main=</span><span class="st">""</span>,</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">ylab =</span> <span class="fu">paste</span>(<span class="st">"ACF: "</span>, <span class="fu">names</span>(s2)[i], <span class="at">sep=</span><span class="st">""</span>))</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -829,7 +732,7 @@ sigma.sq 13.4731 16.1402 17.7733 19.649 23.8433</code></pre>
 </div>
 <p>This is great! Finally comparing the new priors to the posteriors:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ppo_plot</span>(AedBriFit, <span class="at">burn =</span> <span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ppo_plot</span>(AedBriFit, <span class="at">burn =</span> <span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="VB_Bayes_activity2B_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -845,7 +748,7 @@ sigma.sq 13.4731 16.1402 17.7733 19.649 23.8433</code></pre>
 </div>
 <p>Now we look at the joint posterior.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bayesTPC_ipairs</span>(AedBriFit, <span class="at">burn=</span><span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bayesTPC_ipairs</span>(AedBriFit, <span class="at">burn=</span><span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -857,17 +760,24 @@ sigma.sq 13.4731 16.1402 17.7733 19.649 23.8433</code></pre>
 <p>Finally, what if we wanted to fit a model not included in <code>bayesTPC</code>?</p>
 <p>Let’s look at how the package defines the Briere model.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_default_model_specification</span>(<span class="st">"briere"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_default_model_specification</span>(<span class="st">"briere"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>bayesTPC Model Specification of Type: briere
+<pre><code>bayesTPC Model Specification of Type:
+  briere
+
 Model Formula:
-  q * (Temp - T_min) * sqrt((T_max &gt; Temp) * abs(T_max - Temp)) * (T_max &gt; Temp) * (Temp &gt; T_min)
+  m[i] &lt;- ( q * Temp * (Temp - T_min) * sqrt((T_max &gt; Temp) * abs(T_max - Temp)) * (T_max &gt; Temp) * (Temp &gt; T_min) )
+
+Model Distribution:
+  Trait[i] ~ T(dnorm(mean = m[i], tau = 1/sigma.sq), 0, )
+
 Model Parameters and Priors:
-  q: dunif(0, 1) 
-  T_max: dunif(25, 60) 
-  T_min: dunif(0, 24)
+  q ~ dunif(0, 1) 
+  T_max ~ dunif(25, 60) 
+  T_min ~ dunif(0, 24)
+
 Prior for Variance:
-  T(dt(mu = 0, tau = 1/10, df = 1), 0, )</code></pre>
+  sigma.sq ~ dexp(1)</code></pre>
 </div>
 </div>
 <p><br> For our model, we will choose an alternate Briere formula, changing the square root to a cube root.</p>
@@ -877,34 +787,33 @@ q T (T-T_0) \sqrt[3]{T_m-T} &amp; \text{if } T_0 &lt; T &lt;T_m \\
 0 &amp;\text{if } T \geq T_m \end{cases}  
 </span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>my_briere_formula <span class="ot">&lt;-</span> <span class="fu">expression</span>(q <span class="sc">*</span> (Temp <span class="sc">-</span> T_min) <span class="sc">*</span> ((T_max <span class="sc">&gt;</span> Temp) <span class="sc">*</span> <span class="fu">abs</span>(T_max <span class="sc">-</span> Temp))<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>) <span class="sc">*</span> (T_max <span class="sc">&gt;</span> Temp) <span class="sc">*</span> (Temp <span class="sc">&gt;</span> T_min))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>my_briere_formula <span class="ot">&lt;-</span> <span class="fu">expression</span>(q <span class="sc">*</span> (Temp <span class="sc">-</span> T_min) <span class="sc">*</span> ((T_max <span class="sc">&gt;</span> Temp) <span class="sc">*</span> <span class="fu">abs</span>(T_max <span class="sc">-</span> Temp))<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>) <span class="sc">*</span> (T_max <span class="sc">&gt;</span> Temp) <span class="sc">*</span> (Temp <span class="sc">&gt;</span> T_min))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br> Now, we choose the priors we want to sample from. We’ll include a little more flexibility here to ensure the model fits how we want it to.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>my_briere_priors <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">q =</span> <span class="st">"dunif(0,1)"</span>,</span>
-<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">T_max =</span> <span class="st">"dunif(20,45)"</span>,</span>
-<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">T_min =</span> <span class="st">"dunif(-5,10)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>my_briere_priors <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">q =</span> <span class="st">"dunif(0,1)"</span>,</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">T_max =</span> <span class="st">"dunif(20,45)"</span>,</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">T_min =</span> <span class="st">"dunif(-5,10)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br> Since we have no constants we need to add, that’s all the information we need! We can use <code>specify_normal_model()</code> to create a model object we can train.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>my_briere <span class="ot">&lt;-</span> <span class="fu">specify_normal_model</span>(<span class="st">"my_briere"</span>, <span class="co">#model name</span></span>
-<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">parameters =</span> my_briere_priors, <span class="co">#names are parameters, values are priors</span></span>
-<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">formula =</span> my_briere_formula</span>
-<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a>                                  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>my_briere <span class="ot">&lt;-</span> <span class="fu">specify_normal_model</span>(<span class="st">"my_briere"</span>, <span class="co">#model name</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">parameters =</span> my_briere_priors, <span class="co">#names are parameters, values are priors</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">formula =</span> my_briere_formula</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>                                  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Using default prior for model variance.
-Normal model type 'my_briere' can now be accessed using other bayesTPC functions. Reload the package to reset back to defaults.</code></pre>
+<pre><code>Model type 'my_briere' can now be accessed using other bayesTPC functions. Restart R to reset back to defaults.</code></pre>
 </div>
 </div>
 <p><br> Now we can use this model just like any other.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_formula</span>(<span class="st">"my_briere"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_formula</span>(<span class="st">"my_briere"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>expression(q * (Temp - T_min) * ((T_max &gt; Temp) * abs(T_max - 
     Temp))^(1/3) * (T_max &gt; Temp) * (Temp &gt; T_min))</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_default_priors</span>(<span class="st">"my_briere"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_default_priors</span>(<span class="st">"my_briere"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>             q          T_max          T_min 
   "dunif(0,1)" "dunif(20,45)" "dunif(-5,10)" </code></pre>
@@ -912,92 +821,63 @@ Normal model type 'my_briere' can now be accessed using other bayesTPC functions
 </div>
 <p><br> We can also pass the model object in, instead of just the name. <code>configure_model()</code> returns the BUGS model that will be trained.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">configure_model</span>(my_briere))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">configure_model</span>(my_briere))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{
     for (i in 1:N){
-            Trait[i] ~ T(dnorm(mean = q * (Temp[i] - T_min) * ((T_max &gt; Temp[i]) * abs(T_max - Temp[i]))^(1/3) * (T_max &gt; Temp[i]) * (Temp[i] &gt; T_min), var = sigma.sq), 0, )
+        m[i] &lt;- ( q * (Temp[i] - T_min) * ((T_max &gt; Temp[i]) * abs(T_max - Temp[i]))^(1/3) * (T_max &gt; Temp[i]) * (Temp[i] &gt; T_min) )
+        Trait[i] ~ T(dnorm(mean = m[i], tau = 1/sigma.sq), 0, )
     }
     q ~ dunif(0,1)
     T_max ~ dunif(20,45)
     T_min ~ dunif(-5,10)
-    sigma.sq ~ T(dt(mu = 0, tau = 1/10, df = 1), 0, )
+    sigma.sq ~ dexp(1)
 }</code></pre>
 </div>
 </div>
 <p><br> Now, let’s train our Briere model.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>AedMyBriFit <span class="ot">&lt;-</span> <span class="fu">b_TPC</span>(<span class="at">data =</span> lf.data.bTPC, <span class="do">## data</span></span>
-<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">model =</span> <span class="st">'my_briere'</span>, <span class="do">## model to fit</span></span>
-<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">niter =</span> <span class="dv">11000</span>, <span class="do">## total iterations</span></span>
-<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">burn =</span> <span class="dv">1000</span>, <span class="do">## number of burn in samples</span></span>
-<span id="cb90-5"><a href="#cb90-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">samplerType =</span> <span class="st">'AF_slice'</span>, <span class="do">## slice sampler</span></span>
-<span id="cb90-6"><a href="#cb90-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">priors =</span> <span class="fu">list</span>(<span class="at">sigma.sq =</span> <span class="st">'dexp(1)'</span>) <span class="do">## priors</span></span>
-<span id="cb90-7"><a href="#cb90-7" aria-hidden="true" tabindex="-1"></a>                    )  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>AedMyBriFit <span class="ot">&lt;-</span> <span class="fu">b_TPC</span>(<span class="at">data =</span> lf.data.bTPC, <span class="do">## data</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">model =</span> <span class="st">'my_briere'</span>, <span class="do">## model to fit</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">niter =</span> <span class="dv">11000</span>, <span class="do">## total iterations</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">burn =</span> <span class="dv">1000</span>, <span class="do">## number of burn in samples</span></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">samplerType =</span> <span class="st">'AF_slice'</span>, <span class="do">## slice sampler</span></span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">priors =</span> <span class="fu">list</span>(<span class="at">sigma.sq =</span> <span class="st">'dexp(1)'</span>) <span class="do">## priors</span></span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>                    )  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Creating NIMBLE model:</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Defining model</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Building model</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Setting data and initial values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Running calculate on model
-  [Note] Any error reports that follow may simply reflect missing values in model variables.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Checking model sizes and dimensions</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>  [Note] This model is not fully initialized. This is not an error.
-         To see which variables are not initialized, use model$initializeInfo().
-         For more information on model initialization, see help(modelInitialization).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Compiling
-  [Note] This may take a minute.
-  [Note] Use 'showCompilerOutput = TRUE' to see C++ compilation details.</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>===== Monitors ===== 
-thin = 1: q, sigma.sq, T_max, T_min
-===== Samplers ===== 
-AF_slice sampler (1)
-  - q, T_max, T_min, sigma.sq 
+<pre><code>Creating NIMBLE model:
+ - Configuring model.
+ - Compiling model.
 
-Running MCMC:</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Compiling
-  [Note] This may take a minute.
-  [Note] Use 'showCompilerOutput = TRUE' to see C++ compilation details.</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>|-------------|-------------|-------------|-------------|
-|-------------------------------------------------------|</code></pre>
+Creating MCMC:
+ - Configuring MCMC.
+ - Compiling MCMC.
+ - Running MCMC.
+
+Progress:
+|-------------|-------------|-------------|-------------|
+|-------------------------------------------------------|
+
+Configuring Output:
+ - Finding Max. a Post. parameters.</code></pre>
 </div>
 </div>
 <p><br> Finally, we can run the same diagnostics as before.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="fu">traceplot</span>(AedMyBriFit, <span class="at">burn=</span><span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="fu">traceplot</span>(AedMyBriFit, <span class="at">burn=</span><span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="VB_Bayes_activity2B_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Looks like the mixing went well again. How about ACF?</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>s3<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(AedMyBriFit<span class="sc">$</span>samples[<span class="dv">1000</span><span class="sc">:</span><span class="dv">10000</span>,])</span>
-<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) {</span>
-<span id="cb103-4"><a href="#cb103-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">acf</span>(s3[,i], <span class="at">lag.max=</span><span class="dv">50</span>, <span class="at">main=</span><span class="st">""</span>,</span>
-<span id="cb103-5"><a href="#cb103-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">ylab =</span> <span class="fu">paste</span>(<span class="st">"ACF: "</span>, <span class="fu">names</span>(s3)[i], <span class="at">sep=</span><span class="st">""</span>))</span>
-<span id="cb103-6"><a href="#cb103-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>s3<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(AedMyBriFit<span class="sc">$</span>samples[<span class="dv">1000</span><span class="sc">:</span><span class="dv">10000</span>,])</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) {</span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">acf</span>(s3[,i], <span class="at">lag.max=</span><span class="dv">50</span>, <span class="at">main=</span><span class="st">""</span>,</span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">ylab =</span> <span class="fu">paste</span>(<span class="st">"ACF: "</span>, <span class="fu">names</span>(s3)[i], <span class="at">sep=</span><span class="st">""</span>))</span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1008,7 +888,7 @@ Running MCMC:</code></pre>
 </div>
 <p>Good! Finally, let’s look at our posterior distributions and see how well we fit the data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ppo_plot</span>(AedMyBriFit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ppo_plot</span>(AedMyBriFit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="VB_Bayes_activity2B_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1021,7 +901,7 @@ Running MCMC:</code></pre>
 <div class="cell-output-display">
 <p><img src="VB_Bayes_activity2B_files/figure-html/unnamed-chunk-40-4.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bayesTPC_ipairs</span>(AedMyBriFit, <span class="at">burn =</span> <span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bayesTPC_ipairs</span>(AedMyBriFit, <span class="at">burn =</span> <span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="VB_Bayes_activity2B_files/figure-html/unnamed-chunk-40-5.png" class="img-fluid" width="672"></p>
 </div>
@@ -1032,57 +912,45 @@ Running MCMC:</code></pre>
 <h1>Model Selection</h1>
 <p><code>coda</code> lets us pull the Watanabe–Akaike information criterion (WAIC) from the models we’ve fit. We’re currently working on providing more model selection methods in <code>bayesTPC</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>AedTestFit<span class="sc">$</span>mcmc<span class="sc">$</span><span class="fu">getWAIC</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>AedTestFit<span class="sc">$</span>mcmc<span class="sc">$</span><span class="fu">getWAIC</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  [Warning] There are 5 individual pWAIC values that are greater than 0.4. This may indicate that the WAIC estimate is unstable (Vehtari et al., 2017), at least in cases without grouping of data nodes or multivariate data nodes.</code></pre>
+<pre><code>  [Warning] There are 23 individual pWAIC values that are greater than 0.4. This may indicate that the WAIC estimate is unstable (Vehtari et al., 2017), at least in cases without grouping of data nodes or multivariate data nodes.</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>nimbleList object of type waicNimbleList
 Field "WAIC":
-[1] 211.1489
+[1] 1280.439
 Field "lppd":
-[1] -97.26867
+[1] -100.5925
 Field "pWAIC":
-[1] 8.305783</code></pre>
+[1] 539.6271</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>AedQuadFit<span class="sc">$</span>mcmc<span class="sc">$</span><span class="fu">getWAIC</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>AedQuadFit<span class="sc">$</span>mcmc<span class="sc">$</span><span class="fu">getWAIC</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [Warning] There are 6 individual pWAIC values that are greater than 0.4. This may indicate that the WAIC estimate is unstable (Vehtari et al., 2017), at least in cases without grouping of data nodes or multivariate data nodes.</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>nimbleList object of type waicNimbleList
 Field "WAIC":
-[1] 212.9127
+[1] 212.864
 Field "lppd":
-[1] -100.5748
+[1] -100.6531
 Field "pWAIC":
-[1] 5.88152</code></pre>
+[1] 5.778921</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a>AedBriFit<span class="sc">$</span>mcmc<span class="sc">$</span><span class="fu">getWAIC</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  [Warning] There are 2 individual pWAIC values that are greater than 0.4. This may indicate that the WAIC estimate is unstable (Vehtari et al., 2017), at least in cases without grouping of data nodes or multivariate data nodes.</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>nimbleList object of type waicNimbleList
-Field "WAIC":
-[1] 210.3553
-Field "lppd":
-[1] -100.6152
-Field "pWAIC":
-[1] 4.562425</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>AedMyBriFit<span class="sc">$</span>mcmc<span class="sc">$</span><span class="fu">getWAIC</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co">#AedBriFit$mcmc$getWAIC()</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>AedMyBriFit<span class="sc">$</span>mcmc<span class="sc">$</span><span class="fu">getWAIC</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [Warning] There are 5 individual pWAIC values that are greater than 0.4. This may indicate that the WAIC estimate is unstable (Vehtari et al., 2017), at least in cases without grouping of data nodes or multivariate data nodes.</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>nimbleList object of type waicNimbleList
 Field "WAIC":
-[1] 213.9177
+[1] 213.9487
 Field "lppd":
-[1] -101.5127
+[1] -101.5326
 Field "pWAIC":
-[1] 5.446128</code></pre>
+[1] 5.441737</code></pre>
 </div>
 </div>
 <p><br> It looks like the default Briere model performed ever so slightly better, but the values are similar enough.</p>
@@ -1090,50 +958,86 @@ Field "pWAIC":
 <h2 class="anchored" data-anchor-id="plot-the-fits">Plot the fits</h2>
 <p>First extract the fits/predictions using the <code>bayesTPC_summary</code> function and use the <code>tidyverse</code> to save the model predictions as a <code>tibble</code>. We can then use <code>ggplot</code> to generate a pretty plot of our TPC with prediction bounds</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a>briere_fit <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">bayesTPC_summary</span>(AedMyBriFit, <span class="at">plot =</span> F))</span>
-<span id="cb118-3"><a href="#cb118-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(briere_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>briere_fit <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">summary</span>(AedMyBriFit, <span class="at">plot =</span> F))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>bayesTPC MCMC of Type:
+  my_briere
+
+Formula:
+  m[i] &lt;- ( q * (Temp - T_min) * ((T_max &gt; Temp) * abs(T_max - Temp))^(1/3) * (T_max &gt; Temp) * (Temp &gt; T_min) )
+
+Distribution:
+  Trait[i] ~ T(dnorm(mean = m[i], tau = 1/sigma.sq), 0, )
+
+Priors:
+  q ~ dunif(0,1) 
+  T_max ~ dunif(20,45) 
+  T_min ~ dunif(-5,10) 
+  sigma.sq ~ dexp(1)
+
+Max. A Post. Parameters: 
+    T_max     T_min         q  sigma.sq  log_prob 
+  34.2759    0.2352    0.5270   17.9948 -126.6369 
+
+MCMC Results:
+Iterations = 1:10000
+Thinning interval = 1 
+Number of chains = 1 
+Sample size per chain = 10000 
+
+1. Empirical mean and standard deviation for each variable,
+   plus standard error of the mean:
+
+            Mean      SD  Naive SE Time-series SE
+T_max    34.3980 0.23859 0.0023859      0.0030823
+T_min    -0.1812 2.32197 0.0232197      0.0269402
+q         0.5180 0.05857 0.0005857      0.0006952
+sigma.sq 18.7276 2.73615 0.0273615      0.0331790
+
+2. Quantiles for each variable:
+
+            2.5%     25%     50%     75%   97.5%
+T_max    34.0836 34.2315 34.3498 34.5130 34.9750
+T_min    -4.4624 -1.8985 -0.1427  1.5054  4.2432
+q         0.4211  0.4739  0.5132  0.5566  0.6442
+sigma.sq 14.0293 16.8015 18.5138 20.3714 24.7956</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(briere_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
-  Temp_interval Upper_bounds Lower_bounds Medians
-          &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;   &lt;dbl&gt;
-1          10.6         19.0         12.7    15.9
-2          10.6         19.0         12.7    15.9
-3          10.6         19.0         12.7    15.9
-4          10.7         19.0         12.8    16.0
-5          10.7         19.1         12.8    16.0
-6          10.7         19.1         12.9    16.0</code></pre>
+  temp_interval medians upper_bounds lower_bounds
+          &lt;dbl&gt;   &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
+1          10.6    15.9         18.9         12.6
+2          10.6    15.9         18.9         12.6
+3          10.6    15.9         19.0         12.7
+4          10.7    16.0         19.0         12.7
+5          10.7    16.0         19.0         12.8
+6          10.7    16.0         19.0         12.8</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(briere_fit)<span class="sc">+</span></span>
-<span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(Temp_interval, Medians))<span class="sc">+</span></span>
-<span id="cb120-3"><a href="#cb120-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span> </span>
-<span id="cb120-4"><a href="#cb120-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(Temp_interval, <span class="at">ymin=</span>Lower_bounds, <span class="at">ymax=</span>Upper_bounds), <span class="at">fill=</span><span class="st">"#30694B"</span>,<span class="at">alpha=</span><span class="fl">0.5</span>,</span>
-<span id="cb120-5"><a href="#cb120-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">inherit.aes =</span> T)<span class="sc">+</span></span>
-<span id="cb120-6"><a href="#cb120-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(Temp, trait), lf.data.comb, <span class="at">shape=</span><span class="dv">21</span>, <span class="at">fill=</span><span class="st">'#C0C0C0'</span>,</span>
-<span id="cb120-7"><a href="#cb120-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">col=</span><span class="st">'#000000'</span>, <span class="at">alpha=</span><span class="fl">0.8</span>, <span class="at">stroke=</span><span class="fl">0.5</span>, <span class="at">size=</span><span class="dv">2</span>)<span class="sc">+</span></span>
-<span id="cb120-8"><a href="#cb120-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>))<span class="sc">+</span></span>
-<span id="cb120-9"><a href="#cb120-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="fu">expression</span>(<span class="fu">plain</span>(<span class="fu">paste</span>(<span class="st">"lifespan (days)"</span>))))<span class="sc">+</span></span>
-<span id="cb120-10"><a href="#cb120-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="fu">expression</span>(<span class="fu">plain</span>(<span class="fu">paste</span>(<span class="st">" Temperature, "</span>,degree,<span class="st">"C"</span>))))<span class="sc">+</span></span>
-<span id="cb120-11"><a href="#cb120-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">'none'</span>,</span>
-<span id="cb120-12"><a href="#cb120-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>), <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>),</span>
-<span id="cb120-13"><a href="#cb120-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb120-14"><a href="#cb120-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(briere_fit)<span class="sc">+</span></span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(temp_interval, medians))<span class="sc">+</span></span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span> </span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(temp_interval, <span class="at">ymin=</span>lower_bounds, <span class="at">ymax=</span>upper_bounds), <span class="at">fill=</span><span class="st">"#30694B"</span>,<span class="at">alpha=</span><span class="fl">0.5</span>,</span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">inherit.aes =</span> T)<span class="sc">+</span></span>
+<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(Temp, trait), lf.data.comb, <span class="at">shape=</span><span class="dv">21</span>, <span class="at">fill=</span><span class="st">'#C0C0C0'</span>,</span>
+<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">col=</span><span class="st">'#000000'</span>, <span class="at">alpha=</span><span class="fl">0.8</span>, <span class="at">stroke=</span><span class="fl">0.5</span>, <span class="at">size=</span><span class="dv">2</span>)<span class="sc">+</span></span>
+<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>))<span class="sc">+</span></span>
+<span id="cb79-9"><a href="#cb79-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="fu">expression</span>(<span class="fu">plain</span>(<span class="fu">paste</span>(<span class="st">"lifespan (days)"</span>))))<span class="sc">+</span></span>
+<span id="cb79-10"><a href="#cb79-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="fu">expression</span>(<span class="fu">plain</span>(<span class="fu">paste</span>(<span class="st">" Temperature, "</span>,degree,<span class="st">"C"</span>))))<span class="sc">+</span></span>
+<span id="cb79-11"><a href="#cb79-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">'none'</span>,</span>
+<span id="cb79-12"><a href="#cb79-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>), <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>),</span>
+<span id="cb79-13"><a href="#cb79-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb79-14"><a href="#cb79-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="VB_Bayes_activity2B_files/figure-html/unnamed-chunk-43-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>We can also use the built in function, <code>posteriorPredTPC()</code>, to plot the median and lower/upper bounds from samples taken from the posterior distribution.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">posteriorPredTPC</span>(AedMyBriFit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in posteriorPredTPC(AedMyBriFit): Currently using summaryType = "hdi".
-Default credible interval mass is credMass = .9)</code></pre>
-</div>
-<div class="cell-output-display">
-<p><img src="VB_Bayes_activity2B_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid" width="672"></p>
-</div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">posterior_predictive</span>(AedMyBriFit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Finally we can plot the fits/predictions. These are the posterior estimates of the fitted lines to the data. Recall that we can take each accepted sample, and plug it into the quadratic equations. This gives us the same number of possible lines as samples. We can then summarize these with the HPD intervals across each temperature. This is especially easy in this case because we’ve already saved these samples as output in our model file:</p>
 </section>
@@ -1141,32 +1045,36 @@ Default credible interval mass is credMass = .9)</code></pre>
 <h2 class="anchored" data-anchor-id="additional-analyses">Additional analyses</h2>
 <p>Once you have all of these samples, you can do many other things. For example, you can use the <code>which.max()</code> function to find the peak temperature (<span class="math inline">T_{pk}</span>) for adult lifespan and its value at <span class="math inline">T_{pk}</span>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a>lifespan_Tpk <span class="ot">&lt;-</span> briere_fit <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="fu">which.max</span>(Medians)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>lifespan_Tpk <span class="ot">&lt;-</span> briere_fit <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="fu">which.max</span>(medians)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br> You can then plot <span class="math inline">T_{pk}</span> and the trait value at <span class="math inline">T_{pk}</span>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(briere_fit)<span class="sc">+</span></span>
-<span id="cb124-2"><a href="#cb124-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(Temp_interval, Medians), <span class="at">size=</span><span class="fl">0.4</span>)<span class="sc">+</span></span>
-<span id="cb124-3"><a href="#cb124-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span> </span>
-<span id="cb124-4"><a href="#cb124-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(Temp_interval, <span class="at">ymin=</span>Lower_bounds, <span class="at">ymax=</span>Upper_bounds), <span class="at">fill=</span><span class="st">"#30694B"</span>,<span class="at">alpha=</span><span class="fl">0.5</span>,</span>
-<span id="cb124-5"><a href="#cb124-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">inherit.aes =</span> T)<span class="sc">+</span></span>
-<span id="cb124-6"><a href="#cb124-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(Temp, trait), lf.data.comb, <span class="at">shape=</span><span class="dv">21</span>, <span class="at">fill=</span><span class="st">'#C0C0C0'</span>,</span>
-<span id="cb124-7"><a href="#cb124-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">col=</span><span class="st">'#000000'</span>, <span class="at">alpha=</span><span class="fl">0.8</span>, <span class="at">stroke=</span><span class="fl">0.5</span>, <span class="at">size=</span><span class="dv">2</span>)<span class="sc">+</span></span>
-<span id="cb124-8"><a href="#cb124-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(Temp_interval, Medians), lifespan_Tpk, <span class="at">shape=</span><span class="dv">23</span>, <span class="at">fill=</span><span class="st">'yellow'</span>,</span>
-<span id="cb124-9"><a href="#cb124-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">col=</span><span class="st">'#000000'</span>, <span class="at">alpha=</span><span class="fl">0.8</span>, <span class="at">stroke=</span><span class="fl">0.5</span>, <span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
-<span id="cb124-10"><a href="#cb124-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>))<span class="sc">+</span></span>
-<span id="cb124-11"><a href="#cb124-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="fu">expression</span>(<span class="fu">plain</span>(<span class="fu">paste</span>(<span class="st">"lifespan (days)"</span>))))<span class="sc">+</span></span>
-<span id="cb124-12"><a href="#cb124-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="fu">expression</span>(<span class="fu">plain</span>(<span class="fu">paste</span>(<span class="st">" Temperature, "</span>,degree,<span class="st">"C"</span>))))<span class="sc">+</span></span>
-<span id="cb124-13"><a href="#cb124-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">'none'</span>,</span>
-<span id="cb124-14"><a href="#cb124-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>), <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>),</span>
-<span id="cb124-15"><a href="#cb124-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb124-16"><a href="#cb124-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(briere_fit)<span class="sc">+</span></span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(temp_interval, medians), <span class="at">size=</span><span class="fl">0.4</span>)<span class="sc">+</span></span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span> </span>
+<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(temp_interval, <span class="at">ymin=</span>lower_bounds, <span class="at">ymax=</span>upper_bounds), <span class="at">fill=</span><span class="st">"#30694B"</span>,<span class="at">alpha=</span><span class="fl">0.5</span>,</span>
+<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">inherit.aes =</span> T)<span class="sc">+</span></span>
+<span id="cb82-6"><a href="#cb82-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(Temp, trait), lf.data.comb, <span class="at">shape=</span><span class="dv">21</span>, <span class="at">fill=</span><span class="st">'#C0C0C0'</span>,</span>
+<span id="cb82-7"><a href="#cb82-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">col=</span><span class="st">'#000000'</span>, <span class="at">alpha=</span><span class="fl">0.8</span>, <span class="at">stroke=</span><span class="fl">0.5</span>, <span class="at">size=</span><span class="dv">2</span>)<span class="sc">+</span></span>
+<span id="cb82-8"><a href="#cb82-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(temp_interval, medians), lifespan_Tpk, <span class="at">shape=</span><span class="dv">23</span>, <span class="at">fill=</span><span class="st">'yellow'</span>,</span>
+<span id="cb82-9"><a href="#cb82-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">col=</span><span class="st">'#000000'</span>, <span class="at">alpha=</span><span class="fl">0.8</span>, <span class="at">stroke=</span><span class="fl">0.5</span>, <span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb82-10"><a href="#cb82-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>))<span class="sc">+</span></span>
+<span id="cb82-11"><a href="#cb82-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="fu">expression</span>(<span class="fu">plain</span>(<span class="fu">paste</span>(<span class="st">"lifespan (days)"</span>))))<span class="sc">+</span></span>
+<span id="cb82-12"><a href="#cb82-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="fu">expression</span>(<span class="fu">plain</span>(<span class="fu">paste</span>(<span class="st">" Temperature, "</span>,degree,<span class="st">"C"</span>))))<span class="sc">+</span></span>
+<span id="cb82-13"><a href="#cb82-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">'none'</span>,</span>
+<span id="cb82-14"><a href="#cb82-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>), <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>),</span>
+<span id="cb82-15"><a href="#cb82-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb82-16"><a href="#cb82-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.</code></pre>
+</div>
 <div class="cell-output-display">
 <p><img src="VB_Bayes_activity2B_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p><br></p>
-<p>This suggests that optimal temperature for adult lifespan in <em>Aedes aegypti</em> is 25.8 degrees Celsius! Can you now figure out how to get the credible intervals for <span class="math inline">T_{pk}</span> and the trait value at <span class="math inline">T_{pk}</span>?</p>
+<p>This suggests that the optimal temperature for adult lifespan in <em>Aedes aegypti</em> is 25.8 degrees Celsius! Can you now figure out how to get the credible intervals for <span class="math inline">T_{pk}</span> and the trait value at <span class="math inline">T_{pk}</span>?</p>
 </section>
 </section>
 <section id="other-aedes-aegypti-traits-independent-practice" class="level1">

@@ -10,7 +10,7 @@ format:
     css: styles.css
 ---
 
-[Main materials](materials.qmd)      
+[Main materials](materials.qmd)
 
 [Back to stats review](Stats_review.qmd)
 

@@ -100,6 +100,6 @@ We are assuming familiarity with R basics. In addition, we recommend that you do
 
 ## `bayesTPC`
 
--   [Practical](VB_Bayes_activity2B.qmd) 
+-   [Practical](VB_Bayes_activity2B.qmd)
 -   Datasets:
-    -  [*Aedes* data](AeaegyptiTraitData.csv) 
+    -   [*Aedes* data](AeaegyptiTraitData.csv)

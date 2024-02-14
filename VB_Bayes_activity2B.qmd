@@ -397,7 +397,7 @@ bayesTPC_ipairs(AedMyBriFit, burn = 1000)
 ```{r}
 AedTestFit$mcmc$getWAIC()
 AedQuadFit$mcmc$getWAIC()
-AedBriFit$mcmc$getWAIC()
+#AedBriFit$mcmc$getWAIC()
 AedMyBriFit$mcmc$getWAIC()
 ```
 
@@ -409,15 +409,15 @@ First extract the fits/predictions using the `bayesTPC_summary` function and use
 
 ```{r, message=FALSE, warning=FALSE, fig.show='hide'}
 library(tidyverse)
-briere_fit <- as_tibble(bayesTPC_summary(AedMyBriFit, plot = F))
+briere_fit <- as_tibble(summary(AedMyBriFit, plot = F))
 head(briere_fit)
 ```
 
 ```{r}
 ggplot(briere_fit)+
-  geom_line(aes(Temp_interval, Medians))+
+  geom_line(aes(temp_interval, medians))+
   theme_bw()+ 
-  geom_ribbon(aes(Temp_interval, ymin=Lower_bounds, ymax=Upper_bounds), fill="#30694B",alpha=0.5,
+  geom_ribbon(aes(temp_interval, ymin=lower_bounds, ymax=upper_bounds), fill="#30694B",alpha=0.5,
               inherit.aes = T)+
   geom_point(aes(Temp, trait), lf.data.comb, shape=21, fill='#C0C0C0',
               col='#000000', alpha=0.8, stroke=0.5, size=2)+
@@ -433,7 +433,7 @@ ggplot(briere_fit)+
 We can also use the built in function, `posteriorPredTPC()`, to plot the median and lower/upper bounds from samples taken from the posterior distribution.
 
 ```{r, results='hide'}
-posteriorPredTPC(AedMyBriFit)
+posterior_predictive(AedMyBriFit)
 ```
 
 Finally we can plot the fits/predictions. These are the posterior estimates of the fitted lines to the data. Recall that we can take each accepted sample, and plug it into the quadratic equations. This gives us the same number of possible lines as samples. We can then summarize these with the HPD intervals across each temperature. This is especially easy in this case because we've already saved these samples as output in our model file:
@@ -443,20 +443,20 @@ Finally we can plot the fits/predictions. These are the posterior estimates of t
 Once you have all of these samples, you can do many other things. For example, you can use the `which.max()` function to find the peak temperature ($T_{pk}$) for adult lifespan and its value at $T_{pk}$:
 
 ```{r}
-lifespan_Tpk <- briere_fit %>% slice(which.max(Medians)) 
+lifespan_Tpk <- briere_fit %>% slice(which.max(medians)) 
 ```
 
 <br> You can then plot $T_{pk}$ and the trait value at $T_{pk}$:
 
 ```{r}
 ggplot(briere_fit)+
-  geom_line(aes(Temp_interval, Medians), size=0.4)+
+  geom_line(aes(temp_interval, medians), size=0.4)+
   theme_bw()+ 
-  geom_ribbon(aes(Temp_interval, ymin=Lower_bounds, ymax=Upper_bounds), fill="#30694B",alpha=0.5,
+  geom_ribbon(aes(temp_interval, ymin=lower_bounds, ymax=upper_bounds), fill="#30694B",alpha=0.5,
               inherit.aes = T)+
   geom_point(aes(Temp, trait), lf.data.comb, shape=21, fill='#C0C0C0',
              col='#000000', alpha=0.8, stroke=0.5, size=2)+
-  geom_point(aes(Temp_interval, Medians), lifespan_Tpk, shape=23, fill='yellow',
+  geom_point(aes(temp_interval, medians), lifespan_Tpk, shape=23, fill='yellow',
             col='#000000', alpha=0.8, stroke=0.5, size=3)+
   theme(text = element_text(size=12))+
   scale_y_continuous(expression(plain(paste("lifespan (days)"))))+
