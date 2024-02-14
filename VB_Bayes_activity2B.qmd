@@ -19,14 +19,14 @@ For this practical you will need to first install [nimble](), then be sure to in
 
 ```{r, results="hide", warning=FALSE, message=FALSE}
 # Load libraries
-require(nimble)
-require(HDInterval)
+library(nimble)
+library(HDInterval)
 library(MCMCvis)
-require(coda) # makes diagnostic plots
-require(IDPmisc) # makes nice colored pairs plots to look at joint posteriors
-require("matrixStats")
-require("truncnorm")
-##require(mcmcplots) # another option for diagnostic plots, currently unused
+library(coda) # makes diagnostic plots
+library(IDPmisc) # makes nice colored pairs plots to look at joint posteriors
+library("matrixStats")
+library("truncnorm")
+##library(mcmcplots) # another option for diagnostic plots, currently unused
 ```
 
 <br> We are also introducing our new, in development, package `bayesTPC`. It is currently available through github.
@@ -397,7 +397,7 @@ bayesTPC_ipairs(AedMyBriFit, burn = 1000)
 ```{r}
 AedTestFit$mcmc$getWAIC()
 AedQuadFit$mcmc$getWAIC()
-#AedBriFit$mcmc$getWAIC()
+AedBriFit$mcmc$getWAIC()
 AedMyBriFit$mcmc$getWAIC()
 ```
 
@@ -415,7 +415,7 @@ head(briere_fit)
 
 ```{r}
 ggplot(briere_fit)+
-  geom_line(aes(temp_interval, medians))+
+  geom_line(aes(temp_interval, medians), linewidth=0.4)+
   theme_bw()+ 
   geom_ribbon(aes(temp_interval, ymin=lower_bounds, ymax=upper_bounds), fill="#30694B",alpha=0.5,
               inherit.aes = T)+
@@ -450,7 +450,7 @@ lifespan_Tpk <- briere_fit %>% slice(which.max(medians))
 
 ```{r}
 ggplot(briere_fit)+
-  geom_line(aes(temp_interval, medians), size=0.4)+
+  geom_line(aes(temp_interval, medians), linewidth=0.4)+
   theme_bw()+ 
   geom_ribbon(aes(temp_interval, ymin=lower_bounds, ymax=upper_bounds), fill="#30694B",alpha=0.5,
               inherit.aes = T)+
