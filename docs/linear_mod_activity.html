@@ -873,44 +873,39 @@ F = \frac{\left(\frac{ESS}{n_c-1}\right)}{\left(\frac{RSS}{n-n_c}\right)}
 <pre><code>Loading required package: tidyverse</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>✔ ggplot2 3.3.6     ✔ purrr   0.3.4
-✔ tibble  3.1.7     ✔ dplyr   1.0.9
-✔ tidyr   1.2.0     ✔ stringr 1.4.0
-✔ readr   2.1.2     ✔ forcats 0.5.1</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()</code></pre>
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">'gplots'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">'gplots'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: gplots</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'gplots'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from 'package:stats':
+<pre><code>Loading required package: gplots
+
+Attaching package: 'gplots'
+
+The following object is masked from 'package:stats':
 
     lowess</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">'repr'</span>)</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="fu">graphics.off</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">'repr'</span>)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="fu">graphics.off</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>mozwing      <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'activities/data/traitdata_Huxleyetal_2021.csv'</span>, <span class="at">stringsAsFactors =</span> T)</span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>mozwing<span class="sc">$</span>temp <span class="ot">&lt;-</span> <span class="fu">as_factor</span>(mozwing<span class="sc">$</span>temp) <span class="co"># define temperature and food level as categorical</span></span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>mozwing<span class="sc">$</span>food_level <span class="ot">&lt;-</span> <span class="fu">as_factor</span>(mozwing<span class="sc">$</span>food_level) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>mozwing      <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'activities/data/traitdata_Huxleyetal_2021.csv'</span>, <span class="at">stringsAsFactors =</span> T)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>mozwing<span class="sc">$</span>temp <span class="ot">&lt;-</span> <span class="fu">as_factor</span>(mozwing<span class="sc">$</span>temp) <span class="co"># define temperature and food level as categorical</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>mozwing<span class="sc">$</span>food_level <span class="ot">&lt;-</span> <span class="fu">as_factor</span>(mozwing<span class="sc">$</span>food_level) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(mozwing)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(mozwing)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   270 obs. of  33 variables:
  $ ID                    : int  4 6 7 11 11 12 19 20 16 21 ...
@@ -950,7 +945,7 @@ Attaching package: 'gplots'</code></pre>
 </div>
 <p><br> There are 33 variables but only a subset of these are of interest to us here. Let’s summarize the data to explore further:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mozwing)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mozwing)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       ID            exp_no  rep         dens     rearing_vessel temp   
  Min.   : 1.00   Min.   :3   A:87   Min.   :0.2   tub:270        22:90  
@@ -1029,7 +1024,7 @@ Attaching package: 'gplots'</code></pre>
 </ul>
 <p><span class="math inline">\star</span> Generate a boxplot of the differences in wing length between temperatures:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(length_mm <span class="sc">~</span> temp, mozwing)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(length_mm <span class="sc">~</span> temp, mozwing)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="linear_mod_activity_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1037,25 +1032,25 @@ Attaching package: 'gplots'</code></pre>
 <p><br> Looking at the plots, it is clear that there is more spread in the data below the median than above. Create a new variable <code>logwinglength</code> in the <code>mozwing</code> data frame containing logged millimeter values.</p>
 <p><span class="math inline">\star</span> Now create a boxplot of log wing length values within temperatures:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>mozwing<span class="sc">$</span>loglength <span class="ot">&lt;-</span> <span class="fu">log</span>(mozwing<span class="sc">$</span>length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>mozwing<span class="sc">$</span>loglength <span class="ot">&lt;-</span> <span class="fu">log</span>(mozwing<span class="sc">$</span>length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br> ### Differences in means with barplots</p>
 <p>Box and whisker plots show the median and spread in the data very clearly, but we want to test whether the means are different. This is <span class="math inline">t</span> test territory — how different are the means given the standard error — so it is common to use barplots and standard error bars to show these differences.</p>
 <p>We’re going to use some R code to construct a barplot by hand. We need to calculate the means and standard errors within temperature groups, but before we can do that, we need a new functions to calculate the standard error of a mean:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>seMean <span class="ot">&lt;-</span> <span class="cf">function</span>(x){ <span class="co"># get standard error of the mean from a set of values (x)</span></span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>    x  <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(x) <span class="co"># get rid of missing values</span></span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>    se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">var</span>(x)<span class="sc">/</span><span class="fu">length</span>(x)) <span class="co"># calculate the standard error</span></span>
-<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(se)  <span class="co"># tell the function to return the standard error</span></span>
-<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>seMean <span class="ot">&lt;-</span> <span class="cf">function</span>(x){ <span class="co"># get standard error of the mean from a set of values (x)</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>    x  <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(x) <span class="co"># get rid of missing values</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>    se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">var</span>(x)<span class="sc">/</span><span class="fu">length</span>(x)) <span class="co"># calculate the standard error</span></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(se)  <span class="co"># tell the function to return the standard error</span></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br> Now we can use the function <code>tapply</code>: it splits a variable up into groups from a factor and calculates statistics on each group using a function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>lengthMeans <span class="ot">&lt;-</span> <span class="fu">tapply</span>(mozwing<span class="sc">$</span>loglength, mozwing<span class="sc">$</span>temp, <span class="at">FUN =</span> mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lengthMeans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>lengthMeans <span class="ot">&lt;-</span> <span class="fu">tapply</span>(mozwing<span class="sc">$</span>loglength, mozwing<span class="sc">$</span>temp, <span class="at">FUN =</span> mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lengthMeans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       22        26        32 
 1.0737861 0.9824950 0.9131609 </code></pre>
@@ -1063,9 +1058,9 @@ Attaching package: 'gplots'</code></pre>
 </div>
 <p><br> And similarly, let’s calculate the standard error of the mean using the function we made:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>lengthSE <span class="ot">&lt;-</span> <span class="fu">tapply</span>(mozwing<span class="sc">$</span>loglength, mozwing<span class="sc">$</span>temp, <span class="at">FUN =</span> seMean)</span>
-<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lengthSE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>lengthSE <span class="ot">&lt;-</span> <span class="fu">tapply</span>(mozwing<span class="sc">$</span>loglength, mozwing<span class="sc">$</span>temp, <span class="at">FUN =</span> seMean)</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lengthSE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        22         26         32 
 0.01330309 0.01431165 0.01230405 </code></pre>
@@ -1073,21 +1068,21 @@ Attaching package: 'gplots'</code></pre>
 </div>
 <p><br> Now we have to put these values together on the plot:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the upper and lower limits of the error bars</span></span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>upperSE <span class="ot">&lt;-</span> lengthMeans <span class="sc">+</span> lengthSE</span>
-<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>lowerSE <span class="ot">&lt;-</span> lengthMeans <span class="sc">-</span> lengthSE</span>
-<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a><span class="co"># get a barplot</span></span>
-<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a><span class="co"># - this function can report where the middle of the bars are on the x-axis</span></span>
-<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a><span class="co"># - set the y axis limits to contain the error bars</span></span>
-<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-9"><a href="#cb65-9" aria-hidden="true" tabindex="-1"></a>barMids <span class="ot">&lt;-</span> <span class="fu">barplot</span>(lengthMeans, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">max</span>(upperSE)), <span class="at">ylab =</span> <span class="st">'ln(wing length, mm)'</span>)</span>
-<span id="cb65-10"><a href="#cb65-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-11"><a href="#cb65-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Now use the function to add error bars</span></span>
-<span id="cb65-12"><a href="#cb65-12" aria-hidden="true" tabindex="-1"></a><span class="co"># - draws arrows between the points (x0,y0) and (x1,y1)</span></span>
-<span id="cb65-13"><a href="#cb65-13" aria-hidden="true" tabindex="-1"></a><span class="co"># - arrow heads at each end (code=3) and at 90 degree angles</span></span>
-<span id="cb65-14"><a href="#cb65-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-15"><a href="#cb65-15" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(barMids, upperSE, barMids, lowerSE, <span class="at">ang=</span><span class="dv">90</span>, <span class="at">code=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the upper and lower limits of the error bars</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>upperSE <span class="ot">&lt;-</span> lengthMeans <span class="sc">+</span> lengthSE</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>lowerSE <span class="ot">&lt;-</span> lengthMeans <span class="sc">-</span> lengthSE</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="co"># get a barplot</span></span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a><span class="co"># - this function can report where the middle of the bars are on the x-axis</span></span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a><span class="co"># - set the y axis limits to contain the error bars</span></span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>barMids <span class="ot">&lt;-</span> <span class="fu">barplot</span>(lengthMeans, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">max</span>(upperSE)), <span class="at">ylab =</span> <span class="st">'ln(wing length, mm)'</span>)</span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Now use the function to add error bars</span></span>
+<span id="cb61-12"><a href="#cb61-12" aria-hidden="true" tabindex="-1"></a><span class="co"># - draws arrows between the points (x0,y0) and (x1,y1)</span></span>
+<span id="cb61-13"><a href="#cb61-13" aria-hidden="true" tabindex="-1"></a><span class="co"># - arrow heads at each end (code=3) and at 90 degree angles</span></span>
+<span id="cb61-14"><a href="#cb61-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-15"><a href="#cb61-15" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(barMids, upperSE, barMids, lowerSE, <span class="at">ang=</span><span class="dv">90</span>, <span class="at">code=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="linear_mod_activity_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1097,27 +1092,27 @@ Attaching package: 'gplots'</code></pre>
 <p><span class="math inline">\star</span> Use the second two chunks as a model to plot a similar graph for food level</p>
 <hr>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>seMeanfood <span class="ot">&lt;-</span> <span class="cf">function</span>(x){ <span class="co"># get standard error of the mean from a set of values (x)</span></span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>         x <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(x) <span class="co"># get rid of missing values</span></span>
-<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>         se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">var</span>(x)<span class="sc">/</span><span class="fu">length</span>(x)) <span class="co"># calculate the standard error</span></span>
-<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">return</span>(se)  <span class="co"># tell the function to return the standard error</span></span>
-<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>seMeanfood <span class="ot">&lt;-</span> <span class="cf">function</span>(x){ <span class="co"># get standard error of the mean from a set of values (x)</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>         x <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(x) <span class="co"># get rid of missing values</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>         se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">var</span>(x)<span class="sc">/</span><span class="fu">length</span>(x)) <span class="co"># calculate the standard error</span></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">return</span>(se)  <span class="co"># tell the function to return the standard error</span></span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>lengthMeansfood <span class="ot">&lt;-</span> <span class="fu">tapply</span>(mozwing<span class="sc">$</span>loglength, mozwing<span class="sc">$</span>food_level, <span class="at">FUN =</span> mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lengthMeansfood)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>lengthMeansfood <span class="ot">&lt;-</span> <span class="fu">tapply</span>(mozwing<span class="sc">$</span>loglength, mozwing<span class="sc">$</span>food_level, <span class="at">FUN =</span> mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lengthMeansfood)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      0.1         1 
 0.9111556 1.0670992 </code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>lengthSEfood <span class="ot">&lt;-</span> <span class="fu">tapply</span>(mozwing<span class="sc">$</span>loglength, mozwing<span class="sc">$</span>food_level, <span class="at">FUN =</span> seMeanfood)</span>
-<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lengthSEfood)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>lengthSEfood <span class="ot">&lt;-</span> <span class="fu">tapply</span>(mozwing<span class="sc">$</span>loglength, mozwing<span class="sc">$</span>food_level, <span class="at">FUN =</span> seMeanfood)</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lengthSEfood)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        0.1           1 
 0.011887620 0.008825873 </code></pre>
@@ -1125,20 +1120,20 @@ Attaching package: 'gplots'</code></pre>
 </div>
 <p><br> Lets get the upper and lower limits of the error bars:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>upperSEfood <span class="ot">&lt;-</span> lengthMeansfood <span class="sc">+</span> lengthSEfood</span>
-<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>lowerSEfood <span class="ot">&lt;-</span> lengthMeansfood <span class="sc">-</span> lengthSEfood</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>upperSEfood <span class="ot">&lt;-</span> lengthMeansfood <span class="sc">+</span> lengthSEfood</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>lowerSEfood <span class="ot">&lt;-</span> lengthMeansfood <span class="sc">-</span> lengthSEfood</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br> Now we should build a barplot - this function can report where the middle of the bars are on the x-axis - set the y axis limits to contain the error bars</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>barMidsfood <span class="ot">&lt;-</span> <span class="fu">barplot</span>(lengthMeansfood, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">max</span>(upperSE)), <span class="at">ylab =</span> <span class="st">'ln(wing length, mm)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>barMidsfood <span class="ot">&lt;-</span> <span class="fu">barplot</span>(lengthMeansfood, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">max</span>(upperSE)), <span class="at">ylab =</span> <span class="st">'ln(wing length, mm)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="linear_mod_activity_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p><br> Now use the function to add error bars - draws arrows between the points (x0,y0) and (x1,y1) - arrow heads at each end (code=3) and at 90 degree angles</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>barMidsfood <span class="ot">&lt;-</span> <span class="fu">barplot</span>(lengthMeansfood, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">max</span>(upperSE)), <span class="at">ylab =</span> <span class="st">'ln(wing length, mm)'</span>)</span>
-<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(barMidsfood, upperSEfood, barMidsfood, lowerSEfood, <span class="at">ang=</span><span class="dv">90</span>, <span class="at">code=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>barMidsfood <span class="ot">&lt;-</span> <span class="fu">barplot</span>(lengthMeansfood, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">max</span>(upperSE)), <span class="at">ylab =</span> <span class="st">'ln(wing length, mm)'</span>)</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(barMidsfood, upperSEfood, barMidsfood, lowerSEfood, <span class="at">ang=</span><span class="dv">90</span>, <span class="at">code=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="linear_mod_activity_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1150,13 +1145,13 @@ Attaching package: 'gplots'</code></pre>
 <p>We will use the <code>gplots</code> package to create plots of group means and confidence intervals. Rather than plotting the means <span class="math inline">\pm</span> 1 standard error, the option <code>p=0.95</code> uses the standard error and the number of data points to get 95% confidence intervals. The default <code>connect=TRUE</code> option adds a line connecting the means, which isn’t useful here.</p>
 <p><span class="math inline">\star</span> Replicate the code below into your script and run it to get the plots below.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Load the gplots package</span></span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gplots)</span>
-<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get plots of group means and standard errors</span></span>
-<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plotmeans</span>(loglength <span class="sc">~</span> temp, <span class="at">data=</span>mozwing, <span class="at">p=</span><span class="fl">0.95</span>, <span class="at">connect=</span><span class="cn">FALSE</span>)</span>
-<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plotmeans</span>(loglength <span class="sc">~</span> food_level, <span class="at">data=</span>mozwing, <span class="at">p=</span><span class="fl">0.95</span>, <span class="at">connect=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Load the gplots package</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gplots)</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get plots of group means and standard errors</span></span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plotmeans</span>(loglength <span class="sc">~</span> temp, <span class="at">data=</span>mozwing, <span class="at">p=</span><span class="fl">0.95</span>, <span class="at">connect=</span><span class="cn">FALSE</span>)</span>
+<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plotmeans</span>(loglength <span class="sc">~</span> food_level, <span class="at">data=</span>mozwing, <span class="at">p=</span><span class="fl">0.95</span>, <span class="at">connect=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="linear_mod_activity_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1170,10 +1165,10 @@ Attaching package: 'gplots'</code></pre>
 <p>Use <code>anova</code> and <code>summary</code> to look at the analysis of variance table and then the coefficients of the model.</p>
 <p>The ANOVA table for the model should look like the one below: temperature explains highly significant variation in wing length(<span class="math inline">F= 30.5, \textrm{df}=2 \textrm{ and } 146, p =8.45e-12</span>)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>lengthLM <span class="ot">&lt;-</span> <span class="fu">lm</span>(loglength <span class="sc">~</span> temp, <span class="at">data=</span>mozwing)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>lengthLM <span class="ot">&lt;-</span> <span class="fu">lm</span>(loglength <span class="sc">~</span> temp, <span class="at">data=</span>mozwing)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lengthLM)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lengthLM)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
@@ -1189,7 +1184,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>Pay close attention to the sum of squares column. This model is good, but some will not be. The important ratio is called <span class="math inline">r^2</span>, a measure of explanatory power, and shows that, although a model can be very significant, it might not be very explanatory. We care about explanatory power or effect size, <code>*not*</code> <span class="math inline">p</span> values.</p>
 <p>The coefficients table for the model looks like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lengthLM)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lengthLM)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1218,8 +1213,8 @@ F-statistic: 30.52 on 2 and 146 DF,  p-value: 8.446e-12</code></pre>
 <li>The reference level (or intercept) is for 22<span class="math inline">^\circ</span>C. The summary output indicates that wing length at this temperature is significantly different from zero - this is <em>not</em> an exciting finding!</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>TukeyLength <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(<span class="fu">aov</span>(lengthLM))</span>
-<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(TukeyLength)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>TukeyLength <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(<span class="fu">aov</span>(lengthLM))</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(TukeyLength)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Tukey multiple comparisons of means
     95% family-wise confidence level
@@ -1242,14 +1237,14 @@ $temp
 </ul>
 <p>You can visualise these confidence intervals by plotting the Tukey test. You have to tweak the graphics parameters to get a clean plot though.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repr.plot.res =</span> <span class="dv">100</span>, <span class="at">repr.plot.width =</span> <span class="dv">10</span>, <span class="at">repr.plot.height =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repr.plot.res =</span> <span class="dv">100</span>, <span class="at">repr.plot.width =</span> <span class="dv">10</span>, <span class="at">repr.plot.height =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">las=</span><span class="dv">1</span>, <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">5</span>))</span>
-<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="co"># las= 1 turns labels horizontal</span></span>
-<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a><span class="co"># mar makes the left margin wider (bottom, left, top, right)</span></span>
-<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(TukeyLength)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">las=</span><span class="dv">1</span>, <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">5</span>))</span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="co"># las= 1 turns labels horizontal</span></span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a><span class="co"># mar makes the left margin wider (bottom, left, top, right)</span></span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(TukeyLength)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="linear_mod_activity_files/figure-html/unnamed-chunk-52-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1269,10 +1264,10 @@ $temp
 <h3 class="anchored" data-anchor-id="the-chi-square-test-with-the-wing-length-data">The Chi-square test with the wing length data</h3>
 <p>We can easily build a table for a Chi-square test on the wing length data as follows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>mozwing <span class="ot">&lt;-</span> mozwing[<span class="sc">!</span><span class="fu">is.na</span>(mozwing<span class="sc">$</span>loglength),] <span class="co"># subset data to omit cells for individuals that did not survive to adulthood</span></span>
-<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>factorTable <span class="ot">&lt;-</span> <span class="fu">table</span>(mozwing<span class="sc">$</span>food_level,mozwing<span class="sc">$</span>temp)</span>
-<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(factorTable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>mozwing <span class="ot">&lt;-</span> mozwing[<span class="sc">!</span><span class="fu">is.na</span>(mozwing<span class="sc">$</span>loglength),] <span class="co"># subset data to omit cells for individuals that did not survive to adulthood</span></span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>factorTable <span class="ot">&lt;-</span> <span class="fu">table</span>(mozwing<span class="sc">$</span>food_level,mozwing<span class="sc">$</span>temp)</span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(factorTable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     
       22 26 32
@@ -1282,7 +1277,7 @@ $temp
 </div>
 <p><br> Now let’s run the test:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(factorTable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(factorTable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's Chi-squared test
@@ -1309,7 +1304,7 @@ X-squared = 4.1883, df = 2, p-value = 0.1232</code></pre>
 <p>The last thing to do is to save a copy of the wing length data, including our new column of log data.</p>
 <p><span class="math inline">\star</span> Use this code in your script to create the saved data in your <code>Data</code> directory :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(mozwing, <span class="at">file=</span><span class="st">'mozwing.Rdata'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(mozwing, <span class="at">file=</span><span class="st">'mozwing.Rdata'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -1332,12 +1327,12 @@ X-squared = 4.1883, df = 2, p-value = 0.1232</code></pre>
 <h3 class="anchored" data-anchor-id="exploring-the-data-1">Exploring the data</h3>
 <p><span class="math inline">\star</span> Create a new blank script called <code>MulExpl.R</code> in your <code>Code</code> directory and add some introductory comments.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>wings <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"activities/data/traitdata_Huxleyetal_2021.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>wings <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"activities/data/traitdata_Huxleyetal_2021.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br> Look back at the end of the previous section to see how you saved the RData file. If <code>loglength</code> is missing, just add it to the imported data frame again (go back to the ANOVA section and have a look if you have forgotten how). Also, check to see if <code>temp</code> and <code>food_level</code> are defined as factors.</p>
 <p>Use <code>ls()</code>, and then <code>str</code> to check that the data has loaded correctly:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(wings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(wings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   270 obs. of  33 variables:
  $ ID                    : int  4 6 7 11 11 12 19 20 16 21 ...
@@ -1379,13 +1374,13 @@ X-squared = 4.1883, df = 2, p-value = 0.1232</code></pre>
 <p>We need to look at plots within groups.</p>
 <p>Before we do that, there is a lot of data in the data frame that we don’t need for our analysis and we should make sure that we are using the same data for our plots and models. We will subset the data down to the complete data for the three variables and log the length of the wings:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>wings <span class="ot">&lt;-</span> wings <span class="sc">%&gt;%</span></span>
-<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">loglength =</span> <span class="fu">log</span>(length_mm))</span>
-<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>wings <span class="ot">&lt;-</span> <span class="fu">subset</span>(wings, <span class="at">select =</span> <span class="fu">c</span>(temp, food_level, loglength)) </span>
-<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a>wings <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(wings)</span>
-<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a>wings<span class="sc">$</span>temp <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(wings<span class="sc">$</span>temp)</span>
-<span id="cb92-6"><a href="#cb92-6" aria-hidden="true" tabindex="-1"></a>wings<span class="sc">$</span>food_level <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(wings<span class="sc">$</span>food_level)</span>
-<span id="cb92-7"><a href="#cb92-7" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(wings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>wings <span class="ot">&lt;-</span> wings <span class="sc">%&gt;%</span></span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">loglength =</span> <span class="fu">log</span>(length_mm))</span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a>wings <span class="ot">&lt;-</span> <span class="fu">subset</span>(wings, <span class="at">select =</span> <span class="fu">c</span>(temp, food_level, loglength)) </span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a>wings <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(wings)</span>
+<span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a>wings<span class="sc">$</span>temp <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(wings<span class="sc">$</span>temp)</span>
+<span id="cb88-6"><a href="#cb88-6" aria-hidden="true" tabindex="-1"></a>wings<span class="sc">$</span>food_level <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(wings<span class="sc">$</span>food_level)</span>
+<span id="cb88-7"><a href="#cb88-7" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(wings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   149 obs. of  3 variables:
  $ temp      : Factor w/ 3 levels "22","26","32": 1 1 1 1 1 1 1 1 1 1 ...
@@ -1413,8 +1408,8 @@ X-squared = 4.1883, df = 2, p-value = 0.1232</code></pre>
 <h3 class="anchored" data-anchor-id="lattice-again"><code>lattice</code> again</h3>
 <p>Recall that the <code>lattice</code> package provides some very neat extra ways to plot data in groups. They look pretty but the downside is that they don’t use the same graphics system — all those <code>par</code> commands are useless for these graphs. The defaults look good though!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lattice)</span>
-<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bwplot</span>(loglength <span class="sc">~</span> temp <span class="sc">|</span> food_level, <span class="at">data=</span> wings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lattice)</span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bwplot</span>(loglength <span class="sc">~</span> temp <span class="sc">|</span> food_level, <span class="at">data=</span> wings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="linear_mod_activity_files/figure-html/unnamed-chunk-61-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1428,9 +1423,9 @@ X-squared = 4.1883, df = 2, p-value = 0.1232</code></pre>
 <h3 class="anchored" data-anchor-id="barplots-again">Barplots again</h3>
 <p>We’re going to make the barplot code from the regression section even more complicated! This time we want to know the mean log wing length within combinations of <code>temp</code> and <code>food_level</code>. We can still use <code>tapply</code>, providing more than one grouping factor. We create a set of grouping factors like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>groups     <span class="ot">&lt;-</span> <span class="fu">list</span>(wings<span class="sc">$</span>temp, wings<span class="sc">$</span>food_level)</span>
-<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>groupMeans <span class="ot">&lt;-</span> <span class="fu">tapply</span>(wings<span class="sc">$</span>loglength, groups, <span class="at">FUN =</span> mean)</span>
-<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(groupMeans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>groups     <span class="ot">&lt;-</span> <span class="fu">list</span>(wings<span class="sc">$</span>temp, wings<span class="sc">$</span>food_level)</span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>groupMeans <span class="ot">&lt;-</span> <span class="fu">tapply</span>(wings<span class="sc">$</span>loglength, groups, <span class="at">FUN =</span> mean)</span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(groupMeans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         0.1         1
 22 0.9720317 1.1406533
@@ -1441,20 +1436,20 @@ X-squared = 4.1883, df = 2, p-value = 0.1232</code></pre>
 <p><span class="math inline">\star</span> Copy this code into your script and run it.</p>
 <p>Use this code and the script from the ANOVA section to get the set of standard errors for the groups <code>groupSE</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>seMean <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># get rid of missing values</span></span>
-<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(x)</span>
-<span id="cb99-4"><a href="#cb99-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># calculate the standard error</span></span>
-<span id="cb99-5"><a href="#cb99-5" aria-hidden="true" tabindex="-1"></a>    se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">var</span>(x)<span class="sc">/</span><span class="fu">length</span>(x))</span>
-<span id="cb99-6"><a href="#cb99-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># tell the function to report the standard error</span></span>
-<span id="cb99-7"><a href="#cb99-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(se)</span>
-<span id="cb99-8"><a href="#cb99-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>seMean <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># get rid of missing values</span></span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(x)</span>
+<span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># calculate the standard error</span></span>
+<span id="cb95-5"><a href="#cb95-5" aria-hidden="true" tabindex="-1"></a>    se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">var</span>(x)<span class="sc">/</span><span class="fu">length</span>(x))</span>
+<span id="cb95-6"><a href="#cb95-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># tell the function to report the standard error</span></span>
+<span id="cb95-7"><a href="#cb95-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(se)</span>
+<span id="cb95-8"><a href="#cb95-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>groups <span class="ot">&lt;-</span> <span class="fu">list</span>(wings<span class="sc">$</span>food_level, wings<span class="sc">$</span>temp)</span>
-<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>groupMeans <span class="ot">&lt;-</span> <span class="fu">tapply</span>(wings<span class="sc">$</span>loglength, groups, <span class="at">FUN=</span>mean)</span>
-<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(groupMeans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>groups <span class="ot">&lt;-</span> <span class="fu">list</span>(wings<span class="sc">$</span>food_level, wings<span class="sc">$</span>temp)</span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a>groupMeans <span class="ot">&lt;-</span> <span class="fu">tapply</span>(wings<span class="sc">$</span>loglength, groups, <span class="at">FUN=</span>mean)</span>
+<span id="cb96-4"><a href="#cb96-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(groupMeans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           22       26        32
 0.1 0.9720317 0.893747 0.8216252
@@ -1462,8 +1457,8 @@ X-squared = 4.1883, df = 2, p-value = 0.1232</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>groupSE <span class="ot">&lt;-</span> <span class="fu">tapply</span>(wings<span class="sc">$</span>loglength, groups, <span class="at">FUN=</span>seMean)</span>
-<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(groupSE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>groupSE <span class="ot">&lt;-</span> <span class="fu">tapply</span>(wings<span class="sc">$</span>loglength, groups, <span class="at">FUN=</span>seMean)</span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(groupSE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>             22          26          32
 0.1 0.017990977 0.014147233 0.019430021
@@ -1473,12 +1468,12 @@ X-squared = 4.1883, df = 2, p-value = 0.1232</code></pre>
 <p><br> Now we can use <code>barplot</code>. The default option for a barplot of a table is to create a stacked barplot, which is not what we want. The option <code>beside=TRUE</code> makes the bars for each column appear side by side.</p>
 <p>Once again, we save the midpoints of the bars to add the error bars. The other options in the code below change the colours of the bars and the length of error bar caps.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get upper and lower standard error height</span></span>
-<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>upperSE <span class="ot">&lt;-</span> groupMeans <span class="sc">+</span> groupSE</span>
-<span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a>lowerSE <span class="ot">&lt;-</span> groupMeans <span class="sc">-</span> groupSE</span>
-<span id="cb104-4"><a href="#cb104-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create barplot</span></span>
-<span id="cb104-5"><a href="#cb104-5" aria-hidden="true" tabindex="-1"></a>barMids <span class="ot">&lt;-</span> <span class="fu">barplot</span>(groupMeans, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">max</span>(upperSE)), <span class="at">beside=</span><span class="cn">TRUE</span>, <span class="at">ylab=</span> <span class="st">' log (wing length (mm)) '</span> , <span class="at">col=</span><span class="fu">c</span>( <span class="st">' white '</span> , <span class="st">' grey70 '</span>))</span>
-<span id="cb104-6"><a href="#cb104-6" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(barMids, upperSE, barMids, lowerSE, <span class="at">ang=</span><span class="dv">90</span>, <span class="at">code=</span><span class="dv">3</span>, <span class="at">len=</span><span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get upper and lower standard error height</span></span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>upperSE <span class="ot">&lt;-</span> groupMeans <span class="sc">+</span> groupSE</span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>lowerSE <span class="ot">&lt;-</span> groupMeans <span class="sc">-</span> groupSE</span>
+<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create barplot</span></span>
+<span id="cb100-5"><a href="#cb100-5" aria-hidden="true" tabindex="-1"></a>barMids <span class="ot">&lt;-</span> <span class="fu">barplot</span>(groupMeans, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">max</span>(upperSE)), <span class="at">beside=</span><span class="cn">TRUE</span>, <span class="at">ylab=</span> <span class="st">' log (wing length (mm)) '</span> , <span class="at">col=</span><span class="fu">c</span>( <span class="st">' white '</span> , <span class="st">' grey70 '</span>))</span>
+<span id="cb100-6"><a href="#cb100-6" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(barMids, upperSE, barMids, lowerSE, <span class="at">ang=</span><span class="dv">90</span>, <span class="at">code=</span><span class="dv">3</span>, <span class="at">len=</span><span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="linear_mod_activity_files/figure-html/unnamed-chunk-66-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1519,25 +1514,25 @@ Means and 95% confidence intervals for logged wing length (mm) in <em>Aedes aegy
 <p><span class="math inline">\star</span> This is an important section — read it through carefully and ask questions if you are unsure. Copy the code into your script and add comments. <em>Do not just jump to the next action item</em>!</p>
 <p><span class="math inline">\star</span> First, fit the model:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(loglength <span class="sc">~</span> temp <span class="sc">+</span> food_level, <span class="at">data =</span> mozwing)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(loglength <span class="sc">~</span> temp <span class="sc">+</span> food_level, <span class="at">data =</span> mozwing)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We’re going to do things right this time and check the model diagnostics before we rush into interpretation.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(repr) ; <span class="fu">options</span>(<span class="at">repr.plot.res =</span> <span class="dv">100</span>, <span class="at">repr.plot.width =</span> <span class="dv">7</span>, <span class="at">repr.plot.height =</span> <span class="dv">8</span>) <span class="co"># Change plot size</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(repr) ; <span class="fu">options</span>(<span class="at">repr.plot.res =</span> <span class="dv">100</span>, <span class="at">repr.plot.width =</span> <span class="dv">7</span>, <span class="at">repr.plot.height =</span> <span class="dv">8</span>) <span class="co"># Change plot size</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="linear_mod_activity_files/figure-html/unnamed-chunk-69-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(repr) ; <span class="fu">options</span>(<span class="at">repr.plot.res =</span> <span class="dv">100</span>, <span class="at">repr.plot.width =</span> <span class="dv">6</span>, <span class="at">repr.plot.height =</span> <span class="dv">6</span>) <span class="co"># Change plot size</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(repr) ; <span class="fu">options</span>(<span class="at">repr.plot.res =</span> <span class="dv">100</span>, <span class="at">repr.plot.width =</span> <span class="dv">6</span>, <span class="at">repr.plot.height =</span> <span class="dv">6</span>) <span class="co"># Change plot size</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br> Examine these diagnostic plots. There are six predicted values now - three temperature levels for each of the two food levels. Those plots look ok so now we can look at the analysis of variance table:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
@@ -1557,7 +1552,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>We could also calculate a significance for the whole model by merging the terms. The total explained sums of squares of <span class="math inline">0.59 + 0.97 = 1.56</span> uses <span class="math inline">2+1 =3</span> degrees of freedom, so the mean sums of squares for all the terms together is <span class="math inline">1.56/3=0.52</span>. Dividing this by the residual mean square of 0.003 gives an F of <span class="math inline">0.52 / 0.003 = 173.33</span>.</p>
 <p>Now we can look at the summary table to see the coefficients:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1656,16 +1651,16 @@ F-statistic: 169.7 on 3 and 145 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>For practice, subset the dataset, define any categorical variables, and add any columns that might missing. Revist the previous sections, if you have forgotten what is needed!</p>
 <p>Let’s refit the model from the earlier multiple explanatory variable section, but including the interaction between temperature and food level. We’ll immediately check the model is appropriate:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(loglength <span class="sc">~</span> temp <span class="sc">*</span> food_level, <span class="at">data=</span> wings)</span>
-<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">mgp=</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="fl">0.8</span>,<span class="dv">0</span>))</span>
-<span id="cb113-3"><a href="#cb113-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model)   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(loglength <span class="sc">~</span> temp <span class="sc">*</span> food_level, <span class="at">data=</span> wings)</span>
+<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">mgp=</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="fl">0.8</span>,<span class="dv">0</span>))</span>
+<span id="cb109-3"><a href="#cb109-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model)   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="linear_mod_activity_files/figure-html/unnamed-chunk-74-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Now, examine the <code>anova</code> and <code>summary</code> outputs for the model:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
@@ -1685,7 +1680,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>The model from the first multiple explanatory variables section without the interaction had an <span class="math inline">r^2 = 0.78</span> — our new model explains 0% more of the variation in the data.</p>
 <p>The summary table is as follows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1773,21 +1768,21 @@ F-statistic: 104.1 on 5 and 143 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>We will use the odonates data.</p>
 <p><span class="math inline">\star</span> First load the data:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a>odonata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"activities/data/GenomeSize.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a>odonata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"activities/data/GenomeSize.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br> <br> <span class="math inline">\star</span> Now create two new variables in the <code>odonata</code> data set called <code>logGS</code> and <code>logBW</code> containing log genome size and log body weight:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>odonata<span class="sc">$</span>logGS <span class="ot">&lt;-</span> <span class="fu">log</span>(odonata<span class="sc">$</span>GenomeSize)</span>
-<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a>odonata<span class="sc">$</span>logBW <span class="ot">&lt;-</span> <span class="fu">log</span>(odonata<span class="sc">$</span>BodyWeight)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>odonata<span class="sc">$</span>logGS <span class="ot">&lt;-</span> <span class="fu">log</span>(odonata<span class="sc">$</span>GenomeSize)</span>
+<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a>odonata<span class="sc">$</span>logBW <span class="ot">&lt;-</span> <span class="fu">log</span>(odonata<span class="sc">$</span>BodyWeight)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br> The models we fitted before looked like this:</p>
 <p><img src="dragonData.svg" width="500px"></p>
 <p>We can now fit the model of body weight as a function of both genome size and suborder:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a>odonModel <span class="ot">&lt;-</span> <span class="fu">lm</span>(logBW <span class="sc">~</span> logGS <span class="sc">*</span> Suborder, <span class="at">data =</span> odonata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>odonModel <span class="ot">&lt;-</span> <span class="fu">lm</span>(logBW <span class="sc">~</span> logGS <span class="sc">*</span> Suborder, <span class="at">data =</span> odonata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(odonModel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(odonModel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1814,7 +1809,7 @@ F-statistic:  96.5 on 3 and 94 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <p><br> Again, we’ll look at the anova table first:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(odonModel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(odonModel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
@@ -1836,7 +1831,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </ul>
 <p>Now for the summary table:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(odonModel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(odonModel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1881,14 +1876,14 @@ F-statistic:  96.5 on 3 and 94 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>We’ll use the <code>predict</code> function again to get the predicted values from the model and add lines to the plot above.</p>
 <p>First, we’ll create a set of numbers spanning the range of genome size:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="co">#get the range of the data:</span></span>
-<span id="cb127-2"><a href="#cb127-2" aria-hidden="true" tabindex="-1"></a>rng <span class="ot">&lt;-</span> <span class="fu">range</span>(odonata<span class="sc">$</span>logGS)</span>
-<span id="cb127-3"><a href="#cb127-3" aria-hidden="true" tabindex="-1"></a><span class="co">#get a sequence from the min to the max with 100 equally spaced values:</span></span>
-<span id="cb127-4"><a href="#cb127-4" aria-hidden="true" tabindex="-1"></a>LogGSForFitting <span class="ot">&lt;-</span> <span class="fu">seq</span>(rng[<span class="dv">1</span>], rng[<span class="dv">2</span>], <span class="at">length =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="co">#get the range of the data:</span></span>
+<span id="cb123-2"><a href="#cb123-2" aria-hidden="true" tabindex="-1"></a>rng <span class="ot">&lt;-</span> <span class="fu">range</span>(odonata<span class="sc">$</span>logGS)</span>
+<span id="cb123-3"><a href="#cb123-3" aria-hidden="true" tabindex="-1"></a><span class="co">#get a sequence from the min to the max with 100 equally spaced values:</span></span>
+<span id="cb123-4"><a href="#cb123-4" aria-hidden="true" tabindex="-1"></a>LogGSForFitting <span class="ot">&lt;-</span> <span class="fu">seq</span>(rng[<span class="dv">1</span>], rng[<span class="dv">2</span>], <span class="at">length =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br> Have a look at these numbers:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(LogGSForFitting)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(LogGSForFitting)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [1] -0.891598119 -0.873918728 -0.856239337 -0.838559945 -0.820880554
   [6] -0.803201163 -0.785521772 -0.767842380 -0.750162989 -0.732483598
@@ -1914,28 +1909,28 @@ F-statistic:  96.5 on 3 and 94 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <p><br> We can now use the model to predict the values of body weight at each of those points for each of the two suborders:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="co">#get a data frame of new data for the order</span></span>
-<span id="cb130-2"><a href="#cb130-2" aria-hidden="true" tabindex="-1"></a>ZygoVals <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">logGS =</span> LogGSForFitting, <span class="at">Suborder =</span> <span class="st">"Zygoptera"</span>)</span>
-<span id="cb130-3"><a href="#cb130-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb130-4"><a href="#cb130-4" aria-hidden="true" tabindex="-1"></a><span class="co">#get the predictions and standard error</span></span>
-<span id="cb130-5"><a href="#cb130-5" aria-hidden="true" tabindex="-1"></a>ZygoPred <span class="ot">&lt;-</span> <span class="fu">predict</span>(odonModel, <span class="at">newdata =</span> ZygoVals, <span class="at">se.fit =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb130-6"><a href="#cb130-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb130-7"><a href="#cb130-7" aria-hidden="true" tabindex="-1"></a><span class="co">#repeat for anisoptera</span></span>
-<span id="cb130-8"><a href="#cb130-8" aria-hidden="true" tabindex="-1"></a>AnisoVals <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">logGS =</span> LogGSForFitting, <span class="at">Suborder =</span> <span class="st">"Anisoptera"</span>)</span>
-<span id="cb130-9"><a href="#cb130-9" aria-hidden="true" tabindex="-1"></a>AnisoPred <span class="ot">&lt;-</span> <span class="fu">predict</span>(odonModel, <span class="at">newdata =</span> AnisoVals, <span class="at">se.fit =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="co">#get a data frame of new data for the order</span></span>
+<span id="cb126-2"><a href="#cb126-2" aria-hidden="true" tabindex="-1"></a>ZygoVals <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">logGS =</span> LogGSForFitting, <span class="at">Suborder =</span> <span class="st">"Zygoptera"</span>)</span>
+<span id="cb126-3"><a href="#cb126-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb126-4"><a href="#cb126-4" aria-hidden="true" tabindex="-1"></a><span class="co">#get the predictions and standard error</span></span>
+<span id="cb126-5"><a href="#cb126-5" aria-hidden="true" tabindex="-1"></a>ZygoPred <span class="ot">&lt;-</span> <span class="fu">predict</span>(odonModel, <span class="at">newdata =</span> ZygoVals, <span class="at">se.fit =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb126-6"><a href="#cb126-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb126-7"><a href="#cb126-7" aria-hidden="true" tabindex="-1"></a><span class="co">#repeat for anisoptera</span></span>
+<span id="cb126-8"><a href="#cb126-8" aria-hidden="true" tabindex="-1"></a>AnisoVals <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">logGS =</span> LogGSForFitting, <span class="at">Suborder =</span> <span class="st">"Anisoptera"</span>)</span>
+<span id="cb126-9"><a href="#cb126-9" aria-hidden="true" tabindex="-1"></a>AnisoPred <span class="ot">&lt;-</span> <span class="fu">predict</span>(odonModel, <span class="at">newdata =</span> AnisoVals, <span class="at">se.fit =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br> We’ve added <code>se.fit=TRUE</code> to the function to get the standard error around the regression lines. Both <code>AnisoPred</code> and <code>ZygoPred</code> contain predicted values (called <code>fit</code>) and standard error values (called <code>se.fit</code>) for each of the values in our generated values in <code>LogGSForFitting</code> for each of the two suborders.</p>
 <p>We can add the predictions onto a plot like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb131"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the scatterplot of the data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the scatterplot of the data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb132"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a>odonata<span class="sc">$</span>Suborder <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(odonata<span class="sc">$</span>Suborder)</span>
-<span id="cb132-2"><a href="#cb132-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(logBW <span class="sc">~</span> logGS, <span class="at">data =</span> odonata, <span class="at">col =</span> Suborder)</span>
-<span id="cb132-3"><a href="#cb132-3" aria-hidden="true" tabindex="-1"></a><span class="co"># add the predicted lines</span></span>
-<span id="cb132-4"><a href="#cb132-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(AnisoPred<span class="sc">$</span>fit <span class="sc">~</span> LogGSForFitting, <span class="at">col =</span> <span class="st">"black"</span>)</span>
-<span id="cb132-5"><a href="#cb132-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(AnisoPred<span class="sc">$</span>fit <span class="sc">+</span> AnisoPred<span class="sc">$</span>se.fit <span class="sc">~</span> LogGSForFitting, <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
-<span id="cb132-6"><a href="#cb132-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(AnisoPred<span class="sc">$</span>fit <span class="sc">-</span> AnisoPred<span class="sc">$</span>se.fit <span class="sc">~</span> LogGSForFitting, <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a>odonata<span class="sc">$</span>Suborder <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(odonata<span class="sc">$</span>Suborder)</span>
+<span id="cb128-2"><a href="#cb128-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(logBW <span class="sc">~</span> logGS, <span class="at">data =</span> odonata, <span class="at">col =</span> Suborder)</span>
+<span id="cb128-3"><a href="#cb128-3" aria-hidden="true" tabindex="-1"></a><span class="co"># add the predicted lines</span></span>
+<span id="cb128-4"><a href="#cb128-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(AnisoPred<span class="sc">$</span>fit <span class="sc">~</span> LogGSForFitting, <span class="at">col =</span> <span class="st">"black"</span>)</span>
+<span id="cb128-5"><a href="#cb128-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(AnisoPred<span class="sc">$</span>fit <span class="sc">+</span> AnisoPred<span class="sc">$</span>se.fit <span class="sc">~</span> LogGSForFitting, <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb128-6"><a href="#cb128-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(AnisoPred<span class="sc">$</span>fit <span class="sc">-</span> AnisoPred<span class="sc">$</span>se.fit <span class="sc">~</span> LogGSForFitting, <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="linear_mod_activity_files/figure-html/unnamed-chunk-91-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1980,26 +1975,26 @@ F-statistic:  96.5 on 3 and 94 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p><span class="math inline">\star</span> Create a new blank script called <code>MyModelSimp.R</code>.</p>
 <p><span class="math inline">\star</span> Load the wing length data into a data frame called <code>wings</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb133"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a>wings <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'activities/data/traitdata_Huxleyetal_2021.csv'</span>,<span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb129"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a>wings <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'activities/data/traitdata_Huxleyetal_2021.csv'</span>,<span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br> In previous sections, we looked at how the categorical variables <code>temp</code> and <code>food_level</code> predicted wing length in in <em>Aedes aegypti</em>. In this section, we will add in another continuous variable: adult lifespan. The first thing we will do is to log both variables and reduce the dataset to the rows for which all of these data are available:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb134"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a>wings<span class="sc">$</span>temp       <span class="ot">&lt;-</span> <span class="fu">as_factor</span>(wings<span class="sc">$</span>temp)</span>
-<span id="cb134-2"><a href="#cb134-2" aria-hidden="true" tabindex="-1"></a>wings<span class="sc">$</span>food_level <span class="ot">&lt;-</span> <span class="fu">as_factor</span>(wings<span class="sc">$</span>food_level)</span>
-<span id="cb134-3"><a href="#cb134-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb134-4"><a href="#cb134-4" aria-hidden="true" tabindex="-1"></a>wings<span class="sc">$</span>loglength   <span class="ot">&lt;-</span> <span class="fu">log</span>(wings<span class="sc">$</span>length_mm)</span>
-<span id="cb134-5"><a href="#cb134-5" aria-hidden="true" tabindex="-1"></a>wings<span class="sc">$</span>loglifespan <span class="ot">&lt;-</span> <span class="fu">log</span>(wings<span class="sc">$</span>adult_lifespan)</span>
-<span id="cb134-6"><a href="#cb134-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb134-7"><a href="#cb134-7" aria-hidden="true" tabindex="-1"></a><span class="co"># reduce dataset to four key variables</span></span>
-<span id="cb134-8"><a href="#cb134-8" aria-hidden="true" tabindex="-1"></a>wings <span class="ot">&lt;-</span> <span class="fu">subset</span>(wings, <span class="at">select =</span> <span class="fu">c</span>(loglength, loglifespan, temp, food_level)) </span>
-<span id="cb134-9"><a href="#cb134-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb134-10"><a href="#cb134-10" aria-hidden="true" tabindex="-1"></a><span class="co"># remove the row with missing data</span></span>
-<span id="cb134-11"><a href="#cb134-11" aria-hidden="true" tabindex="-1"></a>wings <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(wings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a>wings<span class="sc">$</span>temp       <span class="ot">&lt;-</span> <span class="fu">as_factor</span>(wings<span class="sc">$</span>temp)</span>
+<span id="cb130-2"><a href="#cb130-2" aria-hidden="true" tabindex="-1"></a>wings<span class="sc">$</span>food_level <span class="ot">&lt;-</span> <span class="fu">as_factor</span>(wings<span class="sc">$</span>food_level)</span>
+<span id="cb130-3"><a href="#cb130-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-4"><a href="#cb130-4" aria-hidden="true" tabindex="-1"></a>wings<span class="sc">$</span>loglength   <span class="ot">&lt;-</span> <span class="fu">log</span>(wings<span class="sc">$</span>length_mm)</span>
+<span id="cb130-5"><a href="#cb130-5" aria-hidden="true" tabindex="-1"></a>wings<span class="sc">$</span>loglifespan <span class="ot">&lt;-</span> <span class="fu">log</span>(wings<span class="sc">$</span>adult_lifespan)</span>
+<span id="cb130-6"><a href="#cb130-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-7"><a href="#cb130-7" aria-hidden="true" tabindex="-1"></a><span class="co"># reduce dataset to four key variables</span></span>
+<span id="cb130-8"><a href="#cb130-8" aria-hidden="true" tabindex="-1"></a>wings <span class="ot">&lt;-</span> <span class="fu">subset</span>(wings, <span class="at">select =</span> <span class="fu">c</span>(loglength, loglifespan, temp, food_level)) </span>
+<span id="cb130-9"><a href="#cb130-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-10"><a href="#cb130-10" aria-hidden="true" tabindex="-1"></a><span class="co"># remove the row with missing data</span></span>
+<span id="cb130-11"><a href="#cb130-11" aria-hidden="true" tabindex="-1"></a>wings <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(wings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br> <span class="math inline">\star</span> Copy the code above into your script and run it</p>
 <p>Check that the data you end up with has this structure:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb135"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(wings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb131"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(wings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   149 obs. of  4 variables:
  $ loglength  : num  1.075 0.952 0.88 0.963 0.824 ...
@@ -2015,7 +2010,7 @@ F-statistic:  96.5 on 3 and 94 DF,  p-value: &lt; 2.2e-16</code></pre>
 <h2 class="anchored" data-anchor-id="a-maximal-model">A Maximal model</h2>
 <p>First let’s fit a model including all of these variables and all of the interactions:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb137"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> loglifespan <span class="sc">~</span> loglength <span class="sc">*</span> temp <span class="sc">*</span> food_level, <span class="at">data =</span> wings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb133"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> loglifespan <span class="sc">~</span> loglength <span class="sc">*</span> temp <span class="sc">*</span> food_level, <span class="at">data =</span> wings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><span class="math inline">\star</span> Add this model-fitting step in your script.</p>
 <p><span class="math inline">\star</span> Look at the output of <code>anova(model)</code> and <code>summary(model)</code>.</p>
@@ -2037,11 +2032,11 @@ F-statistic:  96.5 on 3 and 94 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p><code>y ~ a + b + c + a:b + a:c + b:c</code></p>
 <p>So let’s use this to fit a simpler maximal model:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb138"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(loglifespan <span class="sc">~</span> (loglength <span class="sc">+</span> temp <span class="sc">+</span> food_level)<span class="sc">^</span><span class="dv">2</span>, <span class="at">data =</span> wings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb134"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(loglifespan <span class="sc">~</span> (loglength <span class="sc">+</span> temp <span class="sc">+</span> food_level)<span class="sc">^</span><span class="dv">2</span>, <span class="at">data =</span> wings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>anova</code> table for this model looks like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb139"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb135"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
@@ -2070,37 +2065,37 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>The first question is: <em>what terms can you remove from a model</em>? Obviously, you only want to remove non-significant terms, but there is another rule – you cannot remove a main effect or an interaction while those main effects or interactions are present in a more complex interaction. For example, in the model <code>y ~ a + b + c + a:b + a:c + b:c</code>, you cannot drop <code>c</code> without dropping both <code>a:c</code> and <code>b:c</code>.</p>
 <p>The R function <code>drop.scope</code> tells you what you can drop from a model. Some examples:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb141"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop.scope</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb137"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop.scope</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "loglength:temp"       "loglength:food_level" "temp:food_level"     </code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb143"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop.scope</span>(y <span class="sc">~</span> a <span class="sc">+</span> b <span class="sc">+</span> c <span class="sc">+</span> a<span class="sc">:</span>b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb139"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop.scope</span>(y <span class="sc">~</span> a <span class="sc">+</span> b <span class="sc">+</span> c <span class="sc">+</span> a<span class="sc">:</span>b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "c"   "a:b"</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb145"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop.scope</span>(y <span class="sc">~</span> a <span class="sc">+</span> b <span class="sc">+</span> c <span class="sc">+</span> a<span class="sc">:</span>b <span class="sc">+</span> b<span class="sc">:</span>c <span class="sc">+</span> a<span class="sc">:</span>b<span class="sc">:</span>c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb141"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop.scope</span>(y <span class="sc">~</span> a <span class="sc">+</span> b <span class="sc">+</span> c <span class="sc">+</span> a<span class="sc">:</span>b <span class="sc">+</span> b<span class="sc">:</span>c <span class="sc">+</span> a<span class="sc">:</span>b<span class="sc">:</span>c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "a:b:c"</code></pre>
 </div>
 </div>
 <p><br> The last thing we need to do is work out how to remove a term from a model. We could type out the model again, but there is a shortcut using the function <code>update</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb147"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a simple model</span></span>
-<span id="cb147-2"><a href="#cb147-2" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> y <span class="sc">~</span> a <span class="sc">+</span> b <span class="sc">+</span> c <span class="sc">+</span> b<span class="sc">:</span>c</span>
-<span id="cb147-3"><a href="#cb147-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb147-4"><a href="#cb147-4" aria-hidden="true" tabindex="-1"></a><span class="co"># remove b:c from the current model</span></span>
-<span id="cb147-5"><a href="#cb147-5" aria-hidden="true" tabindex="-1"></a><span class="fu">update</span>(f, . <span class="sc">~</span> . <span class="sc">-</span> b<span class="sc">:</span>c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb143"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a simple model</span></span>
+<span id="cb143-2"><a href="#cb143-2" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> y <span class="sc">~</span> a <span class="sc">+</span> b <span class="sc">+</span> c <span class="sc">+</span> b<span class="sc">:</span>c</span>
+<span id="cb143-3"><a href="#cb143-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb143-4"><a href="#cb143-4" aria-hidden="true" tabindex="-1"></a><span class="co"># remove b:c from the current model</span></span>
+<span id="cb143-5"><a href="#cb143-5" aria-hidden="true" tabindex="-1"></a><span class="fu">update</span>(f, . <span class="sc">~</span> . <span class="sc">-</span> b<span class="sc">:</span>c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>y ~ a + b + c</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb149"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="co"># model g as a response using the same explanatory variables.</span></span>
-<span id="cb149-2"><a href="#cb149-2" aria-hidden="true" tabindex="-1"></a><span class="fu">update</span>(f, g <span class="sc">~</span> .)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb145"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="co"># model g as a response using the same explanatory variables.</span></span>
+<span id="cb145-2"><a href="#cb145-2" aria-hidden="true" tabindex="-1"></a><span class="fu">update</span>(f, g <span class="sc">~</span> .)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>g ~ a + b + c + b:c</code></pre>
 </div>
@@ -2109,11 +2104,11 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>Now that you have learned the syntax, let’s try model simplification with the mammals dataset.</p>
 <p>From the above <code>anova</code> and <code>drop.scope</code> output, we know that the interaction <code>loglength:temp:food_level</code> is not significant and a valid term. So, let’s remove this term:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb151"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">update</span>(model, . <span class="sc">~</span> . <span class="sc">-</span> loglength<span class="sc">:</span>temp<span class="sc">:</span>food_level)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb147"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">update</span>(model, . <span class="sc">~</span> . <span class="sc">-</span> loglength<span class="sc">:</span>temp<span class="sc">:</span>food_level)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br> And now use ANOVA to compare the two models:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb152"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb152-1"><a href="#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model, model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb148"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb148-1"><a href="#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model, model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
@@ -2128,7 +2123,7 @@ Model 2: loglifespan ~ loglength + temp + food_level + loglength:temp +
 <p><br> This tells us that <code>model2</code> is <em>not</em> significantly worse than <code>model</code>. That is, dropping that one interaction term did not result in much of a loss of predictability.</p>
 <p>Now let’s look at this simplified model and see what else can be removed:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb154"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb154-1"><a href="#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb150"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
@@ -2146,7 +2141,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb156"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb156-1"><a href="#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop.scope</span>(model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb152"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb152-1"><a href="#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop.scope</span>(model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "loglength:temp"       "loglength:food_level" "temp:food_level"     </code></pre>
 </div>

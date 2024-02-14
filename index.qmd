@@ -7,7 +7,6 @@ format:
     css: styles.css
     grid:
       margin-width: 1000px
-    
 ---
 
 # Welcome to the VectorByte 2023 training workshop!

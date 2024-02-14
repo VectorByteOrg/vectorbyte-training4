@@ -240,9 +240,11 @@ That's a lot of packages!
 
 The first time you load tidyverse, you will get some feedback from R, including something like the following:
 
-    ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-    ✖ dplyr::filter() masks stats::filter()
-    ✖ dplyr::lag()    masks stats::lag()
+```         
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+```
 
 Depending on which package you are loading, you might get such a warning message, that "so and so" function is being "masked" from another one. Basically, any additional packages you load may have one or more functions with the same names(s) as existing function(s) (which will typically do something completely different) in base R's packages. This creates name conflicts. Therefore, R will prevent you from using the new function(s) that you have enabled by using the same name of an pre-existing function. It gives priority to the pre-existing one. So, for example, if you call just `filter()`, the command that will be used is the one from `stats`, and not the one from `dplyr`. In this scenario, you can use the new function by using the double colon notation `::` like so: `dplyr::filter()`.
 
@@ -663,7 +665,7 @@ Using `print` ensures that the whole command is kept together and that you can u
 Other important options to keep in mind:
 
 | Option    |                                                               |
-|------------------------------------|------------------------------------|
+|-----------|---------------------------------------------------------------|
 | `xlim`    | limits for x axis: `xlim = c(0,12)`                           |
 | `ylim`    | limits for y axis                                             |
 | `log`     | log transform variable `log = "x"`, `log = "y"`, `log = "xy"` |
@@ -961,7 +963,7 @@ For example, think about what type of data, and what type of distribution, a sam
 You can generate samples form many statistical distributions in R. This is a handy thing to know because this allows you to simulate a sampling "experiment" . In particular, the following R commands are important:
 
 | Command                  | Functionality                                                                                                                                    |
-|:-----------------------------------|:-----------------------------------|
+|:-------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------|
 | `rnorm(n, m=0, sd=1)`    | Draw `n` [normally-distributed](https://en.wikipedia.org/wiki/Normal_distribution) random numbers with mean = 0 and sd = 1                       |
 | `dnorm(x, m=0, sd=1)`    | Density function of the normal distribution, which can be used to calculate the probability of a particular event or a set of independent events |
 | `qnorm(x, m=0, sd=1)`    | Cumulative density function                                                                                                                      |

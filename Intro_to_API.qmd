@@ -12,7 +12,7 @@ format:
 
 This section will cover: Retrieving data from the [VecTraits](https://vectorbyte.crc.nd.edu/vectraits-explorer) database with the API
 
-Load some packages and run some functions ...  
+Load some packages and run some functions ...
 
 ```{r results='hide',message=FALSE}
 require(httr)
@@ -354,25 +354,29 @@ pick <- function(SELECTION = 0) {
   }
 }
 ```
+
 ### Examples
 
 ```{r}
 dataset50 <- getDataset(50) # Get dataset with ID 50
 head(dataset50)
 ```
+
 <br>
 
-Get a list of datasets by their ID numbers: 
+Get a list of datasets by their ID numbers:
+
 ```{r}
 list_of_dataframes <- getDatasets(c(1:10))
 ```
-<br>
-Use `do.call` and `lapply` to create a single dataframe containing all of the datasets you pulled in the previous step:
+
+<br> Use `do.call` and `lapply` to create a single dataframe containing all of the datasets you pulled in the previous step:
 
 ```{r}
 datasets1to10 <- do.call(rbind,lapply(list_of_dataframes, data.frame, stringsAsFactors=FALSE))
 head(datasets1to10)
 ```
+
 ### Remove unneeded prefixes from column names
 
 ```{r}
@@ -387,15 +391,10 @@ datasets1to10 <- datasets1to10 %>%
 ```{r}
 list_of_AedesDatasets <- searchDatasets("Aedes")
 ```
-<br>
-This will prompt you with something like the following:
 
-<br>
-***"Searching Datasets....
-80 relevant datasets found.
-You may not retrieve more than 50 datasets at a time.
-Would you like to retrieve only the first 50 datasets?"***
-<br>
+<br> This will prompt you with something like the following:
+
+<br> ***"Searching Datasets.... 80 relevant datasets found. You may not retrieve more than 50 datasets at a time. Would you like to retrieve only the first 50 datasets?"*** <br>
 
 To which you can respond with "Y" and run the following code to ...
 
@@ -406,8 +405,8 @@ for (i in 1:length(list_of_AedesDatasets)) {
   print(list_of_AedesDatasets[[i]]$results$DatasetID[1])
 }
 ```
-<br>
-You can then use the code above to pull all of the data that's currently in VecTraits on *Aedes*
+
+<br> You can then use the code above to pull all of the data that's currently in VecTraits on *Aedes*
 
 ### Other options
 
@@ -418,6 +417,7 @@ Format:
 `list_of_dataframes <- getDatasets(<Vector, List, or Range of IDs>)`
 
 Examples:
+
 ```{r}
 list_of_dataframes <- getDatasets(c(10, 20, 35)) # Get datasets 10, 20, and 35
 list_of_dataframes <- getDatasets(seq(200, 240, 10)) # Get datasets 200, 210, 220, 230, and 240
@@ -427,22 +427,22 @@ list_of_dataframes <- getDatasets(320:324) # Get datasets 320, 321, 322, 323, an
 
 ### Retrieve List of Datasets Related To Keyword
 
-Format:
-`list_of_dataframes <- searchDatasets(<Keyword>)`
+Format: `list_of_dataframes <- searchDatasets(<Keyword>)`
 
 Examples:
+
 ```{r}
 list_of_dataframes <- searchDatasets("tiger mosquito") # Get datasets related to tiger mosquitos
 ```
 
 ### Retrieve List of Datasets Related To Multiple Keywords
 
-Format:
-`list_of_dataframes <- searchDatasetsMulti(<Vector or List of Keywords>)`
+Format: `list_of_dataframes <- searchDatasetsMulti(<Vector or List of Keywords>)`
 
 Examples:
 
 (All the following retrieve datasets related to yellow fever & terrestrial areas in North Carolina)
+
 ```{r}
 list_of_dataframes <- searchDatasetsMulti(c("terrestrial", "north carolina", "yellow fever"))
 list_of_dataframes <- searchDatasetsMulti(list("terrestrial", "north carolina", "yellow fever"))
@@ -457,6 +457,7 @@ Format:
 `list_of_dataframes <- smartSearch(<Column Name>, <Column Value>, <Optional Operator>)`
 
 Examples:
+
 ```{r}
 list_of_dataframes <- smartSearch("Interactor1Genus", "culex") # Datasets with genus Culex
 list_of_dataframes <- smartSearch("SubmittedBy", "Lachance") # Datasets submitted by Lachance
@@ -466,7 +467,7 @@ list_of_dataframes <- smartSearch("OriginalTraitName", "survival", "eq") # Datas
 
 ### The `pick()` Function
 
-If all the information above was too much and there’s no way you’re going to remember it, all you need to know is the `pick()` function.  The `pick()` function displays a small menu and allows you to choose an option in order for you to find and retrieve whatever dataset(s) you may be looking for.
+If all the information above was too much and there’s no way you’re going to remember it, all you need to know is the `pick()` function. The `pick()` function displays a small menu and allows you to choose an option in order for you to find and retrieve whatever dataset(s) you may be looking for.
 
 Format:
 
@@ -503,7 +504,7 @@ For example, if you had a dataset stored as a dataframe and you wanted to know t
 
 `dataframe$results$Interactor1Genus[5]`
 
-The same format also works for dataframes in lists.  For example, you could run the following to get the original trait value in row 3 of the fourth dataset in the list:
+The same format also works for dataframes in lists. For example, you could run the following to get the original trait value in row 3 of the fourth dataset in the list:
 
 `list_of_dataframes[[4]]$results$OriginalTraitValue[3]`
 
@@ -515,25 +516,16 @@ The same format also works on raw functions, although it is recommended that ret
 
 `datasetSummary(DATASET)`
 
-Summary:	Prints summary of data within dataset
-Parameters:	DATASET = A dataset as a dataframe, such as getDataset(1)
-Returns:	Nothing
+Summary: Prints summary of data within dataset Parameters: DATASET = A dataset as a dataframe, such as getDataset(1) Returns: Nothing
 
 `sciName(DATASET)`
 
-Summary:	Finds the scientific name of the main interactor within the dataset
-Parameters:	DATASET = A dataset as a dataframe, such as getDataset(1)
-Returns:	Scientific Name of main interactor within dataset, as string
+Summary: Finds the scientific name of the main interactor within the dataset Parameters: DATASET = A dataset as a dataframe, such as getDataset(1) Returns: Scientific Name of main interactor within dataset, as string
 
 `datasetRows(DATASET)`
 
-Summary:	Finds the number of rows/samples in a dataset
-Parameters:	DATASET = A dataset as a dataframe, such as getDataset(1)
-Returns:	Number of rows, as integer
+Summary: Finds the number of rows/samples in a dataset Parameters: DATASET = A dataset as a dataframe, such as getDataset(1) Returns: Number of rows, as integer
 
 `datasetColumns(DATASET)`
 
-Summary:	Finds the number of columns/variables in a dataset
-Parameters:	DATASET = A dataset as a dataframe, such as getDataset(1)
-Returns:	Number of columns, as integer
-
+Summary: Finds the number of columns/variables in a dataset Parameters: DATASET = A dataset as a dataframe, such as getDataset(1) Returns: Number of columns, as integer

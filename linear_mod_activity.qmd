@@ -480,7 +480,7 @@ TSS tells us how much variation there is in the dependent variable without havin
 The sums of squares used to calculate the statistical significance of the linear model (Regression, ANOVA, etc) through the F value are as follows:
 
 | Type of Sum of Squares (SS) |              SS Calculation              | Degrees of Freedom (DF) | Mean Sum of Squares (MSS) |
-|:-----------------|:----------------:|:----------------:|:----------------:|
+|:----------------------------|:----------------------------------------:|:-----------------------:|:-------------------------:|
 | TSS                         |    $\sum_{i=1}^{n}(y_i - \bar{y})^2$     |          $n-1$          |     $\frac{TSS}{n-1}$     |
 | ESS                         | $\sum_{i=1}^{n} (\hat{y}_i - \bar{y})^2$ |         $n_c-1$         |    $\frac{ESS}{n_c-1}$    |
 | RSS                         |   $\sum_{i=1}^{n} (\hat{y}_i - y_i)^2$   |         $n-n_c$         |    $\frac{RSS}{n-n_c}$    |
@@ -1059,7 +1059,7 @@ Because the difference is large and the standard error is small, the $t$ value s
 The table below shows how these four coefficients combine to give the predicted values for each of the group means.
 
 |               | 22°C                 | 26°C                       | 32°C                        |
-|:-----------------|:-----------------|:-----------------|:-----------------|
+|:--------------|:---------------------|:---------------------------|:----------------------------|
 | **low food**  | *0.98* = 0.98        | *0.98 - 0.07* = 0.91       | *0.98 - 0.18* = 0.70        |
 | **high food** | *0.98 + 0.17* = 1.15 | *0.98 - 0.07 + 0.17* =1.08 | *0.98 - 0.18 + 0.17* = 0.97 |
 
@@ -1153,7 +1153,7 @@ The first four lines, as in the model from the ANOVA section, which would allow 
 The table below show how these combine to give the predictions for each group combination, with those two new lines show in red:
 
 |          | **low food**       | **high food**                                        |
-|:-----------------------|:-----------------------|:-----------------------|
+|:---------|:-------------------|:-----------------------------------------------------|
 | **22°C** | 0.97 = 0.97        | 0.97 + 0.17 = 1.14                                   |
 | **26°C** | 0.97 - 0.08 = 0.89 | 0.97 - 0.08 + 0.17[+ 0.01]{style="color:red"} = 1.07 |
 | **32°C** | 0.97 - 0.15 = 0.82 | 0.97 - 0.15 + 0.17[- 0.04]{style="color:red"} = 0.95 |
