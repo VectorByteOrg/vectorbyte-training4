@@ -1,5 +1,5 @@
 ---
-title: "About xxxx the VectorByte Training Materials 2023"
+title: "About the VectorByte Training Materials 2023"
 ---
 
 As the VectorByte team has developed [these materials](materials.html), we've aimed to provide resources for both guided (during the workshop) and self-led learning. We assume basic familiarity with:
