@@ -1,0 +1,216 @@
+---
+title: |
+    | VectorByte Methods Training
+    | Introduction to Bayesian Computation and MCMC
+author: | 
+    | The VectorByte Team
+    | (Leah R. Johnson, Virginia Tech)
+title-slide-attributes:
+  data-background-image: VectorByte-logo_lg.png
+  data-background-size: contain
+  data-background-opacity: "0.2"
+format: revealjs
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(cache = FALSE, 
+                      echo = FALSE, 
+                      message = FALSE, 
+                      warning = FALSE,
+                      #fig.height=6, 
+                      #fig.width = 1.777777*6,
+                      tidy = FALSE, 
+                      comment = NA, 
+                      highlight = TRUE, 
+                      prompt = FALSE, 
+                      crop = TRUE,
+                      comment = ">",
+                      collapse = TRUE)
+library(knitr)
+library(kableExtra)
+library(xtable)
+library(viridis)
+
+options(stringsAsFactors=FALSE)
+knit_hooks$set(no.main = function(before, options, envir) {
+    if (before) par(mar = c(4.1, 4.1, 1.1, 1.1))  # smaller margin on top
+})
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_knit$set(width = 60)
+source("my_knitter.R")
+#library(tidyverse)
+#library(reshape2)
+#theme_set(theme_light(base_size = 16))
+make_latex_decorator <- function(output, otherwise) {
+  function() {
+      if (knitr:::is_latex_output()) output else otherwise
+  }
+}
+insert_pause <- make_latex_decorator(". . .", "\n")
+insert_slide_break <- make_latex_decorator("----", "\n")
+insert_inc_bullet <- make_latex_decorator("> *", "*")
+insert_html_math <- make_latex_decorator("", "$$")
+## classoption: aspectratio=169
+set.seed(42)
+```
+
+## Learning Objectives
+
+1.  Introduce computation tools to perform inference for simple models in R (how to turn the Bayesian crank)
+2.  Appreciate the need for sensitivity analysis, model checking and comparison, and the potential dangers of Bayesian methods.
+
+## What if we can't calculate an analytic posterior?
+
+If we go back to the full Bayes theorem: $$
+\text{Pr}(\theta|Y) = \frac{\mathcal{L}(\theta; Y)f(\theta)}{\text{Pr}(Y)}
+$$ We are usually specifying the likelihood and the prior but we often don't know the `r mygrn("normalizing constant")` in the denominator. Without this, the probabilities don't properly integrate to 1 and we `r myred("can't make probability statements")`.
+
+We can use `r myblue("Monte Carlo methods")` to approximate the posterior.
+
+## Stochastic Simulation & Monte Carlo
+
+Stochastic simulation is a way to understand variability in a system and for calculating quantities that may be difficult or impossible to obtain directly.
+
+`r sk1()`
+
+Monte Carlo (MC) methods are "a broad class of computational algorithms that rely on `r mygrn("repeated random sampling")` to obtain numerical results." - Wikipedia
+
+------------------------------------------------------------------------
+
+***`r myred("How does it work?")`***
+
+Run a simulation/computer calculation (with some component that is "random") many many times in order to obtain the distribution of an unknown probabilistic quantity.
+
+`r sk1()`
+
+A basic algorithm:
+
+1.  Obtain random deviate(s) from a probability distribution
+2.  Make a calculation from your system
+3.  Record the result of the calculation to save it for later
+4.  Repeat many times
+
+------------------------------------------------------------------------
+
+**We typically have four reasons to use MC:**
+
+1.  Explore possible patterns/behaviors that a model can exhibit.
+2.  Create synthetic data to use in place of real data to test estimation procedures.
+3.  Estimate quantities that are difficult to calculate directly.
+4.  Understand and quantify uncertainty.
+
+`r sk1()`
+
+In our Bayesian analyses we're primarily leaning on MC for the 3rd point, but we get the last for free along with it.
+
+## MC for Bayesian Statistics
+
+We use Monte Carlo (MC) methods to generate random deviates in the right ratios from the target posterior called ***`r myblue("draws")`*** or samples.
+
+`r sk1()`
+
+We use these draws to approximate/summarize our distribution and make inference statements (point estimates, CIs, etc). We can also use the draws to calculate the posterior distribution of `r mygrn("any function of our estimated parameters")`.
+
+`r sk1()`
+
+As the number of draws/samples gets large we can approximate these quantities arbitrarily high precision.
+
+## The "plug-in principle"
+
+Using MC to perform these calculations (and to propagate the uncertainty) rests on the idea of the `r myred("plug-in principle")`:
+
+`r sk1()`
+
+`r myblue("A summary statistic or other feature of a distribution  (e.g. expected value) can be approximated by the same summary/feature of an ___empirical sample___ from that distribution (e.g., sample mean).")`
+
+------------------------------------------------------------------------
+
+***`r myred("Example:")`*** Imagine we want to find, for some unknown reason, the central 92% CI for a beta distribution with parameters $a$ and $b$.
+
+`r sk1()` How can we calculate this without using a look-up table, or similar function?
+
+`r sk1()` If we are able to generate samples from the desired distribution (which we'll take as given for now), we can use MC and the plug-in principle!
+
+------------------------------------------------------------------------
+
+***`r myred("Algorithm:")`***
+
+1.  Generate many samples from the target distribution (say $N=2000$, to get good estimates).\
+2.  Find the $\alpha/2$ and $1-\alpha/2$ empirical quantiles (here 4% and 96%). For example these can be approximated by the $N \times \left( \frac{\alpha}{2} , 1-\frac{\alpha}{2} \right)$ order statistics.
+3.  You're done.
+
+`r sk1()`
+
+```{r echo=TRUE}
+alpha<-0.04; N<-2000
+x<-rbeta(N, 2, 20) ## take samples
+o<-order(x) ## order them
+w<-o[c(N*alpha/2, N*(1-(alpha/2)))] ## find the appropriate samples
+round(x[w], 3) ## CI
+```
+
+## Markov Chain MC (MCMC)
+
+MCMC is the most commonly used numerical algorithm for generating posterior samples.
+
+`r sk1()` A `r myblue("Markov Chain")` is a sequence of randomly generated numbers where each draw depends on the one immediately preceding it.
+
+![Plot -- Ian Murray (http://mlg.eng.cam.ac.uk/zoubin/tut06/mcmc.pdf)](MCMC.jpg){fig-align="center"}
+
+## Gibbs Sampling
+
+Gibbs sampling is a type of MCMC that leverages the *`r mygrn("conditional")`* distributions of parameters to generate samples by proposing them one at a time. This is the algorithm implemented in the popular Bayesian packages BUGS, WinBUGS, ${\tt nimble}$, and JAGS/${\tt rjags}$, and that we use for ${\tt bayesTPC}$.
+
+`r sk1()` We will treat Gibbs sampling and other of the numerical methods as mostly "black boxes". We'll learn to diagnose output from these later on in the practical component.
+
+## What do we do with Posterior Samples?
+
+We can treat the draws much like we would data:
+
+-   Calculate posterior summaries (mean, median, mode, etc) just like we would a data sample
+-   Calculate precision of the summaries (e.g., sample variance)
+-   CIs via quantiles (order statistics of the data) or HPD intervals (using ${\tt CODA}$ package in ${\tt R}$)
+
+`r sk1()`
+
+If the samples are parameters in a complex model, we can plug them all in, one at a time, to get a range of possible predictions from the model (we'll see this in the practical bit, later on).
+
+## Models Comparison via (DIC)
+
+The `r myblue(" Deviance Information Criterion")` (DIC) seeks to judge a model on how well it fits, penalized by the complexity of the model: $$
+DIC = D(\bar{\theta}) + 2p_D
+$$ where:
+
+-   Deviance: $D(\theta)=-2\log(\mathcal{L}(\theta; y)) + C$
+-   Penalty: $p_D = \bar{D} -D(\bar{\theta})$
+-   $D(\bar{\theta})$: deviance at the posterior mean of $\theta$
+-   $\bar{D}$: average deviance across the posterior samples.
+
+\hfill $\rightarrow$ `r myred("Already implemented in nimble!")`
+
+## Bayesian using nimble/JAGS
+
+Both nimble and JAGS implement Gibbs sampling/MCMC in a fairly easy to use package that you can call from R. Models are encoded using the BUGS language.
+
+`r sk1()`
+
+That is, once you specify the appropriate **`r myblue("sampling distribution/likelihood")`** and any **`r myred("priors")`** for the parameters, it will use MCMC to obtain samples from the posterior in the right ratios so that we can calculate whatever we want.
+
+## Specifying a BUGS model
+
+The trickiest and most important part of each analysis is properly specifying the model for all of the data that you want to fit. Before you begin to code, you need to decide:
+
+`r sk1()`
+
+-   What is the relationship between your predictors and your response?
+-   What kind of probability distribution should you use to describe your response variable?
+-   Are there any constraints on your parameters or responses that you need to encode in your prior or likelihood, respectively?
+
+## Next Steps
+
+There are two practicals focusing on using ${\tt nimble}$ and ${\tt bayesTPC}$ to conduct analyses. It has two main chunks:
+
+1.  Comparing your conjugate Bayesian analysis on the midge data to the approximate results with ${\tt nimble}$.
+2.  Fitting a TPC to trait data using ${\tt bayesTPC}$ (easier than having to code it yourself in ${\tt nimble}$!).
+
+For both you'll be led through visualizing your MCMC chains and your posterior distributions of parameters and predictions. There are also advanced practice suggestions for those who want to go further.

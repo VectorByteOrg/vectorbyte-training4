@@ -24,16 +24,16 @@ library(HDInterval)
 library(MCMCvis)
 library(coda) # makes diagnostic plots
 library(IDPmisc) # makes nice colored pairs plots to look at joint posteriors
-library("matrixStats")
-library("truncnorm")
+library(matrixStats)
+library(truncnorm)
 ##library(mcmcplots) # another option for diagnostic plots, currently unused
 ```
 
 <br> We are also introducing our new, in development, package `bayesTPC`. It is currently available through github.
 
 ```{r, message=FALSE}
-# install.packages("devtools")
-devtools::install_github("johnwilliamsmithjr/bayesTPC")
+#install.packages("devtools")
+#devtools::install_github("johnwilliamsmithjr/bayesTPC")
 library(bayesTPC)
 ```
 
