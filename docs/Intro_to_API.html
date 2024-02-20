@@ -252,7 +252,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>getDataset <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">ID =</span> <span class="sc">-</span><span class="dv">1</span>) {</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  totalDatasets <span class="ot">&lt;&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">getWebData</span>(<span class="st">"https://vectorbyte-qa.crc.nd.edu/portal/api/vectraits-explorer/?format=json"</span>)<span class="sc">$</span>data<span class="sc">$</span>count)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  totalDatasets <span class="ot">&lt;&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">getWebData</span>(<span class="st">"https://vectorbyte.crc.nd.edu/portal/api/vectraits-explorer/?format=json"</span>)<span class="sc">$</span>data<span class="sc">$</span>count)</span>
 <span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">as.integer</span>(ID) <span class="sc">&lt;=</span> totalDatasets <span class="sc">&amp;&amp;</span> <span class="fu">as.integer</span>(ID) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
 <span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    datasetID <span class="ot">&lt;-</span> ID</span>
 <span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
@@ -270,7 +270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>  dataset <span class="ot">&lt;-</span> <span class="fu">getWebData</span>(</span>
 <span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(</span>
 <span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(</span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>        <span class="st">"https://vectorbyte-qa.crc.nd.edu/portal/api/vectraits-dataset/"</span>,</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>        <span class="st">"https://vectorbyte.crc.nd.edu/portal/api/vectraits-dataset/"</span>,</span>
 <span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>        datasetID,</span>
 <span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>        <span class="st">"/?format=json"</span></span>
 <span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>      ),</span>
@@ -318,7 +318,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>      datasets[[setNumber]] <span class="ot">&lt;-</span> <span class="fu">getWebData</span>(</span>
 <span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>        <span class="fu">paste</span>(</span>
 <span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>          <span class="fu">c</span>(</span>
-<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a>            <span class="st">"https://vectorbyte-qa.crc.nd.edu/portal/api/vectraits-dataset/"</span>,</span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a>            <span class="st">"https://vectorbyte.crc.nd.edu/portal/api/vectraits-dataset/"</span>,</span>
 <span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>            <span class="fu">as.character</span>(datasetID),</span>
 <span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>            <span class="st">"/?format=json"</span></span>
 <span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>          ),</span>

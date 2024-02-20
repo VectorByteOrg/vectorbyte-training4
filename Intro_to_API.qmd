@@ -52,7 +52,7 @@ getWebData <- function(dataURL) {
 
 
 getDataset <- function(ID = -1) {
-  totalDatasets <<- as.integer(getWebData("https://vectorbyte-qa.crc.nd.edu/portal/api/vectraits-explorer/?format=json")$data$count)
+  totalDatasets <<- as.integer(getWebData("https://vectorbyte.crc.nd.edu/portal/api/vectraits-explorer/?format=json")$data$count)
   if (as.integer(ID) <= totalDatasets && as.integer(ID) > 0) {
     datasetID <- ID
   } else {
@@ -70,7 +70,7 @@ getDataset <- function(ID = -1) {
   dataset <- getWebData(
     paste(
       c(
-        "https://vectorbyte-qa.crc.nd.edu/portal/api/vectraits-dataset/",
+        "https://vectorbyte.crc.nd.edu/portal/api/vectraits-dataset/",
         datasetID,
         "/?format=json"
       ),
@@ -118,7 +118,7 @@ getDatasets <- function(IDS, safety = TRUE, l = 50L) {
       datasets[[setNumber]] <- getWebData(
         paste(
           c(
-            "https://vectorbyte-qa.crc.nd.edu/portal/api/vectraits-dataset/",
+            "https://vectorbyte.crc.nd.edu/portal/api/vectraits-dataset/",
             as.character(datasetID),
             "/?format=json"
           ),
