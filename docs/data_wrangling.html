@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.552">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -882,8 +882,8 @@ Note
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.4     ✔ readr     2.1.5
 ✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.4.4     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
 ✔ purrr     1.0.2     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
@@ -1961,6 +1961,10 @@ Tip
 <span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">parse =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">6</span>, <span class="at">colour =</span> <span class="st">"blue"</span>)</span>
 <span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb89-6"><a href="#cb89-6" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in geom_text(aes(x = 60, y = 0, label = "sqrt(alpha) * 2* pi"), : All aesthetics have length 1, but the data has 1001 rows.
+ℹ Did you mean to use `annotate()`?</code></pre>
+</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -2169,17 +2173,17 @@ Tip
 </table>
 <p>Let’s try some of these. Generate a random sample of 10:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>MySample <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="at">m=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>MySample <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="at">m=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>MySample</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>MySample</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  1.57238858 -1.59406511  0.16272649  1.44678944  0.09901451 -1.36343709
- [7]  0.60472356  1.25809379  0.23922661 -1.12968417</code></pre>
+<pre><code> [1]  0.8094098  0.3469388 -2.0774398  1.3087668 -0.2965040  0.2606695
+ [7]  1.2627280 -1.2608417 -0.1276033  0.3105729</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(MySample)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(MySample)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -2190,27 +2194,27 @@ Tip
 </div>
 <p>Probability of getting a value of 1 or -1 from a normally distributed random number with mean = 0 and sd = 1:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="dv">1</span>, <span class="at">m=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="dv">1</span>, <span class="at">m=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2419707</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="at">m=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="at">m=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2419707</code></pre>
 </div>
 </div>
 <p>Probability of getting large values given the same distribution:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="dv">10</span>, <span class="at">m=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="dv">10</span>, <span class="at">m=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 7.694599e-23</code></pre>
 </div>
 </div>
 <p>Very small!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="dv">100</span>, <span class="at">m=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="dv">100</span>, <span class="at">m=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0</code></pre>
 </div>
@@ -2227,22 +2231,22 @@ Tip
 </ol>
 <p>Let’s test rule 1 using R. We will perform a “experiment” by generating random samples of increasing size from the normal distribution:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>MySample5 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">5</span>, <span class="at">m=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>) <span class="co"># Draw 5 normal random nos w/ mean 0 and s.d. 1:</span></span>
-<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>MySample10 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="at">m=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>) </span>
-<span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a>MySample20 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="at">m=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>) </span>
-<span id="cb102-4"><a href="#cb102-4" aria-hidden="true" tabindex="-1"></a>MySample40 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">40</span>, <span class="at">m=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)</span>
-<span id="cb102-5"><a href="#cb102-5" aria-hidden="true" tabindex="-1"></a>MySample80 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">80</span>, <span class="at">m=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)</span>
-<span id="cb102-6"><a href="#cb102-6" aria-hidden="true" tabindex="-1"></a>MySample160 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">160</span>, <span class="at">m=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>MySample5 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">5</span>, <span class="at">m=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>) <span class="co"># Draw 5 normal random nos w/ mean 0 and s.d. 1:</span></span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>MySample10 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="at">m=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>) </span>
+<span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a>MySample20 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="at">m=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>) </span>
+<span id="cb103-4"><a href="#cb103-4" aria-hidden="true" tabindex="-1"></a>MySample40 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">40</span>, <span class="at">m=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)</span>
+<span id="cb103-5"><a href="#cb103-5" aria-hidden="true" tabindex="-1"></a>MySample80 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">80</span>, <span class="at">m=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)</span>
+<span id="cb103-6"><a href="#cb103-6" aria-hidden="true" tabindex="-1"></a>MySample160 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">160</span>, <span class="at">m=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now let’s visualize these “samples”:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfcol =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)) <span class="co">#initialize multi-paneled plot</span></span>
-<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfg =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>)); <span class="fu">hist</span>(MySample5, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>), <span class="at">main =</span> <span class="st">'n = 5'</span>) </span>
-<span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfg =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)); <span class="fu">hist</span>(MySample10, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>), <span class="at">main =</span> <span class="st">'n = 10'</span>) </span>
-<span id="cb103-4"><a href="#cb103-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfg =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)); <span class="fu">hist</span>(MySample20, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>), <span class="at">main =</span> <span class="st">'n = 20'</span>) </span>
-<span id="cb103-5"><a href="#cb103-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfg =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>)); <span class="fu">hist</span>(MySample40, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>), <span class="at">main =</span> <span class="st">'n = 40'</span>) </span>
-<span id="cb103-6"><a href="#cb103-6" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfg =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>)); <span class="fu">hist</span>(MySample80, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>), <span class="at">main =</span> <span class="st">'n = 80'</span>) </span>
-<span id="cb103-7"><a href="#cb103-7" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfg =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)); <span class="fu">hist</span>(MySample160, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>), <span class="at">main =</span> <span class="st">'n = 160'</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfcol =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)) <span class="co">#initialize multi-paneled plot</span></span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfg =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>)); <span class="fu">hist</span>(MySample5, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>), <span class="at">main =</span> <span class="st">'n = 5'</span>) </span>
+<span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfg =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)); <span class="fu">hist</span>(MySample10, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>), <span class="at">main =</span> <span class="st">'n = 10'</span>) </span>
+<span id="cb104-4"><a href="#cb104-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfg =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)); <span class="fu">hist</span>(MySample20, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>), <span class="at">main =</span> <span class="st">'n = 20'</span>) </span>
+<span id="cb104-5"><a href="#cb104-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfg =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>)); <span class="fu">hist</span>(MySample40, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>), <span class="at">main =</span> <span class="st">'n = 40'</span>) </span>
+<span id="cb104-6"><a href="#cb104-6" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfg =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>)); <span class="fu">hist</span>(MySample80, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>), <span class="at">main =</span> <span class="st">'n = 80'</span>) </span>
+<span id="cb104-7"><a href="#cb104-7" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfg =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)); <span class="fu">hist</span>(MySample160, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>), <span class="at">main =</span> <span class="st">'n = 160'</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -2286,13 +2290,13 @@ Tip
 <p><span class="math inline">\star</span> Open the script <code>ExpDesign.R</code> in RStudio (or some other text editor).</p>
 <p>Use the shift and arrow keys to select the code in block (2), including the comments.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>genome <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'activities/data/GenomeSize.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>genome <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'activities/data/GenomeSize.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note the relative path <code>../</code>, which will work assuming that you are working from your <code>code</code> directory (that is, you have set your working directory (using <code>setwd()</code>) to <code>code</code>).</p>
 <p>This first line (block (1)) reads in the data, as you have learned previously.</p>
 <p><span class="math inline">\star</span> Now run the code in block (2) line by line.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(genome) <span class="co"># this won't look so nice on your computer!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(genome) <span class="co"># this won't look so nice on your computer!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    Suborder    Family              Species GenomeSize GenomeSE GenomeN
 1 Anisoptera Aeshnidae    Aeshna canadensis       2.20       NA       1
@@ -2318,7 +2322,7 @@ Tip
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(genome) <span class="co"># Check what the data columns contain</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(genome) <span class="co"># Check what the data columns contain</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   100 obs. of  16 variables:
  $ Suborder      : chr  "Anisoptera" "Anisoptera" "Anisoptera" "Anisoptera" ...
@@ -2343,7 +2347,7 @@ Tip
 <p>One thing you should see in the output from <code>head</code> or <code>str</code> is that there are some observations marked as <code>NA</code> – this is the way R shows <em>missing data</em>. It is important to check how much missing data there are in a dataset, so we’ll use another function that includes this information. Many R functions refuse to use variables containing missing data — this is just R being careful and you can add <code>na.rm=TRUE</code> into most functions to avoid this problem.</p>
 <p><span class="math inline">\star</span> Run the <code>summary</code> line from the script window (block 3).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(genome)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(genome)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Suborder            Family            Species            GenomeSize    
  Length:100         Length:100         Length:100         Min.   :0.4100  
@@ -2391,7 +2395,7 @@ Tip
 </ul>
 <p><span class="math inline">\star</span> Go to block (4) of the script and run each line separately, looking at the output.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(genome<span class="sc">$</span>GenomeSize, <span class="at">breaks=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(genome<span class="sc">$</span>GenomeSize, <span class="at">breaks=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -2401,7 +2405,7 @@ Tip
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(genome<span class="sc">$</span>GenomeSize, <span class="at">bw=</span><span class="fl">0.1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(genome<span class="sc">$</span>GenomeSize, <span class="at">bw=</span><span class="fl">0.1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -2452,13 +2456,13 @@ Tip
 <p>Although histograms are great for one variable, plotting two histograms on top of one another rarely works well because the overlapping bars are hard to interpret (recall the predator-prey body size example). Density plots don’t have this problem, but it takes a bit more code to create the plot.</p>
 <p><span class="math inline">\star</span> Block 6 of the script uses the <code>subset</code> function to create two new data frames separating the data for dragonflies and damselflies. Run the first two lines of this block:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>Anisoptera <span class="ot">&lt;-</span> <span class="fu">subset</span>(genome, Suborder<span class="sc">==</span><span class="st">'Anisoptera'</span>) <span class="co">#The dragonflies</span></span>
-<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a>Zygoptera <span class="ot">&lt;-</span> <span class="fu">subset</span>(genome, Suborder<span class="sc">==</span><span class="st">'Zygoptera'</span>) <span class="co">#The damselflies</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a>Anisoptera <span class="ot">&lt;-</span> <span class="fu">subset</span>(genome, Suborder<span class="sc">==</span><span class="st">'Anisoptera'</span>) <span class="co">#The dragonflies</span></span>
+<span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a>Zygoptera <span class="ot">&lt;-</span> <span class="fu">subset</span>(genome, Suborder<span class="sc">==</span><span class="st">'Zygoptera'</span>) <span class="co">#The damselflies</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Remember that the arrow symbol (<code>&lt;-</code>) is used to save the output of a function into a new object in R — if you use <code>ls()</code> in the console, you will see the two new data frames.</p>
 <p>In the console, use <code>str</code> and <code>summary</code> to explore these two new dataframes. For example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Anisoptera)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Anisoptera)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    Suborder    Family              Species GenomeSize GenomeSE GenomeN
 1 Anisoptera Aeshnidae    Aeshna canadensis       2.20       NA       1
@@ -2486,8 +2490,8 @@ Tip
 <p>Now that we’ve got the data separated we can go about plotting the two curves.</p>
 <p><span class="math inline">\star</span> Run the next two lines of code in block 6. The first draws the plot for damselflies and the second adds a line for the dragonflies:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(Zygoptera<span class="sc">$</span>GenomeSize), <span class="at">xlim=</span><span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">2.7</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">1.7</span>))</span>
-<span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(Anisoptera<span class="sc">$</span>GenomeSize), <span class="at">col=</span><span class="st">'red'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(Zygoptera<span class="sc">$</span>GenomeSize), <span class="at">xlim=</span><span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">2.7</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">1.7</span>))</span>
+<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(Anisoptera<span class="sc">$</span>GenomeSize), <span class="at">col=</span><span class="st">'red'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -2512,7 +2516,7 @@ Tip
 <p>Once we’ve looked at the distribution of variables, the next thing is to look at the relationships between continuous variables using scatterplots. The <code>plot</code> function in R automatically generates a scatterplot when the explanatory variable is continuous, so we can use the same syntax and structure as for the boxplot above.</p>
 <p><span class="math inline">\star</span> Go to block (7) of the script and run the plot commands. The third one plots genome size as a function of body weight:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(GenomeSize <span class="sc">~</span> BodyWeight, <span class="at">data =</span> genome)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(GenomeSize <span class="sc">~</span> BodyWeight, <span class="at">data =</span> genome)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -2524,15 +2528,15 @@ Tip
 <p>The scatterplot seems to show a weak relationship between genome size and morphology. But maybe dragonflies and damselflies show different relationships, and we can’t distinguish between them! To explore this possibility, we need to plot the two orders using different colours or plot characters. In the next code block, we will customize the plots to show different types of points for each suborder. It is done by using <em>indexing</em>.</p>
 <p><span class="math inline">\star</span> Run the first three lines of code in block 8. There are two levels of suborder and these two lines set up a colour and a plot symbol that will be used for each one.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(genome<span class="sc">$</span>Suborder) <span class="co">#Confirm that there are two levels under suborders </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(genome<span class="sc">$</span>Suborder) <span class="co">#Confirm that there are two levels under suborders </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> chr [1:100] "Anisoptera" "Anisoptera" "Anisoptera" "Anisoptera" ...</code></pre>
 </div>
 </div>
 <p>You can see that there are two levels, with Anisoptera first and then Zygoptera. You can also see that these are stored as numeric values: 1 refers to the first level and 2 the second. We can use these as <em>indices</em> to pair the colours and plot symbols to each suborder. These are set in the <code>plot</code> function using the options <code>col=</code> and <code>pch=</code>, which stands for ” <code>p</code>lot <code>ch</code>aracter”.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a>myColours <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'red'</span>, <span class="st">'blue'</span>) <span class="co"># So choose two colours</span></span>
-<span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a>mySymbols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>) <span class="co"># And two different markers</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>myColours <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'red'</span>, <span class="st">'blue'</span>) <span class="co"># So choose two colours</span></span>
+<span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a>mySymbols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>) <span class="co"># And two different markers</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Run the next plot command to see the resulting plot:</p>
 <p>Thus each point gets the appropriate colour and symbol for its group. This is the indexing: <code>myColours[Suborder]</code> and <code>mySymbols[Suborder]</code> automatically assign the two colors and two symbols to the two suborders.</p>
@@ -2669,6 +2673,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -2703,7 +2725,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

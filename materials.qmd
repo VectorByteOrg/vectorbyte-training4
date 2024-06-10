@@ -48,7 +48,7 @@ We are assuming familiarity with R basics. In addition, we recommend that you do
 
 -   [Lecture slides](intro_to_traits.pdf)
 
--   [Cator *et al*. 2020. The Role of Vector Trait Variation in Vector-Borne Disease Dynamics](Cator%20et%20al.%202020.%20The%20Role%20of%20Vector%20Trait%20Variation%20in%20Vector-Borne%20Disease%20Dynamics.pdf)
+-   [Cator *et al*. 2020. The Role of Vector Trait Variation in Vector-Borne Disease Dynamics](Cator2020.pdf)
 
 <br> <br>
 
@@ -86,7 +86,7 @@ We are assuming familiarity with R basics. In addition, we recommend that you do
 
 ## Intro to Bayes
 
--   [Lecture Slides](VB_Bayes1.qmd), [Practical 1](VB_Bayes_activity1.qmd)
+-   [Lecture Slides](VB_Bayes1.Qmd), [Practical 1](VB_Bayes_activity1.qmd)
 -   Datasets:
     -   [Midge data](MidgeWingLength.csv)
 
@@ -94,7 +94,7 @@ We are assuming familiarity with R basics. In addition, we recommend that you do
 
 ## Bayesian computation and MCMC
 
--   [Lecture Slides](VB_Bayes2.qmd), [Practical 2A](VB_Bayes_activity2.Qmd)
+-   [Lecture Slides](VB_Bayes2.Qmd), [Practical 2A](VB_Bayes_activity2.Qmd)
 
 <br> <br>
 

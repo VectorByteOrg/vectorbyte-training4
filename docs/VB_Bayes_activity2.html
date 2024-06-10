@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.552">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -463,12 +463,12 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mcmc.out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           mu
-[1,] 1.795737
-[2,] 1.864992
-[3,] 1.904160
-[4,] 1.929494
-[5,] 1.823662
-[6,] 1.906474</code></pre>
+[1,] 1.761518
+[2,] 1.747092
+[3,] 1.801230
+[4,] 1.735804
+[5,] 1.744724
+[6,] 1.790554</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
@@ -539,12 +539,12 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mcmc.out<span class="sc">$</span>chain1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           mu
-[1,] 1.843673
-[2,] 1.778152
-[3,] 1.830460
-[4,] 1.794799
-[5,] 1.817089
-[6,] 1.768136</code></pre>
+[1,] 1.854602
+[2,] 1.728647
+[3,] 1.833390
+[4,] 1.741444
+[5,] 1.777349
+[6,] 1.766675</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
@@ -585,12 +585,12 @@ Sample size per chain = 10000
    plus standard error of the mean:
 
           Mean             SD       Naive SE Time-series SE 
-     1.8039731      0.0531384      0.0005314      0.0005314 
+     1.8049482      0.0523129      0.0005231      0.0005231 
 
 2. Quantiles for each variable:
 
  2.5%   25%   50%   75% 97.5% 
-1.698 1.768 1.804 1.840 1.909 </code></pre>
+1.704 1.770 1.805 1.841 1.908 </code></pre>
 </div>
 </div>
 <p>Let’s compare these draws to what we got with our analytic solution:</p>
@@ -746,12 +746,12 @@ Sample size per chain = 10000
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mcmc.out2<span class="sc">$</span>chain1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           mu         s2      tau
-[1,] 1.773828 0.02558876 39.07965
-[2,] 1.773828 0.02558876 39.07965
-[3,] 1.773828 0.02558876 39.07965
-[4,] 1.766051 0.02678091 37.34004
-[5,] 1.766051 0.02678091 37.34004
-[6,] 1.766051 0.02678091 37.34004</code></pre>
+[1,] 1.801003 0.02196645 45.52397
+[2,] 1.759232 0.02196645 45.52397
+[3,] 1.759232 0.03521563 28.39648
+[4,] 1.759232 0.01693182 59.06041
+[5,] 1.759232 0.01637561 61.06644
+[6,] 1.759232 0.01637561 61.06644</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>samp2<span class="ot">&lt;-</span><span class="fu">as.mcmc</span>(mcmc.out2<span class="sc">$</span>chain1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -777,17 +777,17 @@ Sample size per chain = 10000
 1. Empirical mean and standard deviation for each variable,
    plus standard error of the mean:
 
-       Mean       SD  Naive SE Time-series SE
-mu   1.8055  0.05289 0.0005289      0.0011590
-s2   0.0259  0.01825 0.0001825      0.0004621
-tau 51.7629 26.04429 0.2604429      0.6567162
+        Mean       SD  Naive SE Time-series SE
+mu   1.80689  0.05195 0.0005195      0.0010889
+s2   0.02548  0.01756 0.0001756      0.0003882
+tau 52.54758 26.45853 0.2645853      0.6591707
 
 2. Quantiles for each variable:
 
-         2.5%      25%    50%      75%    97.5%
-mu   1.700880  1.77231  1.806  1.83789   1.9100
-s2   0.008864  0.01519  0.021  0.03039   0.0708
-tau 14.124652 32.90957 47.628 65.81439 112.8196</code></pre>
+         2.5%      25%      50%      75%     97.5%
+mu   1.706050  1.77449  1.80653  1.84055   1.91192
+s2   0.008695  0.01481  0.02086  0.03018   0.07024
+tau 14.236547 33.13110 47.93859 67.50057 115.00973</code></pre>
 </div>
 </div>
 <p>Now we plot each with their priors:</p>
@@ -922,6 +922,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -956,7 +974,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

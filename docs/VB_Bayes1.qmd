@@ -1,10 +1,7 @@
 ---
-title: |
-    | VectorByte Methods Training
-    | Introduction to Bayesian Statistics
-author: | 
-    | The VectorByte Team
-    | (Leah R. Johnson, Virginia Tech)
+title: "VectorByte Methods Training"
+subtitle: "Introduction to Bayesian Statistics"
+author: "The VectorByte Team (Leah R. Johnson, Virginia Tech)"
 title-slide-attributes:
   data-background-image: VectorByte-logo_lg.png
   data-background-size: contain

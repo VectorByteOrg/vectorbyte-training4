@@ -8,9 +8,10 @@
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.549">
+  <meta name="generator" content="quarto-1.4.552">
 
-  <title>| VectorByte Methods Training | Introduction to Bayesian Computation and MCMC</title>
+  <meta name="author" content="The VectorByte Team (Leah R. Johnson, Virginia Tech)">
+  <title>VectorByte Methods Training</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -390,13 +391,13 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="VectorByte-logo_lg.png" data-background-opacity="0.2" data-background-size="contain" class="quarto-title-block center">
-  <h1 class="title"><div class="line-block">VectorByte Methods Training<br>
-Introduction to Bayesian Computation and MCMC</div></h1>
+  <h1 class="title">VectorByte Methods Training</h1>
+  <p class="subtitle">Introduction to Bayesian Computation and MCMC</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
- 
+The VectorByte Team (Leah R. Johnson, Virginia Tech) 
 </div>
 </div>
 </div>
@@ -491,7 +492,7 @@ Introduction to Bayesian Computation and MCMC</div></h1>
 <p>MCMC is the most commonly used numerical algorithm for generating posterior samples.</p>
 <p><br> A <span style="color: dodgerblue;">Markov Chain</span> is a sequence of randomly generated numbers where each draw depends on the one immediately preceding it.</p>
 
-<img data-src="MCMC.jpg" class="quarto-figure quarto-figure-center r-stretch"><p class="caption">Plot – Ian Murray (http://mlg.eng.cam.ac.uk/zoubin/tut06/mcmc.pdf)</p></section>
+<img data-src="MCMC.jpg" class="r-stretch quarto-figure-center"><p class="caption">Plot – Ian Murray (http://mlg.eng.cam.ac.uk/zoubin/tut06/mcmc.pdf)</p></section>
 <section id="gibbs-sampling" class="slide level2">
 <h2>Gibbs Sampling</h2>
 <p>Gibbs sampling is a type of MCMC that leverages the <em><span style="color: ForestGreen;">conditional</span></em> distributions of parameters to generate samples by proposing them one at a time. This is the algorithm implemented in the popular Bayesian packages BUGS, WinBUGS, <span class="math inline">\({\tt nimble}\)</span>, and JAGS/<span class="math inline">\({\tt rjags}\)</span>, and that we use for <span class="math inline">\({\tt bayesTPC}\)</span>.</p>
@@ -876,6 +877,24 @@ DIC = D(\bar{\theta}) + 2p_D
         // clear code selection
         e.clearSelection();
       });
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
       function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
@@ -912,7 +931,11 @@ DIC = D(\bar{\theta}) + 2p_D
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          return note.innerHTML;
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
         });
       }
       const findCites = (el) => {
